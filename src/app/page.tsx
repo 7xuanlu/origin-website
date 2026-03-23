@@ -1,4 +1,8 @@
 import Link from "next/link";
+import { WaitlistForm } from "./waitlist-form";
+
+// Toggle: set to false to show download buttons after launch
+const SHOW_WAITLIST = true;
 
 function GitHubIcon() {
   return (
@@ -43,42 +47,120 @@ function ArrowIcon() {
   );
 }
 
+function OriginMark() {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" className="size-7">
+      <defs>
+        <linearGradient id="nav-ring" x1="4" y1="16" x2="28" y2="16" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#6c63ff" />
+          <stop offset="50%" stopColor="#5ba3e6" />
+          <stop offset="100%" stopColor="#4ac8e8" />
+        </linearGradient>
+      </defs>
+      <circle cx="16" cy="16" r="10" stroke="url(#nav-ring)" strokeWidth="5" />
+      <circle cx="22.5" cy="7.5" r="3" fill="white" opacity="0.9" />
+    </svg>
+  );
+}
+
+function OriginRingBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <svg
+        viewBox="0 0 800 800"
+        fill="none"
+        className="animate-float absolute top-[55%] left-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 opacity-[0.06] sm:h-[1000px] sm:w-[1000px]"
+        style={{ filter: "blur(2px)" }}
+      >
+        <defs>
+          {/* Main ring gradient — blue to cyan like the app icon */}
+          <linearGradient
+            id="ring-grad"
+            x1="100"
+            y1="400"
+            x2="700"
+            y2="400"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#6c63ff" />
+            <stop offset="35%" stopColor="#7b7be8" />
+            <stop offset="65%" stopColor="#5ba3e6" />
+            <stop offset="100%" stopColor="#4ac8e8" />
+          </linearGradient>
+          {/* Inner glow */}
+          <radialGradient id="inner-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#7b7be8" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
+          {/* Orb glow */}
+          <radialGradient id="orb-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+            <stop offset="40%" stopColor="#a5c4f7" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#4ac8e8" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        {/* Subtle inner glow fill */}
+        <circle cx="400" cy="400" r="280" fill="url(#inner-glow)" />
+        {/* The ring */}
+        <circle
+          cx="400"
+          cy="400"
+          r="240"
+          stroke="url(#ring-grad)"
+          strokeWidth="72"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* Orbiting dot — positioned at ~1 o'clock */}
+        <circle cx="540" cy="195" r="32" fill="url(#orb-glow)" />
+        <circle cx="540" cy="195" r="14" fill="white" opacity="0.9" />
+      </svg>
+    </div>
+  );
+}
+
 const features = [
   {
     title: "Hybrid Memory Engine",
     description:
       "Vector search, full-text search, and knowledge graph — unified in one local database with Reciprocal Rank Fusion.",
     tag: "libSQL",
+    accent: "warm" as const,
   },
   {
     title: "Knowledge Graph",
     description:
       "Entities, relations, and observations form a structured web of your personal knowledge that grows over time.",
     tag: "Graph",
+    accent: "indigo" as const,
   },
   {
     title: "MCP-Native",
     description:
       "Any MCP-compatible agent reads and writes your memory. Claude, Cursor, ChatGPT — all connected through one protocol.",
     tag: "Protocol",
+    accent: "sage" as const,
   },
   {
     title: "On-Device Intelligence",
     description:
       "Qwen3-4B runs on Apple Silicon Metal GPU. Your data never leaves your machine for processing.",
     tag: "Local AI",
+    accent: "warm" as const,
   },
   {
     title: "Memory Import",
     description:
       "Bring your existing AI memories home. Import from ChatGPT and Claude — no cold start, instant value.",
     tag: "Day Zero",
+    accent: "amber" as const,
   },
   {
     title: "Privacy by Architecture",
     description:
       "PII redaction, local-first storage, AGPL source code. Privacy you can verify, not just trust.",
     tag: "Privacy",
+    accent: "sage" as const,
   },
 ];
 
@@ -116,17 +198,17 @@ const stack = [
   },
   {
     layer: "Agent Interface",
-    tech: "MCP Server (HTTP + Unix socket)",
+    tech: "MCP Server (HTTP + Unix)",
     purpose: "Any MCP agent reads / writes memory",
   },
   {
     layer: "Intelligence",
-    tech: "Qwen3-4B on-device + cloud models",
-    purpose: "Summarize, categorize, find connections",
+    tech: "Qwen3-4B on-device + cloud",
+    purpose: "Summarize, categorize, connect",
   },
   {
     layer: "Memory Engine",
-    tech: "libSQL — vectors + FTS5 + knowledge graph",
+    tech: "libSQL — vectors + FTS5 + graph",
     purpose: "Store, search, connect memories",
   },
   {
@@ -136,34 +218,51 @@ const stack = [
   },
 ];
 
+const accentColors = {
+  warm: {
+    border: "border-l-[#d4884a]",
+    tag: "border-[#d4884a]/20 text-[#d4884a] bg-[#d4884a]/5",
+    hover: "group-hover:border-[#d4884a]/30 group-hover:text-[#d4884a]",
+  },
+  indigo: {
+    border: "border-l-[#7b7be8]",
+    tag: "border-[#7b7be8]/20 text-[#7b7be8] bg-[#7b7be8]/5",
+    hover: "group-hover:border-[#7b7be8]/30 group-hover:text-[#7b7be8]",
+  },
+  sage: {
+    border: "border-l-[#8ab892]",
+    tag: "border-[#8ab892]/20 text-[#8ab892] bg-[#8ab892]/5",
+    hover: "group-hover:border-[#8ab892]/30 group-hover:text-[#8ab892]",
+  },
+  amber: {
+    border: "border-l-[#e0a850]",
+    tag: "border-[#e0a850]/20 text-[#e0a850] bg-[#e0a850]/5",
+    hover: "group-hover:border-[#e0a850]/30 group-hover:text-[#e0a850]",
+  },
+};
+
 export default function LandingPage() {
   return (
     <div className="grain relative min-h-screen">
       {/* Nav */}
-      <nav className="fixed top-0 z-40 w-full border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl">
+      <nav className="fixed top-0 z-40 w-full border-b border-[#2a2a4a]/50 bg-[#1a1a2e]/85 backdrop-blur-xl">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-semibold tracking-tight">
+          <div className="flex items-center gap-3">
+            <OriginMark />
+            <span className="font-serif text-lg font-medium tracking-tight">
               Origin
             </span>
-            <span className="rounded-full border border-amber-glow/20 bg-amber-glow/5 px-2 py-0.5 font-mono text-[10px] text-amber-glow">
+            <span className="rounded-full border border-[#d4884a]/20 bg-[#d4884a]/5 px-2 py-0.5 font-mono text-[10px] font-medium text-[#d4884a]">
               BETA
             </span>
           </div>
           <div className="flex items-center gap-4">
             <Link
               href="https://github.com/7xuanlu/origin"
-              className="flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100"
+              className="flex items-center gap-2 text-sm text-[#a0a0be] transition-colors duration-150 hover:text-[#e8e8f0]"
             >
               <GitHubIcon />
               <span className="hidden sm:inline">GitHub</span>
-            </Link>
-            <Link
-              href="https://github.com/7xuanlu/origin/releases"
-              className="flex items-center gap-2 rounded-lg bg-zinc-100 px-4 py-1.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-white"
-            >
-              <DownloadIcon />
-              Download
             </Link>
           </div>
         </div>
@@ -171,59 +270,75 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-14">
-        {/* Background glow */}
-        <div
-          className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{
-            width: "800px",
-            height: "600px",
-            background:
-              "radial-gradient(ellipse at center, oklch(0.78 0.15 75 / 0.06) 0%, transparent 70%)",
-          }}
-        />
+        {/* Origin ring logo — background */}
+        <OriginRingBackground />
 
         <div className="relative z-10 max-w-3xl text-center">
-          <p className="animate-fade-up mb-6 font-mono text-xs tracking-[0.3em] text-amber-glow/70 uppercase">
+          <p className="animate-fade-up mb-6 font-mono text-[11px] tracking-[0.3em] text-[#d4884a]/70 uppercase">
             Personal Agent Memory Layer
           </p>
-          <h1 className="animate-fade-up delay-100 amber-glow text-5xl leading-[1.1] font-bold tracking-tight sm:text-7xl">
+          <h1 className="animate-fade-up delay-100 warm-glow font-serif text-5xl leading-[1.1] font-medium tracking-tight text-[#e8e8f0] sm:text-7xl">
             One memory,
             <br />
             every agent.
           </h1>
-          <p className="animate-fade-up delay-200 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
+          <p className="animate-fade-up delay-200 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-[#a0a0be]">
             Open-source memory layer that makes every AI tool you use smarter.
             Local-first, privacy-first, MCP-native.{" "}
-            <span className="text-zinc-200">You own the data. Always.</span>
+            <span className="text-[#e8e8f0]">You own the data. Always.</span>
           </p>
-          <div className="animate-fade-up delay-300 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="https://github.com/7xuanlu/origin/releases"
-              className="flex items-center gap-2 rounded-xl bg-zinc-100 px-6 py-3 text-sm font-semibold text-zinc-900 transition-all hover:bg-white hover:shadow-[0_0_24px_oklch(0.78_0.15_75/0.2)]"
-            >
-              <DownloadIcon />
-              Download for macOS
-            </Link>
-            <Link
-              href="https://github.com/7xuanlu/origin"
-              className="flex items-center gap-2 rounded-xl border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-300 transition-all hover:border-zinc-500 hover:text-zinc-100"
-            >
-              View on GitHub
-              <ArrowIcon />
-            </Link>
+          <div
+            id="waitlist"
+            className="animate-fade-up delay-300 mt-10 flex flex-col items-center gap-4"
+          >
+            {SHOW_WAITLIST ? (
+              <>
+                <WaitlistForm />
+                <div className="flex items-center gap-4">
+                  <Link
+                    href="https://github.com/7xuanlu/origin"
+                    className="flex items-center gap-2 text-sm text-[#a0a0be] transition-colors duration-150 hover:text-[#e8e8f0]"
+                  >
+                    View on GitHub
+                    <ArrowIcon />
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                  <Link
+                    href="https://github.com/7xuanlu/origin/releases"
+                    className="flex items-center gap-2 rounded-xl bg-[#e8e8f0] px-6 py-3 text-sm font-semibold text-[#1a1a2e] transition-all duration-150 hover:bg-white hover:shadow-[0_0_28px_rgba(212,136,74,0.2)]"
+                  >
+                    <DownloadIcon />
+                    Download for macOS
+                  </Link>
+                  <Link
+                    href="https://github.com/7xuanlu/origin"
+                    className="flex items-center gap-2 rounded-xl border border-[#2a2a4a] px-6 py-3 text-sm font-medium text-[#a0a0be] transition-all duration-150 hover:border-[#3a3a5c] hover:text-[#e8e8f0]"
+                  >
+                    View on GitHub
+                    <ArrowIcon />
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
-          <p className="animate-fade-up delay-400 mt-6 font-mono text-xs text-zinc-600">
-            macOS (Apple Silicon) &middot; Free &middot; Open Source (AGPL-3.0)
+          <p className="animate-fade-up delay-400 mt-6 font-mono text-[11px] text-[#6a6a8a]">
+            {SHOW_WAITLIST
+              ? "macOS (Apple Silicon) · Coming soon · Open Source (AGPL-3.0)"
+              : "macOS (Apple Silicon) · Free · Open Source (AGPL-3.0)"}
           </p>
         </div>
 
         {/* Scroll indicator */}
         <div className="animate-fade-up delay-700 absolute bottom-12 left-1/2 -translate-x-1/2">
-          <div className="flex h-8 w-5 items-start justify-center rounded-full border border-zinc-700 p-1">
+          <div className="flex h-8 w-5 items-start justify-center rounded-full border border-[#2a2a4a] p-1">
             <div
-              className="h-1.5 w-1 rounded-full bg-zinc-500"
+              className="h-1.5 w-1 rounded-full bg-[#6a6a8a]"
               style={{
-                animation: "fade-up 1.5s ease-in-out infinite alternate",
+                animation: "shimmer 2s ease-in-out infinite",
               }}
             />
           </div>
@@ -231,37 +346,37 @@ export default function LandingPage() {
       </section>
 
       {/* Problem */}
-      <section className="relative border-t border-zinc-800/50 px-6 py-32">
+      <section className="relative border-t border-[#2a2a4a]/50 px-6 py-32">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-4 font-mono text-xs tracking-[0.3em] text-zinc-600 uppercase">
+          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[#6a6a8a] uppercase">
             The problem
           </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
             Every AI tool{" "}
-            <span className="text-zinc-500 line-through decoration-zinc-700">
+            <span className="text-[#6a6a8a] line-through decoration-[#3a3a5c]">
               forgets
             </span>{" "}
             you.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#a0a0be]">
             ChatGPT doesn&apos;t know what you told Claude. Claude doesn&apos;t
             know what you built in Cursor. Each tool is an isolated amnesiac.
             The more AI tools you use, the worse it gets.
           </p>
-          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+          <div className="mt-12 grid gap-3 sm:grid-cols-3">
             {["ChatGPT", "Claude", "Cursor"].map((tool) => (
               <div
                 key={tool}
-                className="rounded-xl border border-zinc-800 bg-zinc-900/50 px-6 py-5"
+                className="rounded-lg border border-[#2a2a4a] bg-[#16213e]/50 px-6 py-5"
               >
-                <p className="font-mono text-sm text-zinc-500">{tool}</p>
-                <p className="mt-1 text-xs text-zinc-600">
+                <p className="font-mono text-sm text-[#6a6a8a]">{tool}</p>
+                <p className="mt-1 text-xs text-[#3a3a5c]">
                   Knows nothing about you
                 </p>
               </div>
             ))}
           </div>
-          <p className="mt-8 text-sm text-zinc-500">
+          <p className="mt-8 text-sm text-[#6a6a8a]">
             Platforms will never fix this. OpenAI won&apos;t share your memory
             with Anthropic.
             <br />
@@ -271,45 +386,47 @@ export default function LandingPage() {
       </section>
 
       {/* Solution */}
-      <section className="relative border-t border-zinc-800/50 px-6 py-32">
+      <section className="relative border-t border-[#2a2a4a]/50 px-6 py-32">
         <div
           className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2"
           style={{
             width: "600px",
             height: "400px",
             background:
-              "radial-gradient(ellipse at center, oklch(0.78 0.15 75 / 0.04) 0%, transparent 70%)",
+              "radial-gradient(ellipse at center, rgba(212, 136, 74, 0.04) 0%, transparent 70%)",
           }}
         />
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="mb-4 font-mono text-xs tracking-[0.3em] text-amber-glow/70 uppercase">
+          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[#d4884a]/70 uppercase">
             The solution
           </p>
-          <h2 className="amber-glow text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="warm-glow font-serif text-3xl font-medium tracking-tight sm:text-4xl">
             Origin remembers.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#a0a0be]">
             The neutral memory layer that sits between you and all your AI
             agents. It runs on your device, captures and organizes your personal
             knowledge, and makes it available to any MCP-compatible agent.
           </p>
-          <div className="card-glow mx-auto mt-12 max-w-lg rounded-2xl border border-zinc-800 bg-zinc-900/80 p-8 text-left">
-            <p className="font-mono text-xs text-amber-glow/60">
+
+          {/* Terminal card — Origin style with accent border */}
+          <div className="card-origin accent-left-warm mx-auto mt-12 max-w-lg rounded-lg p-8 text-left">
+            <p className="font-mono text-xs text-[#d4884a]/70">
               $ origin setup
             </p>
-            <div className="mt-4 space-y-2 font-mono text-sm">
-              <p className="text-zinc-400">
-                <span className="text-green-400">✓</span> Import ChatGPT
+            <div className="mt-4 space-y-2.5 font-mono text-sm">
+              <p className="text-[#a0a0be]">
+                <span className="text-[#8ab892]">✓</span> Import ChatGPT
                 memories
               </p>
-              <p className="text-zinc-400">
-                <span className="text-green-400">✓</span> Import Claude memories
+              <p className="text-[#a0a0be]">
+                <span className="text-[#8ab892]">✓</span> Import Claude memories
               </p>
-              <p className="text-zinc-400">
-                <span className="text-green-400">✓</span> Connect agents via MCP
+              <p className="text-[#a0a0be]">
+                <span className="text-[#8ab892]">✓</span> Connect agents via MCP
               </p>
-              <p className="text-zinc-100">
-                <span className="text-amber-glow">→</span> Every AI you use now
+              <p className="text-[#e8e8f0]">
+                <span className="text-[#d4884a]">→</span> Every AI you use now
                 knows you.
               </p>
             </div>
@@ -318,27 +435,29 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section className="border-t border-zinc-800/50 px-6 py-32">
+      <section className="border-t border-[#2a2a4a]/50 px-6 py-32">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="mb-4 font-mono text-xs tracking-[0.3em] text-zinc-600 uppercase">
+            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[#6a6a8a] uppercase">
               How it works
             </p>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
               Four steps. Forever memory.
             </h2>
           </div>
-          <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-800 sm:grid-cols-4">
+          <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-[#2a2a4a] bg-[#2a2a4a] sm:grid-cols-4">
             {steps.map((step) => (
               <div
                 key={step.number}
-                className="group bg-zinc-900/80 p-8 transition-colors hover:bg-zinc-900"
+                className="group bg-[#16213e]/80 p-8 transition-colors duration-150 hover:bg-[#1e2140]"
               >
-                <span className="font-mono text-3xl font-bold text-zinc-800 transition-colors group-hover:text-amber-glow/30">
+                <span className="font-mono text-3xl font-bold text-[#2a2a4a] transition-colors duration-150 group-hover:text-[#d4884a]/30">
                   {step.number}
                 </span>
-                <h3 className="mt-4 text-lg font-semibold">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-500">
+                <h3 className="mt-4 font-serif text-lg font-medium">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#6a6a8a]">
                   {step.description}
                 </p>
               </div>
@@ -348,62 +467,69 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="border-t border-zinc-800/50 px-6 py-32">
+      <section className="border-t border-[#2a2a4a]/50 px-6 py-32">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="mb-4 font-mono text-xs tracking-[0.3em] text-zinc-600 uppercase">
+            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[#6a6a8a] uppercase">
               Features
             </p>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
               Built for the agentic era.
             </h2>
           </div>
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="card-glow group rounded-2xl border border-zinc-800 bg-zinc-900/60 p-8 transition-all"
-              >
-                <span className="inline-block rounded-md border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-zinc-400 transition-colors group-hover:border-amber-glow/20 group-hover:text-amber-glow/70">
-                  {feature.tag}
-                </span>
-                <h3 className="mt-4 text-lg font-semibold">{feature.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-500">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+            {features.map((feature) => {
+              const colors = accentColors[feature.accent];
+              return (
+                <div
+                  key={feature.title}
+                  className={`card-origin group rounded-lg border-l-3 p-7 ${colors.border}`}
+                >
+                  <span
+                    className={`inline-block rounded-full border px-2.5 py-0.5 font-mono text-[10px] font-medium transition-colors duration-150 ${colors.tag} ${colors.hover}`}
+                  >
+                    {feature.tag}
+                  </span>
+                  <h3 className="mt-4 font-serif text-base font-medium">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-relaxed text-[#6a6a8a]">
+                    {feature.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Architecture */}
-      <section className="border-t border-zinc-800/50 px-6 py-32">
+      <section className="border-t border-[#2a2a4a]/50 px-6 py-32">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
-            <p className="mb-4 font-mono text-xs tracking-[0.3em] text-zinc-600 uppercase">
+            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[#6a6a8a] uppercase">
               Architecture
             </p>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
               Everything on your machine.
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-zinc-500">
+            <p className="mx-auto mt-4 max-w-lg text-[#6a6a8a]">
               Five layers, one binary. No cloud required.
             </p>
           </div>
-          <div className="mt-12 overflow-hidden rounded-2xl border border-zinc-800">
+          <div className="mt-12 overflow-hidden rounded-lg border border-[#2a2a4a]">
             {stack.map((row, i) => (
               <div
                 key={row.layer}
-                className={`grid grid-cols-[140px_1fr_1fr] gap-4 px-6 py-4 text-sm ${
-                  i !== stack.length - 1 ? "border-b border-zinc-800/50" : ""
-                } ${i === 0 ? "bg-zinc-900/40" : ""}`}
+                className={`grid grid-cols-[140px_1fr_1fr] gap-4 px-6 py-4 text-sm transition-colors duration-150 hover:bg-[rgba(255,255,255,0.02)] ${
+                  i !== stack.length - 1 ? "border-b border-[#2a2a4a]/50" : ""
+                } ${i === 0 ? "bg-[#1e2140]/40" : ""}`}
               >
-                <span className="font-medium text-zinc-200">{row.layer}</span>
-                <span className="font-mono text-xs text-zinc-500">
+                <span className="font-medium text-[#c8c8dc]">{row.layer}</span>
+                <span className="font-mono text-xs text-[#6a6a8a]">
                   {row.tech}
                 </span>
-                <span className="text-zinc-500">{row.purpose}</span>
+                <span className="text-[#6a6a8a]">{row.purpose}</span>
               </div>
             ))}
           </div>
@@ -411,64 +537,76 @@ export default function LandingPage() {
       </section>
 
       {/* Why Now */}
-      <section className="border-t border-zinc-800/50 px-6 py-32">
+      <section className="border-t border-[#2a2a4a]/50 px-6 py-32">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-4 font-mono text-xs tracking-[0.3em] text-zinc-600 uppercase">
+          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[#6a6a8a] uppercase">
             Why now
           </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
             The window is open.
           </h2>
-          <div className="mt-12 space-y-6 text-left">
+          <div className="mt-12 space-y-3 text-left">
             {[
               {
-                signal: "Limitless acquired by Meta, Bee by Amazon — both killed.",
+                signal:
+                  "Limitless acquired by Meta, Bee by Amazon — both killed.",
                 meaning:
                   "No independent privacy-first personal memory product exists.",
+                accent: "warm" as const,
               },
               {
-                signal:
-                  "MCP became the interoperability standard.",
+                signal: "MCP became the interoperability standard.",
                 meaning:
                   "Cross-agent memory is now architecturally possible.",
+                accent: "indigo" as const,
               },
               {
-                signal:
-                  "On-device AI crossed the performance threshold.",
+                signal: "On-device AI crossed the performance threshold.",
                 meaning:
                   "Real intelligence runs locally on Apple Silicon.",
+                accent: "sage" as const,
               },
               {
                 signal: "Trust is broken.",
                 meaning:
                   "Post-acquisition, users demand verifiable privacy, not promises.",
+                accent: "amber" as const,
               },
-            ].map((item) => (
-              <div
-                key={item.signal}
-                className="flex gap-4 rounded-xl border border-zinc-800/50 bg-zinc-900/30 px-6 py-5"
-              >
-                <span className="mt-0.5 text-amber-glow/50">→</span>
-                <div>
-                  <p className="font-medium text-zinc-200">{item.signal}</p>
-                  <p className="mt-1 text-sm text-zinc-500">{item.meaning}</p>
+            ].map((item) => {
+              const borderColor =
+                item.accent === "warm"
+                  ? "border-l-[#d4884a]"
+                  : item.accent === "indigo"
+                    ? "border-l-[#7b7be8]"
+                    : item.accent === "sage"
+                      ? "border-l-[#8ab892]"
+                      : "border-l-[#e0a850]";
+              return (
+                <div
+                  key={item.signal}
+                  className={`card-origin rounded-lg border-l-3 px-6 py-5 ${borderColor}`}
+                >
+                  <p className="font-medium text-[#c8c8dc]">{item.signal}</p>
+                  <p className="mt-1 text-sm text-[#6a6a8a]">
+                    {item.meaning}
+                  </p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Open Source CTA */}
-      <section className="border-t border-zinc-800/50 px-6 py-32">
+      <section className="border-t border-[#2a2a4a]/50 px-6 py-32">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-4 font-mono text-xs tracking-[0.3em] text-amber-glow/70 uppercase">
+          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[#d4884a]/70 uppercase">
             Open source
           </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
             Read every line.
           </h2>
-          <p className="mx-auto mt-6 max-w-lg text-lg text-zinc-400">
+          <p className="mx-auto mt-6 max-w-lg text-lg text-[#a0a0be]">
             Origin is AGPL-3.0. The complete desktop experience — memory engine,
             unlimited agents, all capture methods, on-device LLM, knowledge
             graph. Nothing held back.
@@ -476,42 +614,54 @@ export default function LandingPage() {
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="https://github.com/7xuanlu/origin"
-              className="flex items-center gap-2 rounded-xl bg-zinc-100 px-6 py-3 text-sm font-semibold text-zinc-900 transition-all hover:bg-white"
+              className="flex items-center gap-2 rounded-xl bg-[#e8e8f0] px-6 py-3 text-sm font-semibold text-[#1a1a2e] transition-all duration-150 hover:bg-white"
             >
               <GitHubIcon />
               Star on GitHub
             </Link>
-            <Link
-              href="https://github.com/7xuanlu/origin/releases"
-              className="flex items-center gap-2 rounded-xl border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-300 transition-all hover:border-zinc-500 hover:text-zinc-100"
-            >
-              <DownloadIcon />
-              Download
-            </Link>
+            {SHOW_WAITLIST ? (
+              <a
+                href="#waitlist"
+                className="flex items-center gap-2 rounded-xl border border-[#d4884a]/20 px-6 py-3 text-sm font-medium text-[#d4884a] transition-all duration-150 hover:border-[#d4884a]/40 hover:text-[#e0a850]"
+              >
+                Join Waitlist
+                <ArrowIcon />
+              </a>
+            ) : (
+              <Link
+                href="https://github.com/7xuanlu/origin/releases"
+                className="flex items-center gap-2 rounded-xl border border-[#2a2a4a] px-6 py-3 text-sm font-medium text-[#a0a0be] transition-all duration-150 hover:border-[#3a3a5c] hover:text-[#e8e8f0]"
+              >
+                <DownloadIcon />
+                Download
+              </Link>
+            )}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-800/50 px-6 py-12">
+      <footer className="border-t border-[#2a2a4a]/50 px-6 py-12">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row">
           <div className="flex items-center gap-4">
-            <span className="text-sm font-medium text-zinc-400">Origin</span>
-            <span className="text-xs text-zinc-700">&middot;</span>
-            <span className="text-xs text-zinc-600">
+            <span className="font-serif text-sm font-medium text-[#a0a0be]">
+              Origin
+            </span>
+            <span className="text-xs text-[#3a3a5c]">&middot;</span>
+            <span className="text-xs text-[#6a6a8a]">
               The open-source memory layer for the agentic era
             </span>
           </div>
           <div className="flex items-center gap-6">
             <Link
               href="https://github.com/7xuanlu/origin"
-              className="text-xs text-zinc-600 transition-colors hover:text-zinc-400"
+              className="text-xs text-[#6a6a8a] transition-colors duration-150 hover:text-[#a0a0be]"
             >
               GitHub
             </Link>
             <Link
               href="https://github.com/7xuanlu/origin/blob/main/LICENSE"
-              className="text-xs text-zinc-600 transition-colors hover:text-zinc-400"
+              className="text-xs text-[#6a6a8a] transition-colors duration-150 hover:text-[#a0a0be]"
             >
               AGPL-3.0
             </Link>
