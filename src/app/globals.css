@@ -6,19 +6,7 @@
   --font-serif: var(--font-fraunces), Georgia, serif;
   --font-mono: var(--font-mono), "JetBrains Mono", monospace;
 
-  /* Origin Navy Palette */
-  --color-navy-950: #0d0d1a;
-  --color-navy-900: #1a1a2e;
-  --color-navy-800: #16213e;
-  --color-navy-700: #1e2140;
-  --color-navy-600: #2a2a4a;
-  --color-navy-500: #3a3a5c;
-  --color-navy-400: #6a6a8a;
-  --color-navy-300: #a0a0be;
-  --color-navy-200: #c8c8dc;
-  --color-navy-100: #e8e8f0;
-
-  /* Origin Warm Accents */
+  /* Static accent colors (same in both themes) */
   --color-origin-warm: #d4884a;
   --color-origin-amber: #e0a850;
   --color-origin-gold: #e8c97a;
@@ -26,12 +14,106 @@
   --color-origin-sage: #8ab892;
 }
 
+/* ── Dark theme (default) ── */
+:root {
+  --o-bg: #1a1a2e;
+  --o-bg-deep: #0d0d1a;
+  --o-bg-alt: #16213e;
+  --o-surface: #1e2140;
+  --o-border: #2a2a4a;
+  --o-border-subtle: rgba(42, 42, 74, 0.5);
+  --o-text: #e8e8f0;
+  --o-text-secondary: #a0a0be;
+  --o-text-muted: #6a6a8a;
+  --o-text-dim: #3a3a5c;
+  --o-card-bg: rgba(30, 33, 64, 0.6);
+  --o-card-hover: rgba(30, 33, 64, 0.85);
+  --o-nav-bg: rgba(26, 26, 46, 0.85);
+  --o-warm: #d4884a;
+  --o-warm-hover: #e0a850;
+  --o-indigo: #7b7be8;
+  --o-sage: #8ab892;
+  --o-amber: #e0a850;
+  --o-glow-warm: rgba(212, 136, 74, 0.25);
+  --o-glow-indigo: rgba(123, 123, 232, 0.2);
+  --o-selection: rgba(212, 136, 74, 0.25);
+  --o-scrollbar: rgba(42, 42, 74, 0.65);
+  --o-grain-opacity: 0.025;
+  --o-ring-opacity: 0.06;
+  --o-ring-filter: blur(2px);
+  --o-ring-grad-start: #6c63ff;
+  --o-ring-grad-mid: #7b7be8;
+  --o-ring-grad-mid2: #5ba3e6;
+  --o-ring-grad-end: #4ac8e8;
+  --o-ring-glow: #7b7be8;
+  --o-ring-orb-glow: #a5c4f7;
+  --o-ring-orb-edge: #4ac8e8;
+  --o-logo-start: #6c63ff;
+  --o-logo-mid: #5ba3e6;
+  --o-logo-end: #4ac8e8;
+  --o-logo-orb: #ffffff;
+  --o-input-bg: rgba(22, 33, 62, 0.6);
+  --o-input-focus-bg: #16213e;
+  --o-btn-text: #1a1a2e;
+}
+
+/* ── Light theme ── */
+[data-theme="light"] {
+  --o-bg: #fefcf9;
+  --o-bg-deep: #f5f0e8;
+  --o-bg-alt: #ffffff;
+  --o-surface: #f8f5f0;
+  --o-border: #e0dbd2;
+  --o-border-subtle: rgba(180, 170, 155, 0.35);
+  --o-text: #1a1a2e;
+  --o-text-secondary: #5a5a6e;
+  --o-text-muted: #8a8a9a;
+  --o-text-dim: #c0bdb5;
+  --o-card-bg: rgba(255, 255, 255, 0.7);
+  --o-card-hover: rgba(255, 255, 255, 0.9);
+  --o-nav-bg: rgba(254, 252, 249, 0.85);
+  --o-warm: #c4733b;
+  --o-warm-hover: #b5642e;
+  --o-indigo: #5e58c8;
+  --o-sage: #7a9b7e;
+  --o-amber: #c49030;
+  --o-glow-warm: rgba(196, 115, 59, 0.15);
+  --o-glow-indigo: rgba(94, 88, 200, 0.1);
+  --o-selection: rgba(196, 115, 59, 0.2);
+  --o-scrollbar: rgba(180, 170, 155, 0.5);
+  --o-grain-opacity: 0.015;
+  --o-ring-opacity: 0.05;
+  --o-ring-filter: blur(3px);
+  --o-ring-grad-start: #a08070;
+  --o-ring-grad-mid: #b89880;
+  --o-ring-grad-mid2: #c8a890;
+  --o-ring-grad-end: #d4b8a0;
+  --o-ring-glow: #b89880;
+  --o-ring-orb-glow: #d4b8a0;
+  --o-ring-orb-edge: #c8a890;
+  --o-logo-start: #5548d9;
+  --o-logo-mid: #4a8ad0;
+  --o-logo-end: #3ab0d0;
+  --o-logo-orb: #ffffff;
+  --o-input-bg: rgba(245, 240, 232, 0.6);
+  --o-input-focus-bg: #f5f0e8;
+  --o-btn-text: #fefcf9;
+}
+
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
 }
 
 body {
   font-family: var(--font-sans);
+  background: var(--o-bg);
+  color: var(--o-text);
+  transition: background 300ms ease, color 300ms ease;
 }
 
 /* Grain texture overlay */
@@ -41,7 +123,7 @@ body {
   inset: 0;
   z-index: 50;
   pointer-events: none;
-  opacity: 0.025;
+  opacity: var(--o-grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
@@ -60,42 +142,23 @@ body {
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes shimmer {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
-  }
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 @keyframes glow-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 12px 2px rgba(212, 136, 74, 0);
-  }
-  50% {
-    box-shadow: 0 0 12px 2px rgba(212, 136, 74, 0.15);
-  }
+  0%, 100% { box-shadow: 0 0 12px 2px rgba(212, 136, 74, 0); }
+  50% { box-shadow: 0 0 12px 2px rgba(212, 136, 74, 0.15); }
 }
 
 .animate-fade-up {
@@ -111,82 +174,49 @@ body {
 }
 
 /* Stagger delays */
-.delay-100 {
-  animation-delay: 100ms;
-}
-.delay-200 {
-  animation-delay: 200ms;
-}
-.delay-300 {
-  animation-delay: 300ms;
-}
-.delay-400 {
-  animation-delay: 400ms;
-}
-.delay-500 {
-  animation-delay: 500ms;
-}
-.delay-600 {
-  animation-delay: 600ms;
-}
-.delay-700 {
-  animation-delay: 700ms;
-}
-.delay-800 {
-  animation-delay: 800ms;
-}
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
 
 /* Warm glow for headings */
 .warm-glow {
-  text-shadow: 0 0 48px rgba(212, 136, 74, 0.25);
+  text-shadow: 0 0 48px var(--o-glow-warm);
 }
 
 /* Subtle border glow on cards — Origin style */
 .card-origin {
-  background: rgba(30, 33, 64, 0.6);
-  border: 1px solid #2a2a4a;
+  background: var(--o-card-bg);
+  border: 1px solid var(--o-border);
   transition: all 150ms ease;
 }
 
 .card-origin:hover {
-  background: rgba(30, 33, 64, 0.85);
-  border-color: rgba(123, 123, 232, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: var(--o-card-hover);
+  border-color: var(--o-glow-indigo);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
 /* Left accent border — Origin memory card style */
-.accent-left-warm {
-  border-left: 3px solid #d4884a;
-}
-
-.accent-left-indigo {
-  border-left: 3px solid #7b7be8;
-}
-
-.accent-left-sage {
-  border-left: 3px solid #8ab892;
-}
-
-.accent-left-amber {
-  border-left: 3px solid #e0a850;
-}
+.accent-left-warm { border-left: 3px solid var(--o-warm); }
+.accent-left-indigo { border-left: 3px solid var(--o-indigo); }
+.accent-left-sage { border-left: 3px solid var(--o-sage); }
+.accent-left-amber { border-left: 3px solid var(--o-amber); }
 
 /* Scrollbar styling — Origin style */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(42, 42, 74, 0.65);
+  background: var(--o-scrollbar);
   border-radius: 3px;
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(212, 136, 74, 0.25);
-  color: #e8e8f0;
+  background: var(--o-selection);
+  color: var(--o-text);
 }
