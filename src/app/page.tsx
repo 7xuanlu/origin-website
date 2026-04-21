@@ -42,7 +42,7 @@ function OriginMark() {
         </linearGradient>
       </defs>
       <circle cx="16" cy="16" r="10" stroke="url(#nav-ring)" strokeWidth="5" />
-      <circle cx="22.5" cy="7.5" r="3" fill="var(--o-logo-orb)" opacity="0.9" />
+      <circle cx="20" cy="10" r="3" fill="var(--o-logo-orb)" opacity="0.9" />
     </svg>
   );
 }
@@ -157,7 +157,7 @@ export default function LandingPage() {
 
         <div className="relative z-10 max-w-3xl text-center">
           <p className="animate-fade-up mb-6 font-mono text-[13px] tracking-[0.25em] text-[var(--o-warm)]/70 uppercase">
-            Personal AI Memory
+            Memory That Thinks
           </p>
           <h1 className="animate-fade-up delay-100 warm-glow font-serif text-5xl leading-[1.1] font-medium tracking-tight sm:text-7xl">
             What you know
