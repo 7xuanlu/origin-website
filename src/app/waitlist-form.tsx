@@ -13,7 +13,7 @@ export function WaitlistForm() {
           <path d="M20 6 9 17l-5-5" />
         </svg>
         <span className="text-sm text-[var(--o-sage)]">
-          You&apos;re on the list. We&apos;ll be in touch.
+          You&apos;re in. We&apos;ll keep you posted.
         </span>
       </div>
     );
@@ -44,7 +44,7 @@ export function WaitlistForm() {
               Joining...
             </span>
           ) : (
-            "Join Waitlist"
+            "Get Updates"
           )}
         </button>
       </div>

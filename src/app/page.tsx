@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { WaitlistForm } from "./waitlist-form";
 import { ThemeToggle } from "./theme-toggle";
+import { UseCasesSection, HonestCaveatsSection, FAQSection } from "@/components/sections";
 
-// Toggle: set to false to show download buttons after launch
-const SHOW_WAITLIST = false;
 
 function GitHubIcon() {
   return (
@@ -93,12 +92,12 @@ const pillars = [
 ];
 
 const features = [
-  { title: "Hybrid Memory Engine", description: "Vector search, full-text search, and knowledge graph — unified in one local database with Reciprocal Rank Fusion.", tag: "libSQL", accent: "warm" as const },
-  { title: "Knowledge Graph", description: "Entities, relations, and observations form a structured web of your personal knowledge that grows over time.", tag: "Graph", accent: "indigo" as const },
-  { title: "MCP-Native", description: "Any MCP-compatible agent reads and writes your memory. Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — all connected.", tag: "Protocol", accent: "sage" as const },
-  { title: "On-Device Intelligence", description: "Qwen3-4B runs on Apple Silicon Metal GPU. Your data never leaves your machine for processing.", tag: "Local AI", accent: "warm" as const },
-  { title: "Memory Import", description: "Drop in your ChatGPT export or Obsidian vault and Origin starts refining immediately. No cold start, instant value.", tag: "Day Zero", accent: "amber" as const },
-  { title: "Self-Refining", description: "A background engine deduplicates, links related memories into concepts, detects contradictions, and distills patterns. Quality improves every day.", tag: "Refinery", accent: "sage" as const },
+  { title: "Self-Refining", description: "A background engine deduplicates, links related memories into concepts, detects contradictions, and distills patterns. Quality improves every day.", tag: "Refinery", accent: "warm" as const },
+  { title: "Hybrid Memory Engine", description: "Vector search, full-text search, and knowledge graph — unified in one local database with Reciprocal Rank Fusion.", tag: "libSQL", accent: "indigo" as const },
+  { title: "Associative Recall", description: "Ask about one thing, get related context you didn't search for. Entities and relations link your knowledge so retrieval goes beyond keyword matching.", tag: "Graph", accent: "sage" as const },
+  { title: "On-Device Intelligence", description: "Qwen3-4B and Qwen3.5-9B run on Apple Silicon Metal GPU. Your data never leaves your machine for processing.", tag: "Local AI", accent: "warm" as const },
+  { title: "MCP-Native", description: "Any MCP-compatible agent reads and writes your memory. Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — all connected.", tag: "Protocol", accent: "amber" as const },
+  { title: "Concept Distillation", description: "Compiles dozens of raw memories into dense, structured summaries. What took 2,000 tokens to re-explain becomes a 200-token concept.", tag: "Concepts", accent: "sage" as const },
 ];
 
 const accentColors = {
@@ -172,36 +171,20 @@ export default function LandingPage() {
             <br />
             Distilled context that saves tokens every session.
           </p>
-          <div id="waitlist" className="animate-fade-up delay-300 mt-10 flex flex-col items-center gap-4">
-            {SHOW_WAITLIST ? (
-              <>
-                <WaitlistForm />
-                <div className="flex items-center gap-4">
-                  <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 text-sm text-[var(--o-text-secondary)] transition-colors duration-150 hover:text-[var(--o-text)]">
-                    View on GitHub
-                    <ArrowIcon />
-                  </Link>
-                </div>
-              </>
-            ) : (
-              <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-                <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:shadow-[0_0_28px_var(--o-glow-warm)]">
-                  <DownloadIcon />
-                  Download
-                </Link>
-                <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
-                  View on GitHub
-                  <ArrowIcon />
-                </Link>
-              </div>
-            )}
+          <div className="animate-fade-up delay-300 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:shadow-[0_0_28px_var(--o-glow-warm)]">
+              <DownloadIcon />
+              Download
+            </Link>
+            <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
+              View on GitHub
+              <ArrowIcon />
+            </Link>
           </div>
           <p className="animate-fade-up delay-400 mt-6 font-mono text-[11px] text-[var(--o-text-muted)]">
-            {SHOW_WAITLIST
-              ? "macOS (Apple Silicon) \u00b7 Research preview \u00b7 Open Source"
-              : "macOS (Apple Silicon) \u00b7 Free \u00b7 Open Source"}
+            macOS (Apple Silicon) &middot; Free &middot; Open Source
           </p>
-          <p className="animate-fade-up delay-500 mt-2 font-mono text-[11px] text-[var(--o-text-dim)]">
+          <p className="animate-fade-up delay-500 mt-2 font-mono text-[11px] text-[var(--o-text-muted)]">
             Working context, spaces, and team sync on the roadmap.
           </p>
         </div>
@@ -239,7 +222,7 @@ export default function LandingPage() {
           <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">
             The problem
           </p>
-          <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
+          <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
             Your AI remembers you{" "}
             <span className="text-[var(--o-text-muted)] line-through decoration-[var(--o-text-dim)]">badly</span>
             {" "}&mdash; and won&apos;t let you see.
@@ -259,41 +242,15 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Setup */}
-      <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2" style={{ width: "600px", height: "400px", background: "radial-gradient(ellipse at center, var(--o-glow-warm-bg) 0%, transparent 70%)" }} />
-        <div className="relative mx-auto max-w-3xl text-center">
-          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">
-            Setup in 60 seconds
-          </p>
-          <h2 className="warm-glow font-serif text-3xl font-medium tracking-tight sm:text-4xl">
-            Add to your MCP config. Done.
-          </h2>
-          <div className="card-origin mx-auto mt-12 max-w-lg rounded-lg p-8 text-left">
-            <p className="mb-3 font-mono text-xs text-[var(--o-text-muted)]">claude_desktop_config.json</p>
-            <pre className="overflow-x-auto font-mono text-sm leading-relaxed"><code className="text-[var(--o-text-secondary)]">{`{
-  "mcpServers": {
-    "origin": {
-      "command": "npx",
-      "args": ["-y", "origin-mcp"]
-    }
-  }
-}`}</code></pre>
-            <p className="mt-6 text-sm text-[var(--o-text-muted)]">
-              Works with Claude Code, Claude Desktop, Cursor, ChatGPT, and Gemini CLI.
-              <br />
-              <span className="text-[var(--o-text-secondary)]">First run downloads everything. No config, no daemon management.</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Why Origin */}
       <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Why Origin</p>
-            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Memory is everywhere now. None of it is good enough.</h2>
+            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Not another memory layer. A different product.</h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm text-[var(--o-text-muted)]">
+              Memory MCPs store and retrieve. Origin is a full product built on top &mdash; it refines, compiles, and compounds what you know over time.
+            </p>
           </div>
           <div className="mt-16 grid gap-6 sm:grid-cols-3">
             {pillars.map((pillar) => (
@@ -306,13 +263,68 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Token Efficiency */}
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Measured, not claimed</p>
+            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
+              96% fewer tokens. Better answers.
+            </h2>
+            <p className="mx-auto mt-4 max-w-lg text-sm text-[var(--o-text-muted)]">
+              Without Origin, your AI replays your entire memory every time &mdash; thousands of tokens, growing with every conversation. With Origin, it retrieves only what matters. The cost stays flat no matter how much you store.
+            </p>
+          </div>
+          <div className="mt-12 overflow-hidden rounded-lg border border-[var(--o-border)]">
+            <table className="w-full text-left font-mono text-sm">
+              <thead>
+                <tr className="border-b border-[var(--o-border)] bg-[var(--o-surface)]">
+                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">Strategy</th>
+                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">Tokens / query</th>
+                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">Finds right context</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-[var(--o-border-subtle)]">
+                  <td className="px-6 py-4 text-[var(--o-text-muted)]">Full replay (no retrieval)</td>
+                  <td className="px-6 py-4 text-[var(--o-text-muted)]">4,505</td>
+                  <td className="px-6 py-4 text-[var(--o-text-muted)]">Buried in noise</td>
+                </tr>
+                <tr className="border-b border-[var(--o-border-subtle)]">
+                  <td className="px-6 py-4 text-[var(--o-text-muted)]">Basic vector search</td>
+                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">168</td>
+                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">77%</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-[var(--o-text)] font-medium">Origin (hybrid search)</td>
+                  <td className="px-6 py-4 text-[var(--o-warm)] font-medium">168</td>
+                  <td className="px-6 py-4 text-[var(--o-warm)] font-medium">91%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-6 space-y-2 text-center">
+            <p className="text-sm text-[var(--o-text-secondary)]">
+              Same token cost as basic search. <span className="text-[var(--o-warm)]">19% more relevant context.</span>
+            </p>
+            <p className="text-xs text-[var(--o-text-muted)]">
+              And this only measures search. Origin also compiles your memories into structured knowledge over time &mdash; making retrieval more precise as your memory matures.
+            </p>
+          </div>
+          <p className="mt-8 text-center font-mono text-[11px] text-[var(--o-text-muted)]">
+            Measured on the LoCoMo benchmark (10 conversations, 2,531 memories, 1,540 queries). Tokenizer: cl100k_base. Top-10 retrieval. Open source and reproducible.
+          </p>
+        </div>
+      </section>
+
+      <UseCasesSection />
 
       {/* Features */}
       <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Features</p>
-            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Built for the agentic era.</h2>
+            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Built for the agentic era.</h2>
           </div>
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => {
@@ -331,50 +343,56 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Benchmarks */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="mx-auto max-w-3xl">
-          <div className="text-center">
-            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Retrieval quality</p>
-            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Measured, not claimed.</h2>
-            <p className="mx-auto mt-4 max-w-lg text-sm text-[var(--o-text-muted)]">
-              Standard long-memory benchmarks. BGE-Base-EN-v1.5-Q embeddings + FTS5 + Reciprocal Rank Fusion.
-            </p>
-          </div>
-          <div className="mt-12 overflow-hidden rounded-lg border border-[var(--o-border)]">
-            <table className="w-full text-left font-mono text-sm">
-              <thead>
-                <tr className="border-b border-[var(--o-border)] bg-[var(--o-surface)]">
-                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">Benchmark</th>
-                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">Recall@5</th>
-                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">MRR</th>
-                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">NDCG@10</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-[var(--o-border-subtle)]">
-                  <td className="px-6 py-4 text-[var(--o-text)]">LongMemEval</td>
-                  <td className="px-6 py-4 text-[var(--o-warm)]">88.0%</td>
-                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">74.2%</td>
-                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">79.0%</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 text-[var(--o-text)]">LoCoMo</td>
-                  <td className="px-6 py-4 text-[var(--o-warm)]">67.3%</td>
-                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">58.9%</td>
-                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">64.0%</td>
-                </tr>
-              </tbody>
-            </table>
+      {/* Setup */}
+      <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
+        <div className="relative mx-auto max-w-3xl text-center">
+          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">
+            Get started
+          </p>
+          <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
+            Download. Import. Done.
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-sm text-[var(--o-text-muted)]">
+            One app, everything included. MCP agents auto-connect on first launch.
+          </p>
+          <div className="mx-auto mt-12 max-w-lg">
+            <div className="card-origin rounded-lg p-8 text-left">
+              <div className="space-y-4 font-mono text-sm">
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 text-[var(--o-warm)]">1</span>
+                  <div>
+                    <p className="text-[var(--o-text)]">Download the .dmg from GitHub Releases</p>
+                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">macOS Apple Silicon (M1+). One binary, on-device LLM included.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 text-[var(--o-warm)]">2</span>
+                  <div>
+                    <p className="text-[var(--o-text)]">Import your ChatGPT export or Obsidian vault</p>
+                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">Origin starts refining immediately. No cold start.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 text-[var(--o-warm)]">3</span>
+                  <div>
+                    <p className="text-[var(--o-text)]">Your agents connect automatically</p>
+                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — via MCP.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      <HonestCaveatsSection />
+      <FAQSection />
 
       {/* Open Source CTA */}
       <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">Open source</p>
-          <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Read every line.</h2>
+          <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Read every line.</h2>
           <p className="mx-auto mt-6 max-w-lg text-lg text-[var(--o-text-secondary)]">
             Core crates are Apache-2.0. Desktop app is AGPL-3.0. Memory engine,
             knowledge graph, on-device LLM, unlimited agents. Nothing held back.
@@ -384,17 +402,14 @@ export default function LandingPage() {
               <GitHubIcon />
               Star on GitHub
             </Link>
-            {SHOW_WAITLIST ? (
-              <a href="#waitlist" className="flex items-center gap-2 rounded-xl border border-[var(--o-warm)]/20 px-6 py-3 text-sm font-medium text-[var(--o-warm)] transition-all duration-150 hover:border-[var(--o-warm)]/40 hover:text-[var(--o-warm-hover)]">
-                Join Waitlist
-                <ArrowIcon />
-              </a>
-            ) : (
-              <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
-                <DownloadIcon />
-                Download
-              </Link>
-            )}
+            <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
+              <DownloadIcon />
+              Download
+            </Link>
+          </div>
+          <div className="mx-auto mt-10 max-w-md">
+            <p className="mb-3 text-sm text-[var(--o-text-muted)]">Get updates on new releases and features.</p>
+            <WaitlistForm />
           </div>
         </div>
       </section>
