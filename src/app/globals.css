@@ -35,6 +35,7 @@
   --o-sage: #8ab892;
   --o-amber: #e0a850;
   --o-glow-warm: rgba(212, 136, 74, 0.25);
+  --o-glow-warm-bg: rgba(212, 136, 74, 0.10);
   --o-glow-indigo: rgba(123, 123, 232, 0.2);
   --o-selection: rgba(212, 136, 74, 0.25);
   --o-scrollbar: rgba(42, 42, 74, 0.65);
@@ -78,6 +79,7 @@
   --o-sage: #7a9b7e;
   --o-amber: #c49030;
   --o-glow-warm: rgba(196, 115, 59, 0.15);
+  --o-glow-warm-bg: rgba(196, 115, 59, 0.35);
   --o-glow-indigo: rgba(94, 88, 200, 0.1);
   --o-selection: rgba(196, 115, 59, 0.2);
   --o-scrollbar: rgba(180, 170, 155, 0.5);

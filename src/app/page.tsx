@@ -3,7 +3,7 @@ import { WaitlistForm } from "./waitlist-form";
 import { ThemeToggle } from "./theme-toggle";
 
 // Toggle: set to false to show download buttons after launch
-const SHOW_WAITLIST = true;
+const SHOW_WAITLIST = false;
 
 function GitHubIcon() {
   return (
@@ -86,28 +86,19 @@ function OriginRingBackground() {
   );
 }
 
+const pillars = [
+  { title: "Trust, Not Just Storage", description: "Every memory is visible, editable, and traceable to its source. You control what your AI knows about you — not the other way around." },
+  { title: "Understanding Compounds", description: "A background engine deduplicates, links related memories into concepts, and detects contradictions. What you figured out in March is sharper in April." },
+  { title: "Token Efficiency", description: "A 200-token concept summary replaces thousands of tokens of re-sent conversation. The longer you use Origin, the more you save per session." },
+];
+
 const features = [
   { title: "Hybrid Memory Engine", description: "Vector search, full-text search, and knowledge graph — unified in one local database with Reciprocal Rank Fusion.", tag: "libSQL", accent: "warm" as const },
   { title: "Knowledge Graph", description: "Entities, relations, and observations form a structured web of your personal knowledge that grows over time.", tag: "Graph", accent: "indigo" as const },
-  { title: "MCP-Native", description: "Any MCP-compatible agent reads and writes your memory. Claude, Cursor, ChatGPT — all connected through one protocol.", tag: "Protocol", accent: "sage" as const },
+  { title: "MCP-Native", description: "Any MCP-compatible agent reads and writes your memory. Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — all connected.", tag: "Protocol", accent: "sage" as const },
   { title: "On-Device Intelligence", description: "Qwen3-4B runs on Apple Silicon Metal GPU. Your data never leaves your machine for processing.", tag: "Local AI", accent: "warm" as const },
-  { title: "Memory Import", description: "Bring your existing AI memories home. Import from ChatGPT and Claude — no cold start, instant value.", tag: "Day Zero", accent: "amber" as const },
-  { title: "Privacy by Architecture", description: "PII redaction, local-first storage, AGPL source code. Privacy you can verify, not just trust.", tag: "Privacy", accent: "sage" as const },
-];
-
-const steps = [
-  { number: "01", title: "Install", description: "Download Origin for macOS. One app, everything included." },
-  { number: "02", title: "Import", description: "Bring your ChatGPT and Claude memories. Instant personal context." },
-  { number: "03", title: "Connect", description: "Link your AI agents via MCP. Claude Code, Cursor, Claude Desktop — one click." },
-  { number: "04", title: "Remember", description: "Every AI you use now knows you. Your memory grows, compounds, persists." },
-];
-
-const stack = [
-  { layer: "Consumer App", tech: "Tauri 2 + React 19", purpose: "Search, browse, curate, visualize" },
-  { layer: "Agent Interface", tech: "MCP Server (HTTP + Unix)", purpose: "Any MCP agent reads / writes memory" },
-  { layer: "Intelligence", tech: "Qwen3-4B on-device + cloud", purpose: "Summarize, categorize, connect" },
-  { layer: "Memory Engine", tech: "libSQL — vectors + FTS5 + graph", purpose: "Store, search, connect memories" },
-  { layer: "Privacy", tech: "PII redaction, local-first, AGPL", purpose: "Verifiable privacy — read the code" },
+  { title: "Memory Import", description: "Drop in your ChatGPT export or Obsidian vault and Origin starts refining immediately. No cold start, instant value.", tag: "Day Zero", accent: "amber" as const },
+  { title: "Self-Refining", description: "A background engine deduplicates, links related memories into concepts, detects contradictions, and distills patterns. Quality improves every day.", tag: "Refinery", accent: "sage" as const },
 ];
 
 const accentColors = {
@@ -145,7 +136,7 @@ export default function LandingPage() {
               Origin
             </span>
             <span className="rounded-full border border-[var(--o-warm)]/20 bg-[var(--o-warm)]/5 px-2 py-0.5 font-mono text-[10px] font-medium text-[var(--o-warm)]">
-              BETA
+              PREVIEW
             </span>
           </div>
           <div className="flex items-center gap-3">
@@ -166,18 +157,20 @@ export default function LandingPage() {
         <OriginRingBackground />
 
         <div className="relative z-10 max-w-3xl text-center">
-          <p className="animate-fade-up mb-6 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">
-            Personal Agent Memory Layer
+          <p className="animate-fade-up mb-6 font-mono text-[13px] tracking-[0.25em] text-[var(--o-warm)]/70 uppercase">
+            Personal AI Memory
           </p>
           <h1 className="animate-fade-up delay-100 warm-glow font-serif text-5xl leading-[1.1] font-medium tracking-tight sm:text-7xl">
-            One memory,
+            What you know
             <br />
-            every agent.
+            compounds.
           </h1>
           <p className="animate-fade-up delay-200 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
-            Open-source memory layer that makes every AI tool you use smarter.
-            Local-first, privacy-first, MCP-native.{" "}
-            <span className="text-[var(--o-text)]">You own the data. Always.</span>
+            A local-first companion for people who work with AI every day.
+            <br />
+            <span className="text-[var(--o-text)]">Editable, searchable, and sharper every day.</span>
+            <br />
+            Distilled context that saves tokens every session.
           </p>
           <div id="waitlist" className="animate-fade-up delay-300 mt-10 flex flex-col items-center gap-4">
             {SHOW_WAITLIST ? (
@@ -194,7 +187,7 @@ export default function LandingPage() {
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:shadow-[0_0_28px_var(--o-glow-warm)]">
                   <DownloadIcon />
-                  Download for macOS
+                  Download
                 </Link>
                 <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
                   View on GitHub
@@ -205,14 +198,29 @@ export default function LandingPage() {
           </div>
           <p className="animate-fade-up delay-400 mt-6 font-mono text-[11px] text-[var(--o-text-muted)]">
             {SHOW_WAITLIST
-              ? "macOS (Apple Silicon) \u00b7 Coming soon \u00b7 Open Source (AGPL-3.0)"
-              : "macOS (Apple Silicon) \u00b7 Free \u00b7 Open Source (AGPL-3.0)"}
+              ? "macOS (Apple Silicon) \u00b7 Research preview \u00b7 Open Source"
+              : "macOS (Apple Silicon) \u00b7 Free \u00b7 Open Source"}
+          </p>
+          <p className="animate-fade-up delay-500 mt-2 font-mono text-[11px] text-[var(--o-text-dim)]">
+            Working context, spaces, and team sync on the roadmap.
           </p>
         </div>
 
-        <div className="animate-fade-up delay-700 absolute bottom-12 left-1/2 -translate-x-1/2">
-          <div className="flex h-8 w-5 items-start justify-center rounded-full border border-[var(--o-border)] p-1">
-            <div className="h-1.5 w-1 rounded-full bg-[var(--o-text-muted)]" style={{ animation: "shimmer 2s ease-in-out infinite" }} />
+      </section>
+
+      {/* Product Demo */}
+      <section className="relative -mt-20 px-6 pb-32">
+        <div className="mx-auto max-w-5xl">
+          <div className="animate-fade-up delay-600 overflow-hidden rounded-xl border border-[var(--o-border)] shadow-[0_8px_60px_rgba(0,0,0,0.4)]">
+            <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/bV5h089DYDc?autoplay=1&mute=1&loop=1&playlist=bV5h089DYDc"
+                title="Origin demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -220,82 +228,84 @@ export default function LandingPage() {
       {/* Problem */}
       <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
         <div className="mx-auto max-w-3xl text-center">
+          <blockquote className="mx-auto mb-16 max-w-2xl border-l-2 border-[var(--o-warm)]/30 py-1 pl-6 text-left">
+            <p className="text-sm leading-relaxed text-[var(--o-text-secondary)] italic">
+              &ldquo;A large fraction of my recent token throughput is going less into manipulating code, and more into manipulating knowledge. The LLM is rediscovering knowledge from scratch on every question. There&apos;s no accumulation.&rdquo;
+            </p>
+            <footer className="mt-3 font-mono text-xs text-[var(--o-text-muted)]">
+              &mdash; Andrej Karpathy, April 2026
+            </footer>
+          </blockquote>
           <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">
             The problem
           </p>
           <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
-            Every AI tool{" "}
-            <span className="text-[var(--o-text-muted)] line-through decoration-[var(--o-text-dim)]">forgets</span>{" "}
-            you.
+            Your AI remembers you{" "}
+            <span className="text-[var(--o-text-muted)] line-through decoration-[var(--o-text-dim)]">badly</span>
+            {" "}&mdash; and won&apos;t let you see.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
-            ChatGPT doesn&apos;t know what you told Claude. Claude doesn&apos;t
-            know what you built in Cursor. Each tool is an isolated amnesiac.
-            The more AI tools you use, the worse it gets.
-          </p>
-          <div className="mt-12 grid gap-3 sm:grid-cols-3">
-            {["ChatGPT", "Claude", "Cursor"].map((tool) => (
-              <div key={tool} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-bg-alt)]/50 px-6 py-5">
-                <p className="font-mono text-sm text-[var(--o-text-muted)]">{tool}</p>
-                <p className="mt-1 text-xs text-[var(--o-text-dim)]">Knows nothing about you</p>
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            {([
+              { name: "ChatGPT", issue: "Saves memories, but a flat list of facts. No structure, no connections, no compounding." },
+              { name: "Claude", issue: "Remembers across chats, but you can't trace where a fact came from or fix what's wrong." },
+              { name: "Cursor", issue: "Rules files and context, but nothing that learns or persists between projects." },
+            ]).map((tool) => (
+              <div key={tool.name} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-6 py-6 text-left shadow-[0_2px_12px_rgba(0,0,0,0.25)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
+                <p className="font-mono text-sm font-medium text-[var(--o-text-secondary)]">{tool.name}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{tool.issue}</p>
               </div>
             ))}
           </div>
-          <p className="mt-8 text-sm text-[var(--o-text-muted)]">
-            Platforms will never fix this. OpenAI won&apos;t share your memory with Anthropic.
-            <br />
-            They&apos;re structurally incentivized to keep you locked in.
-          </p>
         </div>
       </section>
 
-      {/* Solution */}
+      {/* Setup */}
       <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2" style={{ width: "600px", height: "400px", background: "radial-gradient(ellipse at center, var(--o-glow-warm) 0%, transparent 70%)" }} />
+        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2" style={{ width: "600px", height: "400px", background: "radial-gradient(ellipse at center, var(--o-glow-warm-bg) 0%, transparent 70%)" }} />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">
-            The solution
+            Setup in 60 seconds
           </p>
           <h2 className="warm-glow font-serif text-3xl font-medium tracking-tight sm:text-4xl">
-            Origin remembers.
+            Add to your MCP config. Done.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
-            The neutral memory layer that sits between you and all your AI
-            agents. It runs on your device, captures and organizes your personal
-            knowledge, and makes it available to any MCP-compatible agent.
-          </p>
-          <div className="card-origin accent-left-warm mx-auto mt-12 max-w-lg rounded-lg p-8 text-left">
-            <p className="font-mono text-xs text-[var(--o-warm)]/70">$ origin setup</p>
-            <div className="mt-4 space-y-2.5 font-mono text-sm">
-              <p className="text-[var(--o-text-secondary)]"><span className="text-[var(--o-sage)]">✓</span> Import ChatGPT memories</p>
-              <p className="text-[var(--o-text-secondary)]"><span className="text-[var(--o-sage)]">✓</span> Import Claude memories</p>
-              <p className="text-[var(--o-text-secondary)]"><span className="text-[var(--o-sage)]">✓</span> Connect agents via MCP</p>
-              <p className="text-[var(--o-text)]"><span className="text-[var(--o-warm)]">→</span> Every AI you use now knows you.</p>
-            </div>
+          <div className="card-origin mx-auto mt-12 max-w-lg rounded-lg p-8 text-left">
+            <p className="mb-3 font-mono text-xs text-[var(--o-text-muted)]">claude_desktop_config.json</p>
+            <pre className="overflow-x-auto font-mono text-sm leading-relaxed"><code className="text-[var(--o-text-secondary)]">{`{
+  "mcpServers": {
+    "origin": {
+      "command": "npx",
+      "args": ["-y", "origin-mcp"]
+    }
+  }
+}`}</code></pre>
+            <p className="mt-6 text-sm text-[var(--o-text-muted)]">
+              Works with Claude Code, Claude Desktop, Cursor, ChatGPT, and Gemini CLI.
+              <br />
+              <span className="text-[var(--o-text-secondary)]">First run downloads everything. No config, no daemon management.</span>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* Why Origin */}
       <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">How it works</p>
-            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Four steps. Forever memory.</h2>
+            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Why Origin</p>
+            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Memory is everywhere now. None of it is good enough.</h2>
           </div>
-          <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-[var(--o-border)] bg-[var(--o-border)] sm:grid-cols-4">
-            {steps.map((step) => (
-              <div key={step.number} className="group bg-[var(--o-bg-alt)]/80 p-8 transition-colors duration-150 hover:bg-[var(--o-surface)]">
-                <span className="font-mono text-3xl font-bold text-[var(--o-border)] transition-colors duration-150 group-hover:text-[var(--o-warm)]/30">
-                  {step.number}
-                </span>
-                <h3 className="mt-4 font-serif text-lg font-medium">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--o-text-muted)]">{step.description}</p>
+          <div className="mt-16 grid gap-6 sm:grid-cols-3">
+            {pillars.map((pillar) => (
+              <div key={pillar.title} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-7 py-8 transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
+                <h3 className="font-serif text-lg font-medium">{pillar.title}</h3>
+                <p className="mt-3 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{pillar.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Features */}
       <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
@@ -308,7 +318,7 @@ export default function LandingPage() {
             {features.map((feature) => {
               const colors = accentColors[feature.accent];
               return (
-                <div key={feature.title} className={`card-origin group rounded-lg border-l-3 p-7 ${colors.border}`}>
+                <div key={feature.title} className="card-origin group rounded-lg p-7">
                   <span className={`inline-block rounded-full border px-2.5 py-0.5 font-mono text-[10px] font-medium transition-colors duration-150 ${colors.tag} ${colors.hover}`}>
                     {feature.tag}
                   </span>
@@ -321,46 +331,41 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Architecture */}
+      {/* Benchmarks */}
       <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
-            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Architecture</p>
-            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Everything on your machine.</h2>
-            <p className="mx-auto mt-4 max-w-lg text-[var(--o-text-muted)]">Five layers, one binary. No cloud required.</p>
+            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Retrieval quality</p>
+            <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Measured, not claimed.</h2>
+            <p className="mx-auto mt-4 max-w-lg text-sm text-[var(--o-text-muted)]">
+              Standard long-memory benchmarks. BGE-Base-EN-v1.5-Q embeddings + FTS5 + Reciprocal Rank Fusion.
+            </p>
           </div>
           <div className="mt-12 overflow-hidden rounded-lg border border-[var(--o-border)]">
-            {stack.map((row, i) => (
-              <div key={row.layer} className={`grid grid-cols-[140px_1fr_1fr] gap-4 px-6 py-4 text-sm transition-colors duration-150 hover:bg-[var(--o-card-bg)] ${i !== stack.length - 1 ? "border-b border-[var(--o-border-subtle)]" : ""} ${i === 0 ? "bg-[var(--o-surface)]/40" : ""}`}>
-                <span className="font-medium text-[var(--o-text)]">{row.layer}</span>
-                <span className="font-mono text-xs text-[var(--o-text-muted)]">{row.tech}</span>
-                <span className="text-[var(--o-text-muted)]">{row.purpose}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Now */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Why now</p>
-          <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">The window is open.</h2>
-          <div className="mt-12 space-y-3 text-left">
-            {([
-              { signal: "Limitless acquired by Meta, Bee by Amazon — both killed.", meaning: "No independent privacy-first personal memory product exists.", accent: "warm" },
-              { signal: "MCP became the interoperability standard.", meaning: "Cross-agent memory is now architecturally possible.", accent: "indigo" },
-              { signal: "On-device AI crossed the performance threshold.", meaning: "Real intelligence runs locally on Apple Silicon.", accent: "sage" },
-              { signal: "Trust is broken.", meaning: "Post-acquisition, users demand verifiable privacy, not promises.", accent: "amber" },
-            ] as const).map((item) => {
-              const cls = `accent-left-${item.accent}`;
-              return (
-                <div key={item.signal} className={`card-origin rounded-lg border-l-3 px-6 py-5 ${cls}`}>
-                  <p className="font-medium text-[var(--o-text)]">{item.signal}</p>
-                  <p className="mt-1 text-sm text-[var(--o-text-muted)]">{item.meaning}</p>
-                </div>
-              );
-            })}
+            <table className="w-full text-left font-mono text-sm">
+              <thead>
+                <tr className="border-b border-[var(--o-border)] bg-[var(--o-surface)]">
+                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">Benchmark</th>
+                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">Recall@5</th>
+                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">MRR</th>
+                  <th className="px-6 py-4 font-medium text-[var(--o-text-secondary)]">NDCG@10</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-[var(--o-border-subtle)]">
+                  <td className="px-6 py-4 text-[var(--o-text)]">LongMemEval</td>
+                  <td className="px-6 py-4 text-[var(--o-warm)]">88.0%</td>
+                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">74.2%</td>
+                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">79.0%</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-[var(--o-text)]">LoCoMo</td>
+                  <td className="px-6 py-4 text-[var(--o-warm)]">67.3%</td>
+                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">58.9%</td>
+                  <td className="px-6 py-4 text-[var(--o-text-secondary)]">64.0%</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -371,9 +376,8 @@ export default function LandingPage() {
           <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">Open source</p>
           <h2 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Read every line.</h2>
           <p className="mx-auto mt-6 max-w-lg text-lg text-[var(--o-text-secondary)]">
-            Origin is AGPL-3.0. The complete desktop experience — memory engine,
-            unlimited agents, all capture methods, on-device LLM, knowledge
-            graph. Nothing held back.
+            Core crates are Apache-2.0. Desktop app is AGPL-3.0. Memory engine,
+            knowledge graph, on-device LLM, unlimited agents. Nothing held back.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:opacity-90">
@@ -401,7 +405,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <span className="font-serif text-sm font-medium text-[var(--o-text-secondary)]">Origin</span>
             <span className="text-xs text-[var(--o-text-dim)]">&middot;</span>
-            <span className="text-xs text-[var(--o-text-muted)]">The open-source memory layer for the agentic era</span>
+            <span className="text-xs text-[var(--o-text-muted)]">Where understanding compounds</span>
           </div>
           <div className="flex items-center gap-6">
             <Link href="https://github.com/7xuanlu/origin" className="text-xs text-[var(--o-text-muted)] transition-colors duration-150 hover:text-[var(--o-text-secondary)]">GitHub</Link>
