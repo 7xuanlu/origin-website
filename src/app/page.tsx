@@ -333,6 +333,9 @@ export default function LandingPage() {
             Core crates are Apache-2.0. Desktop app is AGPL-3.0. Memory engine,
             knowledge graph, on-device LLM, unlimited agents. Nothing held back.
           </p>
+          <p className="mx-auto mt-4 max-w-lg font-mono text-sm text-[var(--o-text-muted)]">
+            Download. Import your data. Your agents connect automatically.
+          </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:opacity-90">
               <GitHubIcon />
