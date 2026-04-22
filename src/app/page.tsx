@@ -200,51 +200,44 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Problem */}
+      {/* Problem + Solution */}
       <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="mx-auto max-w-3xl text-center">
-          <blockquote className="mx-auto mb-16 max-w-2xl border-l-2 border-[var(--o-warm)]/30 py-1 pl-6 text-left">
-            <p className="text-sm leading-relaxed text-[var(--o-text-secondary)] italic">
-              &ldquo;A large fraction of my recent token throughput is going less into manipulating code, and more into manipulating knowledge. The LLM is rediscovering knowledge from scratch on every question. There&apos;s no accumulation.&rdquo;
-            </p>
-            <footer className="mt-3 font-mono text-xs text-[var(--o-text-muted)]">
-              &mdash; Andrej Karpathy, April 2026
-            </footer>
-          </blockquote>
-          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">
-            The problem
-          </p>
-          <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-            Your AI remembers you{" "}
-            <span className="text-[var(--o-text-muted)] line-through decoration-[var(--o-text-dim)]">badly</span>
-            {" "}&mdash; and won&apos;t let you see.
-          </h2>
-          <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            {([
-              { name: "ChatGPT", issue: "Saves memories, but a flat list of facts. No structure, no connections, no compounding." },
-              { name: "Claude", issue: "Remembers across chats, but you can't trace where a fact came from or fix what's wrong." },
-              { name: "Cursor", issue: "Rules files and context, but nothing that learns or persists between projects." },
-            ]).map((tool) => (
-              <div key={tool.name} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-6 py-6 text-left shadow-[0_2px_12px_rgba(0,0,0,0.25)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
-                <p className="font-mono text-sm font-medium text-[var(--o-text-secondary)]">{tool.name}</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{tool.issue}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Origin */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
         <div className="mx-auto max-w-5xl">
-          <div className="text-center">
-            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Why Origin</p>
-            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Not another memory layer. A different product.</h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm text-[var(--o-text-muted)]">
-              Memory MCPs store and retrieve. Origin is a full product built on top &mdash; it refines, compiles, and compounds what you know over time.
+          <div className="mx-auto max-w-3xl text-center">
+            <blockquote className="mx-auto mb-16 max-w-2xl border-l-2 border-[var(--o-warm)]/30 py-1 pl-6 text-left">
+              <p className="text-sm leading-relaxed text-[var(--o-text-secondary)] italic">
+                &ldquo;A large fraction of my recent token throughput is going less into manipulating code, and more into manipulating knowledge. The LLM is rediscovering knowledge from scratch on every question. There&apos;s no accumulation.&rdquo;
+              </p>
+              <footer className="mt-3 font-mono text-xs text-[var(--o-text-muted)]">
+                &mdash; Andrej Karpathy, April 2026
+              </footer>
+            </blockquote>
+            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">
+              The problem
             </p>
+            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
+              Your AI remembers you{" "}
+              <span className="text-[var(--o-text-muted)] line-through decoration-[var(--o-text-dim)]">badly</span>
+              {" "}&mdash; and won&apos;t let you see.
+            </h2>
+            <div className="mt-12 grid gap-4 sm:grid-cols-3">
+              {([
+                { name: "ChatGPT", issue: "Saves memories, but a flat list of facts. No structure, no connections, no compounding." },
+                { name: "Claude", issue: "Remembers across chats, but you can't trace where a fact came from or fix what's wrong." },
+                { name: "Cursor", issue: "Rules files and context, but nothing that learns or persists between projects." },
+              ]).map((tool) => (
+                <div key={tool.name} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-6 py-6 text-left shadow-[0_2px_12px_rgba(0,0,0,0.25)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
+                  <p className="font-mono text-sm font-medium text-[var(--o-text-secondary)]">{tool.name}</p>
+                  <p className="mt-2 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{tool.issue}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="mt-16 grid gap-6 sm:grid-cols-3">
+
+          <p className="mt-16 mb-8 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase text-center">
+            What Origin brings
+          </p>
+          <div className="grid gap-6 sm:grid-cols-3">
             {pillars.map((pillar) => (
               <div key={pillar.title} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-7 py-8 transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
                 <h3 className="font-serif text-lg font-medium">{pillar.title}</h3>
