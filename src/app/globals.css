@@ -203,12 +203,6 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
-/* Left accent border — Origin memory card style */
-.accent-left-warm { border-left: 3px solid var(--o-warm); }
-.accent-left-indigo { border-left: 3px solid var(--o-indigo); }
-.accent-left-sage { border-left: 3px solid var(--o-sage); }
-.accent-left-amber { border-left: 3px solid var(--o-amber); }
-
 /* Scrollbar styling — Origin style */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
