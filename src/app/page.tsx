@@ -92,32 +92,28 @@ const pillars = [
 ];
 
 const features = [
-  { title: "Self-Refining", description: "A background engine deduplicates, links related memories into concepts, detects contradictions, and distills patterns. Quality improves every day.", tag: "Refinery", accent: "warm" as const },
+  { title: "Self-Evolving", description: "Deduplicates, links related memories, detects contradictions. Your understanding matures while you work.", tag: "Evolves", accent: "warm" as const },
   { title: "Hybrid Memory Engine", description: "Vector search, full-text search, and knowledge graph — unified in one local database with Reciprocal Rank Fusion.", tag: "libSQL", accent: "indigo" as const },
   { title: "Associative Recall", description: "Ask about one thing, get related context you didn't search for. Entities and relations link your knowledge so retrieval goes beyond keyword matching.", tag: "Graph", accent: "sage" as const },
   { title: "On-Device Intelligence", description: "Qwen3-4B and Qwen3.5-9B run on Apple Silicon Metal GPU. Your data never leaves your machine for processing.", tag: "Local AI", accent: "warm" as const },
   { title: "MCP-Native", description: "Any MCP-compatible agent reads and writes your memory. Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — all connected.", tag: "Protocol", accent: "amber" as const },
-  { title: "Concept Distillation", description: "Compiles dozens of raw memories into dense, structured summaries. What took 2,000 tokens to re-explain becomes a 200-token concept.", tag: "Concepts", accent: "sage" as const },
+  { title: "Memory Lineage", description: "Every memory traces back to the conversation it came from. Full provenance: see where it was learned, when it was refined, and why it's there.", tag: "Traceable", accent: "sage" as const },
 ];
 
 const accentColors = {
   warm: {
-    border: "accent-left-warm",
     tag: "border-[var(--o-warm)]/20 text-[var(--o-warm)] bg-[var(--o-warm)]/5",
     hover: "group-hover:border-[var(--o-warm)]/30 group-hover:text-[var(--o-warm)]",
   },
   indigo: {
-    border: "accent-left-indigo",
     tag: "border-[var(--o-indigo)]/20 text-[var(--o-indigo)] bg-[var(--o-indigo)]/5",
     hover: "group-hover:border-[var(--o-indigo)]/30 group-hover:text-[var(--o-indigo)]",
   },
   sage: {
-    border: "accent-left-sage",
     tag: "border-[var(--o-sage)]/20 text-[var(--o-sage)] bg-[var(--o-sage)]/5",
     hover: "group-hover:border-[var(--o-sage)]/30 group-hover:text-[var(--o-sage)]",
   },
   amber: {
-    border: "accent-left-amber",
     tag: "border-[var(--o-amber)]/20 text-[var(--o-amber)] bg-[var(--o-amber)]/5",
     hover: "group-hover:border-[var(--o-amber)]/30 group-hover:text-[var(--o-amber)]",
   },
