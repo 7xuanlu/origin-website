@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { WaitlistForm } from "./waitlist-form";
 import { ThemeToggle } from "./theme-toggle";
-import { UseCasesSection, HonestCaveatsSection, FAQSection } from "@/components/sections";
+import { FAQSection } from "@/components/sections";
 
 
 function GitHubIcon() {
@@ -302,8 +302,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <UseCasesSection />
-
       {/* Features */}
       <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
         <div className="mx-auto max-w-5xl">
@@ -328,49 +326,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Setup */}
-      <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="relative mx-auto max-w-3xl text-center">
-          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">
-            Get started
-          </p>
-          <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-            Download. Import. Done.
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-sm text-[var(--o-text-muted)]">
-            One app, everything included. MCP agents auto-connect on first launch.
-          </p>
-          <div className="mx-auto mt-12 max-w-lg">
-            <div className="card-origin rounded-lg p-8 text-left">
-              <div className="space-y-4 font-mono text-sm">
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-[var(--o-warm)]">1</span>
-                  <div>
-                    <p className="text-[var(--o-text)]">Download the .dmg from GitHub Releases</p>
-                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">macOS Apple Silicon (M1+). One binary, on-device LLM included.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-[var(--o-warm)]">2</span>
-                  <div>
-                    <p className="text-[var(--o-text)]">Import your ChatGPT export or Obsidian vault</p>
-                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">Origin starts refining immediately. No cold start.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-[var(--o-warm)]">3</span>
-                  <div>
-                    <p className="text-[var(--o-text)]">Your agents connect automatically</p>
-                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — via MCP.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <HonestCaveatsSection />
       <FAQSection />
 
       {/* Open Source CTA */}
