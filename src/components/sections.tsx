@@ -2,10 +2,6 @@
 
 const faqs = [
   {
-    q: "What is Origin?",
-    a: "Origin is a local-first personal AI memory layer. It captures, organizes, and refines what you learn across AI conversations — making it editable, searchable, and available to any MCP-compatible agent.",
-  },
-  {
     q: "Is my data private?",
     a: "Yes. Origin runs entirely on your machine. The on-device LLM (Qwen3-4B) processes everything locally via Apple Silicon Metal GPU. Your data never leaves your device by default.",
   },
@@ -26,12 +22,20 @@ const faqs = [
     a: "Yes. Origin is open-source. The core crates (origin-types, origin-core, origin-server) are Apache-2.0. The desktop app is AGPL-3.0. Nothing is held back.",
   },
   {
-    q: "Can I import existing data?",
-    a: "Yes. Drop in your ChatGPT export or Obsidian vault and Origin starts refining immediately. No cold start, no waiting period before it's useful.",
-  },
-  {
     q: "What model does Origin use locally?",
     a: "Qwen3-4B and Qwen3.5-9B running on Apple Silicon Metal GPU via llama-cpp-2. They handle classification, summarization, entity extraction, and memory refinement — all on-device.",
+  },
+  {
+    q: "Is Origin just another memory MCP?",
+    a: "No. Memory MCPs store and retrieve. Origin is a full product built on top: it refines, compiles, and compounds what you know over time. The engine deduplicates, links, and distills your memories into structured knowledge.",
+  },
+  {
+    q: "Is Origin a replacement for Notion or Obsidian?",
+    a: "No. Origin isn't a notes app or a writing tool. It captures and refines what you learn from AI conversations. It can import from Obsidian, but it's a different product with a different purpose.",
+  },
+  {
+    q: "How do I set it up?",
+    a: "Download the app from GitHub Releases and open it. The onboarding wizard walks you through importing existing data (ChatGPT exports, Obsidian vaults) and connecting your AI tools via MCP. Detailed setup instructions are in the GitHub README.",
   },
 ];
 
