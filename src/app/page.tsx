@@ -156,22 +156,17 @@ export default function LandingPage() {
         <OriginRingBackground />
 
         <div className="relative z-10 max-w-3xl text-center">
-          <p className="animate-fade-up mb-6 font-mono text-[13px] tracking-[0.25em] text-[var(--o-warm)]/70 uppercase">
-            Memory That Thinks
-          </p>
           <h1 className="animate-fade-up delay-100 warm-glow font-serif text-5xl leading-[1.1] font-medium tracking-tight sm:text-7xl">
             What you know
             <br />
             compounds.
           </h1>
-          <p className="animate-fade-up delay-200 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
-            A local-first companion for people who work with AI every day.
+          <p className="animate-fade-up delay-100 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
+            A local-first memory app that captures knowledge, decisions, and insights from every AI conversation.
             <br />
-            <span className="text-[var(--o-text)]">Editable, searchable, and sharper every day.</span>
-            <br />
-            Distilled context that saves tokens every session.
+            <span className="text-[var(--o-text)]">Everything you've figured out, compounding instead of disappearing.</span>
           </p>
-          <div className="animate-fade-up delay-300 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <div className="animate-fade-up delay-200 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:shadow-[0_0_28px_var(--o-glow-warm)]">
               <DownloadIcon />
               Download
@@ -181,11 +176,8 @@ export default function LandingPage() {
               <ArrowIcon />
             </Link>
           </div>
-          <p className="animate-fade-up delay-400 mt-6 font-mono text-[11px] text-[var(--o-text-muted)]">
+          <p className="animate-fade-up delay-300 mt-6 font-mono text-[11px] text-[var(--o-text-muted)]">
             macOS (Apple Silicon) &middot; Free &middot; Open Source
-          </p>
-          <p className="animate-fade-up delay-500 mt-2 font-mono text-[11px] text-[var(--o-text-muted)]">
-            Working context, spaces, and team sync on the roadmap.
           </p>
         </div>
 
