@@ -23,16 +23,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://useorigin.app"),
-  title: "Origin — Where Understanding Compounds",
+  title: "Origin — The AI Memory App Where Understanding Compounds",
   description:
-    "Personal AI memory that compounds. Editable, searchable, and sharper every day. Local-first, open-source, MCP-native.",
+    "A local-first memory app that captures knowledge, decisions, and insights from every AI conversation. Everything you've figured out, compounding instead of disappearing. Open-source, on-device, MCP-native.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Origin — Where Understanding Compounds",
+    title: "Origin — The AI Memory App Where Understanding Compounds",
     description:
-      "Personal AI memory that compounds. Editable, searchable, and sharper every day.",
+      "A local-first memory app that captures knowledge, decisions, and insights from every AI conversation. Compounding instead of disappearing.",
     type: "website",
     url: "https://useorigin.app",
     siteName: "Origin",
@@ -42,15 +42,15 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1280,
         height: 720,
-        alt: "Origin — Where Understanding Compounds",
+        alt: "Origin — The AI Memory App Where Understanding Compounds",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Origin — Where Understanding Compounds",
+    title: "Origin — The AI Memory App Where Understanding Compounds",
     description:
-      "Personal AI memory that compounds. Editable, searchable, and sharper every day.",
+      "A local-first memory app that captures knowledge, decisions, and insights from every AI conversation. Compounding instead of disappearing.",
     images: ["/og.png"],
   },
   icons: {
@@ -94,9 +94,9 @@ export default function RootLayout({
               "@type": "SoftwareApplication",
               name: "Origin",
               description:
-                "Personal AI memory that compounds. Editable, searchable, and sharper every day. Local-first, open-source, MCP-native.",
+                "A local-first memory app that captures knowledge, decisions, and insights from every AI conversation. Everything you've figured out, compounding instead of disappearing.",
               url: "https://useorigin.app",
-              applicationCategory: "DeveloperApplication",
+              applicationCategory: "ProductivityApplication",
               operatingSystem: "macOS",
               license:
                 "https://github.com/7xuanlu/origin/blob/main/LICENSE",

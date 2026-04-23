@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { WaitlistForm } from "./waitlist-form";
 import { ThemeToggle } from "./theme-toggle";
-import { UseCasesSection, HonestCaveatsSection, FAQSection } from "@/components/sections";
+import { FAQSection } from "@/components/sections";
+import { ProblemSection, SolutionSection } from "@/components/problem-solution";
 
 
 function GitHubIcon() {
@@ -85,39 +86,29 @@ function OriginRingBackground() {
   );
 }
 
-const pillars = [
-  { title: "Trust, Not Just Storage", description: "Every memory is visible, editable, and traceable to its source. You control what your AI knows about you — not the other way around." },
-  { title: "Understanding Compounds", description: "A background engine deduplicates, links related memories into concepts, and detects contradictions. What you figured out in March is sharper in April." },
-  { title: "Token Efficiency", description: "A 200-token concept summary replaces thousands of tokens of re-sent conversation. The longer you use Origin, the more you save per session." },
-];
-
 const features = [
-  { title: "Self-Refining", description: "A background engine deduplicates, links related memories into concepts, detects contradictions, and distills patterns. Quality improves every day.", tag: "Refinery", accent: "warm" as const },
+  { title: "Self-Evolving", description: "Deduplicates, links related memories, detects contradictions. Your understanding matures while you work.", tag: "Evolves", accent: "warm" as const },
   { title: "Hybrid Memory Engine", description: "Vector search, full-text search, and knowledge graph — unified in one local database with Reciprocal Rank Fusion.", tag: "libSQL", accent: "indigo" as const },
   { title: "Associative Recall", description: "Ask about one thing, get related context you didn't search for. Entities and relations link your knowledge so retrieval goes beyond keyword matching.", tag: "Graph", accent: "sage" as const },
   { title: "On-Device Intelligence", description: "Qwen3-4B and Qwen3.5-9B run on Apple Silicon Metal GPU. Your data never leaves your machine for processing.", tag: "Local AI", accent: "warm" as const },
   { title: "MCP-Native", description: "Any MCP-compatible agent reads and writes your memory. Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — all connected.", tag: "Protocol", accent: "amber" as const },
-  { title: "Concept Distillation", description: "Compiles dozens of raw memories into dense, structured summaries. What took 2,000 tokens to re-explain becomes a 200-token concept.", tag: "Concepts", accent: "sage" as const },
+  { title: "Memory Lineage", description: "Every memory traces back to the conversation it came from. Full provenance: see where it was learned, when it was refined, and why it's there.", tag: "Traceable", accent: "sage" as const },
 ];
 
 const accentColors = {
   warm: {
-    border: "accent-left-warm",
     tag: "border-[var(--o-warm)]/20 text-[var(--o-warm)] bg-[var(--o-warm)]/5",
     hover: "group-hover:border-[var(--o-warm)]/30 group-hover:text-[var(--o-warm)]",
   },
   indigo: {
-    border: "accent-left-indigo",
     tag: "border-[var(--o-indigo)]/20 text-[var(--o-indigo)] bg-[var(--o-indigo)]/5",
     hover: "group-hover:border-[var(--o-indigo)]/30 group-hover:text-[var(--o-indigo)]",
   },
   sage: {
-    border: "accent-left-sage",
     tag: "border-[var(--o-sage)]/20 text-[var(--o-sage)] bg-[var(--o-sage)]/5",
     hover: "group-hover:border-[var(--o-sage)]/30 group-hover:text-[var(--o-sage)]",
   },
   amber: {
-    border: "accent-left-amber",
     tag: "border-[var(--o-amber)]/20 text-[var(--o-amber)] bg-[var(--o-amber)]/5",
     hover: "group-hover:border-[var(--o-amber)]/30 group-hover:text-[var(--o-amber)]",
   },
@@ -156,22 +147,17 @@ export default function LandingPage() {
         <OriginRingBackground />
 
         <div className="relative z-10 max-w-3xl text-center">
-          <p className="animate-fade-up mb-6 font-mono text-[13px] tracking-[0.25em] text-[var(--o-warm)]/70 uppercase">
-            Memory That Thinks
-          </p>
           <h1 className="animate-fade-up delay-100 warm-glow font-serif text-5xl leading-[1.1] font-medium tracking-tight sm:text-7xl">
             What you know
             <br />
             compounds.
           </h1>
-          <p className="animate-fade-up delay-200 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
-            A local-first companion for people who work with AI every day.
+          <p className="animate-fade-up delay-100 mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-[var(--o-text-secondary)]">
+            A local-first memory app that captures knowledge, decisions, and insights from every AI conversation.
             <br />
-            <span className="text-[var(--o-text)]">Editable, searchable, and sharper every day.</span>
-            <br />
-            Distilled context that saves tokens every session.
+            <span className="text-[var(--o-text)]">Everything you've figured out, compounding instead of disappearing.</span>
           </p>
-          <div className="animate-fade-up delay-300 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <div className="animate-fade-up delay-200 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:shadow-[0_0_28px_var(--o-glow-warm)]">
               <DownloadIcon />
               Download
@@ -181,18 +167,15 @@ export default function LandingPage() {
               <ArrowIcon />
             </Link>
           </div>
-          <p className="animate-fade-up delay-400 mt-6 font-mono text-[11px] text-[var(--o-text-muted)]">
+          <p className="animate-fade-up delay-300 mt-6 font-mono text-[11px] text-[var(--o-text-muted)]">
             macOS (Apple Silicon) &middot; Free &middot; Open Source
-          </p>
-          <p className="animate-fade-up delay-500 mt-2 font-mono text-[11px] text-[var(--o-text-muted)]">
-            Working context, spaces, and team sync on the roadmap.
           </p>
         </div>
 
       </section>
 
       {/* Product Demo */}
-      <section className="relative -mt-20 px-6 pb-32">
+      <section className="relative -mt-20 px-6 pb-24">
         <div className="mx-auto max-w-5xl">
           <div className="animate-fade-up delay-600 overflow-hidden rounded-xl border border-[var(--o-border)] shadow-[0_8px_60px_rgba(0,0,0,0.4)]">
             <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
@@ -208,63 +191,23 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Problem */}
-      <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="mx-auto max-w-3xl text-center">
-          <blockquote className="mx-auto mb-16 max-w-2xl border-l-2 border-[var(--o-warm)]/30 py-1 pl-6 text-left">
-            <p className="text-sm leading-relaxed text-[var(--o-text-secondary)] italic">
-              &ldquo;A large fraction of my recent token throughput is going less into manipulating code, and more into manipulating knowledge. The LLM is rediscovering knowledge from scratch on every question. There&apos;s no accumulation.&rdquo;
-            </p>
-            <footer className="mt-3 font-mono text-xs text-[var(--o-text-muted)]">
-              &mdash; Andrej Karpathy, April 2026
-            </footer>
-          </blockquote>
-          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">
-            The problem
+      {/* Quote */}
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-base leading-relaxed text-[var(--o-text-secondary)] italic">
+            &ldquo;The LLM is rediscovering knowledge from scratch on every question. There&apos;s no accumulation.&rdquo;
           </p>
-          <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-            Your AI remembers you{" "}
-            <span className="text-[var(--o-text-muted)] line-through decoration-[var(--o-text-dim)]">badly</span>
-            {" "}&mdash; and won&apos;t let you see.
-          </h2>
-          <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            {([
-              { name: "ChatGPT", issue: "Saves memories, but a flat list of facts. No structure, no connections, no compounding." },
-              { name: "Claude", issue: "Remembers across chats, but you can't trace where a fact came from or fix what's wrong." },
-              { name: "Cursor", issue: "Rules files and context, but nothing that learns or persists between projects." },
-            ]).map((tool) => (
-              <div key={tool.name} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-6 py-6 text-left shadow-[0_2px_12px_rgba(0,0,0,0.25)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
-                <p className="font-mono text-sm font-medium text-[var(--o-text-secondary)]">{tool.name}</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{tool.issue}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-4 font-mono text-xs text-[var(--o-text-muted)]">
+            Andrej Karpathy, April 2026
+          </p>
         </div>
       </section>
 
-      {/* Why Origin */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center">
-            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Why Origin</p>
-            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Not another memory layer. A different product.</h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm text-[var(--o-text-muted)]">
-              Memory MCPs store and retrieve. Origin is a full product built on top &mdash; it refines, compiles, and compounds what you know over time.
-            </p>
-          </div>
-          <div className="mt-16 grid gap-6 sm:grid-cols-3">
-            {pillars.map((pillar) => (
-              <div key={pillar.title} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-7 py-8 transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
-                <h3 className="font-serif text-lg font-medium">{pillar.title}</h3>
-                <p className="mt-3 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{pillar.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProblemSection />
+      <SolutionSection />
 
       {/* Token Efficiency */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-24">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Measured, not claimed</p>
@@ -317,10 +260,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <UseCasesSection />
-
       {/* Features */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Features</p>
@@ -343,59 +284,19 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Setup */}
-      <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="relative mx-auto max-w-3xl text-center">
-          <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">
-            Get started
-          </p>
-          <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-            Download. Import. Done.
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-sm text-[var(--o-text-muted)]">
-            One app, everything included. MCP agents auto-connect on first launch.
-          </p>
-          <div className="mx-auto mt-12 max-w-lg">
-            <div className="card-origin rounded-lg p-8 text-left">
-              <div className="space-y-4 font-mono text-sm">
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-[var(--o-warm)]">1</span>
-                  <div>
-                    <p className="text-[var(--o-text)]">Download the .dmg from GitHub Releases</p>
-                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">macOS Apple Silicon (M1+). One binary, on-device LLM included.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-[var(--o-warm)]">2</span>
-                  <div>
-                    <p className="text-[var(--o-text)]">Import your ChatGPT export or Obsidian vault</p>
-                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">Origin starts refining immediately. No cold start.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-[var(--o-warm)]">3</span>
-                  <div>
-                    <p className="text-[var(--o-text)]">Your agents connect automatically</p>
-                    <p className="mt-1 text-xs text-[var(--o-text-muted)]">Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — via MCP.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <HonestCaveatsSection />
       <FAQSection />
 
       {/* Open Source CTA */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">Open source</p>
           <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Read every line.</h2>
           <p className="mx-auto mt-6 max-w-lg text-lg text-[var(--o-text-secondary)]">
             Core crates are Apache-2.0. Desktop app is AGPL-3.0. Memory engine,
             knowledge graph, on-device LLM, unlimited agents. Nothing held back.
+          </p>
+          <p className="mx-auto mt-4 max-w-lg font-mono text-sm text-[var(--o-text-muted)]">
+            Download. Import your data. Your agents connect automatically.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:opacity-90">

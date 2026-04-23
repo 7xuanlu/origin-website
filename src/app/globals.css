@@ -167,6 +167,41 @@ body {
   animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Scroll-triggered: pain cards rise from below */
+.scroll-fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll-triggered: solution cards emerge with scale */
+.scroll-emerge {
+  opacity: 0;
+  transform: scale(0.94) translateY(12px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-emerge.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Warm number glow on reveal */
+.num-glow.visible {
+  animation: warm-pulse 1s ease-out 0.3s both;
+}
+
+@keyframes warm-pulse {
+  0% { color: var(--o-warm); text-shadow: 0 0 0 transparent; }
+  40% { text-shadow: 0 0 12px rgba(212, 136, 74, 0.5); }
+  100% { text-shadow: 0 0 0 transparent; }
+}
+
 .animate-fade-in {
   animation: fade-in 0.6s ease-out both;
 }
@@ -202,12 +237,6 @@ body {
   border-color: var(--o-glow-indigo);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
-
-/* Left accent border — Origin memory card style */
-.accent-left-warm { border-left: 3px solid var(--o-warm); }
-.accent-left-indigo { border-left: 3px solid var(--o-indigo); }
-.accent-left-sage { border-left: 3px solid var(--o-sage); }
-.accent-left-amber { border-left: 3px solid var(--o-amber); }
 
 /* Scrollbar styling — Origin style */
 ::-webkit-scrollbar { width: 6px; }
