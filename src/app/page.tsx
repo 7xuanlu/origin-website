@@ -2,6 +2,7 @@ import Link from "next/link";
 import { WaitlistForm } from "./waitlist-form";
 import { ThemeToggle } from "./theme-toggle";
 import { FAQSection } from "@/components/sections";
+import { ProblemSection, SolutionSection } from "@/components/problem-solution";
 
 
 function GitHubIcon() {
@@ -85,12 +86,6 @@ function OriginRingBackground() {
   );
 }
 
-const pillars = [
-  { title: "Trust, Not Just Storage", description: "Every memory is visible, editable, and traceable to its source. You control what your AI knows about you — not the other way around." },
-  { title: "Understanding Compounds", description: "A background engine deduplicates, links related memories into concepts, and detects contradictions. What you figured out in March is sharper in April." },
-  { title: "Token Efficiency", description: "A 200-token concept summary replaces thousands of tokens of re-sent conversation. The longer you use Origin, the more you save per session." },
-];
-
 const features = [
   { title: "Self-Evolving", description: "Deduplicates, links related memories, detects contradictions. Your understanding matures while you work.", tag: "Evolves", accent: "warm" as const },
   { title: "Hybrid Memory Engine", description: "Vector search, full-text search, and knowledge graph — unified in one local database with Reciprocal Rank Fusion.", tag: "libSQL", accent: "indigo" as const },
@@ -157,7 +152,7 @@ export default function LandingPage() {
             <br />
             compounds.
           </h1>
-          <p className="animate-fade-up delay-100 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
+          <p className="animate-fade-up delay-100 mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-[var(--o-text-secondary)]">
             A local-first memory app that captures knowledge, decisions, and insights from every AI conversation.
             <br />
             <span className="text-[var(--o-text)]">Everything you've figured out, compounding instead of disappearing.</span>
@@ -180,7 +175,7 @@ export default function LandingPage() {
       </section>
 
       {/* Product Demo */}
-      <section className="relative -mt-20 px-6 pb-32">
+      <section className="relative -mt-20 px-6 pb-24">
         <div className="mx-auto max-w-5xl">
           <div className="animate-fade-up delay-600 overflow-hidden rounded-xl border border-[var(--o-border)] shadow-[0_8px_60px_rgba(0,0,0,0.4)]">
             <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
@@ -196,56 +191,23 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Problem + Solution */}
-      <section className="relative border-t border-[var(--o-border-subtle)] px-6 py-32">
-        <div className="mx-auto max-w-5xl">
-          <div className="mx-auto max-w-3xl text-center">
-            <blockquote className="mx-auto mb-16 max-w-2xl border-l-2 border-[var(--o-warm)]/30 py-1 pl-6 text-left">
-              <p className="text-sm leading-relaxed text-[var(--o-text-secondary)] italic">
-                &ldquo;A large fraction of my recent token throughput is going less into manipulating code, and more into manipulating knowledge. The LLM is rediscovering knowledge from scratch on every question. There&apos;s no accumulation.&rdquo;
-              </p>
-              <footer className="mt-3 font-mono text-xs text-[var(--o-text-muted)]">
-                &mdash; Andrej Karpathy, April 2026
-              </footer>
-            </blockquote>
-            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">
-              The problem
-            </p>
-            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-              Your AI remembers you{" "}
-              <span className="text-[var(--o-text-muted)] line-through decoration-[var(--o-text-dim)]">badly</span>
-              {" "}&mdash; and won&apos;t let you see.
-            </h2>
-            <div className="mt-12 grid gap-4 sm:grid-cols-3">
-              {([
-                { name: "ChatGPT", issue: "Saves memories, but a flat list of facts. No structure, no connections, no compounding." },
-                { name: "Claude", issue: "Remembers across chats, but you can't trace where a fact came from or fix what's wrong." },
-                { name: "Cursor", issue: "Rules files and context, but nothing that learns or persists between projects." },
-              ]).map((tool) => (
-                <div key={tool.name} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-6 py-6 text-left shadow-[0_2px_12px_rgba(0,0,0,0.25)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
-                  <p className="font-mono text-sm font-medium text-[var(--o-text-secondary)]">{tool.name}</p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{tool.issue}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <p className="mt-16 mb-8 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase text-center">
-            What Origin brings
+      {/* Quote */}
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-base leading-relaxed text-[var(--o-text-secondary)] italic">
+            &ldquo;The LLM is rediscovering knowledge from scratch on every question. There&apos;s no accumulation.&rdquo;
           </p>
-          <div className="grid gap-6 sm:grid-cols-3">
-            {pillars.map((pillar) => (
-              <div key={pillar.title} className="rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] px-7 py-8 transition-all duration-150 hover:border-[var(--o-text-dim)] hover:bg-[var(--o-card-hover)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
-                <h3 className="font-serif text-lg font-medium">{pillar.title}</h3>
-                <p className="mt-3 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{pillar.description}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-4 font-mono text-xs text-[var(--o-text-muted)]">
+            Andrej Karpathy, April 2026
+          </p>
         </div>
       </section>
 
+      <ProblemSection />
+      <SolutionSection />
+
       {/* Token Efficiency */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-24">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Measured, not claimed</p>
@@ -299,7 +261,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Features</p>
@@ -325,7 +287,7 @@ export default function LandingPage() {
       <FAQSection />
 
       {/* Open Source CTA */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-32">
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">Open source</p>
           <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Read every line.</h2>
