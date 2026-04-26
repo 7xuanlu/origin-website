@@ -183,6 +183,7 @@ export default function LandingPage() {
                 className="absolute inset-0 h-full w-full"
                 src="https://www.youtube.com/embed/bV5h089DYDc?autoplay=1&mute=1&loop=1&playlist=bV5h089DYDc"
                 title="Origin demo"
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
