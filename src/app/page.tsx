@@ -119,7 +119,7 @@ export default function LandingPage() {
     <div className="grain relative min-h-screen">
       {/* Nav */}
       <nav className="fixed top-0 z-40 w-full border-b border-[var(--o-border-subtle)] bg-[var(--o-nav-bg)] backdrop-blur-xl">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center gap-3">
             <OriginMark />
             <span className="font-serif text-lg font-medium tracking-tight">
@@ -131,11 +131,16 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-3">
             <Link
+              href="/guides"
+              className="hidden text-sm text-[var(--o-text-secondary)] transition-colors duration-150 hover:text-[var(--o-text)] sm:inline"
+            >
+              Learn
+            </Link>
+            <Link
               href="https://github.com/7xuanlu/origin"
               className="flex items-center gap-2 text-sm text-[var(--o-text-secondary)] transition-colors duration-150 hover:text-[var(--o-text)]"
             >
               <GitHubIcon />
-              <span className="hidden sm:inline">GitHub</span>
             </Link>
             <ThemeToggle />
           </div>
@@ -143,7 +148,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-14">
+      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-16">
         <OriginRingBackground />
 
         <div className="relative z-10 max-w-3xl text-center">
@@ -152,10 +157,8 @@ export default function LandingPage() {
             <br />
             compounds.
           </h1>
-          <p className="animate-fade-up delay-100 mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-[var(--o-text-secondary)]">
+          <p className="animate-fade-up delay-100 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-[var(--o-text-secondary)] sm:text-xl">
             A local-first memory app that captures knowledge, decisions, and insights from every AI conversation.
-            <br />
-            <span className="text-[var(--o-text)]">Everything you've figured out, compounding instead of disappearing.</span>
           </p>
           <div className="animate-fade-up delay-200 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:shadow-[0_0_28px_var(--o-glow-warm)]">
@@ -216,7 +219,7 @@ export default function LandingPage() {
               96% fewer tokens. Better answers.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-sm text-[var(--o-text-muted)]">
-              Without Origin, your AI replays your entire memory every time &mdash; thousands of tokens, growing with every conversation. With Origin, it retrieves only what matters. The cost stays flat no matter how much you store.
+              Origin retrieves what matters instead of replaying everything.
             </p>
           </div>
           <div className="mt-12 overflow-hidden rounded-lg border border-[var(--o-border)]">
@@ -247,16 +250,13 @@ export default function LandingPage() {
               </tbody>
             </table>
           </div>
-          <div className="mt-6 space-y-2 text-center">
+          <div className="mt-6 text-center">
             <p className="text-sm text-[var(--o-text-secondary)]">
               Same token cost as basic search. <span className="text-[var(--o-warm)]">19% more relevant context.</span>
             </p>
-            <p className="text-xs text-[var(--o-text-muted)]">
-              And this only measures search. Origin also compiles your memories into structured knowledge over time &mdash; making retrieval more precise as your memory matures.
-            </p>
           </div>
-          <p className="mt-8 text-center font-mono text-[11px] text-[var(--o-text-muted)]">
-            Measured on the LoCoMo benchmark (10 conversations, 2,531 memories, 1,540 queries). Tokenizer: cl100k_base. Top-10 retrieval. Open source and reproducible.
+          <p className="mx-auto mt-7 max-w-xl text-center font-mono text-[10px] leading-relaxed text-[var(--o-text-muted)] sm:text-[11px]">
+            Measured on LoCoMo. <span className="hidden sm:inline">10 conversations, 2,531 memories, 1,540 queries. Top-10 retrieval. Open source and reproducible.</span>
           </p>
         </div>
       </section>
@@ -288,16 +288,12 @@ export default function LandingPage() {
       <FAQSection />
 
       {/* Open Source CTA */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-24">
+      <section className="border-t border-[var(--o-border-subtle)] px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">Open source</p>
           <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Read every line.</h2>
-          <p className="mx-auto mt-6 max-w-lg text-lg text-[var(--o-text-secondary)]">
-            Core crates are Apache-2.0. Desktop app is AGPL-3.0. Memory engine,
-            knowledge graph, on-device LLM, unlimited agents. Nothing held back.
-          </p>
-          <p className="mx-auto mt-4 max-w-lg font-mono text-sm text-[var(--o-text-muted)]">
-            Download. Import your data. Your agents connect automatically.
+          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-[var(--o-text-secondary)] sm:text-lg">
+            Local-first. Open source. Nothing held back.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:opacity-90">
@@ -309,8 +305,8 @@ export default function LandingPage() {
               Download
             </Link>
           </div>
-          <div className="mx-auto mt-10 max-w-md">
-            <p className="mb-3 text-sm text-[var(--o-text-muted)]">Get updates on new releases and features.</p>
+          <div className="mx-auto mt-9 max-w-md">
+            <p className="mb-3 text-sm text-[var(--o-text-muted)]">Get release updates.</p>
             <WaitlistForm />
           </div>
         </div>
@@ -325,6 +321,7 @@ export default function LandingPage() {
             <span className="text-xs text-[var(--o-text-muted)]">Where understanding compounds</span>
           </div>
           <div className="flex items-center gap-6">
+            <Link href="/guides" className="text-xs text-[var(--o-text-muted)] transition-colors duration-150 hover:text-[var(--o-text-secondary)]">Learn</Link>
             <Link href="https://github.com/7xuanlu/origin" className="text-xs text-[var(--o-text-muted)] transition-colors duration-150 hover:text-[var(--o-text-secondary)]">GitHub</Link>
             <Link href="https://github.com/7xuanlu/origin/blob/main/LICENSE" className="text-xs text-[var(--o-text-muted)] transition-colors duration-150 hover:text-[var(--o-text-secondary)]">AGPL-3.0</Link>
           </div>

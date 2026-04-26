@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useScrollProgress } from "@/app/use-scroll-reveal";
 
 const pains = [
@@ -24,17 +25,33 @@ function remap(v: number, inMin: number, inMax: number, outMin: number, outMax: 
   return outMin + t * (outMax - outMin);
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsMobile(query.matches);
+
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return isMobile;
+}
+
 export function ProblemSection() {
   const { ref, progress } = useScrollProgress<HTMLElement>();
+  const isMobile = useIsMobile();
 
   // Cards fade IN (progress 0.2 → 0.5)
   const fadeIn = remap(progress, 0.2, 0.5, 0, 1);
   const slideUp = remap(progress, 0.2, 0.5, 24, 0);
 
   // Hold fully visible, mute only as section leaves viewport (0.8 → 1.0)
-  const fadeOut = remap(progress, 0.8, 1.0, 1, 0.4);
-  const blur = remap(progress, 0.8, 1.0, 0, 1.5);
-  const drift = remap(progress, 0.8, 1.0, 0, -4);
+  const fadeOut = isMobile ? 1 : remap(progress, 0.8, 1.0, 1, 0.4);
+  const blur = isMobile ? 0 : remap(progress, 0.8, 1.0, 0, 1.5);
+  const drift = isMobile ? 0 : remap(progress, 0.8, 1.0, 0, -4);
 
   // Combined: fade in, hold, then fade out
   const cardOpacity = Math.min(fadeIn, fadeOut);
@@ -78,10 +95,11 @@ export function ProblemSection() {
 
 export function SolutionSection() {
   const { ref, progress } = useScrollProgress<HTMLElement>();
+  const isMobile = useIsMobile();
 
   // Solution emerges as it enters viewport (progress 0.1 → 0.5)
-  const headingOpacity = remap(progress, 0.05, 0.35, 0, 1);
-  const headingSlide = remap(progress, 0.05, 0.35, 28, 0);
+  const headingOpacity = remap(progress, isMobile ? 0.0 : 0.05, isMobile ? 0.45 : 0.35, 0, 1);
+  const headingSlide = remap(progress, isMobile ? 0.0 : 0.05, isMobile ? 0.45 : 0.35, 28, 0);
 
   return (
     <section ref={ref} className="border-t border-[var(--o-border-subtle)] px-6 py-24">
@@ -98,12 +116,14 @@ export function SolutionSection() {
         </div>
         <div className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-5 text-left sm:grid-cols-3 sm:gap-5">
           {pillars.map((pillar, i) => {
-            const delay = i * 0.08;
-            const cardOpacity = remap(progress, 0.15 + delay, 0.55 + delay, 0, 1);
-            const cardScale = remap(progress, 0.15 + delay, 0.55 + delay, 0.8, 1);
-            const cardSlide = remap(progress, 0.15 + delay, 0.55 + delay, 50, 0);
-            const glowIntensity = remap(progress, 0.3 + delay, 0.5 + delay, 0, 0.6);
-            const glowFade = remap(progress, 0.6 + delay, 0.8 + delay, 0.6, 0);
+            const delay = i * (isMobile ? 0.12 : 0.08);
+            const cardStart = (isMobile ? 0.12 : 0.15) + delay;
+            const cardEnd = (isMobile ? 0.78 : 0.55) + delay;
+            const cardOpacity = remap(progress, cardStart, cardEnd, 0, 1);
+            const cardScale = remap(progress, cardStart, cardEnd, isMobile ? 0.92 : 0.8, 1);
+            const cardSlide = remap(progress, cardStart, cardEnd, isMobile ? 36 : 50, 0);
+            const glowIntensity = remap(progress, (isMobile ? 0.42 : 0.3) + delay, (isMobile ? 0.7 : 0.5) + delay, 0, 0.6);
+            const glowFade = remap(progress, (isMobile ? 0.82 : 0.6) + delay, (isMobile ? 0.95 : 0.8) + delay, 0.6, 0);
             const glow = Math.min(glowIntensity, glowFade === 0.6 ? glowIntensity : glowFade);
 
             return (
