@@ -134,7 +134,7 @@ export default function RootLayout({
               "@id": "https://useorigin.app/#organization",
               name: "Origin",
               url: "https://useorigin.app",
-              logo: "https://useorigin.app/og.png",
+              logo: "https://useorigin.app/logo.svg",
               sameAs: ["https://github.com/7xuanlu/origin"],
             }),
           }}
