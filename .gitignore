@@ -37,6 +37,9 @@ yarn-error.log*
 # worktrees
 /.worktrees/
 
+# superpowers planning artifacts (specs, plans, scratch — not part of the project)
+/docs/superpowers/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
