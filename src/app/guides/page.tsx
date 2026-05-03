@@ -91,8 +91,8 @@ export default function GuidesPage() {
                 Questions worth answering before you add AI memory.
               </h1>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
-                Origin is a local-first AI memory app for Claude Code, Cursor,
-                ChatGPT, and other MCP-compatible agents. These guides explain
+                Origin is local-first memory for AI work in Claude Code,
+                Cursor, Codex, and other MCP-compatible tools. These guides explain
                 the category in plain language, then show where Origin fits.
               </p>
             </div>

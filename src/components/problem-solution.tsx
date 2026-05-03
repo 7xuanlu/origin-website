@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import { useScrollProgress } from "@/app/use-scroll-reveal";
 
 const pains = [
-  { num: "01", title: "More AI, more drowning", description: "AI was supposed to reduce work. Instead: more to manage, more to keep up with." },
-  { num: "02", title: "Bad memory is worse than no memory", description: "Stale facts, contradicted decisions, wrong inferences. You can't tell what's right." },
-  { num: "03", title: "Nothing carries forward", description: "Every conversation starts from scratch. What you figured out yesterday doesn't exist today." },
+  { num: "01", title: "More AI, more context to carry", description: "Every chat, project, and tool creates decisions and gotchas that are easy to lose." },
+  { num: "02", title: "Bad memory is worse than no memory", description: "Stale facts, contradicted decisions, wrong inferences. You need to know what is right." },
+  { num: "03", title: "Nothing carries forward", description: "Each new session starts cold. What you figured out yesterday should still help today." },
 ];
 
 const pillars = [
-  { title: "Distills what matters", description: "Less to track, less to worry about. Origin reduces the noise to what you actually need." },
-  { title: "Visible and yours", description: "Every memory editable, traceable to its source. You control what your AI knows." },
-  { title: "Gets sharper over time", description: "Links, deduplicates, detects contradictions. March's insight is sharper in April." },
+  { title: "Distills what matters", description: "Origin keeps decisions, lessons, observations, and project context without asking you to manage another workspace." },
+  { title: "Visible and yours", description: "Every memory is editable and traceable to its source. You control what your AI carries forward." },
+  { title: "Gets sharper over time", description: "A local daemon deduplicates, links related ideas, compiles concepts, and keeps provenance attached." },
 ];
 
 function clamp(v: number, min: number, max: number) {
@@ -48,12 +48,10 @@ export function ProblemSection() {
   const fadeIn = remap(progress, 0.2, 0.5, 0, 1);
   const slideUp = remap(progress, 0.2, 0.5, 24, 0);
 
-  // Hold fully visible, mute only as section leaves viewport (0.8 → 1.0)
-  const fadeOut = isMobile ? 1 : remap(progress, 0.8, 1.0, 1, 0.4);
-  const blur = isMobile ? 0 : remap(progress, 0.8, 1.0, 0, 1.5);
-  const drift = isMobile ? 0 : remap(progress, 0.8, 1.0, 0, -4);
+  // Hold fully visible, then let cards recede without blur as the section leaves.
+  const fadeOut = isMobile ? 1 : remap(progress, 0.82, 1.0, 1, 0.62);
+  const drift = isMobile ? 0 : remap(progress, 0.82, 1.0, 0, -6);
 
-  // Combined: fade in, hold, then fade out
   const cardOpacity = Math.min(fadeIn, fadeOut);
   const cardTranslate = fadeIn < 1 ? slideUp : drift;
 
@@ -67,7 +65,7 @@ export function ProblemSection() {
           <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
             Your AI remembers you{" "}
             <span className="text-[var(--o-text-muted)] line-through decoration-[var(--o-text-dim)]">badly</span>
-            {" "}&mdash; and won&apos;t let you see.
+            {", "}and won&apos;t let you see.
           </h2>
         </div>
         <div className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-12 text-left sm:grid-cols-[1fr_1fr_1fr] sm:gap-10">
@@ -78,11 +76,10 @@ export function ProblemSection() {
               style={{
                 opacity: cardOpacity,
                 transform: `translateY(${cardTranslate}px)`,
-                filter: `blur(${blur}px)`,
                 transitionDelay: `${i * 60}ms`,
               }}
             >
-              <p className="mb-3 font-mono text-xs text-[var(--o-warm)]/60">{pain.num}</p>
+              <p className="mb-3 border-t border-[var(--o-border)] pt-3 font-mono text-xs text-[var(--o-warm)]/60">{pain.num}</p>
               <p className="font-serif text-lg font-medium leading-snug text-[var(--o-text)]">{pain.title}</p>
               <p className="mt-auto pt-3 text-[13px] leading-relaxed text-[var(--o-text-muted)]">{pain.description}</p>
             </div>
@@ -120,8 +117,7 @@ export function SolutionSection() {
             const cardStart = (isMobile ? 0.12 : 0.15) + delay;
             const cardEnd = (isMobile ? 0.78 : 0.55) + delay;
             const cardOpacity = remap(progress, cardStart, cardEnd, 0, 1);
-            const cardScale = remap(progress, cardStart, cardEnd, isMobile ? 0.92 : 0.8, 1);
-            const cardSlide = remap(progress, cardStart, cardEnd, isMobile ? 36 : 50, 0);
+            const cardSlide = remap(progress, cardStart, cardEnd, isMobile ? 28 : 34, 0);
             const glowIntensity = remap(progress, (isMobile ? 0.42 : 0.3) + delay, (isMobile ? 0.7 : 0.5) + delay, 0, 0.6);
             const glowFade = remap(progress, (isMobile ? 0.82 : 0.6) + delay, (isMobile ? 0.95 : 0.8) + delay, 0.6, 0);
             const glow = Math.min(glowIntensity, glowFade === 0.6 ? glowIntensity : glowFade);
@@ -132,7 +128,7 @@ export function SolutionSection() {
                 className="rounded-xl bg-[var(--o-surface)]/40 px-5 py-5 transition-all duration-150 hover:-translate-y-0.5 hover:bg-[var(--o-card-hover)] hover:border-[var(--o-glow-indigo)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
                 style={{
                   opacity: cardOpacity,
-                  transform: `scale(${cardScale}) translateY(${cardSlide}px)`,
+                  transform: `translateY(${cardSlide}px)`,
                 }}
               >
                 <p

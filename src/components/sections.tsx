@@ -3,23 +3,23 @@
 const faqs = [
   {
     q: "What is Origin?",
-    a: "A local-first memory app that captures knowledge, decisions, and insights from every AI conversation. It distills what matters, makes every memory visible and editable, and gets sharper the longer you use it.",
+    a: "Origin is local-first memory for AI work. It runs quietly behind the tools you already use, carrying decisions, lessons, gotchas, and project context across chats, projects, and time.",
   },
   {
     q: "How is Origin different from built-in AI memory?",
-    a: "Built-in memory stores what the AI decided was important — stale facts, contradicted decisions, things you can't trace or fix. Origin gives you a memory layer you actually control: every memory is visible, editable, and traceable to its source. It also compounds over time — linking related memories, detecting contradictions, and distilling patterns.",
+    a: "Built-in memory stores what the AI decided was important. You usually cannot trace it, correct it, or use it from another tool. Origin keeps memory local, visible, editable, and traceable to its source.",
   },
   {
     q: "Is my data private?",
-    a: "Yes. Origin runs entirely on your machine. The on-device LLM processes everything locally via Apple Silicon Metal GPU. Your data never leaves your device by default.",
+    a: "Yes. Origin runs on your machine and stores memory locally. Basic memory works without a model or API key. Richer extraction and background refinement can use an on-device model, or an Anthropic key if you choose that path.",
   },
   {
     q: "Is Origin just another memory MCP?",
-    a: "No. Memory MCPs store and retrieve. Origin is a full product built on top — it distills the noise into what you actually need, detects contradictions, and compounds your understanding over time. Less to track, not more.",
+    a: "No. origin-mcp is the connector. Origin also includes the local daemon, background refinery, local database, optional desktop inspection app, provenance, and export paths.",
   },
   {
     q: "What AI tools work with Origin?",
-    a: "Any MCP-compatible agent. Today that includes Claude Code, Claude Desktop, Cursor, ChatGPT (via App Directory), and Gemini CLI. Add origin-mcp to your MCP config and you're connected.",
+    a: "MCP-compatible tools such as Claude Code, Cursor, Codex, Claude Desktop, Windsurf, and Gemini CLI can connect through origin-mcp. Claude.ai and ChatGPT web use Remote Access from the desktop app.",
   },
   {
     q: "Is Origin a replacement for Notion or Obsidian?",
@@ -27,11 +27,11 @@ const faqs = [
   },
   {
     q: "How do I set it up?",
-    a: "Download the app from GitHub Releases and open it. The onboarding wizard walks you through importing existing data (ChatGPT exports, Obsidian vaults) and connecting your AI tools via MCP. Detailed setup instructions are in the GitHub README.",
+    a: "For most people, download the desktop app from GitHub Releases and connect your AI tools through origin-mcp. Headless users can install the daemon from the command line. The GitHub README has the current setup paths.",
   },
   {
     q: "Does Origin work on Windows or Linux?",
-    a: "Not yet. v0.2.0 is macOS Apple Silicon (M1+) only. Linux and Windows support are on the roadmap but not committed to a timeline.",
+    a: "Not yet. The current preview is macOS Apple Silicon (M1+) only. Linux and Windows support are on the roadmap but not committed to a timeline.",
   },
   {
     q: "Is Origin free?",

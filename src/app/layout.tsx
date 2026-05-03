@@ -23,16 +23,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://useorigin.app"),
-  title: "Origin — The AI Memory App Where Understanding Compounds",
+  title: "Origin | Memory for AI Work",
   description:
-    "Local-first AI memory app. Captures knowledge, decisions, and insights from every AI conversation. Open-source, on-device, MCP-native.",
+    "Origin runs quietly behind your AI tools, carrying decisions, lessons, gotchas, and project context across chats, projects, and time.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Origin — The AI Memory App Where Understanding Compounds",
+    title: "Origin | Memory for AI Work",
     description:
-      "Local-first AI memory app. Captures knowledge, decisions, and insights from every AI conversation. Open-source, on-device, MCP-native.",
+      "Origin runs quietly behind your AI tools, carrying decisions, lessons, gotchas, and project context across chats, projects, and time.",
     type: "website",
     url: "https://useorigin.app",
     siteName: "Origin",
@@ -42,15 +42,15 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1280,
         height: 720,
-        alt: "Origin — The AI Memory App Where Understanding Compounds",
+        alt: "Origin. Local-first memory for AI work where context compounds across chats, projects, and time.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Origin — The AI Memory App Where Understanding Compounds",
+    title: "Origin | Memory for AI Work",
     description:
-      "Local-first AI memory app. Captures knowledge, decisions, and insights from every AI conversation. Open-source, on-device, MCP-native.",
+      "Origin runs quietly behind your AI tools, carrying decisions, lessons, gotchas, and project context across chats, projects, and time.",
     images: ["/og.png"],
   },
   icons: {
@@ -97,7 +97,7 @@ export default function RootLayout({
               "@type": "SoftwareApplication",
               name: "Origin",
               description:
-                "A local-first memory app that captures knowledge, decisions, and insights from every AI conversation. Everything you've figured out, compounding instead of disappearing.",
+                "Local-first memory for AI work. Origin runs quietly behind your AI tools, carrying decisions, lessons, gotchas, and project context across chats, projects, and time.",
               url: "https://useorigin.app",
               applicationCategory: "ProductivityApplication",
               operatingSystem: "macOS",
@@ -106,12 +106,12 @@ export default function RootLayout({
               downloadUrl: "https://github.com/7xuanlu/origin/releases",
               screenshot: "https://useorigin.app/og.png",
               featureList: [
-                "Self-Evolving — deduplicates, links related memories, detects contradictions",
-                "Hybrid Memory Engine — vector search, full-text search, and knowledge graph unified via Reciprocal Rank Fusion",
-                "Associative Recall — entity and relation links surface related context beyond keyword matching",
-                "On-Device Intelligence — Qwen3-4B and Qwen3.5-9B run on Apple Silicon Metal GPU",
-                "MCP-Native — works with Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI",
-                "Memory Lineage — every memory traces back to the conversation it came from",
+                "Self-evolving memory: deduplicates, links ideas, compiles concepts, and preserves provenance",
+                "Hybrid memory engine: vector search, full-text search, and knowledge graph signals",
+                "Associative recall: related context beyond keyword matching",
+                "On-device intelligence: optional local model on Apple Silicon",
+                "MCP-native: works with Claude Code, Cursor, Codex, Claude Desktop, Windsurf, and Gemini CLI",
+                "Memory lineage: every memory traces back to where it came from",
               ],
               license:
                 "https://github.com/7xuanlu/origin/blob/main/LICENSE",

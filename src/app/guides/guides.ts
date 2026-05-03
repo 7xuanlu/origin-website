@@ -97,7 +97,7 @@ export const guides: Guide[] = [
       {
         heading: "How Origin approaches AI memory",
         body: [
-          "Origin is a local-first AI memory app for Claude Code, Cursor, Claude Desktop, ChatGPT, Gemini CLI, and other MCP-compatible agents.",
+          "Origin is local-first memory for AI work in Claude Code, Cursor, Codex, Claude Desktop, Windsurf, Gemini CLI, and other MCP-compatible tools. Claude.ai and ChatGPT web use Remote Access from the desktop app.",
           "It stores memory locally, makes every memory visible and editable, and uses a hybrid memory engine that combines vector search, full-text search, and a knowledge graph. The product is built for compounding understanding rather than passive transcript storage.",
         ],
       },
@@ -155,7 +155,7 @@ export const guides: Guide[] = [
       {
         heading: "Why MCP is useful for memory",
         body: [
-          "Memory is more useful when it is not trapped inside one interface. Claude Code, Claude Desktop, Cursor, ChatGPT, and Gemini CLI can all participate in the same workflow if they speak MCP.",
+          "Memory is more useful when it is not trapped inside one interface. Claude Code, Claude Desktop, Cursor, Codex, Windsurf, and Gemini CLI can all participate in the same workflow if they speak MCP.",
           "That makes MCP a natural boundary for persistent AI memory. The AI tool handles the conversation. The memory server handles durable context.",
         ],
         bullets: [
@@ -338,8 +338,8 @@ export const guides: Guide[] = [
       {
         heading: "How Origin works with Claude Code",
         body: [
-          "Origin exposes memory through MCP via origin-mcp. Claude Code can write what it learns and recall relevant project context later. The same memory can also be available to Cursor, Claude Desktop, ChatGPT, and Gemini CLI when configured.",
-          "That makes Origin a shared memory layer for AI-assisted development rather than a single-client note file.",
+          "Origin exposes memory through MCP via origin-mcp. Claude Code can write what it learns and recall relevant project context later. The same memory can also be available to Cursor, Codex, Claude Desktop, Windsurf, and Gemini CLI when configured.",
+          "That makes Origin shared local memory for AI-assisted development rather than a single-client note file.",
         ],
       },
       {

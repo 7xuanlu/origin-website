@@ -87,12 +87,12 @@ function OriginRingBackground() {
 }
 
 const features = [
-  { title: "Self-Evolving", description: "Deduplicates, links related memories, detects contradictions. Your understanding matures while you work.", tag: "Evolves", accent: "warm" as const },
-  { title: "Hybrid Memory Engine", description: "Vector search, full-text search, and knowledge graph — unified in one local database with Reciprocal Rank Fusion.", tag: "libSQL", accent: "indigo" as const },
-  { title: "Associative Recall", description: "Ask about one thing, get related context you didn't search for. Entities and relations link your knowledge so retrieval goes beyond keyword matching.", tag: "Graph", accent: "sage" as const },
-  { title: "On-Device Intelligence", description: "Qwen3-4B and Qwen3.5-9B run on Apple Silicon Metal GPU. Your data never leaves your machine for processing.", tag: "Local AI", accent: "warm" as const },
-  { title: "MCP-Native", description: "Any MCP-compatible agent reads and writes your memory. Claude Code, Claude Desktop, Cursor, ChatGPT, Gemini CLI — all connected.", tag: "Protocol", accent: "amber" as const },
-  { title: "Memory Lineage", description: "Every memory traces back to the conversation it came from. Full provenance: see where it was learned, when it was refined, and why it's there.", tag: "Traceable", accent: "sage" as const },
+  { title: "Self-Evolving", description: "The background refinery deduplicates captures, links related ideas, compiles concepts, and keeps provenance attached.", tag: "Evolves", accent: "warm" as const },
+  { title: "Hybrid Memory Engine", description: "Vector search, full-text search, and knowledge graph signals live in one local database with Reciprocal Rank Fusion.", tag: "libSQL", accent: "indigo" as const },
+  { title: "Associative Recall", description: "Ask about one thing, get related context you did not search for. Entities and relations make recall more than keyword matching.", tag: "Graph", accent: "sage" as const },
+  { title: "On-Device Intelligence", description: "Basic memory works immediately. Add a local model or Anthropic key when you want richer extraction and concept synthesis.", tag: "Local AI", accent: "warm" as const },
+  { title: "MCP-Native", description: "Claude Code, Cursor, Codex, Claude Desktop, Windsurf, Gemini CLI, and other MCP clients can read and write the same Origin.", tag: "Protocol", accent: "amber" as const },
+  { title: "Memory Lineage", description: "Every memory traces back to where it came from. Inspect, edit, delete, and verify what Origin learned.", tag: "Traceable", accent: "sage" as const },
 ];
 
 const accentColors = {
@@ -153,12 +153,12 @@ export default function LandingPage() {
 
         <div className="relative z-10 max-w-3xl text-center">
           <h1 className="animate-fade-up delay-100 warm-glow font-serif text-5xl leading-[1.1] font-medium tracking-tight sm:text-7xl">
-            What you know
+            Memory for AI work.
             <br />
-            compounds.
+            Built to compound.
           </h1>
           <p className="animate-fade-up delay-100 mx-auto mt-8 max-w-xl text-lg leading-relaxed text-[var(--o-text-secondary)] sm:text-xl">
-            A local-first memory app that captures knowledge, decisions, and insights from every AI conversation.
+            Local-first memory for AI work. Origin runs quietly behind the tools you already use, carrying decisions, lessons, gotchas, and project context across chats, projects, and time.
           </p>
           <div className="animate-fade-up delay-200 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:shadow-[0_0_28px_var(--o-glow-warm)]">
@@ -192,18 +192,6 @@ export default function LandingPage() {
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Quote */}
-      <section className="border-t border-[var(--o-border-subtle)] px-6 py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-base leading-relaxed text-[var(--o-text-secondary)] italic">
-            &ldquo;The LLM is rediscovering knowledge from scratch on every question. There&apos;s no accumulation.&rdquo;
-          </p>
-          <p className="mt-4 font-mono text-xs text-[var(--o-text-muted)]">
-            Andrej Karpathy, April 2026
-          </p>
         </div>
       </section>
 
@@ -266,7 +254,7 @@ export default function LandingPage() {
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-text-muted)] uppercase">Features</p>
-            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Built for the agentic era.</h2>
+            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Built for memory that improves itself.</h2>
           </div>
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => {
@@ -298,7 +286,7 @@ export default function LandingPage() {
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:opacity-90">
               <GitHubIcon />
-              Star on GitHub
+              View source
             </Link>
             <Link href="https://github.com/7xuanlu/origin/releases" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
               <DownloadIcon />
