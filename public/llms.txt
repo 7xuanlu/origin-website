@@ -41,10 +41,10 @@ people using AI tools who need work context to carry forward across sessions.
 - Daily workflow: how to use /brief, /capture, /recall, /handoff, scoped
   /review captures|revisions, /distill, and /read after setup.
 - Core concepts: memory, sessions, handoffs, distilled pages, daemon, MCP,
-  Markdown records, local index, and Basic Memory mode.
+  Markdown records, local index, and the no-model-required local loop.
 - Commands and tools: Claude Code slash commands and MCP tools.
-- Data and privacy: local storage paths, Basic Memory mode, optional model/API
-  paths, Markdown control, and deletion/correction behavior.
+- Data and privacy: local storage paths, default local setup, optional
+  model/API paths, Markdown control, and deletion/correction behavior.
 - Connect MCP clients: generic mcpServers config using npx -y origin-mcp.
 - Troubleshooting: daemon reachability, MCP connection, Claude Code restart,
   port 7878, doctor checks, and GitHub issue fallback.

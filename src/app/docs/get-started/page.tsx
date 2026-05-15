@@ -161,7 +161,7 @@ export default function GetStartedPage() {
                   </h2>
                   <p className="mt-5 text-base leading-relaxed text-[var(--o-text-secondary)]">
                     This is the fastest path. The plugin handles daemon setup,
-                    MCP wiring, Basic Memory mode, and the first round-trip check.
+                    MCP wiring, the default local setup, and the first round-trip check.
                   </p>
                   <pre className="mt-6 overflow-x-auto rounded-xl border border-[var(--o-border)] bg-[var(--o-bg-deep)] p-5 font-mono text-sm leading-relaxed text-[var(--o-text-secondary)]">
                     <code>{claudeCommands.join("\n")}</code>

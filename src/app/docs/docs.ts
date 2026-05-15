@@ -83,7 +83,7 @@ export const docPages: DocPage[] = [
           "Keep each capture atomic. One idea per memory is easier to search, merge, correct, and cite later.",
         ],
         bullets: [
-          "Good: We chose Basic Memory mode because this project needs local search without model setup.",
+          "Good: We chose the default local setup because this project needs local search without model setup.",
           "Good: The website should describe Origin as AI work memory, not just a memory app.",
           "Skip: command output, temporary todos, filler, and facts the repo can trivially derive.",
         ],
@@ -192,9 +192,9 @@ export const docPages: DocPage[] = [
         ],
       },
       {
-        heading: "Basic Memory mode",
+        heading: "No model required",
         body: [
-          "Basic Memory mode gives you storage, embeddings, dedupe, hybrid search, and MCP recall without requiring a local model or API key.",
+          "Origin gives you storage, embeddings, dedupe, hybrid search, and MCP recall without requiring a local model or API key.",
           "Claude Code skills can still classify captures, write handoffs, and distill pages because the agent already has language intelligence in the session.",
         ],
       },
@@ -281,13 +281,13 @@ export const docPages: DocPage[] = [
       "Where Origin keeps data, what stays local, and how Markdown records work with the local index.",
     metaTitle: "Origin Data and Privacy | Docs",
     metaDescription:
-      "Understand Origin local storage, Basic Memory mode, optional model/API paths, Markdown records, the local index, and deletion controls.",
+      "Understand Origin local storage, the default local setup, optional model/API paths, Markdown records, the local index, and deletion controls.",
     updatedAt: DOCS_UPDATED_AT,
     author: DEFAULT_AUTHOR,
     readingTime: "7 min read",
     summary: [
       "Origin is local-first: the memory layer is owned by the daemon on your machine.",
-      "Basic Memory mode does not require a local model or cloud API key.",
+      "The default local setup does not require a local model or cloud API key.",
       "Markdown artifacts remain readable while the database stores retrieval indexes and metadata.",
     ],
     sections: [
@@ -320,9 +320,9 @@ export const docPages: DocPage[] = [
         ],
       },
       {
-        heading: "Basic Memory mode",
+        heading: "Default local setup",
         body: [
-          "Basic Memory mode stores, embeds, deduplicates, and serves hybrid search without requiring a local model download or Anthropic API key.",
+          "Origin stores, embeds, deduplicates, and serves hybrid search without requiring a local model download or Anthropic API key.",
           "Optional model and API paths can add heavier language features, but they are not required for the basic memory loop.",
         ],
       },
