@@ -49,21 +49,21 @@ const updatedAt = "2026-05-15";
 
 export const articles: LearnArticle[] = [
   {
-    slug: "ai-memory-app",
+    slug: "ai-work-memory",
     eyebrow: "Concept",
     category: "Concepts",
-    title: "What Is an AI Memory App?",
+    title: "What Is AI Work Memory?",
     description:
-      "An AI memory app gives assistants durable, inspectable context across conversations, tools, and weeks of work.",
-    metaTitle: "What Is an AI Memory App? | Origin",
+      "AI work memory carries sessions, decisions, lessons, project context, and wiki pages across tools and time.",
+    metaTitle: "What Is AI Work Memory? | Origin",
     metaDescription:
-      "Learn what an AI memory app does, when built-in memory is not enough, and how Origin makes AI memory local, visible, editable, and MCP-native.",
+      "Learn what AI work memory is, when built-in memory is not enough, and how Origin keeps work context local, visible, editable, and MCP-native.",
     keywords: [
-      "AI memory app",
-      "personal AI memory",
-      "AI memory layer",
-      "persistent memory for AI assistants",
-      "Origin AI memory",
+      "AI work memory",
+      "memory for AI work",
+      "local-first memory for AI work",
+      "durable AI work context",
+      "Origin AI work",
     ],
     updatedAt,
     author: DEFAULT_AUTHOR,
@@ -78,8 +78,8 @@ export const articles: LearnArticle[] = [
       {
         heading: "The short definition",
         body: [
-          "An AI memory app stores useful context from your work with AI assistants and makes it available later when the assistant needs it.",
-          "That context can include decisions, facts, project constraints, personal preferences, lessons learned, and relationships between ideas. The goal is simple: your AI should not rediscover the same knowledge from scratch every session.",
+          "AI work memory is durable context from real work with AI agents, made available when a later session needs it.",
+          "That context can include decisions, facts, project constraints, personal preferences, lessons learned, handoffs, wiki pages, and relationships between ideas. The goal is simple: your AI should not rediscover the same knowledge from scratch every session.",
         ],
       },
       {
@@ -96,28 +96,28 @@ export const articles: LearnArticle[] = [
         ],
       },
       {
-        heading: "What useful AI memory should do",
+        heading: "What useful AI work memory should do",
         body: [
           "The core job is not hoarding transcripts. Useful memory distills noisy conversations into compact knowledge and retrieves the right pieces later.",
           "That usually means combining semantic search, full-text search, metadata, and a knowledge graph. It also means letting people curate memory instead of trusting a black box.",
         ],
       },
       {
-        heading: "How Origin approaches AI memory",
+        heading: "How Origin approaches AI work memory",
         body: [
           "Origin is local-first memory for AI work in Claude Code, Cursor, Codex, Claude Desktop, Gemini CLI, and other MCP-compatible tools.",
-          "Origin stores useful context locally, makes memory visible and editable, distills wiki pages, and uses hybrid retrieval that combines vector search, full-text search, and graph context.",
+          "Origin stores useful context locally, makes memory visible and editable, writes handoffs, distills wiki pages, and uses hybrid retrieval that combines vector search, full-text search, and graph context.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Is an AI memory app the same as a notes app?",
+        question: "Is AI work memory the same as a notes app?",
         answer:
-          "No. A notes app is mainly for human writing and retrieval. An AI memory app turns conversation history into structured context that assistants can recall while they work.",
+          "No. A notes app is mainly for human writing and retrieval. AI work memory turns sessions, decisions, lessons, and project context into structured context that assistants can recall while they work.",
       },
       {
-        question: "Does an AI memory app replace ChatGPT or Claude memory?",
+        question: "Does AI work memory replace ChatGPT or Claude memory?",
         answer:
           "It can complement or replace parts of built-in memory. The main difference is control: Origin makes memories visible, editable, traceable, and available across MCP-compatible tools.",
       },
@@ -188,7 +188,7 @@ export const articles: LearnArticle[] = [
       {
         question: "Is Origin just an MCP memory server?",
         answer:
-          "No. Origin includes an MCP server path, but the product also includes local storage, refinement, contradiction detection, provenance, search, and wiki pages.",
+          "No. Origin includes an MCP server path, but the product also includes local storage, distill cycles, contradiction detection, provenance, search, and wiki pages.",
       },
       {
         question: "Can one MCP memory server work with multiple AI tools?",
@@ -196,7 +196,7 @@ export const articles: LearnArticle[] = [
           "Yes, if those tools support MCP and are configured to use the same server. Origin is designed for that shared-memory workflow.",
       },
     ],
-    relatedSlugs: ["claude-code-memory", "ai-memory-app", "origin-vs-claude-mem"],
+    relatedSlugs: ["claude-code-memory", "ai-work-memory", "origin-vs-claude-mem"],
     cta: {
       heading: "Give every agent the same memory",
       body: "Origin connects MCP-compatible tools to one local context layer instead of scattering decisions and lessons across chat silos.",
@@ -270,7 +270,7 @@ export const articles: LearnArticle[] = [
           "Origin is local-first on macOS Apple Silicon. The daemon and database run locally, and optional integrations may depend on the AI tools you connect.",
       },
     ],
-    relatedSlugs: ["ai-memory-app", "mcp-memory-server", "markdown-local-index-ai-memory"],
+    relatedSlugs: ["ai-work-memory", "mcp-memory-server", "markdown-local-index-ai-memory"],
     cta: {
       heading: "Keep your context where your work lives",
       body: "Origin gives AI tools useful memory without making your accumulated work context cloud-first by default.",
@@ -424,7 +424,7 @@ export const articles: LearnArticle[] = [
           "Potentially, yes. The overlap means many people will choose one primary memory layer, but a Markdown knowledge base and an AI session memory layer can complement each other in some workflows.",
       },
     ],
-    relatedSlugs: ["markdown-local-index-ai-memory", "ai-memory-app", "mcp-memory-server"],
+    relatedSlugs: ["markdown-local-index-ai-memory", "ai-work-memory", "mcp-memory-server"],
     cta: {
       heading: "Try the AI work memory loop",
       body: "Origin is built for sessions, handoffs, provenance, and local retrieval across MCP-compatible AI tools.",
@@ -501,7 +501,7 @@ export const articles: LearnArticle[] = [
       {
         question: "Is claude-mem more automatic than Origin?",
         answer:
-          "claude-mem is framed around observer-style capture for Claude Code. Origin has capture and background refinement, but it emphasizes inspectable memory, handoffs, provenance, and cross-tool use.",
+          "claude-mem is framed around observer-style capture for Claude Code. Origin has capture and distill cycles, but it emphasizes inspectable memory, handoffs, provenance, and cross-tool use.",
       },
     ],
     relatedSlugs: ["claude-code-memory", "mcp-memory-server", "ai-agent-handoff-loop"],
@@ -658,7 +658,7 @@ export const articles: LearnArticle[] = [
           "A database-only memory layer can become opaque. Origin keeps readable artifacts available so people can inspect and correct what AI tools rely on.",
       },
     ],
-    relatedSlugs: ["local-first-ai-memory", "origin-vs-basic-memory", "ai-memory-app"],
+    relatedSlugs: ["local-first-ai-memory", "origin-vs-basic-memory", "ai-work-memory"],
     cta: {
       heading: "Keep memory readable and searchable",
       body: "Origin pairs Markdown records with a local retrieval index so memory stays useful to agents and visible to people.",

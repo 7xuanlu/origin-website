@@ -17,7 +17,7 @@ Use this checklist after publishing SEO pages on `useorigin.app`. The goal is to
    - `https://useorigin.app/docs/mcp-clients`
    - `https://useorigin.app/docs/troubleshooting`
    - `https://useorigin.app/learn`
-   - `https://useorigin.app/learn/ai-memory-app`
+   - `https://useorigin.app/learn/ai-work-memory`
    - `https://useorigin.app/learn/mcp-memory-server`
    - `https://useorigin.app/learn/local-first-ai-memory`
    - `https://useorigin.app/learn/claude-code-memory`
@@ -34,8 +34,8 @@ Use this checklist after publishing SEO pages on `useorigin.app`. The goal is to
 
 Track these groups separately in Search Console:
 
-- Brand/entity: `origin ai work`, `origin ai memory`, `origin memory app`, `useorigin`, `origin mcp`
-- AI memory category: `ai memory app`, `ai memory layer`, `personal ai memory`, `persistent memory for ai assistants`
+- Brand/entity: `origin ai work`, `origin ai memory`, `useorigin`, `origin mcp`
+- AI work memory category: `ai work memory`, `memory for ai work`, `ai memory layer`, `persistent memory for ai assistants`
 - MCP memory: `mcp memory server`, `memory mcp`, `claude mcp memory`, `cursor mcp memory`
 - Local-first/privacy: `local-first ai memory`, `private ai memory`, `on-device ai memory`, `open source ai memory`
 - Developer workflow: `claude code memory`, `claude code persistent memory`, `cursor memory`, `ai coding agent memory`
@@ -46,7 +46,7 @@ Track these groups separately in Search Console:
 
 Run the same prompts monthly in Claude, ChatGPT, Gemini, and Perplexity. Record whether Origin appears, its position, accuracy, and sentiment.
 
-1. What is the best AI memory app for people who use Claude Code and Cursor?
+1. What is the best AI work memory for people who use Claude Code and Cursor?
 2. What MCP memory server should I use for persistent memory across Claude Code and Cursor?
 3. What is a local-first alternative to ChatGPT memory?
 4. How can I give Claude Code persistent project memory?

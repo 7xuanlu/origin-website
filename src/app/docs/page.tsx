@@ -39,7 +39,7 @@ const docsSections = [
         label: "Setup",
         title: "Get started with Origin",
         description:
-          "Install the Claude Code plugin, wire Origin into an MCP client, and confirm the local memory loop works.",
+          "Install the Claude Code plugin or run Origin setup for another MCP client, then confirm the local memory loop works.",
         meta: "Origin team · Updated May 15, 2026 · 4 min setup",
       },
     ],
@@ -157,8 +157,9 @@ export default function DocsPage() {
               Start here
             </p>
             <p className="mt-3 max-w-[20rem] text-sm leading-relaxed text-[var(--o-text-secondary)] sm:max-w-2xl">
-              New users should install first, then read the daily workflow and
-              core concepts before reaching for the reference docs.
+              New users should install first, run setup for their client, then
+              read the daily workflow and core concepts before reaching for the
+              reference docs.
             </p>
           </div>
 

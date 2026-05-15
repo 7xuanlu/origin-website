@@ -6,14 +6,14 @@ import { SITE_URL } from "../../learn/articles";
 export const metadata: Metadata = {
   title: "Get Started with Origin | Local AI Work Memory",
   description:
-    "Install Origin through the Claude Code plugin or connect any MCP client to the local Origin memory layer.",
+    "Install Origin through the Claude Code plugin or run Origin setup before connecting another MCP client.",
   alternates: {
     canonical: "/docs/get-started",
   },
   openGraph: {
     title: "Get Started with Origin | Local AI Work Memory",
     description:
-      "Install Origin through the Claude Code plugin or connect any MCP client to the local Origin memory layer.",
+      "Install Origin through the Claude Code plugin or run Origin setup before connecting another MCP client.",
     type: "article",
     url: `${SITE_URL}/docs/get-started`,
     siteName: "Origin",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Get Started with Origin | Local AI Work Memory",
     description:
-      "Install Origin through the Claude Code plugin or connect any MCP client to the local Origin memory layer.",
+      "Install Origin through the Claude Code plugin or run Origin setup before connecting another MCP client.",
     images: ["/og.png"],
   },
 };
@@ -33,6 +33,8 @@ const claudeCommands = [
   "/plugin install origin@7xuanlu",
   "/init",
 ];
+
+const originSetupCommand = "npx -y @7xuanlu/origin setup";
 
 const mcpConfig = `{
   "mcpServers": {
@@ -74,7 +76,7 @@ export default function GetStartedPage() {
     "@type": "HowTo",
     name: "Get started with Origin",
     description:
-      "Install Origin in Claude Code or connect Origin to another MCP client.",
+      "Install Origin in Claude Code or run Origin setup before connecting another MCP client.",
     step: [
       {
         "@type": "HowToStep",
@@ -83,8 +85,8 @@ export default function GetStartedPage() {
       },
       {
         "@type": "HowToStep",
-        name: "Connect another MCP client",
-        text: "Add npx -y origin-mcp to the client's mcpServers config.",
+        name: "Set up the local runtime for another MCP client",
+        text: "Run npx -y @7xuanlu/origin setup, then add npx -y origin-mcp to the client's mcpServers config.",
       },
       {
         "@type": "HowToStep",
@@ -161,7 +163,7 @@ export default function GetStartedPage() {
                   </h2>
                   <p className="mt-5 text-base leading-relaxed text-[var(--o-text-secondary)]">
                     This is the fastest path. The plugin handles daemon setup,
-                    MCP wiring, the default local setup, and the first round-trip check.
+                    MCP wiring, local memory setup, and the first round-trip check.
                   </p>
                   <pre className="mt-6 overflow-x-auto rounded-xl border border-[var(--o-border)] bg-[var(--o-bg-deep)] p-5 font-mono text-sm leading-relaxed text-[var(--o-text-secondary)]">
                     <code>{claudeCommands.join("\n")}</code>
@@ -180,10 +182,18 @@ export default function GetStartedPage() {
                     Other MCP clients
                   </h2>
                   <p className="mt-5 text-base leading-relaxed text-[var(--o-text-secondary)]">
-                    Cursor, Codex, Claude Desktop, Gemini CLI, and other
-                    MCP-compatible clients can connect through Origin's MCP
-                    server.
+                    For Cursor, Codex, Claude Desktop, Gemini CLI, and other
+                    MCP-compatible clients, set up the local Origin runtime first.
+                    Then add the MCP connector to the client.
                   </p>
+                  <p className="mt-4 text-sm leading-relaxed text-[var(--o-text-muted)]">
+                    Origin setup installs the CLI, daemon, and MCP connector,
+                    configures local memory, registers the daemon with launchd,
+                    and verifies status.
+                  </p>
+                  <pre className="mt-6 overflow-x-auto rounded-xl border border-[var(--o-border)] bg-[var(--o-bg-deep)] p-5 font-mono text-sm leading-relaxed text-[var(--o-text-secondary)]">
+                    <code>{originSetupCommand}</code>
+                  </pre>
                   <pre className="mt-6 overflow-x-auto rounded-xl border border-[var(--o-border)] bg-[var(--o-bg-deep)] p-5 font-mono text-sm leading-relaxed text-[var(--o-text-secondary)]">
                     <code>{mcpConfig}</code>
                   </pre>

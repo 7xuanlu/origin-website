@@ -26,7 +26,7 @@ people using AI tools who need work context to carry forward across sessions.
 
 - Local-first memory for AI work on macOS Apple Silicon.
 - Claude Code plugin plus MCP server for MCP-compatible clients.
-- Local daemon owns storage, search, background refinement, provenance, and API.
+- Local daemon owns storage, search, distill cycles, provenance, and API.
 - Markdown records remain human-readable; the local database keeps retrieval
   indexes, graph structure, and metadata.
 - Background distillation deduplicates repeat facts, links related ideas,
@@ -36,22 +36,26 @@ people using AI tools who need work context to carry forward across sessions.
 
 ## Docs
 
-- Get started: install the Claude Code plugin or connect an MCP client, then
-  verify the first local memory loop.
-- Daily workflow: how to use /brief, /capture, /recall, /handoff, scoped
-  /review captures|revisions, /distill, and /read after setup.
+- Get started: install the Claude Code plugin or run `npx -y
+  @7xuanlu/origin setup` before connecting another MCP client, then verify the
+  first local memory loop.
+- Daily workflow: how to use /brief or MCP context, /capture, /recall,
+  /handoff, scoped /review captures|revisions, /distill, and /read after
+  setup.
 - Core concepts: memory, sessions, handoffs, distilled pages, daemon, MCP,
   Markdown records, local index, and the no-model-required local loop.
-- Commands and tools: Claude Code slash commands and MCP tools.
-- Data and privacy: local storage paths, default local setup, optional
+- Commands and tools: Claude Code slash commands and MCP tools, including
+  context for MCP session start.
+- Data and privacy: local storage paths, local memory setup, optional
   model/API paths, Markdown control, and deletion/correction behavior.
-- Connect MCP clients: generic mcpServers config using npx -y origin-mcp.
+- Connect MCP clients: run `npx -y @7xuanlu/origin setup`, then use a generic
+  mcpServers config with npx -y origin-mcp.
 - Troubleshooting: daemon reachability, MCP connection, Claude Code restart,
   port 7878, doctor checks, and GitHub issue fallback.
 
 ## Learn articles
 
-- What Is an AI Memory App?: https://useorigin.app/learn/ai-memory-app
+- What Is AI Work Memory?: https://useorigin.app/learn/ai-work-memory
 - MCP Memory Server: Persistent Memory for AI Tools: https://useorigin.app/learn/mcp-memory-server
 - Local-First AI Memory: Keep Context on Your Machine: https://useorigin.app/learn/local-first-ai-memory
 - Claude Code Memory: Persistent Project Context Across Sessions: https://useorigin.app/learn/claude-code-memory
@@ -67,5 +71,5 @@ people using AI tools who need work context to carry forward across sessions.
 - Medium: Origin carries AI work context across sessions, tools, projects, and
   time through a local daemon, Claude Code plugin, MCP server, Markdown records,
   hybrid retrieval, wiki pages, and provenance.
-- Category: AI memory app, MCP memory server, local-first AI memory, Claude Code
-  memory, AI agent handoff workflow.
+- Category: AI work memory, MCP memory server, local-first AI memory, Claude
+  Code memory, AI agent handoff workflow.

@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/learn/ai-memory-app",
+        destination: "/learn/ai-work-memory",
+        permanent: true,
+      },
+      {
         source: "/guides",
         destination: "/learn",
         permanent: true,

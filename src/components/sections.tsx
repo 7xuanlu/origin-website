@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     q: "Is my data private?",
-    a: "Yes. Origin runs on your machine and stores its database locally. The default local setup works without a model or API key. Richer extraction and background refinement can use an on-device model, or an Anthropic key if you choose that path.",
+    a: "Yes. Origin runs on your machine and stores its database locally. Local memory setup works without a model or API key. Richer extraction and distill cycles can use an on-device model, or an Anthropic key if you choose that path.",
   },
   {
     q: "Is Origin just another memory MCP?",
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: "How do I set it up?",
-    a: "In Claude Code, run /plugin marketplace add 7xuanlu/origin, then /plugin install origin@7xuanlu, then /init. Other MCP clients can add npx -y origin-mcp to their mcpServers config.",
+    a: "In Claude Code, run /plugin marketplace add 7xuanlu/origin, then /plugin install origin@7xuanlu, then /init. For other MCP clients, run npx -y @7xuanlu/origin setup first, then add npx -y origin-mcp to their mcpServers config.",
   },
   {
     q: "Does Origin work on Windows or Linux?",

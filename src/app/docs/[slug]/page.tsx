@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArticleHalo, MemoryIndex } from "../../learn/article-visuals";
+import { ArticleHalo } from "../../learn/article-visuals";
 import { docPages, docUrl, formatDocDate, getDocPage } from "../docs";
 import { SITE_URL } from "../../learn/articles";
 
@@ -15,6 +15,13 @@ export function generateStaticParams() {
   return docPages.map((page) => ({
     slug: page.slug,
   }));
+}
+
+function sectionId(heading: string) {
+  return heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 export async function generateMetadata({
@@ -117,7 +124,7 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
       />
 
       <article>
-        <header className="relative border-b border-[var(--o-border-subtle)] px-6 py-24 sm:py-32">
+        <header className="relative border-b border-[var(--o-border-subtle)] px-6 py-16 sm:py-20">
           <ArticleHalo />
           <div className="relative z-10 mx-auto max-w-5xl">
             <nav className="flex items-center gap-3 font-mono text-xs text-[var(--o-text-muted)]">
@@ -135,59 +142,55 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
                 Docs
               </Link>
             </nav>
-            <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
-              <div>
-                <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/80 uppercase">
-                  {page.eyebrow}
-                </p>
-                <h1 className="warm-glow font-serif text-[2rem] leading-[1.08] font-medium tracking-tight sm:text-7xl sm:leading-[1.05]">
-                  {page.title}
-                </h1>
-                <p className="mt-8 max-w-[20rem] text-lg leading-relaxed text-[var(--o-text-secondary)] sm:max-w-2xl">
-                  {page.description}
-                </p>
-                <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] text-[var(--o-text-muted)]">
-                  <span>{page.author}</span>
-                  <span>Updated {formatDocDate(page.updatedAt)}</span>
-                  <span>{page.readingTime}</span>
-                </div>
+            <div className="mt-10 max-w-4xl">
+              <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/80 uppercase">
+                {page.eyebrow}
+              </p>
+              <h1 className="warm-glow font-serif text-[2rem] leading-[1.08] font-medium tracking-tight sm:text-6xl sm:leading-[1.05]">
+                {page.title}
+              </h1>
+              <p className="mt-6 max-w-[20rem] text-base leading-relaxed text-[var(--o-text-secondary)] sm:max-w-2xl sm:text-lg">
+                {page.description}
+              </p>
+              <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] text-[var(--o-text-muted)]">
+                <span>{page.author}</span>
+                <span>Updated {formatDocDate(page.updatedAt)}</span>
+                <span>{page.readingTime}</span>
               </div>
-              <MemoryIndex
-                label="Doc packet"
-                items={[
-                  page.group,
-                  page.readingTime,
-                  nextPage?.title ?? "Reference",
-                ]}
-              />
             </div>
           </div>
         </header>
 
-        <section className="px-6 py-16">
+        <section className="px-6 py-10">
           <div className="mx-auto max-w-5xl">
-            <div className="grid gap-4 md:grid-cols-3">
-              {page.summary.map((item, index) => (
-                <div key={item} className="card-origin rounded-xl p-5">
-                  <p className="mb-5 font-mono text-[11px] text-[var(--o-warm)]">
-                    {(index + 1).toString().padStart(2, "0")}
-                  </p>
-                  <p className="text-sm leading-relaxed text-[var(--o-text-secondary)]">
-                    {item}
-                  </p>
-                </div>
-              ))}
+            <div className="max-w-[700px] rounded-xl border border-[var(--o-border)] bg-[var(--o-card-bg)] p-6">
+              <p className="mb-6 font-mono text-[10px] tracking-[0.24em] text-[var(--o-warm)]/80 uppercase">
+                At a glance
+              </p>
+              <div className="space-y-4">
+                {page.summary.map((item, index) => (
+                  <div key={item} className="grid grid-cols-[32px_1fr] gap-3">
+                    <p className="font-mono text-[11px] text-[var(--o-warm)]">
+                      {(index + 1).toString().padStart(2, "0")}
+                    </p>
+                    <p className="text-sm leading-relaxed text-[var(--o-text-secondary)]">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         <section className="px-6 pb-20">
-          <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[minmax(0,680px)_1fr]">
+          <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[minmax(0,700px)_220px]">
             <div className="space-y-14">
               {page.sections.map((section, index) => (
                 <section
+                  id={sectionId(section.heading)}
                   key={section.heading}
-                  className="grid gap-5 border-t border-[var(--o-border-subtle)] pt-10 sm:grid-cols-[72px_1fr]"
+                  className="grid scroll-mt-24 gap-5 border-t border-[var(--o-border-subtle)] pt-10 sm:grid-cols-[72px_1fr]"
                 >
                   <p className="font-mono text-[11px] text-[var(--o-warm)]">
                     {(index + 1).toString().padStart(2, "0")}
@@ -236,7 +239,7 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
               ))}
 
               {nextPage && (
-                <section className="rounded-2xl border border-[var(--o-border)] bg-[var(--o-card-bg)] p-7">
+                <section className="border-t border-[var(--o-border-subtle)] pt-10">
                   <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-text-muted)] uppercase">
                     Next
                   </p>
@@ -256,48 +259,26 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
               )}
             </div>
 
-            <aside className="space-y-6 lg:sticky lg:top-20 lg:self-start">
-              <div className="rounded-xl border border-[var(--o-border)] bg-[var(--o-card-bg)] p-5">
+            <aside className="border-t border-[var(--o-border-subtle)] pt-8 lg:sticky lg:top-20 lg:self-start lg:border-t-0 lg:pt-1">
+              <nav aria-label="On this page">
                 <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-text-muted)] uppercase">
-                  In this doc
+                  On this page
                 </p>
                 <div className="mt-4 space-y-3">
                   {page.sections.map((section, index) => (
-                    <p
+                    <a
                       key={section.heading}
-                      className="grid grid-cols-[28px_1fr] gap-2 text-sm text-[var(--o-text-secondary)]"
+                      href={`#${sectionId(section.heading)}`}
+                      className="grid grid-cols-[28px_1fr] gap-2 text-sm leading-relaxed text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-warm)]"
                     >
                       <span className="font-mono text-[10px] text-[var(--o-text-dim)]">
                         {(index + 1).toString().padStart(2, "0")}
                       </span>
                       <span>{section.heading}</span>
-                    </p>
+                    </a>
                   ))}
                 </div>
-              </div>
-
-              <div className="rounded-xl border border-[var(--o-border)] bg-[var(--o-card-bg)] p-5">
-                <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-text-muted)] uppercase">
-                  Docs
-                </p>
-                <div className="mt-4 space-y-4">
-                  <Link
-                    href="/docs/get-started"
-                    className="block text-sm leading-relaxed text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-warm)]"
-                  >
-                    Get started
-                  </Link>
-                  {docPages.map((docPage) => (
-                    <Link
-                      key={docPage.slug}
-                      href={`/docs/${docPage.slug}`}
-                      className="block text-sm leading-relaxed text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-warm)]"
-                    >
-                      {docPage.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              </nav>
             </aside>
           </div>
         </section>

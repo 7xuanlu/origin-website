@@ -12,14 +12,14 @@ import { ArticleHalo, MemoryIndex } from "./article-visuals";
 export const metadata: Metadata = {
   title: "Learn | Origin",
   description:
-    "Articles on AI memory apps, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
+    "Articles on AI work memory, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
   alternates: {
     canonical: "/learn",
   },
   openGraph: {
     title: "Learn | Origin",
     description:
-      "Articles on AI memory apps, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
+      "Articles on AI work memory, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
     type: "website",
     url: `${SITE_URL}/learn`,
     siteName: "Origin",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Learn | Origin",
     description:
-      "Articles on AI memory apps, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
+      "Articles on AI work memory, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
     images: ["/og.png"],
   },
 };
@@ -59,7 +59,7 @@ export default function LearnPage() {
     "@type": "CollectionPage",
     name: "Origin Learn",
     description:
-      "Articles about AI memory apps, MCP memory servers, local-first AI memory, Claude Code persistent context, and Origin comparisons.",
+      "Articles about AI work memory, MCP memory servers, local-first AI memory, Claude Code persistent context, and Origin comparisons.",
     url: `${SITE_URL}/learn`,
     mainEntity: articles.map((article) => ({
       "@type": "Article",
@@ -97,7 +97,7 @@ export default function LearnPage() {
                 Learn
               </p>
               <h1 className="warm-glow font-serif text-5xl leading-[1.05] font-medium tracking-tight sm:text-7xl">
-                Questions worth answering before you add AI memory.
+                Before you add AI memory.
               </h1>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--o-text-secondary)]">
                 Origin makes AI work compound across Claude Code, Cursor,
@@ -108,7 +108,7 @@ export default function LearnPage() {
             <MemoryIndex
               label="Learn topics"
               items={[
-                "AI memory concepts",
+                "AI work memory",
                 "Named comparisons",
                 "Developer workflows",
                 "Local-first control",
@@ -125,8 +125,8 @@ export default function LearnPage() {
               Start here
             </p>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--o-text-secondary)]">
-              New to AI memory? Read the concept pieces first, then use the
-              comparison articles to decide whether Origin fits your workflow.
+              New to AI work memory? Read the concept pieces first, then use
+              the comparison articles to decide whether Origin fits your workflow.
             </p>
           </div>
 
@@ -170,9 +170,6 @@ export default function LearnPage() {
                             <span>{formatArticleDate(article.updatedAt)}</span>
                             <span>{article.readingTime}</span>
                           </div>
-                          <p className="mt-4 text-sm text-[var(--o-text-secondary)] transition-colors group-hover:text-[var(--o-warm)]">
-                            Read answer
-                          </p>
                         </div>
                       </Link>
                     ))}
