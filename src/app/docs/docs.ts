@@ -62,7 +62,7 @@ export const docPages: DocPage[] = [
     summary: [
       "Origin works best as a lightweight habit around AI work, not as a place where you manually file every note.",
       "Start sessions with context, capture durable facts while working, recall when the agent needs history, and end with a handoff.",
-      "/review and /distill are optional maintenance passes, not commands you need to run after every message.",
+      "Scoped /review and /distill are optional maintenance passes, not commands you need to run after every message.",
     ],
     sections: [
       {
@@ -117,11 +117,12 @@ export const docPages: DocPage[] = [
       {
         heading: "Maintain memory when it grows",
         body: [
-          "/review is for auditing pending memories. /distill is for turning related memories into wiki pages that are easier for humans and agents to read.",
+          "/review is the deep audit path for pending captures and revisions. /distill is for turning related memories into wiki pages that are easier for humans and agents to read.",
           "You do not need to run these constantly. Use them after meaningful project work, before a new phase, or when recall starts surfacing repeated or stale context.",
         ],
         bullets: [
-          "/review: accept, edit, or reject pending memories.",
+          "/review captures: walk unconfirmed memories when you want the full queue.",
+          "/review revisions: accept or dismiss pending memory revisions.",
           "/distill: link, dedupe, and synthesize related memories into readable pages.",
           "/read: preview a distilled page without leaving the agent session.",
         ],
@@ -209,7 +210,7 @@ export const docPages: DocPage[] = [
       "The essential Claude Code commands and MCP tools for running Origin day to day.",
     metaTitle: "Origin Commands and MCP Tools | Docs",
     metaDescription:
-      "Reference the daily Origin Claude Code commands and MCP tools: /init, /brief, /capture, /recall, /handoff, /review, /distill, and doctor.",
+      "Reference the daily Origin Claude Code commands and MCP tools: /init, /brief, /capture, /recall, /handoff, scoped /review, /distill, and doctor.",
     updatedAt: DOCS_UPDATED_AT,
     author: DEFAULT_AUTHOR,
     readingTime: "6 min read",
@@ -238,7 +239,8 @@ export const docPages: DocPage[] = [
           "Use these when memory needs inspection, cleanup, or synthesis.",
         ],
         bullets: [
-          "/review: audit pending memories and accept, edit, or reject them.",
+          "/review captures: walk unconfirmed captures; bare /review only prints help.",
+          "/review revisions: walk pending revisions when /brief shows more than the top few.",
           "/distill: synthesize related memories into wiki pages.",
           "/read: preview a distilled page from inside Claude Code.",
           "/forget: delete a memory by ID when it should not remain in Origin.",
@@ -264,7 +266,7 @@ export const docPages: DocPage[] = [
         heading: "How to choose",
         body: [
           "If you are starting work, use /brief. If you learned something durable, use /capture. If the agent needs history, use /recall. If you are ending work, use /handoff.",
-          "Reach for /review, /distill, and /read when the memory layer needs maintenance or a topic has become important enough to deserve a page.",
+          "Reach for /review captures, /review revisions, /distill, and /read when the memory layer needs maintenance or a topic has become important enough to deserve a page.",
         ],
       },
     ],
@@ -450,7 +452,7 @@ export const docPages: DocPage[] = [
         heading: "Recall returns weak context",
         body: [
           "First make the recall query more specific. Include project names, feature names, decisions, people, or the exact failure mode.",
-          "If the memory exists but is stale or duplicated, use /review for pending items and /distill when a topic deserves a clearer page.",
+          "If the memory exists but is stale or duplicated, use /review captures or /review revisions for pending queues and /distill when a topic deserves a clearer page.",
         ],
       },
       {

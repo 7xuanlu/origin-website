@@ -38,8 +38,8 @@ people using AI tools who need work context to carry forward across sessions.
 
 - Get started: install the Claude Code plugin or connect an MCP client, then
   verify the first local memory loop.
-- Daily workflow: how to use /brief, /capture, /recall, /handoff, /review,
-  /distill, and /read after setup.
+- Daily workflow: how to use /brief, /capture, /recall, /handoff, scoped
+  /review captures|revisions, /distill, and /read after setup.
 - Core concepts: memory, sessions, handoffs, distilled pages, daemon, MCP,
   Markdown records, local index, and Basic Memory mode.
 - Commands and tools: Claude Code slash commands and MCP tools.
