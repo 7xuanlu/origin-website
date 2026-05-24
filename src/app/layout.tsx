@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "./theme-provider";
+import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -220,6 +221,7 @@ export default function RootLayout({
         </a>
         <ThemeProvider>
           <div id="main-content">{children}</div>
+          <SiteFooter />
         </ThemeProvider>
       </body>
     </html>
