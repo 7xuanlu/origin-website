@@ -129,12 +129,18 @@ export default function DocsPage() {
       <section className="relative border-b border-[var(--o-border-subtle)] px-6 py-24 sm:py-32">
         <ArticleHalo />
         <div className="relative z-10 mx-auto max-w-5xl">
-          <Link
-            href="/"
-            className="font-mono text-xs text-[var(--o-text-muted)] transition-colors hover:text-[var(--o-text-secondary)]"
-          >
-            Origin
-          </Link>
+          <nav aria-label="Breadcrumb" className="flex items-center gap-3 font-mono text-xs text-[var(--o-text-muted)]">
+            <Link
+              href="/"
+              className="transition-colors hover:text-[var(--o-text-secondary)]"
+            >
+              Origin
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span className="text-[var(--o-text-secondary)]" aria-current="page">
+              Docs
+            </span>
+          </nav>
           <div className="mt-12 max-w-3xl">
             <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/80 uppercase">
               Docs

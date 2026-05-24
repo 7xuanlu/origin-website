@@ -34,6 +34,7 @@ export type DocPage = {
   summary: string[];
   sections: DocSection[];
   nextSlug?: string;
+  howTo?: boolean;
 };
 
 const mcpConfig = `{
@@ -53,6 +54,7 @@ export const docPages: DocPage[] = [
     group: "After setup",
     eyebrow: "Workflow",
     title: "Daily Workflow",
+    howTo: true,
     description:
       "Start with context, capture what matters, recall when needed, and hand off before context goes cold.",
     metaTitle: "Origin Daily Workflow | Docs",
