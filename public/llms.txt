@@ -34,6 +34,7 @@
 
 ## Optional
 
+- [llms-full.txt](https://useorigin.app/llms-full.txt): Long-form companion to this file. Contains the full body of every Learn article and Docs page so an LLM can ingest the full corpus in one fetch.
 - [GitHub repository](https://github.com/7xuanlu/origin): Source, releases, issues. Apache-2.0.
 - [Origin Claude Code plugin (npm)](https://www.npmjs.com/package/@7xuanlu/origin): The Claude Code plugin published from this repo.
 - [origin-mcp server (npm)](https://www.npmjs.com/package/origin-mcp): The MCP server binary as a standalone npm package.

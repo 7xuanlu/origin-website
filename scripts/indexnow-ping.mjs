@@ -18,7 +18,15 @@ const ENDPOINT = "https://api.indexnow.org/IndexNow";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
 
-const STATIC_PATHS = ["/", "/about", "/learn", "/docs", "/docs/get-started"];
+const STATIC_PATHS = [
+  "/",
+  "/about",
+  "/learn",
+  "/docs",
+  "/docs/get-started",
+  "/llms.txt",
+  "/llms-full.txt",
+];
 
 async function extractSlugs(filePath) {
   const text = await readFile(filePath, "utf8");

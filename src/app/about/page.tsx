@@ -91,11 +91,42 @@ export default function AboutPage() {
     "@type": "AboutPage",
     name: "About Origin",
     description:
-      "Origin is an open-source, local-first memory layer for AI work.",
+      "Origin is an open-source, local-first memory layer for AI work, built by Qi-Xuan Lu.",
     url: `${SITE_URL}/about`,
     mainEntity: {
       "@id": "https://useorigin.app/#organization",
     },
+    author: {
+      "@id": "https://useorigin.app/#qixuan-lu",
+    },
+  };
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://useorigin.app/#qixuan-lu",
+    name: "Qi-Xuan Lu",
+    alternateName: "7xuanlu",
+    url: "https://github.com/7xuanlu",
+    sameAs: [
+      "https://github.com/7xuanlu",
+      "https://github.com/7xuanlu/origin",
+      "https://www.npmjs.com/package/@7xuanlu/origin",
+      "https://www.npmjs.com/package/origin-mcp",
+      "https://crates.io/crates/origin-mcp",
+      "https://crates.io/crates/origin-types",
+    ],
+    knowsAbout: [
+      "AI work memory",
+      "local-first software",
+      "Model Context Protocol",
+      "knowledge graphs",
+      "hybrid retrieval",
+      "Rust",
+      "libSQL",
+    ],
+    worksFor: { "@id": "https://useorigin.app/#organization" },
+    mainEntityOfPage: `${SITE_URL}/about`,
   };
 
   return (
@@ -108,17 +139,27 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
 
       <article>
         <header className="relative border-b border-[var(--o-border-subtle)] px-6 py-24 sm:py-32">
           <ArticleHalo />
           <div className="relative z-10 mx-auto max-w-5xl">
-            <Link
-              href="/"
-              className="font-mono text-xs text-[var(--o-text-muted)] transition-colors hover:text-[var(--o-text-secondary)]"
-            >
-              Origin
-            </Link>
+            <nav aria-label="Breadcrumb" className="flex items-center gap-3 font-mono text-xs text-[var(--o-text-muted)]">
+              <Link
+                href="/"
+                className="transition-colors hover:text-[var(--o-text-secondary)]"
+              >
+                Origin
+              </Link>
+              <span aria-hidden="true">/</span>
+              <span className="text-[var(--o-text-secondary)]" aria-current="page">
+                About
+              </span>
+            </nav>
             <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
               <div>
                 <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/80 uppercase">
@@ -135,7 +176,12 @@ export default function AboutPage() {
               </div>
               <MemoryIndex
                 label="Project status"
-                items={["Early preview", "macOS Apple Silicon", "Apache-2.0"]}
+                items={[
+                  "v0.6.1",
+                  "macOS, Linux, Windows",
+                  "Apache-2.0",
+                  "Built by Qi-Xuan Lu",
+                ]}
               />
             </div>
           </div>
@@ -144,7 +190,7 @@ export default function AboutPage() {
         <section className="px-6 py-16">
           <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[minmax(0,680px)_1fr]">
             <div className="space-y-14">
-              <section className="grid gap-5 border-t border-[var(--o-border-subtle)] pt-10 sm:grid-cols-[72px_1fr]">
+              <section className="grid gap-5 sm:grid-cols-[72px_1fr]">
                 <p className="font-mono text-[11px] text-[var(--o-warm)]">01</p>
                 <div>
                   <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
@@ -166,7 +212,7 @@ export default function AboutPage() {
                 </div>
               </section>
 
-              <section className="grid gap-5 border-t border-[var(--o-border-subtle)] pt-10 sm:grid-cols-[72px_1fr]">
+              <section className="grid gap-5 sm:grid-cols-[72px_1fr]">
                 <p className="font-mono text-[11px] text-[var(--o-warm)]">02</p>
                 <div>
                   <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
@@ -190,16 +236,52 @@ export default function AboutPage() {
                 </div>
               </section>
 
-              <section className="grid gap-5 border-t border-[var(--o-border-subtle)] pt-10 sm:grid-cols-[72px_1fr]">
+              <section className="grid gap-5 sm:grid-cols-[72px_1fr]">
                 <p className="font-mono text-[11px] text-[var(--o-warm)]">03</p>
+                <div>
+                  <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
+                    Built by Qi-Xuan Lu
+                  </h2>
+                  <div className="mt-5 space-y-4 text-base leading-relaxed text-[var(--o-text-secondary)]">
+                    <p>
+                      Origin is built and maintained by Qi-Xuan Lu (GitHub{" "}
+                      <a
+                        href="https://github.com/7xuanlu"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--o-text)] underline decoration-[var(--o-warm)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--o-warm)]"
+                      >
+                        @7xuanlu
+                      </a>
+                      ). Background in AI infrastructure, knowledge graphs, and
+                      local-first systems.
+                    </p>
+                    <p>
+                      The work focuses on memory as a first-class layer for AI
+                      tools: hybrid retrieval on libSQL, real git versioning of
+                      every write, mandatory provenance on distilled pages, and
+                      one daemon serving every MCP-compatible client.
+                    </p>
+                    <p>
+                      Project channels: GitHub Issues for bugs and feature
+                      requests, SECURITY.md for vulnerabilities, and the Origin
+                      release notes for changes.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <section className="grid gap-5 sm:grid-cols-[72px_1fr]">
+                <p className="font-mono text-[11px] text-[var(--o-warm)]">04</p>
                 <div>
                   <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
                     Current status
                   </h2>
                   <p className="mt-5 text-base leading-relaxed text-[var(--o-text-secondary)]">
-                    Origin is an early preview for macOS Apple Silicon. The core
-                    local runtime, CLI, MCP server, and Claude Code plugin are
-                    open source.
+                    Origin v0.6.1 ships for macOS (arm64, x64), Linux (x86_64,
+                    aarch64; glibc), and Windows (x86_64). The daemon, CLI, MCP
+                    server, and Claude Code plugin are open source under
+                    Apache-2.0.
                   </p>
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                     <Link
@@ -210,6 +292,8 @@ export default function AboutPage() {
                     </Link>
                     <a
                       href="https://github.com/7xuanlu/origin"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="rounded-xl border border-[var(--o-border)] px-5 py-3 text-center text-sm font-medium text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-text)]"
                     >
                       View on GitHub
@@ -229,6 +313,8 @@ export default function AboutPage() {
                     <a
                       key={link.href}
                       href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block text-sm leading-relaxed text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-warm)]"
                     >
                       {link.label}
