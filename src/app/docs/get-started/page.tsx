@@ -17,14 +17,12 @@ export const metadata: Metadata = {
     type: "article",
     url: `${SITE_URL}/docs/get-started`,
     siteName: "Origin",
-    images: [{ url: "/og.png", alt: "Get started with Origin. Local AI work memory setup." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Get Started with Origin | Local AI Work Memory",
     description:
       "Install Origin through the Claude Code plugin or run Origin setup before connecting another MCP client.",
-    images: [{ url: "/og.png", alt: "Get started with Origin. Local AI work memory setup." }],
   },
 };
 

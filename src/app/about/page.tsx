@@ -17,14 +17,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${SITE_URL}/about`,
     siteName: "Origin",
-    images: [{ url: "/og.png", alt: "About Origin. Local-first memory for AI work." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Origin | Local-First Memory for AI Work",
     description:
       "Origin is an open-source, local-first memory layer for AI work across Claude Code, Cursor, Codex, and MCP-compatible tools.",
-    images: [{ url: "/og.png", alt: "About Origin. Local-first memory for AI work." }],
   },
 };
 
