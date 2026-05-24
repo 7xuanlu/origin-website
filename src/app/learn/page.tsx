@@ -57,17 +57,21 @@ export default function LearnPage() {
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
+    "@id": "https://useorigin.app/learn#collection",
     name: "Origin Learn",
     description:
       "Articles about AI work memory, MCP memory servers, local-first AI memory, Claude Code persistent context, and Origin comparisons.",
     url: `${SITE_URL}/learn`,
+    isPartOf: { "@id": "https://useorigin.app/#website" },
+    publisher: { "@id": "https://useorigin.app/#organization" },
+    inLanguage: "en-US",
     mainEntity: articles.map((article) => ({
       "@type": "Article",
       headline: article.title,
       description: article.description,
       url: articleUrl(article.slug),
       author: {
-        "@id": "https://useorigin.app/#organization",
+        "@id": "https://useorigin.app/#qixuan-lu",
       },
     })),
   };
