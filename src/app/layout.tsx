@@ -163,6 +163,25 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://useorigin.app/#website",
+              name: "Origin",
+              alternateName: "useorigin.app",
+              url: "https://useorigin.app",
+              description: siteDescription,
+              inLanguage: "en-US",
+              publisher: { "@id": "https://useorigin.app/#organization" },
+              copyrightHolder: { "@id": "https://useorigin.app/#qixuan-lu" },
+              copyrightYear: 2026,
+              license: "https://github.com/7xuanlu/origin/blob/main/LICENSE",
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
               "@type": "Organization",
               "@id": "https://useorigin.app/#organization",
               name: "Origin",
