@@ -87,6 +87,23 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
     mainEntityOfPage: docUrl(page.slug),
   };
 
+  const howToSchema = page.howTo
+    ? {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: page.title,
+        description: page.description,
+        totalTime: `PT${(parseInt(page.readingTime) || 5)}M`,
+        step: page.sections.map((section, index) => ({
+          "@type": "HowToStep",
+          position: index + 1,
+          name: section.heading,
+          text: section.body.join(" "),
+          url: `${docUrl(page.slug)}#${sectionId(section.heading)}`,
+        })),
+      }
+    : null;
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -122,6 +139,12 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        />
+      )}
 
       <article>
         <header className="relative border-b border-[var(--o-border-subtle)] px-6 py-16 sm:py-20">
