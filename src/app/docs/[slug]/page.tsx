@@ -37,6 +37,7 @@ export async function generateMetadata({
   return {
     title: page.metaTitle,
     description: page.metaDescription,
+    keywords: page.keywords,
     alternates: {
       canonical: `/docs/${page.slug}`,
     },
@@ -95,6 +96,7 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
     image: `${SITE_URL}/og.png`,
     mainEntityOfPage: docUrl(page.slug),
     isPartOf: { "@id": "https://useorigin.app/docs#collection" },
+    ...(page.keywords ? { keywords: page.keywords.join(", ") } : {}),
     inLanguage: "en-US",
     isAccessibleForFree: true,
     wordCount,

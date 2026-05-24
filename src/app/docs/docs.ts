@@ -28,6 +28,7 @@ export type DocPage = {
   description: string;
   metaTitle: string;
   metaDescription: string;
+  keywords?: string[];
   updatedAt: string;
   author: string;
   readingTime: string;
@@ -60,6 +61,13 @@ export const docPages: DocPage[] = [
     metaTitle: "Origin Daily Workflow | Docs",
     metaDescription:
       "Learn the daily Origin loop after setup: /brief or MCP context, /capture, /recall, /handoff, plus review and distillation when needed.",
+    keywords: [
+      "Origin daily workflow",
+      "AI session handoff",
+      "memory capture workflow",
+      "Claude Code workflow",
+      "MCP daily workflow",
+    ],
     updatedAt: DOCS_UPDATED_AT,
     author: DEFAULT_AUTHOR,
     readingTime: "5 min read",
@@ -143,6 +151,13 @@ export const docPages: DocPage[] = [
     metaTitle: "Origin Core Concepts | Docs",
     metaDescription:
       "Learn how Origin organizes AI work memory with sessions, handoffs, distilled pages, local Markdown records, a local index, and MCP clients.",
+    keywords: [
+      "Origin core concepts",
+      "AI memory model",
+      "memory sessions",
+      "distilled pages",
+      "local index",
+    ],
     updatedAt: DOCS_UPDATED_AT,
     author: DEFAULT_AUTHOR,
     readingTime: "6 min read",
@@ -213,6 +228,13 @@ export const docPages: DocPage[] = [
     metaTitle: "Origin Commands and MCP Tools | Docs",
     metaDescription:
       "Reference the daily Origin Claude Code commands and MCP tools: /init, /brief, context, /capture, /recall, /handoff, scoped /review, /distill, and doctor.",
+    keywords: [
+      "Origin commands",
+      "MCP tools",
+      "Claude Code slash commands",
+      "capture handoff recall",
+      "distill review",
+    ],
     updatedAt: DOCS_UPDATED_AT,
     author: DEFAULT_AUTHOR,
     readingTime: "5 min read",
@@ -283,6 +305,13 @@ export const docPages: DocPage[] = [
     metaTitle: "Origin Data and Privacy | Docs",
     metaDescription:
       "Understand Origin local storage, local memory setup, optional model/API paths, Markdown records, the local index, and deletion controls.",
+    keywords: [
+      "Origin data privacy",
+      "local AI memory storage",
+      "Markdown records",
+      "local-first privacy",
+      "deletion controls",
+    ],
     updatedAt: DOCS_UPDATED_AT,
     author: DEFAULT_AUTHOR,
     readingTime: "5 min read",
@@ -347,6 +376,14 @@ export const docPages: DocPage[] = [
     metaTitle: "Connect MCP Clients to Origin | Docs",
     metaDescription:
       "Run npx -y @7xuanlu/origin setup, configure npx -y origin-mcp, and share one local AI work memory layer across MCP-compatible tools.",
+    keywords: [
+      "MCP client setup",
+      "Claude Code MCP",
+      "Cursor MCP",
+      "Codex MCP",
+      "Gemini CLI MCP",
+      "origin-mcp",
+    ],
     updatedAt: DOCS_UPDATED_AT,
     author: DEFAULT_AUTHOR,
     readingTime: "4 min read",
@@ -420,6 +457,13 @@ export const docPages: DocPage[] = [
     metaTitle: "Origin Troubleshooting | Docs",
     metaDescription:
       "Troubleshoot Origin setup issues with the daemon, MCP connection, Claude Code plugin commands, npx -y origin-mcp, port 7878, and memory recall.",
+    keywords: [
+      "Origin troubleshooting",
+      "daemon not running",
+      "MCP connection issues",
+      "port 7878",
+      "doctor command",
+    ],
     updatedAt: DOCS_UPDATED_AT,
     author: DEFAULT_AUTHOR,
     readingTime: "5 min read",

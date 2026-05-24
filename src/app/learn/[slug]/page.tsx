@@ -125,6 +125,7 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
     image: `${SITE_URL}/og.png`,
     mainEntityOfPage: articleUrl(article.slug),
     isPartOf: { "@id": "https://useorigin.app/learn#collection" },
+    audience: { "@type": "Audience", audienceType: article.audience },
     keywords: article.keywords.join(", "),
     inLanguage: "en-US",
     isAccessibleForFree: true,
