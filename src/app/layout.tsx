@@ -46,25 +46,11 @@ export const metadata: Metadata = {
     url: "https://useorigin.app",
     siteName: "Origin",
     locale: "en_US",
-    images: [
-      {
-        url: "/og.png",
-        width: 1280,
-        height: 720,
-        alt: "Origin. Where AI work compounds.",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [
-      {
-        url: "/og.png",
-        alt: "Origin. Where AI work compounds.",
-      },
-    ],
   },
   icons: {
     icon: "/favicon.svg",
