@@ -18,14 +18,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${SITE_URL}/docs`,
     siteName: "Origin",
-    images: [{ url: "/og.png", alt: "Origin Docs. Product manual for local AI work memory." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Origin Docs | Product Manual",
     description:
       "Install Origin, learn the daily AI work memory loop, connect MCP clients, and understand local-first data control.",
-    images: [{ url: "/og.png", alt: "Origin Docs. Product manual for local AI work memory." }],
   },
 };
 

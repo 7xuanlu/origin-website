@@ -23,14 +23,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${SITE_URL}/learn`,
     siteName: "Origin",
-    images: [{ url: "/og.png", alt: "Origin Learn. AI work memory articles." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Learn | Origin",
     description:
       "Articles on AI work memory, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
-    images: [{ url: "/og.png", alt: "Origin Learn. AI work memory articles." }],
   },
 };
 
