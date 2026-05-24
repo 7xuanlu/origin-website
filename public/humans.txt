@@ -1,0 +1,18 @@
+/* TEAM */
+Builder: Qi-Xuan Lu
+GitHub: @7xuanlu
+URL: https://github.com/7xuanlu
+From: Origin, useorigin.app
+
+/* THANKS */
+- The Model Context Protocol team for the MCP spec.
+- The libSQL maintainers for vector + FTS in one engine.
+- The Claude Code team for the plugin surface that makes local memory tractable.
+
+/* SITE */
+Last updated: 2026-05-24
+Standards: HTML5, CSS, JSON-LD, IndexNow, llmstxt.org
+Components: Next.js 16 (App Router), React 19, Tailwind CSS 4, TypeScript
+Hosting: Vercel
+Source: https://github.com/7xuanlu/origin-website
+License: see https://github.com/7xuanlu/origin/blob/main/LICENSE

@@ -209,7 +209,12 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
                 </p>
                 <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] text-[var(--o-text-muted)]">
                   <span>{article.author}</span>
-                  <span>Updated {formatArticleDate(article.updatedAt)}</span>
+                  <span>
+                    Updated{" "}
+                    <time dateTime={article.updatedAt}>
+                      {formatArticleDate(article.updatedAt)}
+                    </time>
+                  </span>
                   <span>{article.readingTime}</span>
                 </div>
               </div>

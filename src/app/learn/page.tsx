@@ -173,7 +173,9 @@ export default function LearnPage() {
                         <div className="mt-6 border-t border-[var(--o-border-subtle)] pt-5">
                           <div className="flex flex-wrap gap-x-4 gap-y-2 font-mono text-[10px] text-[var(--o-text-muted)]">
                             <span>{article.author}</span>
-                            <span>{formatArticleDate(article.updatedAt)}</span>
+                            <time dateTime={article.updatedAt}>
+                              {formatArticleDate(article.updatedAt)}
+                            </time>
                             <span>{article.readingTime}</span>
                           </div>
                         </div>
