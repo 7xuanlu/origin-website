@@ -22,6 +22,38 @@ const homepageFaqSchema = {
   })),
 };
 
+const siteNavigationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Origin site navigation",
+  itemListElement: [
+    {
+      "@type": "SiteNavigationElement",
+      position: 1,
+      name: "Docs",
+      url: "https://useorigin.app/docs",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      position: 2,
+      name: "Learn",
+      url: "https://useorigin.app/learn",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      position: 3,
+      name: "About",
+      url: "https://useorigin.app/about",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      position: 4,
+      name: "GitHub",
+      url: "https://github.com/7xuanlu/origin",
+    },
+  ],
+};
+
 
 function GitHubIcon() {
   return (
@@ -162,6 +194,10 @@ export default function LandingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
       />
       {/* Nav */}
       <nav className="fixed top-0 z-40 w-full border-b border-[var(--o-border-subtle)] bg-[var(--o-nav-bg)] backdrop-blur-xl">
