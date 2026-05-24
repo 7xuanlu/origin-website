@@ -12,6 +12,13 @@ import {
 } from "../articles";
 import { ArticleHalo, MemoryIndex } from "../article-visuals";
 
+function sectionId(heading: string): string {
+  return heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 type LearnArticlePageProps = {
   params: Promise<{
     slug: string;
@@ -256,8 +263,9 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
             <div className="space-y-14">
               {article.sections.map((section, index) => (
                 <section
+                  id={sectionId(section.heading)}
                   key={section.heading}
-                  className="grid gap-5 sm:grid-cols-[72px_1fr]"
+                  className="grid scroll-mt-24 gap-5 sm:grid-cols-[72px_1fr]"
                 >
                   <p className="font-mono text-[11px] text-[var(--o-warm)]">
                     {(index + 1).toString().padStart(2, "0")}
@@ -360,24 +368,25 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
             </div>
 
             <aside className="space-y-6 lg:sticky lg:top-20 lg:self-start">
-              <div className="rounded-xl border border-[var(--o-border)] bg-[var(--o-card-bg)] p-5">
+              <nav aria-label="On this page" className="rounded-xl border border-[var(--o-border)] bg-[var(--o-card-bg)] p-5">
                 <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-text-muted)] uppercase">
                   In this article
                 </p>
                 <div className="mt-4 space-y-3">
                   {article.sections.map((section, index) => (
-                    <p
+                    <a
                       key={section.heading}
-                      className="grid grid-cols-[28px_1fr] gap-2 text-sm text-[var(--o-text-secondary)]"
+                      href={`#${sectionId(section.heading)}`}
+                      className="grid grid-cols-[28px_1fr] gap-2 text-sm leading-relaxed text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-warm)]"
                     >
                       <span className="font-mono text-[10px] text-[var(--o-text-dim)]">
                         {(index + 1).toString().padStart(2, "0")}
                       </span>
                       <span>{section.heading}</span>
-                    </p>
+                    </a>
                   ))}
                 </div>
-              </div>
+              </nav>
 
               {article.officialReferences && (
                 <div className="rounded-xl border border-[var(--o-border)] bg-[var(--o-card-bg)] p-5">
