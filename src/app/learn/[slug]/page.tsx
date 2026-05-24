@@ -139,6 +139,27 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
       position: index + 1,
       url: `${articleUrl(article.slug)}#${sectionId(section.heading)}`,
     })),
+    ...(article.comparisonTable
+      ? {
+          mentions: [
+            {
+              "@type": "SoftwareApplication",
+              name: article.comparisonTable.competitorName,
+              applicationCategory: "DeveloperApplication",
+              ...(article.officialReferences?.[0]?.href
+                ? { url: article.officialReferences[0].href }
+                : {}),
+            },
+            {
+              "@type": "SoftwareApplication",
+              "@id": "https://useorigin.app/#software",
+              name: "Origin",
+              applicationCategory: "DeveloperApplication",
+              url: "https://useorigin.app",
+            },
+          ],
+        }
+      : {}),
   };
 
   const breadcrumbSchema = {
