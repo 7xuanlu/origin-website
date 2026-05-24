@@ -190,7 +190,7 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
                 <section
                   id={sectionId(section.heading)}
                   key={section.heading}
-                  className="grid scroll-mt-24 gap-5 border-t border-[var(--o-border-subtle)] pt-10 sm:grid-cols-[72px_1fr]"
+                  className="grid scroll-mt-24 gap-5 sm:grid-cols-[72px_1fr]"
                 >
                   <p className="font-mono text-[11px] text-[var(--o-warm)]">
                     {(index + 1).toString().padStart(2, "0")}
@@ -239,7 +239,7 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
               ))}
 
               {nextPage && (
-                <section className="border-t border-[var(--o-border-subtle)] pt-10">
+                <section>
                   <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-text-muted)] uppercase">
                     Next
                   </p>

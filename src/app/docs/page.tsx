@@ -152,7 +152,7 @@ export default function DocsPage() {
 
       <section className="px-6 py-14">
         <div className="mx-auto max-w-5xl">
-          <div className="border-y border-[var(--o-border-subtle)] py-6">
+          <div className="py-2">
             <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-warm)]/80 uppercase">
               Start here
             </p>
@@ -166,7 +166,7 @@ export default function DocsPage() {
           <div className="mt-14 space-y-16">
             {docsSections.map((section) => (
               <section key={section.title}>
-                <div className="mb-6 border-b border-[var(--o-border-subtle)] pb-4">
+                <div className="mb-6">
                   <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
                     {section.title}
                   </h2>

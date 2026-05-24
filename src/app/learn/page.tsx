@@ -120,7 +120,7 @@ export default function LearnPage() {
 
       <section className="px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <div className="border-y border-[var(--o-border-subtle)] py-6">
+          <div className="py-2">
             <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-warm)]/80 uppercase">
               Start here
             </p>
@@ -138,7 +138,7 @@ export default function LearnPage() {
 
               return (
                 <section key={category}>
-                  <div className="mb-6 flex items-end justify-between gap-4 border-b border-[var(--o-border-subtle)] pb-4">
+                  <div className="mb-6 flex items-end justify-between gap-4">
                     <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
                       {category}
                     </h2>

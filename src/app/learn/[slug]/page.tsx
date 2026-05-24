@@ -233,7 +233,7 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
               {article.sections.map((section, index) => (
                 <section
                   key={section.heading}
-                  className="grid gap-5 border-t border-[var(--o-border-subtle)] pt-10 sm:grid-cols-[72px_1fr]"
+                  className="grid gap-5 sm:grid-cols-[72px_1fr]"
                 >
                   <p className="font-mono text-[11px] text-[var(--o-warm)]">
                     {(index + 1).toString().padStart(2, "0")}
@@ -264,7 +264,7 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
               ))}
 
               {article.comparisonTable && (
-                <section className="border-t border-[var(--o-border-subtle)] pt-10">
+                <section>
                   <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
                     Side-by-side
                   </h2>
