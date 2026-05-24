@@ -75,6 +75,13 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
         Boolean(relatedArticle),
     );
 
+  const articleBody = article.sections
+    .flatMap((section) => section.body)
+    .join("\n\n");
+  const wordCount = articleBody.split(/\s+/).filter(Boolean).length;
+  const articleBodySnippet =
+    article.sections[0]?.body[0]?.slice(0, 500) ?? article.description;
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -102,6 +109,14 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
     image: `${SITE_URL}/og.png`,
     mainEntityOfPage: articleUrl(article.slug),
     keywords: article.keywords.join(", "),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    wordCount,
+    articleBody: articleBodySnippet,
+    about: article.keywords.map((keyword) => ({
+      "@type": "Thing",
+      name: keyword,
+    })),
   };
 
   const breadcrumbSchema = {
@@ -325,6 +340,8 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
                   </Link>
                   <a
                     href="https://github.com/7xuanlu/origin"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="rounded-xl border border-[var(--o-border)] px-5 py-3 text-center text-sm font-medium text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-text)]"
                   >
                     View on GitHub

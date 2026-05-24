@@ -140,6 +140,8 @@ function TokenEfficiencySection() {
           Recall@5 on LongMemEval (oracle, 500 Q). LoCoMo Recall@5 is 67%, ~168 tokens per recall query.{" "}
           <a
             href="https://github.com/7xuanlu/origin/tree/main/crates/origin-core/src/eval"
+            target="_blank"
+            rel="noopener noreferrer"
             className="underline transition-colors hover:text-[var(--o-warm)]"
           >
             Run the harness yourself.
@@ -190,6 +192,9 @@ export default function LandingPage() {
             </Link>
             <a
               href="https://github.com/7xuanlu/origin"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Origin on GitHub"
               className="flex items-center gap-2 text-sm text-[var(--o-text-secondary)] transition-colors duration-150 hover:text-[var(--o-text)]"
             >
               <GitHubIcon />
@@ -216,7 +221,7 @@ export default function LandingPage() {
               Get started
               <ArrowIcon />
             </Link>
-            <a href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
+            <a href="https://github.com/7xuanlu/origin" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
               View on GitHub
               <ArrowIcon />
             </a>
@@ -265,7 +270,7 @@ export default function LandingPage() {
               Get started
               <ArrowIcon />
             </Link>
-            <a href="https://github.com/7xuanlu/origin" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
+            <a href="https://github.com/7xuanlu/origin" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]">
               <GitHubIcon />
               View on GitHub
             </a>
@@ -286,7 +291,7 @@ export default function LandingPage() {
             <span className="text-xs text-[var(--o-text-muted)]">Where AI work compounds</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="https://github.com/7xuanlu/origin/blob/main/LICENSE" className="text-xs text-[var(--o-text-muted)] transition-colors duration-150 hover:text-[var(--o-text-secondary)]">Apache-2.0</a>
+            <a href="https://github.com/7xuanlu/origin/blob/main/LICENSE" target="_blank" rel="noopener noreferrer license" className="text-xs text-[var(--o-text-muted)] transition-colors duration-150 hover:text-[var(--o-text-secondary)]">Apache-2.0</a>
           </div>
         </div>
       </footer>

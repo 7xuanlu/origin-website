@@ -1,0 +1,6 @@
+Contact: https://github.com/7xuanlu/origin/security/advisories/new
+Contact: mailto:security@useorigin.app
+Expires: 2027-05-24T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://useorigin.app/.well-known/security.txt
+Policy: https://github.com/7xuanlu/origin/blob/main/SECURITY.md

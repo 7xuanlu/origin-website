@@ -69,6 +69,13 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
 
   const nextPage = page.nextSlug ? getDocPage(page.nextSlug) : undefined;
 
+  const articleBody = page.sections
+    .flatMap((section) => section.body)
+    .join("\n\n");
+  const wordCount = articleBody.split(/\s+/).filter(Boolean).length;
+  const articleBodySnippet =
+    page.sections[0]?.body[0]?.slice(0, 500) ?? page.description;
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -85,6 +92,11 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
     dateModified: page.updatedAt,
     image: `${SITE_URL}/og.png`,
     mainEntityOfPage: docUrl(page.slug),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    wordCount,
+    articleBody: articleBodySnippet,
+    proficiencyLevel: "Beginner",
   };
 
   const howToSchema = page.howTo

@@ -229,6 +229,8 @@ export default function DocsPage() {
               </Link>
               <a
                 href="https://github.com/7xuanlu/origin"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]"
               >
                 GitHub
