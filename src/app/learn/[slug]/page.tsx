@@ -363,6 +363,8 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
                       <a
                         key={reference.href}
                         href={reference.href}
+                        target="_blank"
+                        rel="noopener noreferrer external"
                         className="block text-sm leading-relaxed text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-warm)]"
                       >
                         {reference.label}
