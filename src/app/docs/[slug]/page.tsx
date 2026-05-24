@@ -94,6 +94,7 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
     dateModified: page.updatedAt,
     image: `${SITE_URL}/og.png`,
     mainEntityOfPage: docUrl(page.slug),
+    isPartOf: { "@id": "https://useorigin.app/docs#collection" },
     inLanguage: "en-US",
     isAccessibleForFree: true,
     wordCount,

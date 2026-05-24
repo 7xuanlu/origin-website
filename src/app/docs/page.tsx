@@ -97,10 +97,14 @@ export default function DocsPage() {
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
+    "@id": "https://useorigin.app/docs#collection",
     name: "Origin Docs",
     description:
       "Product documentation for Origin, a local-first memory layer for AI work.",
     url: `${SITE_URL}/docs`,
+    isPartOf: { "@id": "https://useorigin.app/#website" },
+    publisher: { "@id": "https://useorigin.app/#organization" },
+    inLanguage: "en-US",
     hasPart: [
       {
         "@type": "WebPage",
