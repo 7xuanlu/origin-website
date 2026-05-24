@@ -189,7 +189,12 @@ export default async function DocsArticlePage({ params }: DocsArticlePageProps) 
               </p>
               <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] text-[var(--o-text-muted)]">
                 <span>{page.author}</span>
-                <span>Updated {formatDocDate(page.updatedAt)}</span>
+                <span>
+                  Updated{" "}
+                  <time dateTime={page.updatedAt}>
+                    {formatDocDate(page.updatedAt)}
+                  </time>
+                </span>
                 <span>{page.readingTime}</span>
               </div>
             </div>

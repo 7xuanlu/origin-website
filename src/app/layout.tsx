@@ -58,6 +58,15 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  manifest: "/manifest.webmanifest",
+  authors: [
+    {
+      name: "Qi-Xuan Lu",
+      url: "https://github.com/7xuanlu",
+    },
+  ],
+  creator: "Qi-Xuan Lu",
+  publisher: "Qi-Xuan Lu",
 };
 
 export const viewport: Viewport = {
