@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const siteDescription =
-  "Origin is local-first memory for AI work. Hybrid retrieval (88% Recall@5 on LongMemEval), real git versioning of every memory write, mandatory provenance on distilled pages, and one daemon across Claude Code, Cursor, Codex, Claude Desktop, and other MCP clients.";
+  "Origin is local-first memory for AI work. Hybrid retrieval (93.6% Recall@5 on LongMemEval), real git versioning of every memory write, mandatory provenance on distilled pages, and one daemon across Claude Code, Cursor, Codex, Claude Desktop, and other MCP clients.";
 
 const siteTitle = "Origin | Local-First Memory for AI Work";
 
@@ -131,14 +131,14 @@ export default function RootLayout({
               url: "https://useorigin.app",
               applicationCategory: "DeveloperApplication",
               operatingSystem: ["macOS", "Linux", "Windows"],
-              softwareVersion: "0.6.1",
+              softwareVersion: "0.7.0",
               softwareRequirements:
                 "macOS arm64 or x64, Linux x86_64 or aarch64 (glibc), Windows x86_64",
               installUrl: "https://github.com/7xuanlu/origin#quickstart",
               downloadUrl: "https://github.com/7xuanlu/origin/releases",
               screenshot: "https://useorigin.app/og.png",
               featureList: [
-                "Hybrid retrieval on libSQL: vector + FTS5 + reciprocal-rank fusion + knowledge-graph context. 88% Recall@5 on LongMemEval (oracle, 500 Q), 67% on LoCoMo.",
+                "Hybrid retrieval on libSQL: vector + FTS5 + reciprocal-rank fusion + knowledge-graph context. 93.6% Recall@5 on LongMemEval (oracle, 500 Q), 70.0% on LoCoMo.",
                 "Real git versioning: every memory write is a git commit in ~/.origin/.git/. Inspect with git log, revert with git checkout, branch and blame as needed.",
                 "Mandatory refreshable provenance: distilled wiki pages cite source memory IDs. The daemon rejects pages with empty source_memory_ids (HTTP 422). Pages refresh as new memories arrive without losing the citation chain.",
                 "Auditable memory: low-confidence captures, contradictions, supersession chains, and protected-memory conflicts surface for review instead of silently entering context.",

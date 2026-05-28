@@ -10,7 +10,7 @@ From: Origin, useorigin.app
 - The Claude Code team for the plugin surface that makes local memory tractable.
 
 /* SITE */
-Last updated: 2026-05-24
+Last updated: 2026-05-27
 Standards: HTML5, CSS, JSON-LD, IndexNow, llmstxt.org
 Components: Next.js 16 (App Router), React 19, Tailwind CSS 4, TypeScript
 Hosting: Vercel

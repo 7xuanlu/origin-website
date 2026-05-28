@@ -1,6 +1,6 @@
 import { DEFAULT_AUTHOR, SITE_URL } from "../learn/articles";
 
-export const DOCS_UPDATED_AT = "2026-05-15";
+export const DOCS_UPDATED_AT = "2026-05-27";
 
 export type DocGroup = "After setup" | "Reference";
 
@@ -38,11 +38,13 @@ export type DocPage = {
   howTo?: boolean;
 };
 
+const mcpAddCommand = `~/.origin/bin/origin mcp add claude-code
+# or: codex, cursor, claude-desktop, vscode, gemini`;
+
 const mcpConfig = `{
   "mcpServers": {
     "origin": {
-      "command": "npx",
-      "args": ["-y", "origin-mcp"]
+      "command": "/Users/you/.origin/bin/origin-mcp"
     }
   }
 }`;
@@ -80,7 +82,7 @@ export const docPages: DocPage[] = [
         heading: "Start with context",
         body: [
           "Start a real work session with /brief in Claude Code or context in another MCP client. Origin returns project facts, recent handoffs, decisions, and distilled pages.",
-          "If setup is not done yet, use /init in Claude Code. For other MCP clients, run npx -y @7xuanlu/origin setup before adding the MCP connector.",
+          "If setup is not done yet, use /init in Claude Code. For other MCP clients, run npx -y @7xuanlu/origin setup, then ~/.origin/bin/origin mcp add for the client you use.",
         ],
         code: {
           label: "Session start",
@@ -375,7 +377,7 @@ export const docPages: DocPage[] = [
       "Use one local Origin memory layer from Claude Code, Codex, Cursor, Claude Desktop, Gemini CLI, and other MCP clients.",
     metaTitle: "Connect MCP Clients to Origin | Docs",
     metaDescription:
-      "Run npx -y @7xuanlu/origin setup, configure npx -y origin-mcp, and share one local AI work memory layer across MCP-compatible tools.",
+      "Run npx -y @7xuanlu/origin setup, add Origin with origin mcp add, and share one local AI work memory layer across MCP-compatible tools.",
     keywords: [
       "MCP client setup",
       "Claude Code MCP",
@@ -389,7 +391,7 @@ export const docPages: DocPage[] = [
     readingTime: "4 min read",
     summary: [
       "Origin's daemon is the local source of truth; origin-mcp is the bridge MCP clients launch.",
-      "Claude Code users should start with the plugin. Other clients should run Origin setup first, then add the MCP server config.",
+      "Claude Code users should start with the plugin. Other clients should run Origin setup first, then let the CLI add the MCP server config.",
     ],
     sections: [
       {
@@ -410,9 +412,19 @@ export const docPages: DocPage[] = [
         },
       },
       {
-        heading: "Generic MCP config",
+        heading: "Add a client",
         body: [
-          "After setup, use this shape in any MCP-compatible client that accepts a JSON mcpServers configuration.",
+          "After setup, ask the Origin CLI to write the client-specific MCP configuration. It uses the local origin-mcp binary installed beside the CLI, with npm as a fallback when needed.",
+        ],
+        code: {
+          label: "Terminal",
+          code: mcpAddCommand,
+        },
+      },
+      {
+        heading: "Manual config fallback",
+        body: [
+          "If a client only accepts a raw JSON configuration, point it at the local MCP connector that setup installed. Use origin mcp add --dry-run to see the exact path for your machine.",
         ],
         code: {
           label: "mcpServers",
@@ -433,8 +445,8 @@ export const docPages: DocPage[] = [
       {
         heading: "Other clients",
         body: [
-          "Codex, Cursor, Claude Desktop, Gemini CLI, and other MCP clients can use the generic config when they support local MCP servers.",
-          "The settings screen differs by client. The important part is command npx with args -y and origin-mcp.",
+          "Codex, Cursor, Claude Desktop, Gemini CLI, and other MCP clients can use origin mcp add when the client is supported.",
+          "The settings screen differs by client. The important part is that the client launches the Origin MCP connector installed by setup.",
         ],
       },
       {
@@ -456,7 +468,7 @@ export const docPages: DocPage[] = [
       "Fix the common setup issues: daemon not running, MCP not connected, missing Claude commands, stale context, and support escalation.",
     metaTitle: "Origin Troubleshooting | Docs",
     metaDescription:
-      "Troubleshoot Origin setup issues with the daemon, MCP connection, Claude Code plugin commands, npx -y origin-mcp, port 7878, and memory recall.",
+      "Troubleshoot Origin setup issues with the daemon, MCP connection, Claude Code plugin commands, origin mcp add, port 7878, and memory recall.",
     keywords: [
       "Origin troubleshooting",
       "daemon not running",
@@ -494,7 +506,7 @@ export const docPages: DocPage[] = [
       {
         heading: "MCP client is not connected",
         body: [
-          "Check that you ran npx -y @7xuanlu/origin setup first, then configured the client with command npx and args -y plus origin-mcp. Some clients require a full restart after changing MCP settings.",
+          "Check that you ran npx -y @7xuanlu/origin setup first, then ran ~/.origin/bin/origin mcp add for that client. Some clients require a full restart after changing MCP settings.",
           "If the client shows the server but tools fail, run doctor. It reports whether the daemon is reachable and how setup is configured.",
         ],
         code: {

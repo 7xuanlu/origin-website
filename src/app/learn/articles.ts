@@ -59,7 +59,7 @@ export type LearnArticle = {
   };
 };
 
-const updatedAt = "2026-05-24";
+const updatedAt = "2026-05-27";
 
 export const articles: LearnArticle[] = [
   {
@@ -365,6 +365,235 @@ export const articles: LearnArticle[] = [
     },
   },
   {
+    slug: "origin-for-claude-code",
+    eyebrow: "Workflow",
+    category: "Workflows",
+    title: "Origin for Claude Code: The Daily Memory Loop",
+    description:
+      "Use Origin inside Claude Code with /init, /brief, /capture, /handoff, and /distill so coding context carries across sessions.",
+    metaTitle: "Origin for Claude Code | Daily Memory Loop",
+    metaDescription:
+      "Learn the practical Origin workflow for Claude Code: install the plugin, start with /brief, capture durable decisions, hand off sessions, and distill wiki pages.",
+    keywords: [
+      "Origin Claude Code",
+      "Claude Code Origin plugin",
+      "Claude Code memory workflow",
+      "Claude Code handoff",
+      "Claude Code persistent context",
+    ],
+    updatedAt,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    audience: "Claude Code users who want project context to survive long work sessions",
+    heroBullets: [
+      "Install from the Claude Code plugin marketplace, then run /init once.",
+      "Start real sessions with /brief and capture durable context during work.",
+      "End with /handoff so the next agent starts from current project state.",
+    ],
+    sections: [
+      {
+        heading: "Install once, then verify the loop",
+        body: [
+          "Origin's Claude Code path starts with the plugin marketplace: `/plugin marketplace add 7xuanlu/origin`, `/plugin install origin@7xuanlu`, then `/init` after the restart Claude Code requests.",
+          "`/init` handles daemon setup, MCP wiring, local memory setup, and a first round-trip check. The goal is not to add another manual note-taking habit. The goal is to make the memory route available at the moment work happens.",
+        ],
+      },
+      {
+        heading: "Start with /brief",
+        body: [
+          "`/brief [topic]` loads project status, recent handoffs, preferences, and topic-relevant memories before edits begin.",
+          "That makes Claude Code less dependent on the current chat window. The agent walks into the session with the context Origin has already earned.",
+        ],
+      },
+      {
+        heading: "Capture decisions while they are fresh",
+        body: [
+          "`/capture` is for durable work knowledge: decisions, lessons, gotchas, project constraints, corrections, and preferences.",
+          "A good capture includes why the fact matters. One atomic memory is easier to search, supersede, cite, and distill than a paragraph that mixes five ideas.",
+        ],
+      },
+      {
+        heading: "Close with /handoff, then distill when needed",
+        body: [
+          "`/handoff` writes what changed, what remains open, and what the next agent should know. It also gives Origin better source material than a raw transcript.",
+          "When a theme repeats across sessions, `/distill` turns related captures into source-backed wiki pages. Those pages cite source memory IDs and refresh as the work changes.",
+        ],
+        bullets: [
+          "/brief: orient the agent before work.",
+          "/capture: save one durable idea.",
+          "/recall: look up a specific past thread.",
+          "/handoff: preserve the session boundary.",
+          "/distill: compose accumulated memories into wiki pages.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do I need to use every command every session?",
+        answer:
+          "No. Most serious sessions need /brief and /handoff. Use /capture when something durable happens, /recall when history matters, and /distill when repeated captures deserve a page.",
+      },
+      {
+        question: "Can the same Origin memory work outside Claude Code?",
+        answer:
+          "Yes. Claude Code gets the richest slash-command workflow, but Origin also exposes the same local memory through MCP for Cursor, Codex, Claude Desktop, VS Code, Gemini CLI, and other clients.",
+      },
+    ],
+    relatedSlugs: ["claude-code-memory", "ai-agent-handoff-loop", "mcp-memory-server"],
+    cta: {
+      heading: "Make Claude Code sessions compound",
+      body: "Install Origin, run /init, then use /brief and /handoff around real work.",
+    },
+  },
+  {
+    slug: "distilled-wiki-pages-ai-memory",
+    eyebrow: "Concept",
+    category: "Concepts",
+    title: "Distilled Wiki Pages: Why Origin Composes Memory",
+    description:
+      "Origin does not stop at storing memory snippets. It composes related captures into source-backed wiki pages that agents and humans can reuse.",
+    metaTitle: "Distilled Wiki Pages for AI Memory | Origin",
+    metaDescription:
+      "Learn why Origin distills atomic memories into source-backed wiki pages with provenance, stale reasons, and refreshable revision state.",
+    keywords: [
+      "distilled wiki pages",
+      "AI memory distillation",
+      "source-backed AI memory",
+      "composed AI memory",
+      "memory provenance",
+    ],
+    updatedAt,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    audience: "People evaluating whether AI memory should be storage or composed knowledge",
+    heroBullets: [
+      "Atomic memories are the raw material, not the final product.",
+      "Distilled pages cluster related captures into readable Markdown wiki entries.",
+      "Mandatory source IDs keep the page traceable instead of becoming a hallucinated summary.",
+    ],
+    sections: [
+      {
+        heading: "Storage is not enough",
+        body: [
+          "A long list of memories eventually becomes another inbox. The agent can search it, but the human has to trust that search will reconcile duplicates, stale facts, and contradictions correctly.",
+          "Origin treats storage as the first step. The stronger layer is composition: related captures become wiki pages that explain the current state of a project, decision, workflow, or concept.",
+        ],
+      },
+      {
+        heading: "Pages stay source-backed",
+        body: [
+          "Every distilled page keeps the source memory IDs that produced it. Origin's daemon rejects unsourced pages instead of letting attractive summaries enter the store without provenance.",
+          "That source chain matters when memory is wrong. You can inspect the original capture, see when it was written, and supersede it instead of guessing why a page says what it says.",
+        ],
+      },
+      {
+        heading: "Pages can age and refresh",
+        body: [
+          "A useful memory layer needs to admit that knowledge changes. Origin pages carry revision state and stale reasons so repeated captures can refresh old conclusions instead of silently piling up beside them.",
+          "Manual `/distill` is the deliberate path today. Optional local models or API keys can support richer background distill cycles when you want the daemon to do more between sessions.",
+        ],
+      },
+      {
+        heading: "Why this helps agents",
+        body: [
+          "Agents need compact context, not raw chat archaeology. A distilled page can say the current decision, cite where it came from, and link related entities.",
+          "That makes retrieval more useful: Origin can serve atomic memories, pages, graph context, full-text hits, and vector matches together instead of pretending one memory snippet is the whole answer.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Are distilled pages just summaries?",
+        answer:
+          "No. A summary compresses one source. A distilled page composes multiple related memories, cites source IDs, and can refresh as new captures supersede old context.",
+      },
+      {
+        question: "Can I read the pages myself?",
+        answer:
+          "Yes. Pages are projected as Markdown under ~/.origin/pages/ and can be opened in any editor or symlinked into Obsidian.",
+      },
+    ],
+    relatedSlugs: ["markdown-local-index-ai-memory", "ai-work-memory", "ai-agent-handoff-loop"],
+    cta: {
+      heading: "Turn memory into working knowledge",
+      body: "Origin distills repeated captures into source-backed pages your next AI session can actually use.",
+    },
+  },
+  {
+    slug: "ai-work-memory-vs-knowledge-base",
+    eyebrow: "Comparison",
+    category: "Comparisons",
+    title: "AI Work Memory vs Knowledge Base: Which One Do You Need?",
+    description:
+      "A knowledge base stores what you know. AI work memory carries decisions, handoffs, lessons, and evolving context back into agent sessions.",
+    metaTitle: "AI Work Memory vs Knowledge Base | Origin",
+    metaDescription:
+      "Compare AI work memory and knowledge bases, and learn why Origin is shaped around sessions, handoffs, provenance, and cross-tool MCP context.",
+    keywords: [
+      "AI work memory vs knowledge base",
+      "AI knowledge base",
+      "AI work context",
+      "agent memory workflow",
+      "AI memory system",
+    ],
+    updatedAt,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    audience: "People deciding whether they need a notes system or an AI work context layer",
+    heroBullets: [
+      "Knowledge bases are organized around documents and human browsing.",
+      "AI work memory is organized around sessions, handoffs, retrieval, and reuse by agents.",
+      "Origin keeps Markdown records, but the workflow is built around compounding AI work.",
+    ],
+    sections: [
+      {
+        heading: "The difference in one sentence",
+        body: [
+          "A knowledge base helps people store and browse knowledge. AI work memory helps agents carry useful context from one work session into another.",
+          "The overlap is real: both may use Markdown, links, search, and entities. The difference is the center of gravity.",
+        ],
+      },
+      {
+        heading: "When a knowledge base is enough",
+        body: [
+          "Use a knowledge base when the main job is writing durable documents, organizing notes, and browsing a corpus manually.",
+          "That shape is excellent for stable reference material: docs, meeting notes, specs, research notes, and long-lived project explanations.",
+        ],
+      },
+      {
+        heading: "When AI work memory is the bottleneck",
+        body: [
+          "Use AI work memory when your pain is session loss. The agent solved a bug yesterday, made a tradeoff last week, or learned a project constraint in another tool, but today's session starts cold.",
+          "The important artifacts are not always polished notes. They are decisions, gotchas, handoffs, corrections, stale facts, and relationships learned during work.",
+        ],
+      },
+      {
+        heading: "Why Origin includes both shapes",
+        body: [
+          "Origin keeps Markdown pages so humans can inspect the record. It also keeps a local libSQL index for vectors, FTS5, graph context, provenance, and retrieval metadata.",
+          "That hybrid model is deliberate. The Markdown record keeps memory accountable. The local index makes it useful to agents at the moment they need context.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is Origin a knowledge base?",
+        answer:
+          "Not primarily. Origin can project readable Markdown pages, but its core workflow is AI work memory: capture, handoff, distill, and recall across sessions and MCP clients.",
+      },
+      {
+        question: "Can I use Origin with an existing knowledge base?",
+        answer:
+          "Yes. Origin can import Markdown-style vault content, and its projected Markdown can be read by tools such as Obsidian. The better long-term question is which system owns which kind of context.",
+      },
+    ],
+    relatedSlugs: ["origin-vs-basic-memory", "markdown-local-index-ai-memory", "ai-work-memory"],
+    cta: {
+      heading: "Choose the workflow, not the label",
+      body: "If your AI sessions keep losing decisions and project context, Origin is built for that loop.",
+    },
+  },
+  {
     slug: "origin-vs-basic-memory",
     eyebrow: "Comparison",
     category: "Comparisons",
@@ -389,7 +618,7 @@ export const articles: LearnArticle[] = [
       "Basic Memory is strongest as a Markdown-centered knowledge base with AI access.",
       "Origin is designed around the AI work loop: sessions, handoffs, distillation, provenance, and shared MCP memory.",
       "Both value human-readable memory; the right fit depends on whether you want a knowledge base or a work-session memory layer.",
-      "This page reflects Basic Memory's public docs and Origin v0.6.1 as of 2026-05-24. If something has shifted on either side, please open an issue.",
+      "This page reflects Basic Memory's public docs and Origin v0.7.0 as of 2026-05-27. If something has shifted on either side, please open an issue.",
     ],
     officialReferences: [
       {
@@ -482,7 +711,7 @@ export const articles: LearnArticle[] = [
         {
           dimension: "Retrieval",
           origin:
-            "Hybrid: vector (BGE-Base-EN-v1.5-Q 768-dim) + FTS5 + reciprocal-rank fusion + knowledge-graph neighbors. 88% Recall@5 on LongMemEval (oracle, 500 Q), 67% on LoCoMo.",
+            "Hybrid: vector (BGE-Base-EN-v1.5-Q 768-dim) + FTS5 + reciprocal-rank fusion + knowledge-graph neighbors. 93.6% Recall@5 on LongMemEval (oracle, 500 Q), 70.0% on LoCoMo.",
           competitor:
             "Semantic + FTS over Markdown notes; emphasis on note linking, not benchmark retrieval.",
         },
@@ -521,7 +750,7 @@ export const articles: LearnArticle[] = [
       {
         question: "Does Origin work without the daemon running?",
         answer:
-          "Reads of the projected Markdown under `~/.origin/` work without the daemon since the files are plain text. Anything that needs retrieval, capture, or distillation needs the daemon process. I run it as a launchd user service on macOS so I never think about it; the equivalents on Linux (systemd user unit) and Windows (Task Scheduler ONLOGON) ship in v0.6.1.",
+          "Reads of the projected Markdown under `~/.origin/` work without the daemon since the files are plain text. Anything that needs retrieval, capture, or distillation needs the daemon process. I run it as a launchd user service on macOS so I never think about it; the equivalents on Linux (systemd user unit) and Windows (Task Scheduler ONLOGON) ship in v0.7.0.",
       },
       {
         question: "How does Origin handle wikilinks compared to Basic Memory?",
@@ -531,7 +760,7 @@ export const articles: LearnArticle[] = [
       {
         question: "How fresh is this comparison?",
         answer:
-          "Reflects Basic Memory's public docs and Origin v0.6.1 as of 2026-05-24. If something material changes on either side, please open an issue on github.com/7xuanlu/origin and I will update.",
+          "Reflects Basic Memory's public docs and Origin v0.7.0 as of 2026-05-27. If something material changes on either side, please open an issue on github.com/7xuanlu/origin and I will update.",
       },
     ],
     relatedSlugs: [
@@ -572,7 +801,7 @@ export const articles: LearnArticle[] = [
       "claude-mem focuses on automatically observing Claude Code sessions and extracting useful context.",
       "Origin focuses on a shared local memory layer for AI work across Claude Code and other MCP clients.",
       "Both aim to reduce repeated context, but they choose different centers of gravity.",
-      "Both products are early. This page covers the claude-mem npm package and Origin v0.6.1 as of 2026-05-24.",
+      "Both products are early. This page covers the claude-mem npm package and Origin v0.7.0 as of 2026-05-27.",
     ],
     officialReferences: [
       {
@@ -667,7 +896,7 @@ export const articles: LearnArticle[] = [
         {
           dimension: "Retrieval",
           origin:
-            "Hybrid retrieval (vector + FTS5 + RRF + graph). 88% Recall@5 on LongMemEval, 67% on LoCoMo. ~168 tokens per recall query.",
+            "Hybrid retrieval (vector + FTS5 + RRF + graph). 93.6% Recall@5 on LongMemEval, 70.0% on LoCoMo. ~168 tokens per recall query.",
           competitor:
             "Semantic recall via MCP scoped to past Claude Code sessions; no published benchmark.",
         },
@@ -757,7 +986,7 @@ export const articles: LearnArticle[] = [
       "Superlocal Memory emphasizes AI reliability engineering, local-first retrieval, IDE integrations, and benchmark-backed memory quality.",
       "Origin emphasizes the AI work loop: capture, handoff, distill, retrieve, and keep Markdown records inspectable.",
       "The best fit depends on whether you want a research-heavy reliability layer or a product workflow for compounding AI work.",
-      "Numbers, links, and product framing are accurate to 2026-05-24. Check both project pages for newer releases before deciding.",
+      "Numbers, links, and product framing are accurate to 2026-05-27. Check both project pages for newer releases before deciding.",
     ],
     officialReferences: [
       {
@@ -797,8 +1026,8 @@ export const articles: LearnArticle[] = [
       {
         heading: "Reading the Superlocal LoCoMo number honestly",
         body: [
-          "Superlocal Memory reports ~74.8% on LoCoMo in their zero-LLM (pure-math) retrieval configuration. Origin's published number on LoCoMo is 67% Recall@5. That is a 7.8-point gap on that specific benchmark, and it is real.",
-          "Two things to read alongside it. First, benchmark mix: LongMemEval (LME) is a more recent and more rigorous evaluation, especially for time-aware questions and contradiction handling. Origin reports 88% Recall@5 on LME oracle, 500 questions. Superlocal Memory has not published LME numbers at the time of writing. The leaderboard story is incomplete without both.",
+          "Superlocal Memory reports ~74.8% on LoCoMo in their zero-LLM (pure-math) retrieval configuration. Origin's published number on LoCoMo is 70.0% Recall@5. That is a 4.8-point gap on that specific benchmark, and it is real.",
+          "Two things to read alongside it. First, benchmark mix: LongMemEval (LME) is a more recent and more rigorous evaluation, especially for time-aware questions and contradiction handling. Origin reports 93.6% Recall@5 on LME oracle, 500 questions. Superlocal Memory has not published LME numbers at the time of writing. The leaderboard story is incomplete without both.",
           "Second, configuration: 'zero-LLM' means retrieval only, no answer generation. Origin's number is also retrieval-only, but Origin's product is designed to feed memories into an LLM for answer composition, not to be a SOTA retrieval algorithm in isolation. Different products optimize for different downstream tasks.",
           "If LoCoMo top score is the deciding factor for you, Superlocal currently wins on that benchmark. If the question is 'which tool helps me carry AI work across sessions,' the benchmark is one input, not the answer.",
         ],
@@ -808,7 +1037,7 @@ export const articles: LearnArticle[] = [
         body: [
           "I picked LME oracle as Origin's primary benchmark because the workload matches what actually breaks AI sessions: multi-turn conversations with implicit time references, contradictions across turns, references to facts established weeks ago. LoCoMo is closer to a corpus-search problem and easier to game with pure-math retrieval.",
           "The product gaps I notice in daily use are not retrieval ceiling. They are things like: did the AI capture the decision when I made it, is the wiki page distilled cleanly, can I open `~/.origin/pages/auth.md` and read it as prose, can I `git blame` a fact, does the same memory show up in Cursor and Claude Code.",
-          "Those are workflow features, not benchmark features. Origin trades 7 points on LoCoMo for explicit capture, MCP-first cross-tool reach, projected Markdown, git-versioned writes, and mandatory provenance. If those things matter to your work, the trade is worth it. If they do not, look at Superlocal.",
+          "Those are workflow features, not benchmark features. Origin trades a few LoCoMo points for explicit capture, MCP-first cross-tool reach, projected Markdown, git-versioned writes, and mandatory provenance. If those things matter to your work, the trade is worth it. If they do not, look at Superlocal.",
         ],
       },
       {
@@ -849,7 +1078,7 @@ export const articles: LearnArticle[] = [
         {
           dimension: "Retrieval",
           origin:
-            "Hybrid: vector (BGE-Base-EN-v1.5-Q) + FTS5 + reciprocal-rank fusion + knowledge-graph context. 88% Recall@5 on LongMemEval (oracle, 500 Q), 67% on LoCoMo.",
+            "Hybrid: vector (BGE-Base-EN-v1.5-Q) + FTS5 + reciprocal-rank fusion + knowledge-graph context. 93.6% Recall@5 on LongMemEval (oracle, 500 Q), 70.0% on LoCoMo.",
           competitor:
             "Pure-math retrieval emphasized in public materials. Reports ~74.8% on LoCoMo in their zero-LLM configuration, currently ahead of Origin on that specific benchmark.",
         },
@@ -897,7 +1126,7 @@ export const articles: LearnArticle[] = [
       {
         question: "Why does Origin not lead with the LoCoMo number?",
         answer:
-          "Because Origin is behind on it: 67% vs Superlocal's reported ~74.8% in their zero-LLM config. Leading with a benchmark Origin does not win is misleading. The 88% LME oracle number is the one I am willing to defend as primary. The LoCoMo number is published for honesty, not as a headline.",
+          "Because Origin is behind on it: 70.0% vs Superlocal's reported ~74.8% in their zero-LLM config. Leading with a benchmark Origin does not win is misleading. The 93.6% LME oracle number is the one I am willing to defend as primary. The LoCoMo number is published for honesty, not as a headline.",
       },
       {
         question: "Is Superlocal Memory open-source?",
@@ -907,7 +1136,7 @@ export const articles: LearnArticle[] = [
       {
         question: "How often do these numbers get re-run?",
         answer:
-          "Origin's eval harness lives under `crates/origin-core/src/eval/` and runs locally on demand against the same fixtures the published numbers use. Anyone can re-run them. I refresh the published number when a release changes it materially. Last refresh: v0.6.1 on 2026-05-24.",
+          "Origin's eval harness lives under `crates/origin-core/src/eval/` and runs locally on demand against the same fixtures the published numbers use. Anyone can re-run them. I refresh the published number when a release changes it materially. Last refresh: v0.7.0 on 2026-05-27.",
       },
     ],
     relatedSlugs: [

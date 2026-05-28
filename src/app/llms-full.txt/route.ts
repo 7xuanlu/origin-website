@@ -103,7 +103,7 @@ export function GET() {
   const header = [
     `# Origin (full content)`,
     ``,
-    `> Origin is local-first memory for AI work. Hybrid retrieval (88% Recall@5 on LongMemEval oracle, 67% on LoCoMo), real git versioning of every memory write in ~/.origin/.git/, mandatory provenance on distilled wiki pages, and one daemon serving Claude Code, Cursor, Codex, Claude Desktop, Gemini CLI, and other MCP-compatible AI tools. Cross-platform on macOS (arm64, x64), Linux (x86_64, aarch64; glibc), and Windows (x86_64). Apache-2.0. Source at github.com/7xuanlu/origin.`,
+    `> Origin is local-first memory for AI work. Hybrid retrieval (93.6% Recall@5 on LongMemEval oracle, 70.0% on LoCoMo), real git versioning of every memory write in ~/.origin/.git/, mandatory provenance on distilled wiki pages, and one daemon serving Claude Code, Cursor, Codex, Claude Desktop, Gemini CLI, and other MCP-compatible AI tools. Cross-platform on macOS (arm64, x64), Linux (x86_64, aarch64; glibc), and Windows (x86_64). Apache-2.0. Source at github.com/7xuanlu/origin.`,
     ``,
     `This file is the long-form companion to /llms.txt. It contains the full body of every public Origin article and doc page so an LLM can ingest the full corpus in one fetch. Generated from source at build time; canonical URL for each entry is included with the entry.`,
     ``,

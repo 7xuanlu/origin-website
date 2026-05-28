@@ -175,7 +175,7 @@ export default function AboutPage() {
               <MemoryIndex
                 label="Project status"
                 items={[
-                  "v0.6.1",
+                  "v0.7.0",
                   "macOS, Linux, Windows",
                   "Apache-2.0",
                   "Built by Qi-Xuan Lu",
@@ -276,7 +276,7 @@ export default function AboutPage() {
                     Current status
                   </h2>
                   <p className="mt-5 text-base leading-relaxed text-[var(--o-text-secondary)]">
-                    Origin v0.6.1 ships for macOS (arm64, x64), Linux (x86_64,
+                    Origin v0.7.0 ships for macOS (arm64, x64), Linux (x86_64,
                     aarch64; glibc), and Windows (x86_64). The daemon, CLI, MCP
                     server, and Claude Code plugin are open source under
                     Apache-2.0.

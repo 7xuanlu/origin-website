@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { docPages, docUrl } from "./docs/docs";
 import { articles, articleUrl, SITE_URL } from "./learn/articles";
 
-const ABOUT_UPDATED_AT = "2026-05-24";
-const GET_STARTED_UPDATED_AT = "2026-05-15";
+const ABOUT_UPDATED_AT = "2026-05-27";
+const GET_STARTED_UPDATED_AT = "2026-05-27";
 
 function maxDate(values: Array<string | Date>): Date {
   return new Date(

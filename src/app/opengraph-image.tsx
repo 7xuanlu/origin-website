@@ -13,7 +13,7 @@ export default async function Image() {
         title="Where AI work compounds."
         description="Local-first memory for AI work. Hybrid retrieval, real git versioning of every memory write, mandatory provenance, one daemon across MCP-compatible AI tools."
         footerLeft={[
-          "88% Recall@5 on LongMemEval",
+          "93.6% Recall@5 on LongMemEval",
           "macOS · Linux · Windows",
           "Apache-2.0",
         ]}

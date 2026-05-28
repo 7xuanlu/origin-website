@@ -45,7 +45,7 @@ export function GET() {
     <title>Origin Learn</title>
     <link>${SITE_URL}/learn</link>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />
-    <description>Articles on AI work memory, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons. Authored by Qi-Xuan Lu.</description>
+    <description>Articles on AI work memory, MCP memory servers, local-first AI memory, distilled wiki pages, Claude Code workflows, and Origin comparisons. Authored by Qi-Xuan Lu.</description>
     <language>en-US</language>
     <lastBuildDate>${rfc822Date(latest)}</lastBuildDate>
     <managingEditor>noreply@useorigin.app (Qi-Xuan Lu)</managingEditor>

@@ -11,7 +11,7 @@ export default async function Image() {
       <OgTemplate
         eyebrow="Get started"
         title="Install Origin in five minutes."
-        description="Add the Claude Code plugin or run npx -y @7xuanlu/origin setup, then verify the local memory loop with a capture and recall."
+        description="Add the Claude Code plugin or run Origin setup, then verify the local memory loop with a capture and recall."
         footerLeft={[
           "useorigin.app/docs/get-started",
           "macOS, Linux, Windows",

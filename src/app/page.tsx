@@ -181,13 +181,13 @@ function TokenEfficiencySection() {
               <tr>
                 <td className="px-6 py-4 text-[var(--o-text)] font-medium">Origin (hybrid retrieval)</td>
                 <td className="px-6 py-4 text-[var(--o-warm)] font-medium">168</td>
-                <td className="px-6 py-4 text-[var(--o-warm)] font-medium">88%</td>
+                <td className="px-6 py-4 text-[var(--o-warm)] font-medium">93.6%</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p className="mx-auto mt-6 max-w-xl text-center font-mono text-[10px] leading-relaxed text-[var(--o-text-muted)] sm:text-[11px]">
-          Recall@5 on LongMemEval (oracle, 500 Q). LoCoMo Recall@5 is 67%, ~168 tokens per recall query.{" "}
+          Recall@5 on LongMemEval (oracle, 500 Q). LoCoMo Recall@5 is 70.0%, ~168 tokens per recall query.{" "}
           <a
             href="https://github.com/7xuanlu/origin/tree/main/crates/origin-core/src/eval"
             target="_blank"

@@ -12,14 +12,14 @@ import { ArticleHalo, MemoryIndex } from "./article-visuals";
 export const metadata: Metadata = {
   title: "Learn | Origin",
   description:
-    "Articles on AI work memory, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
+    "Articles on AI work memory, MCP memory servers, local-first AI memory, distilled wiki pages, Claude Code workflows, and Origin comparisons.",
   alternates: {
     canonical: "/learn",
   },
   openGraph: {
     title: "Learn | Origin",
     description:
-      "Articles on AI work memory, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
+      "Articles on AI work memory, MCP memory servers, local-first AI memory, distilled wiki pages, Claude Code workflows, and Origin comparisons.",
     type: "website",
     url: `${SITE_URL}/learn`,
     siteName: "Origin",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Learn | Origin",
     description:
-      "Articles on AI work memory, MCP memory servers, local-first AI memory, Claude Code memory, and Origin comparisons.",
+      "Articles on AI work memory, MCP memory servers, local-first AI memory, distilled wiki pages, Claude Code workflows, and Origin comparisons.",
   },
 };
 
@@ -58,7 +58,7 @@ export default function LearnPage() {
     "@id": "https://useorigin.app/learn#collection",
     name: "Origin Learn",
     description:
-      "Articles about AI work memory, MCP memory servers, local-first AI memory, Claude Code persistent context, and Origin comparisons.",
+      "Articles about AI work memory, MCP memory servers, local-first AI memory, distilled wiki pages, Claude Code workflows, and Origin comparisons.",
     url: `${SITE_URL}/learn`,
     isPartOf: { "@id": "https://useorigin.app/#website" },
     publisher: { "@id": "https://useorigin.app/#organization" },
@@ -117,8 +117,9 @@ export default function LearnPage() {
               label="Learn topics"
               items={[
                 "AI work memory",
+                "Distilled wiki pages",
                 "Named comparisons",
-                "Developer workflows",
+                "Claude Code workflows",
                 "Local-first control",
               ]}
             />
@@ -134,7 +135,7 @@ export default function LearnPage() {
             </p>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--o-text-secondary)]">
               New to AI work memory? Read the concept pieces first, then use
-              the comparison articles to decide whether Origin fits your workflow.
+              the workflow and comparison articles to decide whether Origin fits.
             </p>
           </div>
 

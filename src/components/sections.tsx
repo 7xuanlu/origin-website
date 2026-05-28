@@ -11,7 +11,7 @@ export const homepageFaqs = [
   },
   {
     q: "What retrieval quality does Origin reach?",
-    a: "Hybrid retrieval combines vector search (BGE-Base-EN-v1.5-Q, 768-dim), FTS5, reciprocal-rank fusion, and knowledge-graph context. Recall@5 is 88% on LongMemEval (oracle, 500 questions) and 67% on LoCoMo, at roughly 168 tokens per recall query. The eval harness ships in the repo at crates/origin-core/src/eval/.",
+    a: "Hybrid retrieval combines vector search (BGE-Base-EN-v1.5-Q, 768-dim), FTS5, reciprocal-rank fusion, and knowledge-graph context. Recall@5 is 93.6% on LongMemEval (oracle, 500 questions) and 70.0% on LoCoMo, at roughly 168 tokens per recall query. The eval harness ships in the repo at crates/origin-core/src/eval/.",
   },
   {
     q: "Is my data private?",
@@ -31,7 +31,7 @@ export const homepageFaqs = [
   },
   {
     q: "How do I set it up?",
-    a: "In Claude Code, run /plugin marketplace add 7xuanlu/origin, then /plugin install origin@7xuanlu, then /init. For other MCP clients, run npx -y @7xuanlu/origin setup first, then add npx -y origin-mcp to their mcpServers config.",
+    a: "In Claude Code, run /plugin marketplace add 7xuanlu/origin, then /plugin install origin@7xuanlu, then /init. For other MCP clients, run npx -y @7xuanlu/origin setup first, then ~/.origin/bin/origin mcp add codex, cursor, claude-desktop, vscode, or gemini.",
   },
   {
     q: "Does Origin work on Windows or Linux?",
