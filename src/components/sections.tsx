@@ -31,7 +31,7 @@ export const homepageFaqs = [
   },
   {
     q: "How do I set it up?",
-    a: "In Claude Code, run /plugin marketplace add 7xuanlu/origin, then /plugin install origin@7xuanlu, then /init. For other MCP clients, run npx -y @7xuanlu/origin setup first, then add npx -y origin-mcp to their mcpServers config.",
+    a: "In Claude Code, run /plugin marketplace add 7xuanlu/origin, then /plugin install origin@7xuanlu, then /init. For other MCP clients, run npx -y @7xuanlu/origin setup first, then ~/.origin/bin/origin mcp add codex, cursor, claude-desktop, vscode, or gemini.",
   },
   {
     q: "Does Origin work on Windows or Linux?",

@@ -34,14 +34,8 @@ const claudeCommands = [
 
 const originSetupCommand = "npx -y @7xuanlu/origin setup";
 
-const mcpConfig = `{
-  "mcpServers": {
-    "origin": {
-      "command": "npx",
-      "args": ["-y", "origin-mcp"]
-    }
-  }
-}`;
+const mcpAddCommand =
+  "~/.origin/bin/origin mcp add codex\n# or: cursor, claude-desktop, vscode, gemini";
 
 export default function GetStartedPage() {
   const breadcrumbSchema = {
@@ -84,7 +78,7 @@ export default function GetStartedPage() {
       {
         "@type": "HowToStep",
         name: "Set up the local runtime for another MCP client",
-        text: "Run npx -y @7xuanlu/origin setup, then add npx -y origin-mcp to the client's mcpServers config.",
+        text: "Run npx -y @7xuanlu/origin setup, then run ~/.origin/bin/origin mcp add for the client you use.",
       },
       {
         "@type": "HowToStep",
@@ -182,7 +176,7 @@ export default function GetStartedPage() {
                   <p className="mt-5 text-base leading-relaxed text-[var(--o-text-secondary)]">
                     For Cursor, Codex, Claude Desktop, Gemini CLI, and other
                     MCP-compatible clients, set up the local Origin runtime first.
-                    Then add the MCP connector to the client.
+                    Then let the Origin CLI add the MCP connector to the client.
                   </p>
                   <p className="mt-4 text-sm leading-relaxed text-[var(--o-text-muted)]">
                     Origin setup installs the CLI, daemon, and MCP connector,
@@ -193,7 +187,7 @@ export default function GetStartedPage() {
                     <code>{originSetupCommand}</code>
                   </pre>
                   <pre className="mt-6 overflow-x-auto rounded-xl border border-[var(--o-border)] bg-[var(--o-bg-deep)] p-5 font-mono text-sm leading-relaxed text-[var(--o-text-secondary)]">
-                    <code>{mcpConfig}</code>
+                    <code>{mcpAddCommand}</code>
                   </pre>
                 </div>
               </section>
