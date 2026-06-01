@@ -11,6 +11,7 @@
 - [Capture quality](https://useorigin.app/docs/capture-quality): What to capture, what to skip, and how corrections, review, distill, and forget fit the memory loop.
 - [Review and trust](https://useorigin.app/docs/review-and-trust): How pending captures, revisions, contradictions, quality-gate rejections, confirm, and forget fit before memory becomes trusted context.
 - [Core concepts](https://useorigin.app/docs/core-concepts): Memories, pages, entities, sessions, sources. The vocabulary the daemon enforces.
+- [Glossary](https://useorigin.app/docs/glossary): Short definitions for Origin terms such as memory, handoff, page, space, daemon, MCP, local index, provenance, supersession, and retrieval metrics.
 - [Architecture](https://useorigin.app/docs/architecture): Daemon-first system map: origin-server, origin-core, origin-cli, origin-mcp, origin-types, and the Claude Code plugin.
 
 ## Concepts

@@ -635,6 +635,106 @@ export const docPages: DocPage[] = [
         ],
       },
     ],
+    nextSlug: "glossary",
+  },
+  {
+    slug: "glossary",
+    group: "Reference",
+    eyebrow: "Glossary",
+    title: "Glossary",
+    description:
+      "A quick map of Origin terms: memory, handoff, page, space, daemon, MCP, local index, provenance, and eval language.",
+    metaTitle: "Origin Glossary | Docs",
+    metaDescription:
+      "Define Origin product terms including memories, handoffs, distilled pages, spaces, daemon, MCP connector, Markdown projection, local index, provenance, revisions, and retrieval metrics.",
+    keywords: [
+      "Origin glossary",
+      "AI work memory terms",
+      "Origin terminology",
+      "MCP memory glossary",
+      "AI memory vocabulary",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    summary: [
+      "Use this glossary when a docs page mentions an Origin term and you need the short version before continuing.",
+      "The important distinction: readable artifacts are for humans, the local daemon and index are for retrieval, and MCP is how agents reach the same store.",
+    ],
+    sections: [
+      {
+        heading: "Workflow terms",
+        body: [
+          "Memory: one durable idea from AI work, such as a decision, lesson, gotcha, preference, fact, or correction.",
+          "Capture: the act of storing one durable idea. Handoff: the end-of-session record that tells the next agent what changed, what remains open, and where to continue.",
+        ],
+        bullets: [
+          "Brief: session-start context loaded from recent status, handoffs, and topic-relevant memory.",
+          "Recall: targeted search for a specific past fact or thread.",
+          "Distill: synthesize related memories into source-backed pages.",
+          "Review: inspect uncertain captures, revisions, contradictions, or rejected items before trusting them.",
+        ],
+      },
+      {
+        heading: "Storage terms",
+        body: [
+          "Distilled page: a readable Markdown page composed from related memories, with source memory IDs preserved for provenance.",
+          "Markdown projection: the human-readable artifact layer under ~/.origin. Local index: the daemon-owned libSQL store that powers embeddings, FTS, graph context, pages, metadata, and retrieval.",
+        ],
+        bullets: [
+          "Source-backed: a page or claim traces back to memory IDs instead of appearing as an unsourced summary.",
+          "Local git history: commits under ~/.origin/.git that make writes inspectable over time.",
+          "Page source: a memory that contributed to a distilled page.",
+        ],
+      },
+      {
+        heading: "Runtime terms",
+        body: [
+          "Daemon: origin-server, the local process on 127.0.0.1:7878 that owns storage, search, pages, graph context, distill cycles, and the HTTP API.",
+          "MCP connector: origin-mcp, the process MCP clients launch so agents can call Origin tools. CLI: the origin command-line tool for setup, status, doctor, recall, search, store, spaces, models, keys, and MCP config.",
+        ],
+        bullets: [
+          "Claude Code plugin: the slash-command workflow layer around the same daemon and MCP connector.",
+          "MCP-only setup: local runtime plus MCP tools, without Claude Code slash skills.",
+          "Local memory mode: core capture, search, recall, and artifacts without a local model download or API key.",
+        ],
+      },
+      {
+        heading: "Trust terms",
+        body: [
+          "Confirmed memory: a memory accepted as trustworthy enough to carry forward. Pending memory: a capture that still needs review or confidence improvement.",
+          "Supersession: a newer memory replaces an older fact while preserving the history of why the old fact existed.",
+        ],
+        bullets: [
+          "Revision: a proposed update to an existing memory or page.",
+          "Contradiction: two memories conflict and need human or daemon-side resolution.",
+          "Quality-gate rejection: a capture attempt discarded before storage because it was duplicate, low-signal, or otherwise not useful memory.",
+          "Forget: delete a memory by ID when it should not remain in the local record.",
+        ],
+      },
+      {
+        heading: "Separation terms",
+        body: [
+          "Space: a named memory bucket such as work, personal, client-X, or a project name. Spaces reduce context bleed while keeping one daemon and one install.",
+          "Active space: the bucket chosen by inline arguments, ORIGIN_SPACE, spaces.toml, current repo, topic, or default resolver state.",
+        ],
+        link: {
+          label: "Read spaces",
+          href: "/docs/spaces",
+        },
+      },
+      {
+        heading: "Evaluation terms",
+        body: [
+          "Recall@5 measures whether relevant context appears in the top five retrieved results. MRR rewards putting the first relevant result higher. NDCG@10 rewards strong ranking across the top ten.",
+          "Origin's public numbers are retrieval-only evals, not end-to-end answer-quality guarantees. They show whether the memory layer surfaces relevant context, not whether a downstream model always reasons correctly.",
+        ],
+        link: {
+          label: "Read evaluation",
+          href: "/docs/evaluation",
+        },
+      },
+    ],
     nextSlug: "architecture",
   },
   {
