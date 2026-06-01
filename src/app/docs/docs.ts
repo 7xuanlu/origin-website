@@ -193,6 +193,19 @@ const captureExamples = `/capture We chose source-backed pages because summaries
 /capture Supersedes earlier setup docs: Windows now uses a Task Scheduler ONLOGON task.
 /capture Gotcha: Do not paste private memory contents into public issues.`;
 
+const reviewCommands = `/review captures
+/review revisions
+/recall "what changed about the setup path"
+/forget mem_abc123`;
+
+const reviewMcpTools = `list_pending             unconfirmed captures
+confirm_memory           accept one capture by source_id
+list_pending_revisions   staged correction/revision rows
+accept_revision          apply a pending revision
+dismiss_revision         keep the current memory
+dismiss_contradiction    mark a conflict as handled
+list_rejections          quality-gate rejects`;
+
 const httpSurfaces = `/api/health
 /api/status
 /api/setup/status
@@ -431,6 +444,95 @@ export const docPages: DocPage[] = [
           "/review is for inspecting pending captures or revisions. /distill is for turning repeated clusters into readable pages.",
           "Use review when trust is the question. Use distill when synthesis is the question.",
         ],
+      },
+    ],
+    nextSlug: "review-and-trust",
+  },
+  {
+    slug: "review-and-trust",
+    group: "After setup",
+    eyebrow: "Trust",
+    title: "Review and Trust",
+    description:
+      "Understand how Origin keeps uncertain memory visible: pending captures, revisions, contradictions, rejections, confirm, and forget.",
+    metaTitle: "Origin Review and Trust | Docs",
+    metaDescription:
+      "Learn how Origin handles review queues, pending captures, memory revisions, contradictions, quality-gate rejections, confirm, forget, and trust before distillation.",
+    keywords: [
+      "Origin review",
+      "Origin trust",
+      "pending memories",
+      "memory revisions",
+      "AI memory contradictions",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    summary: [
+      "Review is the trust layer between raw captures and context your future agent should rely on.",
+      "Use review for uncertain or changing facts; use distill when related trusted memories deserve a readable page.",
+    ],
+    sections: [
+      {
+        heading: "Why review exists",
+        body: [
+          "A useful memory layer should not silently trust every captured sentence. Some facts are low confidence, duplicated, contradicted, superseded, or too vague to promote into future context.",
+          "Origin keeps those states visible so the human can confirm, correct, dismiss, forget, or let the daemon keep the item out of trusted context.",
+        ],
+      },
+      {
+        heading: "Capture queue",
+        body: [
+          "Use /review captures when you want to walk unconfirmed memories. Confirm the captures that are durable and reject or forget the ones that should not carry forward.",
+          "In MCP-only clients, list_pending and confirm_memory expose the same basic flow: inspect candidates, then confirm one source_id when it is worth keeping.",
+        ],
+        code: {
+          label: "Claude Code",
+          code: reviewCommands,
+        },
+      },
+      {
+        heading: "Revisions and supersession",
+        body: [
+          "When a fact changes, prefer a correction that supersedes the old memory over a silent rewrite. The old context still explains why future sessions might see a historical decision.",
+          "/review revisions is for staged memory updates. Accept a revision when the new statement is the right current record; dismiss it when the old memory should remain.",
+        ],
+      },
+      {
+        heading: "Contradictions",
+        body: [
+          "Contradictions are not always bugs. They often mean the project changed, the user corrected course, or two contexts are being mixed.",
+          "When Origin surfaces a contradiction, decide whether the newer fact supersedes the older one, whether the memories belong in different spaces, or whether one should be forgotten because it is simply wrong.",
+        ],
+      },
+      {
+        heading: "Quality-gate rejections",
+        body: [
+          "Some attempted captures should never become memory: duplicates, low-quality fragments, tool output, logs, or transient status. Rejections are useful diagnostic records, not a failure of the work loop.",
+          "Use rejections when you are debugging why a capture did not appear. Do not treat every rejected item as something to recover.",
+        ],
+      },
+      {
+        heading: "MCP tool map",
+        body: [
+          "The MCP connector exposes review and trust operations for clients that do not have Claude Code slash commands.",
+          "Destructive or authority-changing tools require care. Get the source_id from recall, list_pending, or a page source list before confirming, forgetting, or resolving a revision.",
+        ],
+        code: {
+          label: "MCP tools",
+          code: reviewMcpTools,
+        },
+      },
+      {
+        heading: "When to forget",
+        body: [
+          "Use forget when a memory should not remain in the local record at all: sensitive accidental capture, wrong private fact, or data that should not be retained.",
+          "For ordinary changes, prefer a correction with supersession. That keeps the reasoning trail visible while steering future context toward the newer fact.",
+        ],
+        link: {
+          label: "Read data and privacy",
+          href: "/docs/data-and-privacy",
+        },
       },
     ],
     nextSlug: "core-concepts",

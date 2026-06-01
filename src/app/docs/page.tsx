@@ -45,7 +45,7 @@ const docsSections = [
   {
     title: "After setup",
     description:
-      "Turn the install into a working habit: start warm, capture useful context, and hand off before context goes cold.",
+      "Turn the install into a working habit: start warm, capture useful context, review what should be trusted, and hand off before context goes cold.",
     items: docPages
       .filter((page) => page.group === "After setup")
       .map((page) => ({

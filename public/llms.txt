@@ -9,6 +9,7 @@
 - [Get started](https://useorigin.app/docs/get-started): Install the Claude Code plugin or run Origin setup for another MCP client, then verify the first memory round trip locally.
 - [Daily workflow](https://useorigin.app/docs/daily-workflow): Capture, handoff, distill. The session loop that makes AI work compound across days.
 - [Capture quality](https://useorigin.app/docs/capture-quality): What to capture, what to skip, and how corrections, review, distill, and forget fit the memory loop.
+- [Review and trust](https://useorigin.app/docs/review-and-trust): How pending captures, revisions, contradictions, quality-gate rejections, confirm, and forget fit before memory becomes trusted context.
 - [Core concepts](https://useorigin.app/docs/core-concepts): Memories, pages, entities, sessions, sources. The vocabulary the daemon enforces.
 - [Architecture](https://useorigin.app/docs/architecture): Daemon-first system map: origin-server, origin-core, origin-cli, origin-mcp, origin-types, and the Claude Code plugin.
 
