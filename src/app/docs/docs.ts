@@ -1937,6 +1937,111 @@ export const docPages: DocPage[] = [
         },
       },
     ],
+    nextSlug: "faq",
+  },
+  {
+    slug: "faq",
+    group: "Reference",
+    eyebrow: "FAQ",
+    title: "FAQ",
+    description:
+      "Short answers to the adoption questions people ask before and after installing Origin.",
+    metaTitle: "Origin FAQ | Docs",
+    metaDescription:
+      "Answer common Origin questions about product positioning, install paths, desktop app status, local data, Markdown artifacts, uninstall behavior, and verification.",
+    keywords: [
+      "Origin FAQ",
+      "what is Origin",
+      "Origin install path",
+      "Origin desktop app",
+      "Origin local data",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "4 min read",
+    summary: [
+      "Origin is local-first memory for AI work: a daemon, CLI, MCP connector, and Claude Code plugin that share one local context layer.",
+      "Use this page when you need the short answer, then follow the linked docs for setup, data, packages, troubleshooting, or project scope.",
+    ],
+    sections: [
+      {
+        heading: "Is Origin a memory app?",
+        body: [
+          "Origin includes memory, but the product goal is broader than a generic memory app. It is a local memory layer for AI work so agents can carry decisions, context, handoffs, and source-backed pages across sessions and tools.",
+          "That distinction matters because Origin is designed around the work loop: brief, capture, recall, handoff, distill, inspect, and keep going.",
+        ],
+        link: {
+          label: "Read project scope",
+          href: "/docs/project-scope",
+        },
+      },
+      {
+        heading: "Which install path should I use?",
+        body: [
+          "Use the Claude Code plugin if Claude Code is your main work surface. It gives you /init, /brief, /capture, /handoff, /distill, and the plugin-level workflow.",
+          "Use npx -y @7xuanlu/origin setup when you want Origin from Codex, Cursor, Claude Desktop, Gemini CLI, VS Code, or another MCP client.",
+        ],
+        link: {
+          label: "Compare package names",
+          href: "/docs/packages-and-registries",
+        },
+      },
+      {
+        heading: "Do I need the desktop app?",
+        body: [
+          "No. The daemon, CLI, and MCP connector are the product path. The desktop app is optional and lives in a separate repository.",
+          "If you only want agents to use Origin, install the plugin or runtime setup and verify the MCP route. You do not need a GUI.",
+        ],
+        link: {
+          label: "Read desktop status",
+          href: "/docs/desktop-app",
+        },
+      },
+      {
+        heading: "Where does data live?",
+        body: [
+          "Origin keeps the daemon database in the operating system's application data directory and keeps readable artifacts under ~/.origin.",
+          "The core loop is local-first. Optional model or API-key choices can add more language features, but they are explicit configuration decisions.",
+        ],
+        link: {
+          label: "Read data and privacy",
+          href: "/docs/data-and-privacy",
+        },
+      },
+      {
+        heading: "Is Markdown the database?",
+        body: [
+          "No. Origin uses a local database and index for retrieval, graph context, pages, and daemon state. Markdown artifacts are the human-readable projection, not the whole storage system.",
+          "This gives agents fast retrieval while still giving humans files they can inspect, version, back up, and move.",
+        ],
+        link: {
+          label: "Read source-backed pages",
+          href: "/docs/source-backed-pages",
+        },
+      },
+      {
+        heading: "Does uninstall delete memory?",
+        body: [
+          "No. origin uninstall removes the per-user service registration. It does not delete ~/.origin or the daemon data directory.",
+          "That separation is intentional because local memory may be the only record of project decisions, handoffs, private preferences, and generated pages.",
+        ],
+        link: {
+          label: "Read updates and uninstall",
+          href: "/docs/updates-and-uninstall",
+        },
+      },
+      {
+        heading: "How do I know it works?",
+        body: [
+          "Run /init in Claude Code or origin doctor from the terminal. Then capture one small durable fact and recall it from the client you plan to use.",
+          "If daemon health passes and a capture/recall round trip works, Origin is connected to the local memory layer.",
+        ],
+        link: {
+          label: "Read troubleshooting",
+          href: "/docs/troubleshooting",
+        },
+      },
+    ],
     nextSlug: "security",
   },
   {

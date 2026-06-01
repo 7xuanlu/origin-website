@@ -59,7 +59,7 @@ const docsSections = [
   {
     title: "Reference",
     description:
-      "Commands, CLI/service management, updates, package names, platform support, HTTP API, spaces, pages, import paths, git history, retrieval status, local data, backup paths, configuration, MCP clients, diagnostics, and repair paths.",
+      "Commands, CLI/service management, updates, package names, platform support, HTTP API, spaces, pages, import paths, git history, retrieval status, local data, backup paths, configuration, MCP clients, diagnostics, FAQ, and repair paths.",
     items: docPages
       .filter((page) => page.group === "Reference")
       .map((page) => ({

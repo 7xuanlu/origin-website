@@ -50,6 +50,7 @@
 - [MCP clients](https://useorigin.app/docs/mcp-clients): Setup notes for Claude Code, Cursor, Codex, Claude Desktop, Gemini CLI, and VS Code.
 - [Troubleshooting](https://useorigin.app/docs/troubleshooting): Common failure modes and the daemon repair paths.
 - [Diagnostics and issue reports](https://useorigin.app/docs/diagnostics-and-issue-reports): Commands to run before asking for help, how to separate daemon and MCP failures, and what to redact.
+- [FAQ](https://useorigin.app/docs/faq): Short answers about what Origin is, which install path to use, desktop app status, local data, Markdown artifacts, uninstall behavior, and verification.
 - [Security and reporting](https://useorigin.app/docs/security): Private vulnerability reporting, redacted bug reports, local security boundaries, and security.txt.
 - [Evaluation](https://useorigin.app/docs/evaluation): Retrieval benchmark scope, current LongMemEval and LoCoMo snapshot, and rerun methodology.
 - [Desktop app status](https://useorigin.app/docs/desktop-app): Whether the optional GUI is required, how the separate desktop repo fits, and what the daemon still owns.
