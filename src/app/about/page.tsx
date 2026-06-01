@@ -326,7 +326,14 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-[var(--o-text-muted)]">
                   For bugs and feature requests, use GitHub Issues. For
-                  vulnerabilities, follow the security policy in the repository.
+                  vulnerabilities, follow the{" "}
+                  <Link
+                    href="/docs/security"
+                    className="underline decoration-[var(--o-warm)]/60 underline-offset-4 transition-colors hover:text-[var(--o-warm)]"
+                  >
+                    security reporting guide
+                  </Link>
+                  .
                 </p>
               </div>
             </aside>

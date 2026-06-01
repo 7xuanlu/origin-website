@@ -180,8 +180,8 @@ export default function GetStartedPage() {
                   </p>
                   <p className="mt-4 text-sm leading-relaxed text-[var(--o-text-muted)]">
                     Origin setup installs the CLI, daemon, and MCP connector,
-                    configures local memory, registers the daemon with launchd,
-                    and verifies status.
+                    configures local memory, registers the daemon with your
+                    operating system's user service manager, and verifies status.
                   </p>
                   <pre className="mt-6 overflow-x-auto rounded-xl border border-[var(--o-border)] bg-[var(--o-bg-deep)] p-5 font-mono text-sm leading-relaxed text-[var(--o-text-secondary)]">
                     <code>{originSetupCommand}</code>

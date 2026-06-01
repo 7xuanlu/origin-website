@@ -8,7 +8,12 @@
 - [About](https://useorigin.app/about): Project background and the person behind Origin.
 - [Get started](https://useorigin.app/docs/get-started): Install the Claude Code plugin or run Origin setup for another MCP client, then verify the first memory round trip locally.
 - [Daily workflow](https://useorigin.app/docs/daily-workflow): Capture, handoff, distill. The session loop that makes AI work compound across days.
+- [Capture quality](https://useorigin.app/docs/capture-quality): What to capture, what to skip, and how corrections, review, distill, and forget fit the memory loop.
+- [Review and trust](https://useorigin.app/docs/review-and-trust): How pending captures, revisions, contradictions, quality-gate rejections, confirm, and forget fit before memory becomes trusted context.
 - [Core concepts](https://useorigin.app/docs/core-concepts): Memories, pages, entities, sessions, sources. The vocabulary the daemon enforces.
+- [Memory types](https://useorigin.app/docs/memory-types): Origin's six canonical memory_type values, stability tiers, aliases, and how agents should choose between identity, preference, decision, lesson, gotcha, and fact.
+- [Glossary](https://useorigin.app/docs/glossary): Short definitions for Origin terms such as memory, handoff, page, space, daemon, MCP, local index, provenance, supersession, and retrieval metrics.
+- [Architecture](https://useorigin.app/docs/architecture): Daemon-first system map: origin-server, origin-core, origin-cli, origin-mcp, origin-types, and the Claude Code plugin.
 
 ## Concepts
 
@@ -31,9 +36,43 @@
 ## Reference
 
 - [Commands](https://useorigin.app/docs/commands): Origin CLI subcommands and the MCP tools the daemon exposes.
+- [Claude Code plugin](https://useorigin.app/docs/claude-code-plugin): The richest Origin workflow inside Claude Code: /init, /brief, /capture, /recall, /handoff, /distill, /review, the SessionStart hook, and local memory mode.
+- [CLI and service management](https://useorigin.app/docs/cli-and-service): Setup, daemon status, doctor, service install/uninstall, terminal recall/search/store, and MCP client wiring.
+- [Updates and uninstall](https://useorigin.app/docs/updates-and-uninstall): Refresh the local runtime, verify with doctor, restart MCP clients, and remove the per-user service safely.
+- [Upgrade notes](https://useorigin.app/docs/upgrade-notes): What to rerun, verify, and restart when Origin releases change the plugin, npm setup, MCP connector, daemon service, spaces, or platform support.
+- [Packages and registries](https://useorigin.app/docs/packages-and-registries): Which package names mean what across the Claude Code plugin, npm setup, origin-mcp, origin-types, crates.io, and GitHub Releases.
+- [Platform support](https://useorigin.app/docs/platforms): macOS, Linux, and Windows support, service managers, data paths, model backend notes, and Docker/VM caveats.
+- [HTTP API](https://useorigin.app/docs/http-api): Local daemon surfaces that the plugin, CLI, MCP connector, and local tools call under the hood.
+- [API examples](https://useorigin.app/docs/api-examples): Local curl examples for daemon health, setup status, memory store/search, chat context, review, confirm, and page search.
+- [Typed clients](https://useorigin.app/docs/typed-clients): When Rust local tools should use origin-types for shared daemon request and response shapes instead of untyped JSON.
+- [Spaces](https://useorigin.app/docs/spaces): Separate work, personal, client, and project memory buckets, including ORIGIN_SPACE, spaces.toml mappings, resolver priority, and doctor output.
+- [Knowledge graph](https://useorigin.app/docs/knowledge-graph): How people, projects, tools, observations, and relations become graph context for retrieval without replacing source-backed memory.
+- [Source-backed pages](https://useorigin.app/docs/source-backed-pages): How atomic captures become readable Markdown pages with source memory IDs, revision state, and refresh paths.
+- [Import and portability](https://useorigin.app/docs/import-and-portability): Import Markdown-style vault context and keep Origin's projected Markdown artifacts readable outside the daemon.
+- [Local git history](https://useorigin.app/docs/local-git-history): Inspect the real git history Origin keeps under ~/.origin/.git for pages, sessions, handoffs, and status artifacts.
+- [Models and keys](https://useorigin.app/docs/models-and-keys): No-model local memory mode, agent-side fallback phases, optional on-device models, optional Anthropic keys, and the privacy/capability tradeoffs.
+- [Advanced retrieval status](https://useorigin.app/docs/advanced-retrieval): Stable hybrid retrieval plus opt-in main-branch retrieval experiments and their release-status caveats.
+- [Experimental flags](https://useorigin.app/docs/experimental-flags): How to read opt-in main-branch flags for retrieval, context compression, memory maintenance, entity resolution, page guards, and reflection without treating them as released defaults.
 - [Data and privacy](https://useorigin.app/docs/data-and-privacy): What lives where on disk, what leaves the machine, what does not.
+- [Backup and migration](https://useorigin.app/docs/backup-and-migration): Back up readable ~/.origin artifacts and daemon data together, then verify restored installs with doctor and recall.
+- [Configuration](https://useorigin.app/docs/configuration): Spaces, MCP client wiring, daemon bind address, local paths, models, and keys without hand-editing the database.
+- [Environment variables](https://useorigin.app/docs/environment-variables): Runtime, development, Windows repair, and eval environment variables such as ORIGIN_SPACE, ORIGIN_HOST, ORIGIN_BIND_ADDR, ORIGIN_DATA_DIR, ORT_DYLIB_PATH, and EVAL_BASELINES_DIR.
 - [MCP clients](https://useorigin.app/docs/mcp-clients): Setup notes for Claude Code, Cursor, Codex, Claude Desktop, Gemini CLI, and VS Code.
+- [Agent profiles](https://useorigin.app/docs/agent-profiles): How Origin attributes captures to Claude Code, Codex, Cursor, local scripts, and other clients through source_agent, trust, and enabled state.
 - [Troubleshooting](https://useorigin.app/docs/troubleshooting): Common failure modes and the daemon repair paths.
+- [Diagnostics and issue reports](https://useorigin.app/docs/diagnostics-and-issue-reports): Commands to run before asking for help, how to separate daemon and MCP failures, and what to redact.
+- [FAQ](https://useorigin.app/docs/faq): Short answers about what Origin is, which install path to use, desktop app status, local data, Markdown artifacts, uninstall behavior, and verification.
+- [Security and reporting](https://useorigin.app/docs/security): Private vulnerability reporting, redacted bug reports, local security boundaries, and security.txt.
+- [Evaluation](https://useorigin.app/docs/evaluation): Retrieval benchmark scope, current LongMemEval and LoCoMo snapshot, and rerun methodology.
+- [Desktop app status](https://useorigin.app/docs/desktop-app): Whether the optional GUI is required, how the separate desktop repo fits, and what the daemon still owns.
+- [Changelog](https://useorigin.app/docs/changelog): Stable release notes and how to read unreleased main-branch work.
+- [Releases and versioning](https://useorigin.app/docs/releases-and-versioning): How release-please, tags, package publishing, npm packages, crates, binaries, and pre-1.0 version bumps work.
+- [Roadmap and status](https://useorigin.app/docs/roadmap): Released, on-main, and planned work without confusing roadmap themes for shipped guarantees.
+- [Project scope](https://useorigin.app/docs/project-scope): What Origin is for and what it deliberately avoids.
+- [Build from source](https://useorigin.app/docs/build-from-source): Source build, workspace crates, platform notes, and contributor checks.
+- [Testing and CI](https://useorigin.app/docs/testing-and-ci): Local checks, git hooks, PR CI, coverage policy, and manual eval boundaries for contributors.
+- [Development conventions](https://useorigin.app/docs/development-conventions): Crate boundaries, SQL safety, async state snapshots, typed MCP wrappers, dev/prod isolation, and worktree gotchas for contributors.
+- [Contributing](https://useorigin.app/docs/contributing): Development setup, useful issues, PR process, architecture rules, and license notes.
 
 ## Optional
 

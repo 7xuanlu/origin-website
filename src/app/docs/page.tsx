@@ -7,14 +7,14 @@ import { docPages, docUrl, formatDocDate } from "./docs";
 export const metadata: Metadata = {
   title: "Origin Docs | Product Manual",
   description:
-    "Install Origin, learn the daily AI work memory loop, connect MCP clients, and understand local-first data control.",
+    "Install Origin, learn the daily AI work memory loop, understand the architecture, and follow the project roadmap, changelog, and evals.",
   alternates: {
     canonical: "/docs",
   },
   openGraph: {
     title: "Origin Docs | Product Manual",
     description:
-      "Install Origin, learn the daily AI work memory loop, connect MCP clients, and understand local-first data control.",
+      "Install Origin, learn the daily AI work memory loop, understand the architecture, and follow the project roadmap, changelog, and evals.",
     type: "website",
     url: `${SITE_URL}/docs`,
     siteName: "Origin",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Origin Docs | Product Manual",
     description:
-      "Install Origin, learn the daily AI work memory loop, connect MCP clients, and understand local-first data control.",
+      "Install Origin, learn the daily AI work memory loop, understand the architecture, and follow the project roadmap, changelog, and evals.",
   },
 };
 
@@ -45,7 +45,7 @@ const docsSections = [
   {
     title: "After setup",
     description:
-      "Turn the install into a working habit: start warm, capture decisions, and hand off before context goes cold.",
+      "Turn the install into a working habit: start warm, capture useful context, review what should be trusted, and hand off before context goes cold.",
     items: docPages
       .filter((page) => page.group === "After setup")
       .map((page) => ({
@@ -59,9 +59,23 @@ const docsSections = [
   {
     title: "Reference",
     description:
-      "Commands, local data, MCP clients, and the repair paths people need once Origin is in daily use.",
+      "Memory types, glossary, architecture, commands, Claude Code plugin, CLI/service management, updates, upgrade notes, package names, platform support, HTTP API, API examples, typed clients, spaces, graph context, pages, import paths, git history, retrieval status, experimental flags, local data, backup paths, configuration, environment variables, MCP clients, agent profiles, diagnostics, FAQ, and repair paths.",
     items: docPages
       .filter((page) => page.group === "Reference")
+      .map((page) => ({
+        href: `/docs/${page.slug}`,
+        label: page.eyebrow,
+        title: page.title,
+        description: page.description,
+        meta: `${page.author} · Updated ${formatDocDate(page.updatedAt)} · ${page.readingTime}`,
+      })),
+  },
+  {
+    title: "Project",
+    description:
+      "Security reporting, evaluation, desktop status, changelog, release/versioning, roadmap, project scope, source builds, testing, CI, development conventions, and contribution paths for people deciding whether Origin is credible enough to adopt or contribute to.",
+    items: docPages
+      .filter((page) => page.group === "Project")
       .map((page) => ({
         href: `/docs/${page.slug}`,
         label: page.eyebrow,
@@ -166,8 +180,9 @@ export default function DocsPage() {
             </p>
             <p className="mt-3 max-w-[20rem] text-sm leading-relaxed text-[var(--o-text-secondary)] sm:max-w-2xl">
               New users should install first, run setup for their client, then
-              read the daily workflow and core concepts before reaching for the
-              reference docs.
+              read the daily workflow and core concepts. The project docs cover
+              architecture, reference paths, evals, releases, scope, source
+              builds, roadmap, development conventions, and contribution paths.
             </p>
           </div>
 
