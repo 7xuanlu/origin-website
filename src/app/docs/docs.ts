@@ -49,6 +49,8 @@ const mcpConfig = `{
   }
 }`;
 
+const mcpOriginUrlCommand = "origin-mcp --origin-url http://127.0.0.1:7879";
+
 const originSetupCommand = "npx -y @7xuanlu/origin setup";
 
 const architectureMap = `origin-server  -> local daemon on 127.0.0.1:7878
@@ -253,6 +255,7 @@ Synthesize pages        daemon distill cycle    /distill writes page
 Expand/rerank recall    daemon rerank/expand    /recall rewrites query`;
 
 const configurationKnobs = `ORIGIN_SPACE=client-a
+ORIGIN_HOST=http://127.0.0.1:7878
 ORIGIN_BIND_ADDR=127.0.0.1:7878
 ORIGIN_BIND_ADDR=0.0.0.0:7878  # Docker or VM only`;
 
@@ -267,6 +270,7 @@ const configurationFiles = `~/.origin/
 %LOCALAPPDATA%\\origin\\`;
 
 const runtimeEnvVars = `ORIGIN_SPACE=client-a
+ORIGIN_HOST=http://127.0.0.1:7878
 ORIGIN_BIND_ADDR=127.0.0.1:7878
 ORIGIN_BIND_ADDR=0.0.0.0:7878  # Docker or VM only
 ANTHROPIC_API_KEY=sk-ant-...`;
@@ -2035,7 +2039,7 @@ export const docPages: DocPage[] = [
       {
         heading: "How graph context is created",
         body: [
-          "Post-ingest enrichment can link entities, deduplicate overlapping captures, enrich titles, grow matching pages, and update confidence. Optional local models or API keys can make extraction and graph linking richer.",
+          "Post-ingest enrichment can link entities, deduplicate overlapping captures, enrich titles, grow matching pages, and update effective confidence based on memory type, access, and age. Optional local models or API keys can make extraction and graph linking richer.",
           "Claude Code skills can also help because the agent already has language judgment during capture and distillation.",
         ],
         link: {
@@ -2797,7 +2801,8 @@ export const docPages: DocPage[] = [
       {
         heading: "Normal runtime overrides",
         body: [
-          "ORIGIN_SPACE selects the active memory bucket for the current shell or process. ORIGIN_BIND_ADDR changes the daemon bind address and should stay loopback unless you intentionally expose the daemon in Docker or a VM.",
+          "ORIGIN_SPACE selects the active memory bucket for the current shell or process. ORIGIN_HOST points the CLI at a daemon URL when you are not using the default local address.",
+          "ORIGIN_BIND_ADDR changes where the daemon listens and should stay loopback unless you intentionally expose the daemon in Docker or a VM.",
           "ANTHROPIC_API_KEY is only needed when you opt into daemon-side Anthropic work. The core local memory loop does not require it.",
         ],
         code: {
@@ -2924,10 +2929,22 @@ export const docPages: DocPage[] = [
         heading: "Manual config fallback",
         body: [
           "If a client only accepts a raw JSON configuration, point it at the local MCP connector that setup installed. Use origin mcp add --dry-run to see the exact path for your machine.",
+          "If the daemon is running on a non-default local URL for development, origin-mcp also accepts --origin-url. Keep normal users on the default 127.0.0.1:7878 path.",
         ],
         code: {
           label: "mcpServers",
           code: mcpConfig,
+        },
+      },
+      {
+        heading: "Non-default daemon URL",
+        body: [
+          "Most users should not need this. It is for development or isolated testing when origin-server is intentionally running on a different local port.",
+          "Use it together with isolated data so an MCP client does not accidentally talk to the wrong daemon.",
+        ],
+        code: {
+          label: "MCP connector",
+          code: mcpOriginUrlCommand,
         },
       },
       {
@@ -3220,9 +3237,9 @@ export const docPages: DocPage[] = [
     ],
     sections: [
       {
-        heading: "Is Origin a memory app?",
+        heading: "Is Origin just memory?",
         body: [
-          "Origin includes memory, but the product goal is broader than a generic memory app. It is a local memory layer for AI work so agents can carry decisions, context, handoffs, and source-backed pages across sessions and tools.",
+          "Origin includes memory, but the product goal is broader than generic memory. It is a local memory layer for AI work so agents can carry decisions, context, handoffs, and source-backed pages across sessions and tools.",
           "That distinction matters because Origin is designed around the work loop: brief, capture, recall, handoff, distill, inspect, and keep going.",
         ],
         link: {

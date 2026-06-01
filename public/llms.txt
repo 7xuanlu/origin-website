@@ -56,7 +56,7 @@
 - [Data and privacy](https://useorigin.app/docs/data-and-privacy): What lives where on disk, what leaves the machine, what does not.
 - [Backup and migration](https://useorigin.app/docs/backup-and-migration): Back up readable ~/.origin artifacts and daemon data together, then verify restored installs with doctor and recall.
 - [Configuration](https://useorigin.app/docs/configuration): Spaces, MCP client wiring, daemon bind address, local paths, models, and keys without hand-editing the database.
-- [Environment variables](https://useorigin.app/docs/environment-variables): Runtime, development, Windows repair, and eval environment variables such as ORIGIN_SPACE, ORIGIN_BIND_ADDR, ORIGIN_DATA_DIR, ORT_DYLIB_PATH, and EVAL_BASELINES_DIR.
+- [Environment variables](https://useorigin.app/docs/environment-variables): Runtime, development, Windows repair, and eval environment variables such as ORIGIN_SPACE, ORIGIN_HOST, ORIGIN_BIND_ADDR, ORIGIN_DATA_DIR, ORT_DYLIB_PATH, and EVAL_BASELINES_DIR.
 - [MCP clients](https://useorigin.app/docs/mcp-clients): Setup notes for Claude Code, Cursor, Codex, Claude Desktop, Gemini CLI, and VS Code.
 - [Agent profiles](https://useorigin.app/docs/agent-profiles): How Origin attributes captures to Claude Code, Codex, Cursor, local scripts, and other clients through source_agent, trust, and enabled state.
 - [Troubleshooting](https://useorigin.app/docs/troubleshooting): Common failure modes and the daemon repair paths.
