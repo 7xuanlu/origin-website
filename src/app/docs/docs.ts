@@ -172,6 +172,10 @@ origin search "MCP setup"
 origin store "We chose spaces for client separation" --type decision
 origin list --limit 10`;
 
+const agentCommands = `origin agents list
+origin agents show claude-code
+origin agents edit claude-code --trust trusted --enabled true`;
+
 const spaceCommands = `ORIGIN_SPACE=career claude
 
 origin space list
@@ -2440,6 +2444,85 @@ export const docPages: DocPage[] = [
           "After connecting a client, run its available Origin doctor or recall tool. Then capture one small durable fact and recall it from another session or client.",
           "If that round trip works, the client is using the same local memory layer.",
         ],
+      },
+    ],
+    nextSlug: "agent-profiles",
+  },
+  {
+    slug: "agent-profiles",
+    group: "Reference",
+    eyebrow: "Agents",
+    title: "Agent Profiles",
+    description:
+      "Inspect the AI clients and local tools that write to Origin, then manage source attribution, enabled state, and trust from the CLI.",
+    metaTitle: "Origin Agent Profiles | Docs",
+    metaDescription:
+      "Learn how Origin agent profiles identify Claude Code, Codex, Cursor, local scripts, and other clients through source_agent attribution, trust, enabled state, and CLI management.",
+    keywords: [
+      "Origin agent profiles",
+      "origin agents command",
+      "source_agent",
+      "AI client trust",
+      "MCP agent memory",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "4 min read",
+    summary: [
+      "Agent profiles help you see which client or tool produced a memory instead of treating every capture as anonymous.",
+      "They are operational metadata for attribution and trust; spaces still separate work contexts.",
+    ],
+    sections: [
+      {
+        heading: "What an agent profile is",
+        body: [
+          "An agent profile represents a writer or client that uses the local daemon: Claude Code, Codex, Cursor, Claude Desktop, Gemini CLI, or a local script.",
+          "Profiles make source attribution explicit. When memory has a source_agent value, later review and diagnostics can show where it came from.",
+        ],
+      },
+      {
+        heading: "Inspect registered agents",
+        body: [
+          "Use the CLI when you want to see which agents Origin knows about or inspect one profile in detail.",
+          "This is useful after connecting a new MCP client, debugging an unexpected capture source, or checking whether a client is enabled.",
+        ],
+        code: {
+          label: "Agent commands",
+          code: agentCommands,
+        },
+      },
+      {
+        heading: "Trust and enabled state",
+        body: [
+          "Trust is a signal for how Origin should treat a known writer; it is not a replacement for reviewing uncertain memory.",
+          "Enabled state is an operational switch for a profile. If a client is misconfigured or writing noisy captures, inspect the profile before deleting memory.",
+        ],
+        link: {
+          label: "Read review and trust",
+          href: "/docs/review-and-trust",
+        },
+      },
+      {
+        heading: "Profiles versus spaces",
+        body: [
+          "Agent profiles answer who wrote this. Spaces answer which work context this belongs to.",
+          "Keep both dimensions. A trusted Claude Code profile can still write into the wrong space if the workspace resolver or ORIGIN_SPACE is wrong.",
+        ],
+        link: {
+          label: "Read spaces",
+          href: "/docs/spaces",
+        },
+      },
+      {
+        heading: "When to care",
+        body: [
+          "Most users do not need to edit profiles during normal daily work. The profile page matters when multiple MCP clients write to the same store, when a script imports memory, or when review shows an unfamiliar source.",
+          "For normal setup, connect the client first, run doctor, then capture and recall one harmless fact to confirm the route.",
+        ],
+        link: {
+          label: "Connect MCP clients",
+          href: "/docs/mcp-clients",
+        },
       },
     ],
     nextSlug: "troubleshooting",

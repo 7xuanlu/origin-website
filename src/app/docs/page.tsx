@@ -59,7 +59,7 @@ const docsSections = [
   {
     title: "Reference",
     description:
-      "Glossary, architecture, commands, Claude Code plugin, CLI/service management, updates, upgrade notes, package names, platform support, HTTP API, API examples, spaces, graph context, pages, import paths, git history, retrieval status, local data, backup paths, configuration, MCP clients, diagnostics, FAQ, and repair paths.",
+      "Glossary, architecture, commands, Claude Code plugin, CLI/service management, updates, upgrade notes, package names, platform support, HTTP API, API examples, spaces, graph context, pages, import paths, git history, retrieval status, local data, backup paths, configuration, MCP clients, agent profiles, diagnostics, FAQ, and repair paths.",
     items: docPages
       .filter((page) => page.group === "Reference")
       .map((page) => ({
