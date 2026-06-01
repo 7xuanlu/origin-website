@@ -37,6 +37,7 @@
 - [HTTP API](https://useorigin.app/docs/http-api): Local daemon surfaces that the plugin, CLI, MCP connector, and local tools call under the hood.
 - [Spaces](https://useorigin.app/docs/spaces): Separate work, personal, client, and project memory buckets without running multiple Origin installs.
 - [Source-backed pages](https://useorigin.app/docs/source-backed-pages): How atomic captures become readable Markdown pages with source memory IDs, revision state, and refresh paths.
+- [Import and portability](https://useorigin.app/docs/import-and-portability): Import Markdown-style vault context and keep Origin's projected Markdown artifacts readable outside the daemon.
 - [Local git history](https://useorigin.app/docs/local-git-history): Inspect the real git history Origin keeps under ~/.origin/.git for pages, sessions, handoffs, and status artifacts.
 - [Models and keys](https://useorigin.app/docs/models-and-keys): No-model local memory mode, optional on-device models, optional Anthropic keys, and the privacy/capability tradeoffs.
 - [Advanced retrieval status](https://useorigin.app/docs/advanced-retrieval): Stable hybrid retrieval plus opt-in main-branch retrieval experiments and their release-status caveats.

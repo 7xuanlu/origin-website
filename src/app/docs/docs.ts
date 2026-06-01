@@ -79,6 +79,12 @@ origin space add ideas --default
 origin space show ideas
 origin space move scratch career`;
 
+const importPortabilityCommands = `origin import vault /path/to/markdown-vault
+
+# readable Origin artifacts
+ls ~/.origin/pages/
+ls ~/.origin/sessions/`;
+
 const gitHistoryCommands = `cd ~/.origin
 git log --oneline --decorate --all -20
 git show --stat HEAD
@@ -829,6 +835,80 @@ export const docPages: DocPage[] = [
         ],
       },
     ],
+    nextSlug: "import-and-portability",
+  },
+  {
+    slug: "import-and-portability",
+    group: "Reference",
+    eyebrow: "Portability",
+    title: "Import and Portability",
+    description:
+      "Bring existing Markdown vault context into Origin and keep Origin's readable artifacts portable outside the daemon.",
+    metaTitle: "Origin Import and Portability | Docs",
+    metaDescription:
+      "Import Markdown vault content into Origin, understand non-destructive import behavior, and read Origin's projected Markdown pages and session logs outside the daemon.",
+    keywords: [
+      "Origin import",
+      "Origin portability",
+      "Obsidian import",
+      "Markdown vault import",
+      "AI memory export",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    summary: [
+      "Origin can import Markdown-style vault content without moving or deleting the original files.",
+      "Origin's pages and session logs are readable Markdown, so the human record remains portable even though retrieval needs the daemon.",
+    ],
+    sections: [
+      {
+        heading: "What import is for",
+        body: [
+          "Import is useful when you already have durable project notes, meeting notes, research notes, or a Markdown vault that should become searchable AI work context.",
+          "Do not import everything just because it exists. Origin works best when imported material is useful to future agents, not when the memory layer becomes a bulk file mirror.",
+        ],
+      },
+      {
+        heading: "Import a Markdown vault",
+        body: [
+          "The vault import path reads Markdown files, chunks them, embeds them, and stores them as imported memories. The source vault is not moved or deleted.",
+          "Use a small representative vault first, then recall against it before importing a larger archive. That gives you a chance to see whether the imported context is useful or noisy.",
+        ],
+        code: {
+          label: "Terminal",
+          code: importPortabilityCommands,
+        },
+      },
+      {
+        heading: "Wikilinks and graph context",
+        body: [
+          "Markdown links and wiki-style relationships are useful signal, but they are not the same as the source-backed page model.",
+          "Imported links can help graph context. Source-backed pages are stronger when Origin can trace the synthesized claim to the source memories that produced it.",
+        ],
+      },
+      {
+        heading: "Keep ownership clear",
+        body: [
+          "If another app is your knowledge-base source of truth, keep using it for polished notes. Use Origin for the AI work loop: captures, handoffs, source-backed pages, recall, and cross-client context.",
+          "Running both is possible through MCP, but you still need a human rule for which system owns which kind of context.",
+        ],
+      },
+      {
+        heading: "Read Origin outside the daemon",
+        body: [
+          "Origin projects readable artifacts under ~/.origin, including pages and session handoffs. You can open those files in an editor or point a Markdown reader at them.",
+          "Plain-text access is not the same as full Origin behavior. Capture, recall, dedupe, distill, review, forget, and index updates still need the daemon and CLI/MCP paths.",
+        ],
+      },
+      {
+        heading: "Privacy and backup caution",
+        body: [
+          "Imported vaults and exported-looking Markdown can contain sensitive project history. Do not publish ~/.origin, sync it to a cloud drive, or attach it to an issue without redaction.",
+          "For backups, treat ~/.origin and the daemon data directory as private application data. If you need to recover or migrate machines, verify with origin doctor afterward so the daemon, index, and MCP config agree.",
+        ],
+      },
+    ],
     nextSlug: "local-git-history",
   },
   {
@@ -1571,8 +1651,8 @@ export const docPages: DocPage[] = [
       {
         heading: "Near-term documentation gaps",
         body: [
-          "The product docs should stay practical. Setup, daily workflow, capture quality, architecture, commands, CLI/service management, HTTP API, spaces, source-backed pages, local git history, models and keys, retrieval status, data and privacy, evaluation, and troubleshooting are the current core path.",
-          "The remaining gaps are deeper per-endpoint API examples, release-specific migration notes, and mature retrieval docs once opt-in experiments become stable defaults.",
+          "The product docs should stay practical. Setup, daily workflow, capture quality, architecture, commands, CLI/service management, HTTP API, spaces, source-backed pages, import and portability, local git history, models and keys, retrieval status, data and privacy, configuration, evaluation, and troubleshooting are the current core path.",
+          "The remaining gaps are deeper per-endpoint API examples, release-specific upgrade notes, and mature retrieval docs once opt-in experiments become stable defaults.",
         ],
       },
       {

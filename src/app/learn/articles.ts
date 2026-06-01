@@ -238,7 +238,7 @@ export const articles: LearnArticle[] = [
     readingTime: "5 min read",
     audience: "People using AI with sensitive work, client context, or private knowledge",
     heroBullets: [
-      "Your memory database stays on your Mac by default.",
+      "Your memory database stays on your machine by default.",
       "On-device intelligence processes memory without making cloud storage the default.",
       "Every memory remains visible, editable, and traceable.",
     ],
@@ -281,7 +281,7 @@ export const articles: LearnArticle[] = [
       {
         question: "Is Origin fully self-hosted?",
         answer:
-          "Origin is local-first on macOS Apple Silicon. The daemon and database run locally, and optional integrations may depend on the AI tools you connect.",
+          "Origin is local-first on macOS, Linux, and Windows. The daemon and database run locally, and optional integrations may depend on the AI tools you connect.",
       },
     ],
     relatedSlugs: ["ai-work-memory", "mcp-memory-server", "markdown-local-index-ai-memory"],
