@@ -44,6 +44,7 @@
 - [HTTP API](https://useorigin.app/docs/http-api): Local daemon surfaces that the plugin, CLI, MCP connector, and local tools call under the hood.
 - [API examples](https://useorigin.app/docs/api-examples): Local curl examples for daemon health, setup status, memory store/search, chat context, review, confirm, and page search.
 - [Spaces](https://useorigin.app/docs/spaces): Separate work, personal, client, and project memory buckets without running multiple Origin installs.
+- [Knowledge graph](https://useorigin.app/docs/knowledge-graph): How people, projects, tools, observations, and relations become graph context for retrieval without replacing source-backed memory.
 - [Source-backed pages](https://useorigin.app/docs/source-backed-pages): How atomic captures become readable Markdown pages with source memory IDs, revision state, and refresh paths.
 - [Import and portability](https://useorigin.app/docs/import-and-portability): Import Markdown-style vault context and keep Origin's projected Markdown artifacts readable outside the daemon.
 - [Local git history](https://useorigin.app/docs/local-git-history): Inspect the real git history Origin keeps under ~/.origin/.git for pages, sessions, handoffs, and status artifacts.

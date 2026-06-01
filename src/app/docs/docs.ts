@@ -1668,6 +1668,97 @@ export const docPages: DocPage[] = [
         ],
       },
     ],
+    nextSlug: "knowledge-graph",
+  },
+  {
+    slug: "knowledge-graph",
+    group: "Reference",
+    eyebrow: "Graph",
+    title: "Knowledge Graph",
+    description:
+      "Understand how Origin links people, projects, tools, observations, and relations so recall can recover context through more than text similarity.",
+    metaTitle: "Origin Knowledge Graph | Docs",
+    metaDescription:
+      "Learn how Origin's knowledge graph uses entities, relations, observations, post-ingest enrichment, imported wikilinks, and graph context during retrieval.",
+    keywords: [
+      "Origin knowledge graph",
+      "AI work knowledge graph",
+      "memory entities",
+      "graph context",
+      "local knowledge graph",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    summary: [
+      "The graph turns repeated names, projects, tools, and observations into retrievable context instead of leaving every memory isolated.",
+      "Graph context supplements hybrid search; it does not replace source-backed memories, pages, or human review.",
+    ],
+    sections: [
+      {
+        heading: "Why the graph exists",
+        body: [
+          "Text search can find matching words, and vector search can find similar meaning. The graph helps with relationships: who worked on what, which project uses which tool, and which observations belong together.",
+          "Origin uses graph context as part of the local memory layer so agents can recover surrounding facts without replaying a full chat history.",
+        ],
+      },
+      {
+        heading: "Entities, relations, observations",
+        body: [
+          "An entity is a named thing such as a person, project, tool, repo, or concept. A relation connects two entities. An observation is a grounded statement attached to an entity.",
+          "The goal is practical retrieval. The graph should help the next session find the right surrounding context, not become a hand-maintained ontology.",
+        ],
+        bullets: [
+          "Entity: Origin, Claude Code, a client project, a person, a tool, or a repo.",
+          "Relation: works_on, uses, depends_on, belongs_to, supersedes, or another useful link.",
+          "Observation: a sourced note about an entity that should help future recall.",
+        ],
+      },
+      {
+        heading: "How graph context is created",
+        body: [
+          "Post-ingest enrichment can link entities, deduplicate overlapping captures, enrich titles, grow matching pages, and update confidence. Optional local models or API keys can make extraction and graph linking richer.",
+          "Claude Code skills can also help because the agent already has language judgment during capture and distillation.",
+        ],
+        link: {
+          label: "Read models and keys",
+          href: "/docs/models-and-keys",
+        },
+      },
+      {
+        heading: "Wikilinks and imports",
+        body: [
+          "Imported Markdown vaults can carry useful links. Origin can preserve those relationships as graph signal while still treating imported content as context that should prove itself useful in recall.",
+          "Wikilinks are helpful, but they are not the same as source-backed page provenance. A page claim is stronger when it traces to specific source memory IDs.",
+        ],
+        link: {
+          label: "Read import and portability",
+          href: "/docs/import-and-portability",
+        },
+      },
+      {
+        heading: "Graph in retrieval",
+        body: [
+          "Hybrid retrieval can combine vectors, full-text search, pages, and graph context. The graph adds nearby related facts when text similarity alone would miss why a memory matters.",
+          "Treat graph context as support, not authority. The source memory, page provenance, and local git history remain the inspectable record.",
+        ],
+        link: {
+          label: "Read advanced retrieval",
+          href: "/docs/advanced-retrieval",
+        },
+      },
+      {
+        heading: "Review and cleanup",
+        body: [
+          "Graph data can be wrong when a name is ambiguous, a project changes direction, or an imported link was noisy. Use review, corrections, spaces, and forget when the memory layer needs cleanup.",
+          "If graph context feels like it is mixing unrelated worlds, check the active space before changing the data model. Many apparent graph problems are actually context-boundary problems.",
+        ],
+        link: {
+          label: "Read review and trust",
+          href: "/docs/review-and-trust",
+        },
+      },
+    ],
     nextSlug: "source-backed-pages",
   },
   {
@@ -2960,7 +3051,7 @@ export const docPages: DocPage[] = [
       {
         heading: "Near-term documentation gaps",
         body: [
-          "The product docs should stay practical. Setup, daily workflow, capture quality, architecture, commands, CLI/service management, updates, upgrade notes, packages, platform support, HTTP API, API examples, spaces, source-backed pages, import and portability, local git history, models and keys, retrieval status, data and privacy, backup and migration, configuration, diagnostics, FAQ, evaluation, desktop status, and troubleshooting are the current core path.",
+          "The product docs should stay practical. Setup, daily workflow, capture quality, architecture, commands, CLI/service management, updates, upgrade notes, packages, platform support, HTTP API, API examples, spaces, graph context, source-backed pages, import and portability, local git history, models and keys, retrieval status, data and privacy, backup and migration, configuration, diagnostics, FAQ, evaluation, desktop status, and troubleshooting are the current core path.",
           "The remaining gap is mature retrieval documentation once opt-in experiments become stable defaults.",
         ],
       },
