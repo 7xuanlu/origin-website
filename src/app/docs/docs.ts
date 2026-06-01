@@ -92,6 +92,20 @@ origin model status
 origin key status
 origin doctor`;
 
+const configurationKnobs = `ORIGIN_SPACE=client-a
+ORIGIN_BIND_ADDR=127.0.0.1:7878
+ORIGIN_BIND_ADDR=0.0.0.0:7878  # Docker or VM only`;
+
+const configurationFiles = `~/.origin/
+~/.origin/bin/
+~/.origin/db/
+~/.origin/pages/
+~/.origin/sessions/
+~/.origin/spaces.toml
+~/Library/Application Support/origin/
+~/.local/share/origin/
+%LOCALAPPDATA%\\origin\\`;
+
 const captureExamples = `/capture We chose source-backed pages because summaries need provenance.
 /capture Supersedes earlier setup docs: Windows now uses a Task Scheduler ONLOGON task.
 /capture Gotcha: Do not paste private memory contents into public issues.`;
@@ -1090,6 +1104,100 @@ export const docPages: DocPage[] = [
           "If a memory is wrong, capture the correction with why it supersedes the old fact. If a memory should be removed entirely, use /forget with the memory ID.",
           "For distilled pages, inspect the Markdown directly. User-edited pages are treated carefully so automated distillation does not overwrite human work casually.",
         ],
+      },
+    ],
+    nextSlug: "configuration",
+  },
+  {
+    slug: "configuration",
+    group: "Reference",
+    eyebrow: "Configuration",
+    title: "Configuration",
+    description:
+      "Know the Origin settings that matter: spaces, MCP client wiring, daemon bind address, local paths, models, and keys.",
+    metaTitle: "Origin Configuration | Docs",
+    metaDescription:
+      "Configure Origin spaces, MCP clients, daemon bind address, local paths, models, API keys, and repair checks without editing the database by hand.",
+    keywords: [
+      "Origin configuration",
+      "Origin settings",
+      "ORIGIN_SPACE",
+      "ORIGIN_BIND_ADDR",
+      "origin spaces.toml",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    summary: [
+      "Most configuration should go through /init, origin setup, origin mcp add, origin model, origin key, or origin space.",
+      "The only environment knobs most users need are ORIGIN_SPACE and, rarely, ORIGIN_BIND_ADDR.",
+    ],
+    sections: [
+      {
+        heading: "Use commands first",
+        body: [
+          "Origin is configured through the plugin, CLI, and MCP connector. Start with /init in Claude Code or npx -y @7xuanlu/origin setup for other MCP clients.",
+          "Use origin doctor after changing setup. It checks the daemon, local runtime, MCP connector, model state, key state, and common path issues.",
+        ],
+        code: {
+          label: "Setup checks",
+          code: "/init\norigin doctor",
+        },
+      },
+      {
+        heading: "Spaces",
+        body: [
+          "Spaces separate work, personal, client, and project memory without requiring multiple Origin installs. Set a space for a shell session with ORIGIN_SPACE, or define stable spaces in ~/.origin/spaces.toml.",
+          "Use origin space commands when you want the CLI to list, create, inspect, or move spaces instead of editing the file directly.",
+        ],
+        code: {
+          label: "Space config",
+          code: "ORIGIN_SPACE=client-a claude\norigin space list\norigin space add client-a",
+        },
+      },
+      {
+        heading: "MCP client wiring",
+        body: [
+          "MCP clients need to launch the same local origin-mcp connector. The normal path is origin mcp add because each client stores MCP config differently.",
+          "If a client requires manual JSON, use origin mcp add --dry-run to inspect the command path for your machine, then paste the generated shape into that client's settings.",
+        ],
+        code: {
+          label: "Client config",
+          code: mcpAddCommand,
+        },
+      },
+      {
+        heading: "Daemon bind address",
+        body: [
+          "The daemon binds to 127.0.0.1:7878 by default. That is the right setting for normal laptop use because the memory API stays local to the machine.",
+          "Only change ORIGIN_BIND_ADDR when you deliberately need a non-loopback bind, such as a Docker or VM environment. Exposing the daemon is a privacy decision, not a normal setup step.",
+        ],
+        code: {
+          label: "Environment",
+          code: configurationKnobs,
+        },
+      },
+      {
+        heading: "Local files",
+        body: [
+          "Human-facing Origin artifacts live under ~/.origin. The daemon-owned database and platform service files live under the OS application data location.",
+          "Read Markdown pages and session logs freely. Avoid hand-editing the database; use capture, review, distill, forget, and the CLI so the index, pages, and metadata stay consistent.",
+        ],
+        code: {
+          label: "Paths",
+          code: configurationFiles,
+        },
+      },
+      {
+        heading: "Models and keys",
+        body: [
+          "Origin works in local memory mode without a model download or API key. Configure a model or Anthropic key only when you want daemon-side language work such as richer extraction, recaps, or page synthesis.",
+          "Treat keys as an explicit opt-in. The connected AI client may already call its own provider during chat; Origin's model and key settings only cover daemon-side work.",
+        ],
+        link: {
+          label: "Read models and keys",
+          href: "/docs/models-and-keys",
+        },
       },
     ],
     nextSlug: "mcp-clients",
