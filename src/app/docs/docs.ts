@@ -373,6 +373,23 @@ const hookSetupCommands = `bash scripts/setup-hooks.sh
 git commit
 git push`;
 
+const developmentBoundaryRules = `origin-core      business logic; no Axum or Tauri
+origin-server    HTTP framing, not business logic
+origin-types     lightweight shared wire types
+origin-mcp       typed daemon responses, no JSON passthrough
+route handlers   snapshot state before awaits`;
+
+const developmentSafetyRules = `SQL:       parameterized queries only
+NULL:      store Option<T> as SQL NULL
+UTF-8:     do not byte-index Rust strings
+Batch SQL: wrap multi-row mutations in BEGIN/COMMIT
+Privacy:   redact memory contents in issues`;
+
+const developmentGotchas = `Product daemon: 127.0.0.1:7878 + platform data dir
+Isolated dev:   ORIGIN_PORT=7879 ORIGIN_DATA_DIR=/tmp/origin-test
+Squash merges:  verify by commit message/body, not git cherry alone
+Worktrees:      gitignored caches are per-checkout`;
+
 const retrievalFlags = `ORIGIN_ENABLE_GRAPH_GATE
 ORIGIN_ENABLE_TEMPORAL_FILTER
 ORIGIN_ENABLE_FTS_HARDENING
@@ -3558,7 +3575,7 @@ export const docPages: DocPage[] = [
       {
         heading: "Near-term documentation gaps",
         body: [
-          "The product docs should stay practical. Setup, daily workflow, capture quality, memory types, architecture, commands, CLI/service management, updates, upgrade notes, packages, platform support, HTTP API, API examples, spaces, graph context, source-backed pages, import and portability, local git history, models and keys, retrieval status, data and privacy, backup and migration, configuration, environment variables, diagnostics, FAQ, evaluation, desktop status, releases, testing, and troubleshooting are the current core path.",
+          "The product docs should stay practical. Setup, daily workflow, capture quality, memory types, architecture, commands, CLI/service management, updates, upgrade notes, packages, platform support, HTTP API, API examples, spaces, graph context, source-backed pages, import and portability, local git history, models and keys, retrieval status, data and privacy, backup and migration, configuration, environment variables, diagnostics, FAQ, evaluation, desktop status, releases, testing, development conventions, and troubleshooting are the current core path.",
           "The remaining gap is mature retrieval documentation once opt-in experiments become stable defaults.",
         ],
       },
@@ -3793,8 +3810,102 @@ export const docPages: DocPage[] = [
           "Docs-only changes still need a build. Code changes should include relevant tests or a clear explanation of why the behavior is covered elsewhere.",
         ],
         link: {
-          label: "Read contributing",
-          href: "/docs/contributing",
+          label: "Read development conventions",
+          href: "/docs/development-conventions",
+        },
+      },
+    ],
+    nextSlug: "development-conventions",
+  },
+  {
+    slug: "development-conventions",
+    group: "Project",
+    eyebrow: "Development",
+    title: "Development Conventions",
+    description:
+      "Codebase rules that keep Origin's daemon, CLI, MCP connector, shared types, and core logic maintainable.",
+    metaTitle: "Origin Development Conventions | Docs",
+    metaDescription:
+      "Learn Origin contributor conventions for crate boundaries, SQL safety, async state snapshots, typed MCP wrappers, dev/prod isolation, and worktree gotchas.",
+    keywords: [
+      "Origin development conventions",
+      "Origin crate boundaries",
+      "Origin SQL safety",
+      "Origin async locks",
+      "Origin MCP wrappers",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    summary: [
+      "Origin's maintainer rules keep the local daemon simple, testable, and careful around private work context.",
+      "Use these conventions when you change daemon behavior, MCP tools, storage, typed clients, or release-facing paths.",
+    ],
+    sections: [
+      {
+        heading: "Why conventions matter",
+        body: [
+          "Origin's daemon owns the local store that multiple AI clients read from and write to. A small boundary mistake can leak framework dependencies into core logic, change a public response shape, or make private data harder to inspect safely.",
+          "The conventions are intentionally practical: keep business logic in the core crate, keep public wire types stable, keep state snapshots short-lived, and keep user data out of public bug reports.",
+        ],
+      },
+      {
+        heading: "Crate boundaries",
+        body: [
+          "origin-core owns storage, retrieval, graph logic, pages, evals, and other business behavior. It should not depend on Axum or Tauri. origin-server should frame HTTP requests and call core logic instead of becoming a second business layer.",
+          "origin-types stays lightweight because it is shared by the daemon, MCP connector, CLI-adjacent tooling, desktop app, and downstream Rust clients. origin-mcp should deserialize daemon responses into typed structs so envelope drift fails loudly.",
+        ],
+        code: {
+          label: "Boundary map",
+          code: developmentBoundaryRules,
+        },
+        link: {
+          label: "Read architecture",
+          href: "/docs/architecture",
+        },
+      },
+      {
+        heading: "Data safety",
+        body: [
+          "Use parameterized SQL instead of interpolated query strings. Preserve Option<T> as SQL NULL so unset values stay distinguishable from empty strings.",
+          "Rust strings are UTF-8, so avoid byte indexing for user content. Wrap multi-row mutations in transactions, and redact memory contents before copying diagnostics into public issues.",
+        ],
+        code: {
+          label: "Storage rules",
+          code: developmentSafetyRules,
+        },
+      },
+      {
+        heading: "Async and state",
+        body: [
+          "Do not hold long-lived state guards across awaits. Route handlers should clone the small pieces they need, drop the lock, and then call storage, LLM, or eval code.",
+          "This matters most around LLM calls, imports, distillation, eval paths, and any request that can take longer than a normal local HTTP round trip.",
+        ],
+      },
+      {
+        heading: "Development gotchas",
+        body: [
+          "A source checkout can talk to the same product daemon and data directory that your installed Origin uses. For isolated development, run the daemon on a different port with a temporary data directory.",
+          "Worktrees have their own gitignored caches and generated artifacts. After squash merges, git cherry can mislead; verify integration by commit message, PR body, or the actual diff instead.",
+        ],
+        code: {
+          label: "Common gotchas",
+          code: developmentGotchas,
+        },
+        link: {
+          label: "Read environment variables",
+          href: "/docs/environment-variables",
+        },
+      },
+      {
+        heading: "Before changing shared behavior",
+        body: [
+          "Add the smallest relevant test before changing daemon behavior, public wire shapes, MCP tool outputs, or retrieval semantics. Keep PRs narrow enough that reviewers can reason about them.",
+          "If a change affects what users install, run, cite, or troubleshoot, update the matching docs page in the same PR.",
+        ],
+        link: {
+          label: "Read typed clients",
+          href: "/docs/typed-clients",
         },
       },
     ],
@@ -3869,9 +3980,13 @@ export const docPages: DocPage[] = [
       {
         heading: "Architecture rules",
         body: [
-          "origin-core owns business logic and must stay free of Axum and Tauri dependencies. origin-server frames HTTP requests. origin-types stays lightweight because it is shared by the server, MCP connector, CLI, and downstream clients.",
-          "MCP wrappers should deserialize typed wire responses instead of passing untyped JSON through silently. Route handlers should snapshot state before awaits instead of holding long-lived locks.",
+          "Keep the core crate framework-independent, keep origin-types lightweight, deserialize MCP responses into typed structs, and avoid holding long-lived locks across awaits.",
+          "The full convention list lives in the Development Conventions doc so this contributing page can stay focused on the contribution path.",
         ],
+        link: {
+          label: "Read development conventions",
+          href: "/docs/development-conventions",
+        },
       },
       {
         heading: "License",

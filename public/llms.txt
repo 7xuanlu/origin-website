@@ -70,6 +70,7 @@
 - [Project scope](https://useorigin.app/docs/project-scope): What Origin is for and what it deliberately avoids.
 - [Build from source](https://useorigin.app/docs/build-from-source): Source build, workspace crates, platform notes, and contributor checks.
 - [Testing and CI](https://useorigin.app/docs/testing-and-ci): Local checks, git hooks, PR CI, coverage policy, and manual eval boundaries for contributors.
+- [Development conventions](https://useorigin.app/docs/development-conventions): Crate boundaries, SQL safety, async state snapshots, typed MCP wrappers, dev/prod isolation, and worktree gotchas for contributors.
 - [Contributing](https://useorigin.app/docs/contributing): Development setup, useful issues, PR process, architecture rules, and license notes.
 
 ## Optional

@@ -73,7 +73,7 @@ const docsSections = [
   {
     title: "Project",
     description:
-      "Security reporting, evaluation, desktop status, changelog, release/versioning, roadmap, project scope, source builds, testing, CI, and contribution paths for people deciding whether Origin is credible enough to adopt or contribute to.",
+      "Security reporting, evaluation, desktop status, changelog, release/versioning, roadmap, project scope, source builds, testing, CI, development conventions, and contribution paths for people deciding whether Origin is credible enough to adopt or contribute to.",
     items: docPages
       .filter((page) => page.group === "Project")
       .map((page) => ({
@@ -182,7 +182,7 @@ export default function DocsPage() {
               New users should install first, run setup for their client, then
               read the daily workflow and core concepts. The project docs cover
               architecture, reference paths, evals, releases, scope, source
-              builds, roadmap, and contribution paths.
+              builds, roadmap, development conventions, and contribution paths.
             </p>
           </div>
 
