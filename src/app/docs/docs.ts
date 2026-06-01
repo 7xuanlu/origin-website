@@ -88,6 +88,21 @@ Windows: %LOCALAPPDATA%\\origin\\
 
 Readable artifacts: ~/.origin/`;
 
+const backupPaths = `Readable artifacts:
+~/.origin/
+
+Daemon application data:
+macOS:   ~/Library/Application Support/origin/
+Linux:   ~/.local/share/origin/ or $XDG_DATA_HOME/origin/
+Windows: %LOCALAPPDATA%\\origin\\`;
+
+const migrationChecks = `~/.origin/bin/origin status
+~/.origin/bin/origin doctor
+
+# then verify from the client:
+/brief
+/recall <known project fact>`;
+
 const cliDailyCommands = `origin recall "origin website positioning"
 origin search "MCP setup"
 origin store "We chose spaces for client separation" --type decision
@@ -1381,6 +1396,84 @@ export const docPages: DocPage[] = [
         ],
       },
     ],
+    nextSlug: "backup-and-migration",
+  },
+  {
+    slug: "backup-and-migration",
+    group: "Reference",
+    eyebrow: "Backup",
+    title: "Backup and Migration",
+    description:
+      "Back up Origin's readable artifacts and daemon data together, then verify the restored runtime before trusting recall.",
+    metaTitle: "Origin Backup and Migration | Docs",
+    metaDescription:
+      "Learn what to back up for Origin, how readable ~/.origin artifacts relate to daemon data, and how to verify a restored or migrated install.",
+    keywords: [
+      "Origin backup",
+      "Origin migration",
+      "backup AI memory",
+      "migrate Origin",
+      "Origin data directory",
+    ],
+    updatedAt: DOCS_UPDATED_AT,
+    author: DEFAULT_AUTHOR,
+    readingTime: "5 min read",
+    summary: [
+      "~/.origin contains readable artifacts, but the daemon data directory also matters for a complete backup.",
+      "After moving or restoring Origin, verify with status, doctor, and a capture/recall round trip from the client you use.",
+    ],
+    sections: [
+      {
+        heading: "What to back up",
+        body: [
+          "Back up the readable artifacts and the daemon application data together. The readable side gives you pages, sessions, status records, and local git history. The daemon data side keeps the database, index, config, and service-facing state.",
+          "A backup that only includes ~/.origin may preserve useful Markdown, but it should not be treated as a complete live runtime restore.",
+        ],
+        code: {
+          label: "Paths",
+          code: backupPaths,
+        },
+      },
+      {
+        heading: "Keep backups private",
+        body: [
+          "Origin memory can contain project decisions, private preferences, client names, sensitive repo details, and old versions preserved by local git history.",
+          "Do not put backups in a shared cloud folder, public issue, or team drive unless that is an intentional data-governance decision.",
+        ],
+      },
+      {
+        heading: "Before moving machines",
+        body: [
+          "Install the Origin runtime on the new machine first, then restore the backed-up data into the matching platform locations.",
+          "MCP client settings may contain absolute paths to origin-mcp. After migration, rerun origin mcp add for each client instead of assuming old settings still point to the right binary.",
+        ],
+      },
+      {
+        heading: "Verify after restore",
+        body: [
+          "Do not judge a migration from file presence alone. Verify the daemon can read the store, the MCP connector can reach the daemon, and the client can recall a known fact.",
+          "If doctor reports path or service problems, fix those before capturing new production memories on the restored machine.",
+        ],
+        code: {
+          label: "Checks",
+          code: migrationChecks,
+        },
+      },
+      {
+        heading: "Plain Markdown fallback",
+        body: [
+          "If you cannot restore the daemon immediately, the projected Markdown under ~/.origin is still useful as a human-readable fallback.",
+          "That fallback does not provide capture, recall, distill, review, forget, or index updates. Treat it as readable continuity, not a full Origin runtime.",
+        ],
+      },
+      {
+        heading: "Deletion is separate",
+        body: [
+          "Uninstalling Origin's service does not delete memory data. Deleting memory data is a separate decision because it can remove the only local record of project history.",
+          "When removing Origin permanently, review what is in ~/.origin and the daemon data directory first. For normal troubleshooting, keep the data and use doctor output to diagnose the install.",
+        ],
+      },
+    ],
     nextSlug: "configuration",
   },
   {
@@ -1922,7 +2015,7 @@ export const docPages: DocPage[] = [
       {
         heading: "Near-term documentation gaps",
         body: [
-          "The product docs should stay practical. Setup, daily workflow, capture quality, architecture, commands, CLI/service management, updates, platform support, HTTP API, spaces, source-backed pages, import and portability, local git history, models and keys, retrieval status, data and privacy, configuration, evaluation, and troubleshooting are the current core path.",
+          "The product docs should stay practical. Setup, daily workflow, capture quality, architecture, commands, CLI/service management, updates, platform support, HTTP API, spaces, source-backed pages, import and portability, local git history, models and keys, retrieval status, data and privacy, backup and migration, configuration, evaluation, and troubleshooting are the current core path.",
           "The remaining gaps are deeper per-endpoint API examples, release-specific upgrade notes, and mature retrieval docs once opt-in experiments become stable defaults.",
         ],
       },
