@@ -22,20 +22,6 @@ const homepageFaqSchema = {
   })),
 };
 
-const demoVideoSchema = {
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  name: "Origin Demo v0.5",
-  description:
-    "Walkthrough of Origin v0.5: capturing, recalling, and handing off AI work context across Claude Code, Cursor, and other MCP clients using one local memory daemon.",
-  thumbnailUrl: "https://i.ytimg.com/vi/k37gjWVPHwI/maxresdefault.jpg",
-  embedUrl: "https://www.youtube.com/embed/k37gjWVPHwI",
-  contentUrl: "https://www.youtube.com/watch?v=k37gjWVPHwI",
-  publisher: { "@id": "https://useorigin.app/#organization" },
-  author: { "@id": "https://useorigin.app/#qixuan-lu" },
-  inLanguage: "en-US",
-};
-
 const siteNavigationSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -212,10 +198,6 @@ export default function LandingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(demoVideoSchema) }}
       />
       {/* Nav */}
       <nav className="fixed top-0 z-40 w-full border-b border-[var(--o-border-subtle)] bg-[var(--o-nav-bg)] backdrop-blur-xl">

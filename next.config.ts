@@ -4,6 +4,10 @@ const NOINDEX_FOLLOW = [
   { key: "X-Robots-Tag", value: "noindex, follow" },
 ];
 
+const NOINDEX_ASSET = [
+  { key: "X-Robots-Tag", value: "noindex" },
+];
+
 const nextConfig: NextConfig = {
   outputFileTracingRoot: process.cwd(),
   turbopack: {
@@ -17,6 +21,7 @@ const nextConfig: NextConfig = {
       { source: "/humans.txt", headers: NOINDEX_FOLLOW },
       { source: "/manifest.webmanifest", headers: NOINDEX_FOLLOW },
       { source: "/.well-known/security.txt", headers: NOINDEX_FOLLOW },
+      { source: "/_next/static/media/:path*", headers: NOINDEX_ASSET },
     ];
   },
   async redirects() {
