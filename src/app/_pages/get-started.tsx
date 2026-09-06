@@ -1,4 +1,5 @@
 import { ArticleHalo, MemoryIndex } from "../(en)/learn/article-visuals";
+import { RuntimeInstallBlock } from "@/components/docs/runtime-install-block";
 import { getCoreContent } from "@/i18n/content";
 import { LOCALE_CONFIG, type Locale } from "@/i18n/locales";
 import { LocalizedLink } from "@/i18n/navigation";
@@ -132,15 +133,23 @@ export function GetStartedPage({ locale }: { locale: Locale }) {
                         {paragraph}
                       </p>
                     ))}
-                    {step.commands.map((command) => (
-                      <pre
-                        key={command}
-                        className="mt-6 overflow-x-auto rounded-xl border border-[var(--o-border)] bg-[var(--o-bg-deep)] p-5 font-mono text-sm leading-relaxed text-[var(--o-text-secondary)]"
-                      >
-                        <code>{command}</code>
-                      </pre>
-                    ))}
-                    {step.ctas.length > 0 && (
+                    {step.id === "install-runtime" ? (
+                      <RuntimeInstallBlock
+                        commands={step.commands}
+                        ctas={step.ctas}
+                        locale={locale}
+                      />
+                    ) : (
+                      <>
+                        {step.commands.map((command) => (
+                          <pre
+                            key={command}
+                            className="mt-6 overflow-x-auto rounded-xl border border-[var(--o-border)] bg-[var(--o-bg-deep)] p-5 font-mono text-sm leading-relaxed text-[var(--o-text-secondary)]"
+                          >
+                            <code>{command}</code>
+                          </pre>
+                        ))}
+                        {step.ctas.length > 0 && (
                       <div className="mt-7 flex min-w-0 flex-col gap-3 sm:flex-row">
                         {step.ctas.map((cta, index) => (
                           <TrackedLocalizedLink
@@ -160,6 +169,8 @@ export function GetStartedPage({ locale }: { locale: Locale }) {
                           </TrackedLocalizedLink>
                         ))}
                       </div>
+                        )}
+                      </>
                     )}
                   </div>
                 </section>

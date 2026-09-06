@@ -254,3 +254,44 @@ test("detection keeps Intel Macs on the download hub when hints are conclusive",
     null,
   );
 });
+
+test("asset ids reduce to install platform families", async () => {
+  const { platformKeyForAssetId } = await import(
+    "../src/lib/platform-recommendation.ts"
+  );
+  assert.equal(platformKeyForAssetId("windows-desktop-x64"), "windows");
+  assert.equal(platformKeyForAssetId("windows-x64"), "windows");
+  assert.equal(platformKeyForAssetId("macos-arm64"), "macos");
+  assert.equal(platformKeyForAssetId("macos-runtime-arm64"), "macos");
+  assert.equal(platformKeyForAssetId("linux-x64"), "linux");
+  assert.equal(platformKeyForAssetId("linux-arm64"), "linux");
+  assert.equal(platformKeyForAssetId(null), null);
+});
+
+test("install commands lead with the visitor platform", async () => {
+  const { orderInstallCommands } = await import(
+    "../src/lib/platform-recommendation.ts"
+  );
+  const commands = [
+    "# macOS Apple silicon\nnpx -y wenlan setup",
+    "# Linux x64 or ARM64\ncurl -fsSL https://example.com/install.sh | bash",
+    "# Windows x64\nwenlan setup --basic",
+  ];
+  assert.deepEqual(orderInstallCommands(commands, "windows"), [
+    commands[2],
+    commands[0],
+    commands[1],
+  ]);
+  assert.deepEqual(orderInstallCommands(commands, "macos"), commands);
+  assert.deepEqual(orderInstallCommands(commands, "linux"), [
+    commands[1],
+    commands[0],
+    commands[2],
+  ]);
+  assert.deepEqual(orderInstallCommands(commands, null), commands);
+  assert.deepEqual(
+    orderInstallCommands(["echo a", "echo b"], "windows"),
+    ["echo a", "echo b"],
+  );
+  assert.equal(commands.length, 3);
+});

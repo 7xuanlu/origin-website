@@ -54,6 +54,66 @@ export function recommendedReleaseAssetIdFromClientHints(
   return null;
 }
 
+export type InstallPlatformKey = "macos" | "windows" | "linux";
+
+/**
+ * Reduces a release asset id to its OS family for install-step ordering.
+ * Unknown or null ids stay null so callers keep copy order.
+ */
+export function platformKeyForAssetId(
+  id: WenlanReleaseAssetId | null,
+): InstallPlatformKey | null {
+  if (!id) {
+    return null;
+  }
+  if (id.startsWith("windows")) {
+    return "windows";
+  }
+  if (id.startsWith("macos")) {
+    return "macos";
+  }
+  if (id.startsWith("linux")) {
+    return "linux";
+  }
+  return null;
+}
+
+const INSTALL_COMMAND_MARKERS: Record<InstallPlatformKey, RegExp> = {
+  macos: /macos|mac os|darwin/i,
+  windows: /windows|win64/i,
+  linux: /linux/i,
+};
+
+function installCommandHead(command: string): string {
+  return command.split("\n")[0] ?? command;
+}
+
+/**
+ * Orders runtime install command blocks so the visitor's platform comes
+ * first and the rest keep copy order. Matching reads each block's own
+ * header line (e.g. "# macOS Apple silicon"), so a copy reorder cannot
+ * silently misassign a block; unrecognized input keeps copy order.
+ */
+export function orderInstallCommands(
+  commands: readonly string[],
+  platform: InstallPlatformKey | null,
+): readonly string[] {
+  if (!platform) {
+    return commands;
+  }
+  const marker = INSTALL_COMMAND_MARKERS[platform];
+  const matched = commands.filter((command) =>
+    marker.test(installCommandHead(command)),
+  );
+  if (matched.length === 0) {
+    return commands;
+  }
+  const rest = commands.filter(
+    (command) => !marker.test(installCommandHead(command)),
+  );
+  return [...matched, ...rest];
+}
+
 /**
  * Upgrades a headless runtime build to the desktop installer for the same
  * OS when the release publishes one. Unknown ids pass through unchanged.
