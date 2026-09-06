@@ -131,17 +131,16 @@ export function AboutPage({ locale }: { locale: Locale }) {
             <div className="space-y-14">
               {whySection && <ArticleTextSection section={whySection} />}
 
-              <section className="grid gap-5 sm:grid-cols-[72px_1fr]">
-                <p className="font-mono text-[11px] text-[var(--o-warm)]">02</p>
+              <section>
                 <div>
                   <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
                     {content.principles.title}
                   </h2>
-                  <div className="mt-6 divide-y divide-[var(--o-border-subtle)] border-y border-[var(--o-border-subtle)]">
+                  <div className="mt-6 space-y-8">
                     {content.principles.items.map((principle) => (
                       <div
                         key={principle.id}
-                        className="grid gap-3 py-5 sm:grid-cols-[180px_1fr]"
+                        className="grid gap-3 sm:grid-cols-[180px_1fr]"
                       >
                         <h3 className="font-serif text-xl font-medium tracking-tight text-[var(--o-text)]">
                           {principle.title}
@@ -226,8 +225,7 @@ function ArticleTextSection({
   withAuthorLink?: boolean;
 }) {
   return (
-    <section className="grid gap-5 sm:grid-cols-[72px_1fr]">
-      <p className="font-mono text-[11px] text-[var(--o-warm)]">{section.number}</p>
+    <section>
       <div>
         <h2 className="font-serif text-3xl font-medium tracking-tight text-[var(--o-text)]">
           {section.title}
