@@ -39,7 +39,7 @@ export function DownloadSection({
               placement="home-download"
               locale={locale}
               context="setup"
-              className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--o-text)] underline decoration-[var(--o-warm)]/60 underline-offset-4 transition-colors hover:text-[var(--o-warm)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)]"
+              className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--o-text)] underline decoration-[var(--o-warm)]/60 underline-offset-4 transition-colors hover:text-[var(--o-warm)] focus-wenlan"
             >
               {copy.recommendation.allDownloadsLabel}
             </TrackedLocalizedLink>

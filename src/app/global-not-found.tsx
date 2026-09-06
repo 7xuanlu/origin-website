@@ -93,13 +93,13 @@ export default function GlobalNotFound() {
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a
                 href="/"
-                className="rounded-xl bg-[var(--o-text)] px-5 py-3 text-center text-sm font-semibold text-[var(--o-bg)] transition-all hover:shadow-[0_0_28px_var(--o-glow-warm)]"
+                className="btn-wenlan btn-wenlan-primary"
               >
                 Back to home
               </a>
               <a
                 href="/learn"
-                className="rounded-xl border border-[var(--o-border)] px-5 py-3 text-center text-sm font-medium text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-text)]"
+                className="btn-wenlan btn-wenlan-secondary"
               >
                 Browse articles
               </a>
@@ -114,7 +114,7 @@ export default function GlobalNotFound() {
                   <a
                     key={destination.href}
                     href={destination.href}
-                    className="card-wenlan group block rounded-xl p-5 transition-transform duration-150 hover:-translate-y-1"
+                    className="card-wenlan group block p-5"
                   >
                     <p className="font-serif text-lg font-medium tracking-tight text-[var(--o-text)]">
                       {destination.label}

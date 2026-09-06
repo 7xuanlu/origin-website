@@ -88,7 +88,7 @@ export function DownloadRecommendation({
               placement="home-download"
               locale={locale}
               context="home"
-              className="mt-auto inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-[var(--o-text)] px-5 py-3 text-sm font-semibold text-[var(--o-bg)] transition-transform duration-150 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)] sm:w-fit"
+              className="mt-auto inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-[var(--o-text)] px-5 py-3 text-sm font-semibold text-[var(--o-bg)] press-wenlan focus-wenlan sm:w-fit"
             >
               {platform.actionLabel}
             </TrackedLink>
@@ -107,7 +107,7 @@ export function DownloadRecommendation({
               placement="home-download"
               locale={locale}
               context="setup"
-              className="mt-auto inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-[var(--o-text)] px-5 py-3 text-sm font-semibold text-[var(--o-bg)] transition-transform duration-150 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)] sm:w-fit"
+              className="mt-auto inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-[var(--o-text)] px-5 py-3 text-sm font-semibold text-[var(--o-bg)] press-wenlan focus-wenlan sm:w-fit"
             >
               {copy.fallbackActionLabel}
             </TrackedLocalizedLink>

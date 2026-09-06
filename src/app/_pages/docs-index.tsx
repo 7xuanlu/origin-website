@@ -3,6 +3,8 @@ import { getCoreContent } from "@/i18n/content";
 import type { Locale } from "@/i18n/locales";
 import { LocalizedLink } from "@/i18n/navigation";
 import { canonicalUrl } from "@/i18n/routing";
+import { Spotlight } from "@/components/spotlight";
+import { DocItemIcon } from "@/components/docs/doc-icons";
 
 export function DocsIndexPage({ locale }: { locale: Locale }) {
   const dictionary = getCoreContent(locale);
@@ -101,7 +103,7 @@ export function DocsIndexPage({ locale }: { locale: Locale }) {
             </p>
           </div>
 
-          <div className="mt-14 space-y-16">
+          <Spotlight className="mt-14 space-y-16">
             {docsSections.map((section) => (
               <section key={section.id}>
                 <div className="mb-6">
@@ -118,13 +120,17 @@ export function DocsIndexPage({ locale }: { locale: Locale }) {
                       key={item.href}
                       href={item.href}
                       locale={locale}
-                      className="card-wenlan group relative overflow-hidden rounded-xl p-7 transition-transform duration-150 hover:-translate-y-1"
+                      className={`card-wenlan p-6 sm:p-7${item.id === "get-started" ? " card-wenlan-featured md:col-span-2" : ""}`}
                     >
-                      <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full border border-[var(--o-border-subtle)] opacity-50 transition-transform duration-300 group-hover:scale-110" />
-                      <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-warm)]/80 uppercase">
-                        {item.label}
-                      </p>
-                      <h3 className="mt-6 font-serif text-2xl font-medium tracking-tight text-[var(--o-text)]">
+                      <div className="flex items-center gap-2.5">
+                        <span className="icon-tile" aria-hidden="true">
+                          <DocItemIcon id={item.id} />
+                        </span>
+                        <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-warm)]/80 uppercase">
+                          {item.label}
+                        </p>
+                      </div>
+                      <h3 className="mt-5 font-serif text-2xl font-medium tracking-tight text-[var(--o-text)]">
                         {item.title}
                       </h3>
                       <p className="mt-4 text-sm leading-relaxed text-[var(--o-text-muted)]">
@@ -140,23 +146,25 @@ export function DocsIndexPage({ locale }: { locale: Locale }) {
                 </div>
               </section>
             ))}
-          </div>
+          </Spotlight>
 
-          <section className="mt-20 rounded-2xl border border-[var(--o-border)] bg-[var(--o-card-bg)] p-8 text-center">
-            <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">
-              {content.cta.eyebrow}
-            </p>
-            <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-              {content.cta.title}
-            </h2>
-            <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-[var(--o-text-secondary)]">
-              {content.cta.body}
-            </p>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <section className="mt-20 rounded-lg border border-[var(--o-border)] bg-[var(--o-card-bg)] p-8 sm:flex sm:items-center sm:gap-12">
+            <div className="sm:flex-1">
+              <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/70 uppercase">
+                {content.cta.eyebrow}
+              </p>
+              <h2 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
+                {content.cta.title}
+              </h2>
+              <p className="mt-6 max-w-md text-base leading-relaxed text-[var(--o-text-secondary)]">
+                {content.cta.body}
+              </p>
+            </div>
+            <div className="mt-10 flex flex-col gap-4 sm:mt-0 sm:w-56 sm:flex-none">
               <LocalizedLink
                 href={content.cta.primary.href}
                 locale={locale}
-                className="rounded-xl bg-[var(--o-text)] px-6 py-3 text-sm font-semibold text-[var(--o-bg)] transition-all duration-150 hover:opacity-90"
+                className="btn-wenlan btn-wenlan-primary"
               >
                 {content.cta.primary.label}
               </LocalizedLink>
@@ -164,7 +172,7 @@ export function DocsIndexPage({ locale }: { locale: Locale }) {
                 href={content.cta.secondary.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-xl border border-[var(--o-border)] px-6 py-3 text-sm font-medium text-[var(--o-text-secondary)] transition-all duration-150 hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)]"
+                className="btn-wenlan btn-wenlan-secondary"
               >
                 {content.cta.secondary.label}
               </a>

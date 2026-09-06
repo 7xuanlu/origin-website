@@ -405,7 +405,7 @@ export default async function LocalizedLearnSlugPage({
           <div className="mx-auto max-w-5xl">
             <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4 md:grid-cols-3">
               {article.heroBullets.map((bullet, index) => (
-                <div key={bullet} className="card-wenlan rounded-xl p-5">
+                <div key={bullet} className="card-wenlan p-5">
                   <p className="mb-5 font-mono text-[11px] text-[var(--o-warm)]">
                     {(index + 1).toString().padStart(2, "0")}
                   </p>

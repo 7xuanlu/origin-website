@@ -23,14 +23,14 @@ export function NotFoundPage({ locale }: { locale: Locale }) {
           <LocalizedLink
             href="/"
             locale={locale}
-            className="rounded-xl bg-[var(--o-text)] px-5 py-3 text-center text-sm font-semibold text-[var(--o-bg)] transition-all hover:shadow-[0_0_28px_var(--o-glow-warm)]"
+            className="btn-wenlan btn-wenlan-primary"
           >
             {content.primaryCta}
           </LocalizedLink>
           <LocalizedLink
             href="/learn"
             locale={locale}
-            className="rounded-xl border border-[var(--o-border)] px-5 py-3 text-center text-sm font-medium text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-text)]"
+            className="btn-wenlan btn-wenlan-secondary"
           >
             {content.secondaryCta}
           </LocalizedLink>
@@ -46,7 +46,7 @@ export function NotFoundPage({ locale }: { locale: Locale }) {
                 key={destination.id}
                 href={destination.href}
                 locale={locale}
-                className="card-wenlan group block rounded-xl p-5 transition-transform duration-150 hover:-translate-y-1"
+                className="card-wenlan group block p-5"
               >
                 <p className="font-serif text-lg font-medium tracking-tight text-[var(--o-text)]">
                   {destination.label}

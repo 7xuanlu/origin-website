@@ -112,7 +112,7 @@ export function LocalizedLearnIndexPage({ locale }: { locale: TranslatedLocale }
                 placement="learn-grid"
                 locale={locale}
                 context="concepts"
-                className="card-wenlan group relative overflow-hidden rounded-xl p-7 transition-transform duration-150 hover:-translate-y-1"
+                className="card-wenlan group p-7"
               >
                 <p className="font-mono text-[10px] tracking-[0.24em] text-[var(--o-warm)]/80 uppercase">
                   {article.eyebrow}
