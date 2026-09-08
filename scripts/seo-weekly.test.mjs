@@ -195,7 +195,7 @@ const expectedArticleDates = new Map([
   ],
   [
     "/learn/choose-ai-knowledge-base-tool",
-    { datePublished: "2026-08-02", dateModified: "2026-08-02" },
+    { datePublished: "2026-08-02", dateModified: "2026-09-07" },
   ],
   [
     "/learn/build-local-ai-knowledge-base-from-documents",
@@ -219,11 +219,11 @@ const expectedArticleDates = new Map([
   ],
   [
     "/zh-TW/learn/choose-ai-knowledge-base-tool",
-    { datePublished: "2026-08-02", dateModified: "2026-08-02" },
+    { datePublished: "2026-08-02", dateModified: "2026-09-07" },
   ],
   [
     "/zh-CN/learn/choose-ai-knowledge-base-tool",
-    { datePublished: "2026-08-02", dateModified: "2026-08-02" },
+    { datePublished: "2026-08-02", dateModified: "2026-09-07" },
   ],
   [
     "/zh-TW/learn/verify-ai-knowledge-base-citations",
@@ -235,16 +235,6 @@ const expectedArticleDates = new Map([
   ],
 ]);
 const builtArticleDates = new Map(expectedArticleDates);
-for (const path of [
-  "/learn/choose-ai-knowledge-base-tool",
-  "/zh-TW/learn/choose-ai-knowledge-base-tool",
-  "/zh-CN/learn/choose-ai-knowledge-base-tool",
-]) {
-  builtArticleDates.set(path, {
-    ...builtArticleDates.get(path),
-    dateModified: "2026-09-07",
-  });
-}
 const requiredLocalizedBuiltHtmlPages = requiredLocalizedLearnPaths.map((path) => ({
   path: `${path.slice(1)}.html`,
   canonical: `https://wenlan.app${path}`,
