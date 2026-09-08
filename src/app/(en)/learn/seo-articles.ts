@@ -1792,7 +1792,7 @@ const workflowArticles: BaseSpec[] = [
       "AI knowledge base evaluation",
     ],
     publishedAt: "2026-08-02",
-    updatedAt: "2026-08-02",
+    updatedAt: "2026-09-07",
     audience:
       "People choosing a document, local-note, RAG, or maintained knowledge system for AI agents",
     heroBullets: [

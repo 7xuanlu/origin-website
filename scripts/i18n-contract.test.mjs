@@ -4,8 +4,29 @@ import { resolve } from "node:path";
 import test from "node:test";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import { buildSectionIds } from "../src/app/[locale]/learn/[slug]/section-ids.ts";
+import { getLocalizedLearnArticles } from "../src/i18n/learn-articles.ts";
 
 const repoRoot = resolve(import.meta.dirname, "..");
+
+test("localized learn section ids remain unique and deterministic", () => {
+  assert.deepEqual(
+    buildSectionIds(["AI", "AI", "AI 2", "!!!", "section 5", "!!!"]),
+    ["ai", "ai-2", "ai-2-2", "section-4", "section-5", "section-6"],
+  );
+  assert.deepEqual(buildSectionIds(["!!!", "section 1"]), ["section-1", "section-1-2"]);
+
+  for (const locale of ["zh-TW", "zh-CN"]) {
+    for (const article of getLocalizedLearnArticles(locale)) {
+      const ids = buildSectionIds(article.sections.map((section) => section.heading), article.sections.map((section) => section.id));
+      assert.equal(
+        new Set(ids).size,
+        ids.length,
+        `${locale}/${article.slug} section ids should be unique`,
+      );
+    }
+  }
+});
 
 let modulesPromise;
 
@@ -98,6 +119,9 @@ const allowedUnchangedLeafValues = new Set([
 
 const allowedUnchangedLeafPaths = new Set(["notFound.eyebrow"]);
 
+// Named products and format identifiers are not untranslated UI prose.
+const comparisonIdentifiers = new Set(["LLM Wiki", "LLM Wiki · nashsu", "NotebookLM", "Google · Gemini Notebook", "Word · PDF · PPT · Markdown"]);
+
 function findHiddenFallbackLeaves(
   unitKey,
   englishContent,
@@ -126,6 +150,8 @@ function requiresTranslatedDifference(unitKey, path, value, protectedTokens) {
 }
 
 function isAllowedUnchangedLeaf(unitKey, path, value) {
+  if (unitKey === "home" && /^redesign\.pains\.generations\[\d+\]\.tabLabel$/.test(path) && value === "LLM Wiki") return true;
+  if (unitKey === "home" && /^redesign\.pains\.generations\[\d+\]\.(name|eyebrow)$/.test(path) && comparisonIdentifiers.has(value)) return true;
   if (isIdLeafPath(path)) return true;
   if (isHrefLeafPath(path)) return true;
   if (isCommandLeafPath(path)) return true;
@@ -298,7 +324,7 @@ test("bilingual Wenlan wordmark keeps Latin Fraunces and Chinese sans paired", a
 
   const homeSource = await readFile(resolve(repoRoot, "src/app/_pages/home.tsx"), "utf8");
   assert.match(homeSource, /<BrandWordmark\s+label=\{content\.nav\.brand\}\s+variant="nav"\s+\/>/);
-  assert.match(homeSource, /<BrandWordmark\s+label=\{content\.hero\.title\}\s+variant="hero"\s+\/>/);
+  assert.match(homeSource, /\{redesign\.hero\.eyebrow\}/);
 
   const footerSource = await readFile(resolve(repoRoot, "src/components/site-footer.tsx"), "utf8");
   assert.match(footerSource, /<BrandWordmark\s+label=\{content\.signature\.brand\}\s+variant="footer"\s+\/>/);
@@ -315,12 +341,19 @@ test("bilingual Wenlan wordmark keeps Latin Fraunces and Chinese sans paired", a
 
 test("home nav exposes a route-preserving locale switcher", async () => {
   const source = await readFile(resolve(repoRoot, "src/app/_pages/home.tsx"), "utf8");
+  const switcher = await readFile(resolve(repoRoot, "src/components/language-switcher.tsx"), "utf8");
 
-  assert.match(source, /SUPPORTED_LOCALES/);
-  assert.match(source, /function\s+LanguageSwitcher/);
+  assert.match(source, /import \{ LanguageSwitcher \} from "@\/components\/language-switcher"/);
   assert.match(source, /<LanguageSwitcher\s+locale=\{locale\}\s+href="\/"\s+\/>/);
-  assert.match(source, /localizedHrefForLocale\(targetLocale,\s*href\)/);
-  assert.match(source, /aria-current=\{targetLocale === locale \? "true" : undefined\}/);
+  assert.match(switcher, /SUPPORTED_LOCALES\.map/);
+  assert.match(switcher, /localizedHrefForLocale\(targetLocale,\s*href\)/);
+  assert.match(switcher, /aria-current=\{active \? "true" : undefined\}/);
+  assert.match(switcher, /<details\b/);
+  assert.match(switcher, /<summary\b/);
+  assert.match(switcher, /hrefLang=\{hreflangByLocale\[targetLocale\]\}/);
+  assert.match(switcher, /event\.key !== "Escape"/);
+  assert.match(switcher, /removeEventListener\("pointerdown"/);
+  assert.doesNotMatch(switcher, /role="menu/);
 });
 
 test("root SoftwareApplication JSON-LD keeps English featureList off translated locales", async () => {
@@ -424,8 +457,8 @@ test("localized core page wrappers and shared page modules exist", async () => {
 test("localized home hero allows long words to wrap on mobile", async () => {
   const source = await readFile(resolve(repoRoot, "src/app/_pages/home.tsx"), "utf8");
 
-  assert.match(source, /className="min-w-0 lg:col-span-6"/);
-  assert.match(source, /className="[^"]*\bbreak-words\b[^"]*"/);
+  assert.match(source, /className="[^"]*\bmin-w-0 lg:col-span-6\b[^"]*"/);
+  assert.match(source, /className=\{`[^`]*\bbreak-words\b[^`]*`\}/);
 });
 
 test("home renders direct localized acquisition links to the core wiki guides", async () => {
@@ -1629,7 +1662,7 @@ test("zh-TW LLM Wiki guide owns the Karpathy v2 and AI knowledge-base intent", a
   assert.match(article.metaTitle, /Karpathy LLM Wiki/);
   assert.match(article.metaTitle, /AI 知識庫/);
   assert.equal(article.publishedAt, "2026-07-04");
-  assert.equal(article.updatedAt, "2026-08-12");
+  assert.equal(article.updatedAt, "2026-09-05");
   assert.match(article.sections[0].heading, /Karpathy LLM Wiki/);
   assert.match(JSON.stringify(article), /不代表 Karpathy 為 Wenlan 背書/);
   assert.ok(article.keywords.includes("AI 知識庫"));
@@ -1637,7 +1670,7 @@ test("zh-TW LLM Wiki guide owns the Karpathy v2 and AI knowledge-base intent", a
   assert.ok(article.keywords.includes("RAG vs LLM Wiki"));
 
   const headings = article.sections.map((section) => section.heading);
-  assert.equal(headings.length, 9);
+  assert.equal(headings.length, 11);
   assert.ok(headings.includes("LLM Wiki 知識庫和 RAG 有什麼不同"));
   assert.ok(headings.includes("如何搭建會持續更新的 AI 知識庫"));
   assert.ok(headings.includes("如何驗證知識庫真的可用"));
@@ -1679,7 +1712,7 @@ test("zh-CN LLM wiki guide owns the AI knowledge-base search intent", async () =
   assert.match(article.title, /Karpathy LLM Wiki/);
   assert.match(article.metaTitle, /AI 知识库/);
   assert.equal(article.publishedAt, "2026-07-04");
-  assert.equal(article.updatedAt, "2026-08-12");
+  assert.equal(article.updatedAt, "2026-09-05");
   assert.match(article.sections[0].heading, /Karpathy LLM Wiki/);
   assert.match(JSON.stringify(article), /不代表 Karpathy 为 Wenlan 背书/);
   assert.ok(article.keywords.includes("AI 知识库"));
@@ -1945,7 +1978,7 @@ test("AI knowledge-base tool-selection guide is available in all acquisition loc
     "How to Choose an AI Knowledge Base Tool: 8 Tests That Matter",
   );
   assert.equal(english.publishedAt, "2026-08-02");
-  assert.equal(english.updatedAt, "2026-08-02");
+  assert.equal(english.updatedAt, "2026-09-07");
   assert.ok(english.keywords.includes("AI knowledge base tools"));
   assert.equal(english.heroBullets.length, 3);
   assert.equal(english.sections[2]?.bullets?.length, 8);
@@ -1977,7 +2010,7 @@ test("AI knowledge-base tool-selection guide is available in all acquisition loc
     assert.ok(article);
     assert.equal(article.title, expected.title);
     assert.equal(article.publishedAt, "2026-08-02");
-    assert.equal(article.updatedAt, "2026-08-02");
+    assert.equal(article.updatedAt, "2026-09-07");
     assert.ok(article.keywords.includes(expected.keyword));
     const text = JSON.stringify(article);
     assert.match(text, new RegExp(expected.source));
@@ -2164,7 +2197,7 @@ test("sitemap includes localized core and Mandarin acquisition routes", async ()
   assert.ok(zhTWLLMWiki);
   assert.equal(
     new Date(zhTWLLMWiki.lastModified).toISOString().slice(0, 10),
-    "2026-08-12",
+    "2026-09-05",
   );
   assert.equal(urls.has("https://wenlan.app/zh-TW/docs/daily-workflow"), false);
   assert.equal(urls.has("https://wenlan.app/zh-CN/docs/daily-workflow"), false);
@@ -2451,11 +2484,11 @@ test("home SEO copy presents LLM wiki positioning in English and Mandarin", asyn
   );
   assert.equal(
     content.enContent.home.content.seo.description,
-    "Wenlan is an LLM wiki for AI work: agents capture what they learn, you add sources you trust, and the local daemon keeps source-backed wiki pages current.",
+    "Wenlan is a source-backed AI knowledge base and LLM wiki for AI work: organize documents and decisions into pages you can find, inspect, and review.",
   );
   assert.match(
-    content.enContent.home.content.hero.description,
-    /LLM wiki for AI work/,
+    content.enContent.home.content.redesign.hero.eyebrow,
+    /living wiki/i,
   );
 
   const expected = {
@@ -2463,11 +2496,25 @@ test("home SEO copy presents LLM wiki positioning in English and Mandarin", asyn
       name: "文瀾",
       sourceBacked: "有來源依據",
       staleHomePhrase: /活個人知識庫|AI-native/,
+      hero: {
+        eyebrow: /Living Wiki/,
+        notes: /筆記一直在累積/,
+        continuation: /工作.*從頭來/,
+        sourceBacked: /有來源、能持續更新的 Wiki/,
+        buildOn: /接著往前做/,
+      },
     },
     "zh-CN": {
       name: "文澜",
       sourceBacked: "有来源依据",
       staleHomePhrase: /活个人知识库|AI-native/,
+      hero: {
+        eyebrow: /Living Wiki/,
+        notes: /笔记一直在积累/,
+        continuation: /工作.*从头来/,
+        sourceBacked: /有来源、能持续更新的 Wiki/,
+        buildOn: /接着往前做/,
+      },
     },
   };
 
@@ -2483,23 +2530,26 @@ test("home SEO copy presents LLM wiki positioning in English and Mandarin", asyn
       new RegExp(localeExpected.sourceBacked),
       `${locale}.home.seo.description.sourceBacked`,
     );
-    assert.match(home.hero.description, /AI 工作的 LLM wiki/, `${locale}.home.hero.description`);
-    assert.match(home.hero.description, /AI\u00a0代理/, `${locale}.home.hero.description.agent`);
+    assert.match(home.redesign.hero.eyebrow, localeExpected.hero.eyebrow, `${locale}.home.hero.category`);
+    assert.match(home.redesign.hero.headline.pre, localeExpected.hero.notes, `${locale}.home.hero.notes`);
+    assert.match(home.redesign.hero.headline.emphasis, localeExpected.hero.continuation, `${locale}.home.hero.continuation`);
+    assert.match(home.redesign.hero.description, localeExpected.hero.sourceBacked, `${locale}.home.hero.description.sourceBacked`);
+    assert.match(home.redesign.hero.description, localeExpected.hero.buildOn, `${locale}.home.hero.description.continuation`);
     assert.match(home.faqs.items[0].a, /LLM wiki/, `${locale}.home.faq.whatIsWenlan`);
     assert.doesNotMatch(renderedHome, localeExpected.staleHomePhrase, `${locale}.home.stale`);
   }
 });
 
-test("Chinese hero copy keeps short AI compounds together", async () => {
+test("Chinese hero copy preserves the continuation promise and setup keeps short AI compounds together", async () => {
   const { content } = await loadI18nModules();
 
   for (const locale of ["zh-TW", "zh-CN"]) {
     const dictionary = content.localizedContentByLocale[locale];
 
     assert.match(
-      dictionary.home.content.hero.description,
-      /AI\u00a0代理/,
-      `${locale}.home.hero.description.agent`,
+      dictionary.home.content.redesign.hero.description,
+      /有來源、能持續更新的 Wiki|有来源、能持续更新的 Wiki/,
+      `${locale}.home.hero.description.sourceBacked`,
     );
     assert.match(
       dictionary.getStarted.content.hero.title,
@@ -2712,7 +2762,7 @@ test("English core content records the current SEO title and description subset"
   );
   assert.equal(
     content.enContent.home.content.seo.description,
-    "Wenlan is an LLM wiki for AI work: agents capture what they learn, you add sources you trust, and the local daemon keeps source-backed wiki pages current.",
+    "Wenlan is a source-backed AI knowledge base and LLM wiki for AI work: organize documents and decisions into pages you can find, inspect, and review.",
   );
   assert.equal(
     content.enContent.about.content.seo.title,
@@ -2851,6 +2901,36 @@ test("translated content dictionaries preserve protected tokens from English con
         `${locale}.${key}`,
       );
     }
+  }
+});
+
+test("localized hero brand aliases stay script-specific and required", async () => {
+  const { content, protectedTokens } = await loadI18nModules();
+  const aliases = {
+    "zh-TW": { expected: "文瀾", wrong: "文澜" },
+    "zh-CN": { expected: "文澜", wrong: "文瀾" },
+  };
+
+  for (const [locale, { expected, wrong }] of Object.entries(aliases)) {
+    const source = content.enContent.home.content;
+    const intact = structuredClone(content.localizedContentByLocale[locale].home.content);
+    assert.doesNotThrow(() =>
+      protectedTokens.assertProtectedTokensPreserved(source, intact, `${locale}.home`),
+    );
+
+    const missing = structuredClone(intact);
+    missing.redesign.hero.description = missing.redesign.hero.description.replace(expected, "");
+    assert.throws(
+      () => protectedTokens.assertProtectedTokensPreserved(source, missing, `${locale}.home`),
+      new RegExp(`${locale}\\.home.*redesign\\.hero\\.description.*Wenlan`, "s"),
+    );
+
+    const wrongScript = structuredClone(intact);
+    wrongScript.redesign.hero.description = wrongScript.redesign.hero.description.replace(expected, wrong);
+    assert.throws(
+      () => protectedTokens.assertProtectedTokensPreserved(source, wrongScript, `${locale}.home`),
+      new RegExp(`${locale}\\.home.*redesign\\.hero\\.description.*Wenlan`, "s"),
+    );
   }
 });
 

@@ -402,10 +402,11 @@ test("LLM wiki acquisition surfaces route demand into one canonical hub", async 
     /metaTitle:\s*"Karpathy LLM Wiki & AI Knowledge Base \| Wenlan"/,
   );
   assert.match(article, /publishedAt:\s*"2026-06-24"/);
-  assert.match(article, /updatedAt:\s*"2026-08-12"/);
+  assert.match(article, /updatedAt:\s*"2026-09-05"/);
   assert.match(article, /heading:\s*"The Karpathy LLM Wiki pattern"/);
   assert.match(article, /does not imply that Karpathy endorses Wenlan/);
-  assert.match(article, /heading:\s*"The five-minute LLM-wiki protocol"/);
+  assert.match(article, /heading:\s*"The LLM-wiki workflow in Wenlan"/);
+  assert.match(article, /id:\s*"the-five-minute-llm-wiki-protocol"/);
   assert.match(article, /\/brief <topic>/);
   assert.match(article, /\/recall <question>/);
   assert.match(article, /\/capture <decision \+ why>/);
@@ -441,7 +442,7 @@ test("LLM wiki acquisition surfaces route demand into one canonical hub", async 
   assert.match(article, /source document[\s\S]*atomic memory[\s\S]*maintained page/);
   assert.match(article, /does not replace codebase search/);
   assert.match(article, /current source code/);
-  assert.match(article, /href:\s*"\/docs\/get-started"/);
+  assert.match(article, /href:\s*"#worked-example"/);
   assert.match(article, /href:\s*"\/docs\/daily-workflow"/);
   assert.match(article, /href:\s*"\/docs\/review-and-trust"/);
   assert.match(article, /https:\/\/github\.com\/7xuanlu\/wenlan#what-does-wenlan-build/);
@@ -1754,7 +1755,8 @@ test("public docs and assets do not expose stale lower-case Origin surfaces", as
     ["src/app/learn/seo-articles.ts", /\bmcp_origin_/],
     ["src/app/globals.css", /\borigin-(warm|amber|gold|indigo|sage)\b/],
     ["src/app/globals.css", /\bcard-origin\b/],
-    ["src/app/globals.css", /:\s+hover\b/],
+    // Detect malformed class/id pseudo-selectors, not valid `(hover: hover)` media features.
+    ["src/app/globals.css", /[.#][\w-]+:\s+hover\b/],
     ["src/app/about/opengraph-image.tsx", /\bv0\.7\.0\b/],
     ["src/app/about/page.tsx", /"v0\.7\.0"|Wenlan v0\.7\.0 ships/],
   ];

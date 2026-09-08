@@ -1,4 +1,5 @@
 import { seoArticles } from "./seo-articles";
+import { workedExampleSections } from "@/lib/llm-wiki-worked-example";
 
 export const SITE_URL = "https://wenlan.app";
 export const DEFAULT_AUTHOR = "Qi-Xuan Lu";
@@ -10,6 +11,7 @@ export const articleCategories = ["Concepts", "Comparisons", "Workflows"] as con
 export type LearnArticleCategory = (typeof articleCategories)[number];
 
 export type LearnArticleSection = {
+  id?: string;
   heading: string;
   body: string[];
   bullets?: string[];
@@ -668,7 +670,7 @@ const baseArticles: LearnArticle[] = [
       "AI work wiki",
     ],
     publishedAt: "2026-06-24",
-    updatedAt: "2026-08-12",
+    updatedAt: "2026-09-05",
     author: DEFAULT_AUTHOR,
     readingTime: "12 min read",
     audience: "People designing a maintained knowledge layer for Claude Code, Codex, Cursor, and other AI agents",
@@ -692,8 +694,8 @@ const baseArticles: LearnArticle[] = [
           "A routing index finds the relevant page without loading the entire wiki into every prompt.",
         ],
         link: {
-          label: "Install Wenlan first",
-          href: "/docs/get-started",
+          label: "Try the complete example without installing anything",
+          href: "#worked-example",
         },
       },
       {
@@ -710,14 +712,16 @@ const baseArticles: LearnArticle[] = [
           "Refresh and review: expose stale reasons, contradictions, citations, and revisions.",
         ],
       },
+      ...workedExampleSections("en"),
       {
-        heading: "The five-minute LLM-wiki protocol",
+        id: "the-five-minute-llm-wiki-protocol",
+        heading: "The LLM-wiki workflow in Wenlan",
         body: [
           "Start only after Wenlan is installed and connected to the AI client. Use one harmless topic first. The protocol below exercises session startup, targeted retrieval, one durable write, a session boundary, page distillation, and human-readable output.",
           "The commands are separate on purpose: recall should not silently write, capture should not rewrite a whole page, and distillation should not overwrite human-owned content without a review path.",
         ],
         code: {
-          label: "Five-minute protocol",
+          label: "Wenlan workflow — requires an installed, connected client",
           code: `/brief <topic>
 /recall <question>
 /capture <decision + why>

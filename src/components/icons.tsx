@@ -11,6 +11,12 @@ type GlyphProps = {
   className?: string;
 };
 
+// Official one-color mark from https://antigravity.google/press, 2026-09-06.
+// Use its alpha mask so the glyph follows the same currentColor as nearby SVGs.
+export function AntigravityBrandIcon({ className }: GlyphProps) {
+  return <span role="img" aria-label="Antigravity" className={`inline-block bg-current [mask-image:url('/images/antigravity-icon-monochrome.png')] [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain] ${className ?? ""}`} />;
+}
+
 function Glyph({
   className,
   d,

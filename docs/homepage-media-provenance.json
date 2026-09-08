@@ -1,0 +1,50 @@
+{
+  "purpose": "Real product pixels, with each asset's demonstration or user-supplied real-data context kept separate. Static images, not live connections or adoption evidence.",
+  "preparedAt": "2026-09-06",
+  "sourceVideo": "https://www.youtube.com/watch?v=4r3_rJVjBwI",
+  "sourceTimeline": "Launch v18 uses v17/v16 picture; wenlan-launch/src/timeline.ts maps the source clips.",
+  "transformation": "Wiki and review: full decoded 2880x1800 frames to WebP quality 92, no crop or compositing. Graph: supplied PNG to lossless WebP at original dimensions, no crop or synthetic elements. Embedded screenshot metadata stripped; web color conversion uses sRGB.",
+  "showcaseOrder": ["knowledge-graph", "wiki-source-hover", "page-review"],
+  "assets": [
+    {
+      "path": "public/images/product-evidence/wenlan-recorded-wiki-source-hover.webp",
+      "sourceClip": "wenlan-launch-video/clips/03-cites-take3.mov",
+      "sourceClipSha256": "196657bd769ec62f0d98a1a92779de51ca09a4d7fc9fe2da6cea60013703a9ef",
+      "offsetSeconds": 1.5,
+      "dimensions": [2880, 1800],
+      "sha256": "5469a7a1de2572dcbf1eed83358ab9fb5d90b977bb01a57f51818573780ae119",
+      "captureContext": "Actual app recording using the Tally demonstration dataset. Raw take3 footage, not a claim that this exact frame appears in the published YouTube edit.",
+      "visibleEvidence": ["Full Tally: Simple SQLite Invoicing title", "Pointer over mem_ebfd0afa84e7 citation", "Source memory popover: SQLite for Single-User App", "Source summary and Open memory action", "Related entities"],
+      "supersedes": "public/images/product-evidence/wenlan-recorded-wiki-overview.webp"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-live-knowledge-graph-20260906.webp",
+      "sourceScreenshot": "Screenshot 2026-09-06 at 1.43.23 PM.png",
+      "sourceSha256": "587fdd4a755e64cbc1090d1e42e821c91b90056b52948b6f1f002e4f91f02a69",
+      "dimensions": [3456, 1950],
+      "sha256": "63ab14b444c9cfd8527f9fc80440d7fb2507856b745c1d83b10e52e61df0b5f9",
+      "captureContext": "User supplied and identified this as live Wenlan-related data on 2026-09-06, explicitly requesting its use. Provenance is user-attested, not an independent database inspection.",
+      "visibleLabels": ["wenlan", "Wenlan MCP", "user"],
+      "limitation": "A viewport with some clusters extending beyond its edges, not a complete graph export. No total counts, retrieval quality, traffic or adoption inferred. No added or removed graph elements.",
+      "supersedes": "public/images/product-evidence/wenlan-recorded-atlas-overview.webp"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-recorded-page-review.webp",
+      "sourceClip": "wenlan-launch-video/clips/05-asks-take2.mov",
+      "sourceClipSha256": "1287a38a40f4b8c032cbc607ef1929b6ebdef7fd42fd9cdfcaf836f763899b99",
+      "offsetSeconds": 2,
+      "dimensions": [2880, 1800],
+      "sha256": "f457426685a800ab13c97a4215c5c2797f898350a84b1ba9330a43db856f7969",
+      "captureContext": "Actual app recording using the Tally demonstration dataset. Raw take2 footage; not a live review or a claim that the exact frame appears in the published video.",
+      "visibleEvidence": ["Project notes page revision", "Added and removed text in unified diff", "Earlier version history", "Open page, Skip and Approve actions"],
+      "limitation": "Shows the review interface and proposed changes, not automatic correctness or an approved result. No customer or usage metrics inferred."
+    }
+  ],
+  "benchmarkDate": {
+    "displayed": "2026-06-24",
+    "semantics": "Source updated_at snapshot date, not a verified wall-clock execution time.",
+    "coreCommit": "847fe0bb",
+    "sources": ["docs/eval/readme_metrics.example.json", "docs/eval/results/lme_s_90_bge_base_pool20.summary.json"],
+    "rerunPerformed": false
+  }
+}

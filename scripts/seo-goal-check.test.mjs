@@ -68,6 +68,10 @@ test("AGENTS.md keeps the fail-closed SEO control-plane index", () => {
 
   for (const requiredText of [
     "Before every SEO campaign action",
+    "pnpm seo:goal:control",
+    "docs/seo-active-control.md",
+    "--known-fingerprint <sha256>",
+    "three consecutive Goal turns",
     "Tier 0 — entrypoint",
     "Tier 1 — contract",
     "Tier 2 — structured state",
@@ -98,11 +102,19 @@ test("product evidence standard exists and its quality floor is fail-closed", ()
     "Natural English, zh-TW, and zh-CN localization",
     "Do not use simulated div-based product chrome as proof",
     "at exactly 393px",
+    "Demand decision before implementation",
+    "Who is searching, and what triggers the search?",
+    "What result must the reader leave with?",
+    "Why would this answer be chosen over the current alternatives?",
+    "Where will the first relevant readers come from?",
+    "Why this action before the competing actions?",
+    "What observation would change or stop this decision?",
   ]) {
     const mutated = canonicalProductEvidenceStandard.replaceAll(
       requiredText,
       "removed-standard-clause",
     );
+    assert.notEqual(mutated, canonicalProductEvidenceStandard, `mutation must remove ${requiredText}`);
     assert.ok(
       validateProductEvidenceStandard(mutated).some((error) =>
         error.includes("Product evidence standard is missing"),

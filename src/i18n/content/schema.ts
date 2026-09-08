@@ -220,6 +220,7 @@ export type HomeContent = SeoContent & {
   };
   redesign: {
     hero: {
+      eyebrow: string;
       headline: EmphasisText;
       description: string;
       worksWithLabel: string;
@@ -228,8 +229,37 @@ export type HomeContent = SeoContent & {
     pains: {
       title: string;
       intro: string;
-      generations: readonly { id: string; name: string; body: string }[];
-      current: { name: string; body: string };
+      scopeNote: string;
+      selectorLabel: string;
+      dimensions: readonly [string, string, string];
+      detailsLabel: string;
+      sourcesChecked: string;
+      helpLabel: string;
+      accessNote: string;
+      generations: readonly {
+        id: string;
+        name: string;
+        tabLabel?: string;
+        eyebrow: string;
+        summary: string;
+        profileLabels: readonly [string, string, string];
+        profile: readonly [string, string, string];
+        wenlan: {
+          labels: readonly [string, string, string];
+          profile: readonly [string, string, string];
+          emphasis: readonly string[];
+        };
+        body: string;
+        sources: readonly { label: string; href: string }[];
+      }[];
+      current: {
+        name: string;
+        tagline: string;
+        summary: string;
+        body: string;
+        highlights: readonly { label: string; body: string }[];
+        sources: readonly { label: string; href: string }[];
+      };
       closer: EmphasisText;
     };
     pipeline: {

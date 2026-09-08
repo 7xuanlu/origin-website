@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { validateActiveControl, ACTIVE_VIEW_PATH } from "./seo-goal-control.mjs";
 
 import {
   renderScenarioBacklog,
@@ -22,7 +23,7 @@ const SUCCESSOR_WAITING_END = "<!-- SUCCESSOR-WAITING-WORK:END -->";
 const CONTENT_EXPANSION_START = "<!-- CONTENT-EXPANSION-CORRECTION:START -->";
 const CONTENT_EXPANSION_END = "<!-- CONTENT-EXPANSION-CORRECTION:END -->";
 const EXPECTED_FROZEN_SHA256 =
-  "188f904a6a923ab3f3f993d016dc56bc710ad3ac7270ec0961ab4dd10a0b99e6";
+  "9e027e774ef2eb62bd5e1da1c8cc22688387e80fd86647a8154e9111a4e86c95";
 const EXPECTED_SUCCESSOR_SHA256 =
   "e5942b1f5a535103f01caa8c3388061057e567ea1fb8f2d824ae013ed494f0b4";
 const EXPECTED_SUCCESSOR_WAITING_SHA256 =
@@ -43,7 +44,10 @@ const requiredAgentsSeoIndexClauses = [
   "Tier 2 — structured state",
   "Tier 3 — evidence",
   "Before every SEO campaign action",
-  "read the complete current `PLAN.md`",
+  "`pnpm seo:goal:control`",
+  "`docs/seo-active-control.md`",
+  "--known-fingerprint <sha256>",
+  "three consecutive Goal turns",
   "`pnpm seo:goal:check`",
   "`EXPERIMENTS.md` is the append-only experiment and readout ledger",
   "`docs/seo-scenario-backlog.json` is the only editable scenario source",
@@ -59,6 +63,13 @@ const requiredAgentsSeoIndexClauses = [
 
 const requiredProductEvidenceStandardClauses = [
   "# SEO Product Evidence Standard",
+  "Demand decision before implementation",
+  "Who is searching, and what triggers the search?",
+  "What result must the reader leave with?",
+  "Why would this answer be chosen over the current alternatives?",
+  "Where will the first relevant readers come from?",
+  "Why this action before the competing actions?",
+  "What observation would change or stop this decision?",
   "one canonical URL",
   "real, current, sanitized product view",
   "A visible input to decision to output sequence",
@@ -141,7 +152,7 @@ const requiredFrozenClauses = [
   ],
   [
     "pre-action PLAN read and verifier",
-    "Before every campaign action, read `PLAN.md` and run `pnpm seo:goal:check`.",
+    "Before every campaign action, run `pnpm seo:goal:control` and follow the verified active-view reading rules.",
   ],
   [
     "verifier failure stop",
@@ -1496,8 +1507,10 @@ async function run() {
     readFile(scenarioReportPath, "utf8"),
   ]);
   const scenarioBacklog = JSON.parse(scenarioJson);
+  const activeControl = await readFile(resolve(repoRoot, ACTIVE_VIEW_PATH), "utf8");
   const { buildPageIntentRows } = await import("./seo-intent-map.mjs");
   const errors = [
+    ...validateActiveControl(plan, activeControl),
     ...validateAgentsSeoIndex(agents),
     ...validateProductEvidenceStandard(productEvidenceStandard),
     ...validateExperimentsAppendOnlyBaseline(experiments),

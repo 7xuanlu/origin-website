@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 import {
   detectReleaseAssetId,
@@ -8,6 +11,12 @@ import {
   recommendedReleaseAssetId,
   recommendedReleaseAssetIdFromClientHints,
 } from "../src/lib/platform-recommendation.ts";
+
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const downloadPlatformsSource = fs.readFileSync(
+  path.join(repoRoot, "src/components/download/download-platforms.tsx"),
+  "utf8",
+);
 
 test("desktop user agents map to one explicit published release asset", () => {
   assert.equal(
@@ -252,5 +261,20 @@ test("detection keeps Intel Macs on the download hub when hints are conclusive",
       },
     }),
     null,
+  );
+});
+
+test("download summaries keep platform names and architectures together", () => {
+  assert.match(
+    downloadPlatformsSource,
+    /<span className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">/,
+  );
+  assert.match(
+    downloadPlatformsSource,
+    /<span className="inline-block whitespace-nowrap font-mono text-xs text-\[var\(--o-text-secondary\)\]">/,
+  );
+  assert.doesNotMatch(
+    downloadPlatformsSource,
+    /<span className="ml-3 font-mono text-xs text-\[var\(--o-text-secondary\)\]">/,
   );
 });

@@ -66,15 +66,27 @@ documents.
 
 - **Tier 0 — entrypoint:** `AGENTS.md` contains routing, required reads, commands,
   and stop conditions only. Do not copy the full campaign contract into it.
-- **Tier 1 — contract:** Before every SEO campaign action, read the complete
-  current `PLAN.md` and run `pnpm seo:goal:check`. Stop if it fails; do not
-  continue from a chat summary.
+- **Tier 1 — contract:** Before every SEO campaign action, run
+  `pnpm seo:goal:control` (which runs `pnpm seo:goal:check`) and read the complete
+  `docs/seo-active-control.md` view. Within the same context only, reuse an actually
+  read view with `--known-fingerprint <sha256>`; verification always runs. After
+  compaction omit the fingerprint. Stop if it fails; do not continue from a chat
+  summary. `PLAN.md` retains immutable contracts and referenced historical narrative.
+  Regenerate the derived view with `pnpm seo:goal:control --update` after relevant
+  PLAN edits. Read the exact experiment contract before its action or readout.
+  For external-time waits, finish useful authorized work first; after the same
+  blocker recurs for three consecutive Goal turns use the supported blocked
+  transition and retain the same heartbeat. Do not repeatedly poll the timer.
 - **Tier 2 — structured state:** `EXPERIMENTS.md` is the append-only experiment
   and readout ledger. `docs/seo-scenario-backlog.json` is the only editable
   scenario source; `docs/seo-scenario-backlog.md` is generated. Validate with
   `pnpm seo:scenario:check` and regenerate with `pnpm seo:scenario:update`.
   Search-intent ownership is derived from the canonical sitemap and content by
   `scripts/seo-intent-map.mjs`; run `pnpm seo:intent:check`.
+  The current diagnosis-recovery queue is `docs/seo-growth-recovery.md`; it
+  routes to evidence and next decisions without replacing the contract or
+  scenario source. Demand-decision questions live only in
+  `docs/seo-product-evidence-standard.md`.
 - **Tier 3 — evidence:** Reuse the latest successfully completed weekly SEO
   report before collecting overlapping GSC or Vercel evidence. Dated files
   under `docs/seo-audits/` are evidence snapshots, not editable contract or

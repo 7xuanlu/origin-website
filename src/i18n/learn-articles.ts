@@ -1,4 +1,5 @@
 import type { LearnArticle } from "@/app/(en)/learn/articles";
+import { workedExampleSections } from "@/lib/llm-wiki-worked-example";
 import {
   isTranslatedLearnSlug,
   TRANSLATED_LEARN_SLUGS,
@@ -173,7 +174,7 @@ const zhTWArticles = {
       "Wenlan 文瀾",
     ],
     publishedAt: "2026-07-04",
-    updatedAt: "2026-08-12",
+    updatedAt: "2026-09-05",
     author: "Qi-Xuan Lu",
     readingTime: "9 分鐘閱讀",
     audience: "正在搭建可由 AI 代理讀取、更新並檢查來源的本地知識庫的繁體中文使用者",
@@ -191,8 +192,8 @@ const zhTWArticles = {
           "它不只是讓 LLM 自動寫出一批 Markdown 筆記。真正有用的系統會把原始證據、可重用事實與目前解釋分開，保留來源和更新狀態；即使讀者不安裝 Wenlan，這套判斷標準也能用來評估自己的知識庫。",
         ],
         link: {
-          label: "先安裝 Wenlan",
-          href: "/docs/get-started",
+          label: "先試完整範例，不必安裝",
+          href: "#worked-example",
         },
       },
       {
@@ -221,6 +222,7 @@ const zhTWArticles = {
           "Agent memory：保存工作中可重用的事實和決策，作為頁面原料之一。",
         ],
       },
+      ...workedExampleSections("zh-TW"),
       {
         heading: "一份最小可用的 LLM Wiki Schema",
         body: [
@@ -271,7 +273,7 @@ const zhTWArticles = {
           "發布第一版不是結束。來源改變時，系統應該標記受影響頁面、記錄 stale reason，並產生可審查的修訂；對於由人掌控的文字，自動化不應靜默覆蓋。",
         ],
         code: {
-          label: "Wenlan 五分鐘驗證流程",
+          label: "Wenlan 工作流：需先安裝並連接客戶端",
           code: `/brief <主題>
 /recall <問題>
 /capture <結論 + 原因>
@@ -1040,7 +1042,7 @@ const zhTWArticles = {
       "Wenlan 文瀾",
     ],
     publishedAt: "2026-08-02",
-    updatedAt: "2026-08-02",
+    updatedAt: "2026-09-07",
     author: "Qi-Xuan Lu",
     readingTime: "8 分鐘閱讀",
     audience: "正在選擇文件問答、RAG、本地筆記或跨 AI agent 知識系統的繁體中文使用者",
@@ -3544,7 +3546,7 @@ const zhCNArticles = {
       "Wenlan 文澜",
     ],
     publishedAt: "2026-07-04",
-    updatedAt: "2026-08-12",
+    updatedAt: "2026-09-05",
     readingTime: "9 分钟阅读",
     audience: "正在搭建可由 AI 代理读取、更新并检查来源的本地知识库的中文用户",
     heroBullets: [
@@ -3561,8 +3563,8 @@ const zhCNArticles = {
           "它不只是让 LLM 自动写一批 Markdown 笔记。真正有用的系统会把原始证据、可复用事实与当前解释分开，保留来源和更新状态；即使读者不安装 Wenlan，这套判断标准也能用来评估自己的知识库。",
         ],
         link: {
-          label: "先安装 Wenlan",
-          href: "/docs/get-started",
+          label: "先试完整示例，不必安装",
+          href: "#worked-example",
         },
       },
       {
@@ -3591,6 +3593,7 @@ const zhCNArticles = {
           "Agent memory：保存工作中可复用的事实和决策，作为页面原料之一。",
         ],
       },
+      ...workedExampleSections("zh-CN"),
       {
         heading: "一份最小可用的 LLM Wiki Schema",
         body: [
@@ -3641,7 +3644,7 @@ const zhCNArticles = {
           "发布第一版不是结束。来源改变时，系统应该标记受影响页面、记录 stale reason，并产生可审查的修订；对于人拥有的文字，自动化不应静默覆盖。",
         ],
         code: {
-          label: "Wenlan 五分钟验证流程",
+          label: "Wenlan 工作流：需先安装并连接客户端",
           code: `/brief <主题>
 /recall <问题>
 /capture <结论 + 原因>
@@ -4403,7 +4406,7 @@ const zhCNArticles = {
       "Wenlan 文澜",
     ],
     publishedAt: "2026-08-02",
-    updatedAt: "2026-08-02",
+    updatedAt: "2026-09-07",
     author: "Qi-Xuan Lu",
     readingTime: "8 分钟阅读",
     audience: "正在选择文档问答、RAG、本地笔记或跨 AI agent 知识系统的简体中文用户",
