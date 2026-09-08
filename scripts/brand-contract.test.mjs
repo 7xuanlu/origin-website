@@ -107,6 +107,7 @@ function parseRelease({ version, changelog, changelogPath }) {
   return {
     version,
     date: releaseDate,
+    changelog,
   };
 }
 
@@ -402,10 +403,11 @@ test("LLM wiki acquisition surfaces route demand into one canonical hub", async 
     /metaTitle:\s*"Karpathy LLM Wiki & AI Knowledge Base \| Wenlan"/,
   );
   assert.match(article, /publishedAt:\s*"2026-06-24"/);
-  assert.match(article, /updatedAt:\s*"2026-08-12"/);
+  assert.match(article, /updatedAt:\s*"2026-09-05"/);
   assert.match(article, /heading:\s*"The Karpathy LLM Wiki pattern"/);
   assert.match(article, /does not imply that Karpathy endorses Wenlan/);
-  assert.match(article, /heading:\s*"The five-minute LLM-wiki protocol"/);
+  assert.match(article, /heading:\s*"The LLM-wiki workflow in Wenlan"/);
+  assert.match(article, /id:\s*"the-five-minute-llm-wiki-protocol"/);
   assert.match(article, /\/brief <topic>/);
   assert.match(article, /\/recall <question>/);
   assert.match(article, /\/capture <decision \+ why>/);
@@ -441,7 +443,7 @@ test("LLM wiki acquisition surfaces route demand into one canonical hub", async 
   assert.match(article, /source document[\s\S]*atomic memory[\s\S]*maintained page/);
   assert.match(article, /does not replace codebase search/);
   assert.match(article, /current source code/);
-  assert.match(article, /href:\s*"\/docs\/get-started"/);
+  assert.match(article, /href:\s*"#worked-example"/);
   assert.match(article, /href:\s*"\/docs\/daily-workflow"/);
   assert.match(article, /href:\s*"\/docs\/review-and-trust"/);
   assert.match(article, /https:\/\/github\.com\/7xuanlu\/wenlan#what-does-wenlan-build/);
@@ -1056,10 +1058,11 @@ test("security docs align with the current Wenlan site policy", async () => {
   const { version } = await currentWenlanRelease();
   const docs = await readRepo("src/app/docs/docs.ts");
 
-  assert.doesNotMatch(docs, /acknowledgement within 48 hours/);
-  assert.doesNotMatch(docs, /7-day fix-timeline/);
+  assert.doesNotMatch(docs, /acknowledgment within 72 hours/);
   assert.doesNotMatch(docs, /supported 0\.7\.x/);
-  assert.match(docs, /acknowledgment within 72 hours/);
+  assert.match(docs, /acknowledgment within 48 hours/);
+  assert.match(docs, /fix timeline within 7 days/);
+  assert.match(docs, /latest released version is supported/);
   assert.match(docs, new RegExp(`current stable ${escapeRegExp(version)}`));
 });
 
@@ -1123,73 +1126,94 @@ test("public current-release surfaces track the selected Wenlan release source",
   );
 });
 
-test("public release surfaces expose the verified v0.18.0 artifacts and highlights", async () => {
+test("public release surfaces expose the verified current artifacts and release highlights", async () => {
   const { WENLAN_RELEASE } = await import("../src/lib/releases.ts");
+  const { version, date, changelog } = await currentWenlanRelease();
   const docs = await readRepo("src/app/docs/docs.ts");
   const structuredData = await readRepo("src/app/structured-data.ts");
   const aboutOg = await readRepo("src/app/about/opengraph-image.tsx");
   const llms = await readRepo("public/llms.txt");
 
-  assert.equal(WENLAN_RELEASE.version, "0.18.0");
-  assert.equal(WENLAN_RELEASE.tag, "v0.18.0");
-  assert.equal(WENLAN_RELEASE.publishedAt, "2026-09-04T20:31:03Z");
+  assert.equal(version, "0.18.3");
+  assert.equal(WENLAN_RELEASE.version, version);
+  assert.equal(WENLAN_RELEASE.tag, "v0.18.3");
+  assert.equal(WENLAN_RELEASE.publishedAt, "2026-09-08T00:52:58Z");
   assert.equal(
     WENLAN_RELEASE.releaseUrl,
-    "https://github.com/7xuanlu/wenlan/releases/tag/v0.18.0",
+    "https://github.com/7xuanlu/wenlan/releases/tag/v0.18.3",
   );
   assert.equal(
     WENLAN_RELEASE.setupGuideUrl,
-    "https://github.com/7xuanlu/wenlan/blob/v0.18.0/docs/setup-with-ai.md#install-the-runtime",
+    "https://github.com/7xuanlu/wenlan/blob/v0.18.3/docs/setup-with-ai.md#install-the-runtime",
   );
   assert.deepEqual(
     WENLAN_RELEASE.assets.map(({ id, href, format, size }) => ({ id, href, format, size })),
     [
       {
         id: "windows-desktop-x64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.0/Wenlan_0.18.0_x64-setup.exe",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/Wenlan_0.18.3_x64-setup.exe",
         format: "EXE",
-        size: "59.3 MiB",
+        size: "59.9 MiB",
       },
       {
         id: "windows-x64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.0/wenlan-windows-x64.zip",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-windows-x64.zip",
         format: "ZIP",
-        size: "73.7 MiB",
+        size: "74.0 MiB",
       },
       {
         id: "macos-arm64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.0/Wenlan_0.18.0_aarch64.dmg",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/Wenlan_0.18.3_aarch64.dmg",
         format: "DMG",
-        size: "83.6 MiB",
+        size: "84.0 MiB",
       },
       {
         id: "macos-runtime-arm64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.0/wenlan-darwin-arm64.tar.gz",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-darwin-arm64.tar.gz",
         format: "TAR.GZ",
-        size: "50.0 MiB",
+        size: "50.3 MiB",
       },
       {
         id: "linux-x64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.0/wenlan-linux-x64.tar.gz",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-linux-x64.tar.gz",
         format: "TAR.GZ",
-        size: "62.6 MiB",
+        size: "62.9 MiB",
       },
       {
         id: "linux-arm64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.0/wenlan-linux-arm64.tar.gz",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-linux-arm64.tar.gz",
         format: "TAR.GZ",
-        size: "62.8 MiB",
+        size: "63.1 MiB",
       },
     ],
   );
+
+  assert.match(changelog, /^## \[0\.18\.3\].*\(2026-09-08\)/m);
+  assert.match(changelog, /idle-archive housekeeping rule/);
+  assert.match(changelog, /real phase progress and batch status/);
+  assert.match(changelog, /^## \[0\.18\.2\].*\(2026-09-07\)/m);
+  assert.match(changelog, /explicit and automatic milestone toast dismissal/);
+  assert.match(changelog, /detected entities are an index, not a to-do/);
+  assert.match(changelog, /^## \[0\.18\.1\].*\(2026-09-06\)/m);
+  assert.match(changelog, /let local presets send an API key/);
+  assert.match(changelog, /close shared Claude\/Codex hook and runner gaps/);
+
+  assert.match(docs, /v0\.18\.1 to v0\.18\.3 highlights/);
+  assert.match(docs, /Import reports real phase progress and batch status/);
+  assert.match(docs, /Entity housekeeping gains an idle-archive rule/);
+  assert.match(docs, /Milestone notifications support explicit and automatic dismissal/);
+  assert.match(docs, /Local provider presets can send an API key; upstream LLM refusals return a 502 response/);
+  assert.match(docs, /Shared Claude\/Codex hook and runner gaps are closed/);
+
+  assert.equal(date, "2026-09-08");
   assert.match(docs, /v0\.18\.0 highlights/);
   assert.match(docs, /one home page with an honest empty state/);
   assert.match(docs, /removes the .*Where AI looked.* section/);
   assert.match(docs, /global shortcut is occupied/);
   assert.match(docs, /window stays still after launch/);
-  assert.match(structuredData, /tree\/v0\.18\.0\/app/);
-  assert.match(aboutOg, /v0\.18\.0 · Apache-2\.0/);
-  assert.match(llms, /tree\/v0\.18\.0\/app/);
+  assert.match(structuredData, /tree\/v0\.18\.3\/app/);
+  assert.match(aboutOg, /v0\.18\.3 · Apache-2\.0/);
+  assert.match(llms, /tree\/v0\.18\.3\/app/);
 });
 
 test("download information architecture keeps the homepage compact and the full matrix on a localized hub", async () => {
@@ -1754,7 +1778,8 @@ test("public docs and assets do not expose stale lower-case Origin surfaces", as
     ["src/app/learn/seo-articles.ts", /\bmcp_origin_/],
     ["src/app/globals.css", /\borigin-(warm|amber|gold|indigo|sage)\b/],
     ["src/app/globals.css", /\bcard-origin\b/],
-    ["src/app/globals.css", /:\s+hover\b/],
+    // Detect malformed class/id pseudo-selectors, not valid `(hover: hover)` media features.
+    ["src/app/globals.css", /[.#][\w-]+:\s+hover\b/],
     ["src/app/about/opengraph-image.tsx", /\bv0\.7\.0\b/],
     ["src/app/about/page.tsx", /"v0\.7\.0"|Wenlan v0\.7\.0 ships/],
   ];

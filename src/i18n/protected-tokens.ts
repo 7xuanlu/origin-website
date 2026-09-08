@@ -2,6 +2,8 @@ import { flattenLeafStrings } from "./hash";
 
 const tokenPatterns = [
   /\bWenlan\b/g,
+  /\bObsidian\b/g,
+  /\bNotion\b/g,
   /\bClaude Code\b/g,
   /\bCodex\b/g,
   /\bGitHub\b/g,
@@ -60,7 +62,7 @@ export function assertProtectedTokensPreserved(
     }
 
     for (const token of extractProtectedTokens(sourceLeaf.value)) {
-      if (!translatedValue.includes(token)) {
+      if (!translatedValue.includes(token) && !hasApprovedLocalizedAlias(sourceLeaf.path, token, translatedValue, label)) {
         missing.push(formatMissingToken(sourceLeaf.path, token));
       }
     }
@@ -69,6 +71,23 @@ export function assertProtectedTokensPreserved(
   if (missing.length > 0) {
     throw new Error(`Protected tokens missing in ${label}: ${missing.join(", ")}`);
   }
+}
+
+function hasApprovedLocalizedAlias(
+  path: string,
+  token: string,
+  translatedValue: string,
+  label: string,
+): boolean {
+  if (path !== "redesign.hero.description" || token !== "Wenlan") return false;
+
+  const expectedAlias = label.startsWith("zh-TW.")
+    ? "文瀾"
+    : label.startsWith("zh-CN.")
+      ? "文澜"
+      : null;
+
+  return expectedAlias !== null && translatedValue.includes(expectedAlias);
 }
 
 function isExactProtectedLeafPath(path: string): boolean {

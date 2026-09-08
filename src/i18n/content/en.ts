@@ -22,7 +22,7 @@ export const enContent = {
       seo: {
         title: "Wenlan | LLM Wiki for AI Work",
         description:
-          "Wenlan is an LLM wiki for AI work: agents capture what they learn, you add sources you trust, and the local daemon keeps source-backed wiki pages current.",
+          "Wenlan is a source-backed AI knowledge base and LLM wiki for AI work: organize documents and decisions into pages you can find, inspect, and review.",
       },
       nav: {
         schemaName: "Wenlan site navigation",
@@ -43,7 +43,7 @@ export const enContent = {
       hero: {
         title: "Wenlan",
         description:
-          "An LLM wiki for AI work. Agents capture what they learn, you add sources you trust, and Wenlan keeps source-backed wiki pages current across tools and time.",
+          "After setup, save useful decisions, build sourced Pages, and find them again through your configured AI tools.",
         primaryCta: { id: "download", href: "#download", label: "Download Wenlan" },
         secondaryCta: {
           id: "github",
@@ -81,7 +81,7 @@ export const enContent = {
         eyebrow: "Download",
         title: "Download Wenlan for your system.",
         description:
-          "Wenlan v0.18.0 ships a Windows x64 desktop build and a notarized macOS Apple silicon DMG, plus headless runtime builds for Windows, macOS, and Linux.",
+          "Wenlan v0.18.3 ships a Windows x64 desktop build and a macOS Apple silicon DMG, plus headless runtime builds for Windows, macOS, and Linux.",
         stableLabel: "Stable",
         releaseNotesLabel: "Release notes",
         packageIncludesLabel: "CLI · daemon · MCP connector",
@@ -235,7 +235,7 @@ export const enContent = {
             railLabel: "Code",
             summary: "living engineering docs",
             lead: "Keep the codebase docs engineers actually update.",
-            body: "Wenlan keeps source-backed engineering pages current: architecture maps, runbooks, migration plans, integration notes, and debugging logs that change as the repo changes.",
+            body: "Wenlan can turn repo facts into source-backed engineering Pages: architecture maps, runbooks, migration plans, integration notes, and debugging logs. Refresh behavior depends on your configured processing and source changes.",
             evidence: [
               {
                 id: "architecture",
@@ -258,7 +258,7 @@ export const enContent = {
                 detail: "Dependency quirks, version limits, adapter decisions, and upstream issues linked to source docs.",
               },
             ],
-            outcome: "The next agent opens the same living docs an engineer would update.",
+            outcome: "The next agent can open an engineering Page and inspect its sources.",
           },
           {
             id: "product-customers",
@@ -358,15 +358,15 @@ export const enContent = {
       sections: {
         problem: {
           eyebrow: "The problem",
-          title: "Every new AI session starts cold.",
-          body: "The work happened, but the context did not survive. Decisions, fixes, and project instincts stay trapped in old chats instead of helping the next agent.",
-          note: "One missing handoff is enough to make the next conversation repeat the last one.",
+          title: "A new AI session can start cold.",
+          body: "The work happened, but context may not carry over. Decisions, fixes, and project instincts can stay trapped in old chats instead of helping the next agent.",
+          note: "A missing handoff can make the next conversation repeat the last one.",
         },
         solution: {
           eyebrow: "What Wenlan brings",
           title: "A handoff loop for AI work.",
-          body: "Wenlan captures decisions, lessons, and next steps as work happens, then loads the handoff when the next agent starts.",
-          note: "The next conversation starts from the handoff instead of reconstructing the past.",
+          body: "After setup, Wenlan can capture decisions, lessons, and next steps as work happens, then make a handoff available when the next agent starts.",
+          note: "The next conversation can start from the handoff instead of reconstructing the past.",
           visualLabels: {
             start: "START",
             capture: "CAPTURE",
@@ -378,7 +378,7 @@ export const enContent = {
           eyebrow: "Deliberate distillation",
           title: "Wenlan turns repeated context into an LLM wiki.",
           body: "Run /distill when repeated captures should become a readable, source-backed wiki page. Optional model or API-key paths can add background extraction and page refresh work.",
-          note: "The next run starts from cited context, not transcript residue.",
+          note: "A configured next run can start from cited context, not transcript residue.",
           visualLabels: {
             merged: "MERGED",
             linked: "LINKED",
@@ -399,9 +399,9 @@ export const enContent = {
         },
         openSourceCta: {
           eyebrow: "Open source",
-          title: "Open where it matters.",
-          body: "The local runtime, CLI, MCP server, Claude Code plugin, and Codex plugin are Apache-2.0.",
-          note: "",
+          title: "Open code. Make it yours.",
+          body: "From the local runtime to the desktop app, you can inspect the code and build Wenlan yourself.",
+          note: "Runtime and plugins: Apache-2.0. Desktop app: AGPL-3.0-only.",
           primaryCta: { id: "download", href: "#download", label: "Download Wenlan" },
           secondaryCta: {
             id: "github",
@@ -426,9 +426,9 @@ export const enContent = {
       },
       metrics: {
         eyebrow: "Hybrid retrieval, measured",
-        title: "96% fewer tokens. Honest retrieval metrics.",
+        title: "How much context does a query need?",
         description:
-          "Hybrid retrieval finds the right local context without replaying chat history.",
+          "A fixed 500-question retrieval test compares full conversation replay with the context Wenlan retrieves.",
         headers: {
           surface: "Surface",
           scope: "Scope",
@@ -455,7 +455,7 @@ export const enContent = {
           },
         ],
         note:
-          "Retrieval-only snapshots. LME_Oracle also records 0.857 MRR; LME_S records 0.815 MRR on 84 gradeable rows from the 90-question deep-S fixture. Token comparison is full replay vs retrieved context.",
+          "Retrieval-only snapshots on fixed fixtures. LME_Oracle also records 0.857 MRR; LME_S records 0.815 MRR on 84 gradeable rows from the 90-question deep-S fixture. This is not a general time or token-saving guarantee and does not compare Wenlan with other tools. Token comparison is full replay vs retrieved context within this retrieval test.",
         link: {
           id: "harness",
           href: "https://github.com/7xuanlu/wenlan/tree/main/crates/wenlan-core/src/eval",
@@ -469,17 +469,17 @@ export const enContent = {
           {
             id: "what-is-wenlan",
             q: "What is Wenlan?",
-            a: "Wenlan is an LLM wiki for AI work. Agents capture what they learn, you add sources you trust, and the local daemon keeps source-backed wiki pages current across chats, tools, projects, and time.",
+            a: "Wenlan is a local AI knowledge base and LLM wiki. Connect your AI client to save decisions and find them again. Page generation needs a configured model or AI client. Inspect the supporting sources before relying on an answer.",
           },
           {
             id: "built-in-memory",
             q: "How is Wenlan different from built-in AI memory?",
-            a: "Built-in memory stores what the AI decided was important. You usually cannot trace it, correct it, or use it from another tool. Wenlan keeps memory local, visible, correctable, and traceable. Readable pages, session logs, and project status are versioned in ~/.wenlan/.git/, and every distilled page cites the source memory IDs that produced it.",
+            a: "Built-in memory behavior varies by tool. Compare export, sources, editing, and cross-client access in the tool you use. Wenlan keeps memory local and offers inspectable Pages with the source memory IDs used to make them.",
           },
           {
             id: "retrieval-quality",
             q: "What retrieval quality does Wenlan reach?",
-            a: "Hybrid retrieval combines vector search (BGE-Base-EN-v1.5-Q, 768-dim), FTS5, reciprocal-rank fusion, knowledge-graph context, and the local BGE reranker. LME_Oracle is 93.6% Recall@5, 0.857 MRR, and 0.883 NDCG@10 on the 500-question snapshot. LME_S is 87.7% Recall@5, 0.815 MRR, and 0.822 NDCG@10 on the stratified N=90 deep-S snapshot. The eval harness ships in the repo at crates/wenlan-core/src/eval/.",
+            a: "Hybrid retrieval combines vector search (BGE-Base-EN-v1.5-Q, 768-dim), FTS5, reciprocal-rank fusion, knowledge-graph context, and the local BGE reranker. LME_Oracle is 93.6% Recall@5, 0.857 MRR, and 0.883 NDCG@10 on the 500-question snapshot. LME_S is 87.7% Recall@5, 0.815 MRR, and 0.822 NDCG@10 on the stratified N=90 deep-S snapshot. These fixture-specific scores do not establish correctness or prove every claim. The eval harness ships in the repo at crates/wenlan-core/src/eval/.",
           },
           {
             id: "privacy",
@@ -489,22 +489,22 @@ export const enContent = {
           {
             id: "memory-mcp",
             q: "Is Wenlan just another memory MCP?",
-            a: "No. The MCP server is the connector. Wenlan also includes the local daemon, manual /distill, optional model-backed background extraction and page work, a libSQL store with DiskANN vectors, FTS5 + knowledge graph, mandatory provenance, real git versioning for memory, page, and session artifacts, and readable Markdown export paths.",
+            a: "No. The MCP server is the connector. Wenlan also includes the local daemon, manual /distill, optional model-backed extraction and Page work, local retrieval, source references, review surfaces, real git versioning for memory, Page, and session artifacts, and readable Markdown export paths.",
           },
           {
             id: "tools",
             q: "What AI tools work with Wenlan?",
-            a: "Claude Code and Codex have plugin paths. Cursor, Claude Desktop, VS Code, Gemini CLI, and other local clients connect through Wenlan's MCP server. ChatGPT and Claude.ai connect through Streamable HTTP MCP, with Remote Access in the desktop app providing the guided path. Remote Access has no authentication; anyone with the URL can access Wenlan, so stop Remote Access when unused.",
+            a: "Claude Code and Codex have plugin paths. Cursor, Claude Desktop, VS Code, Antigravity, and other supported local clients connect through Wenlan's MCP server. ChatGPT and Claude.ai connect through Streamable HTTP MCP, with Remote Access in the desktop app providing the guided path. Obsidian is a read-only source workflow, not an MCP client in this list. Remote Access has no authentication; anyone with the URL can access Wenlan, so stop Remote Access when unused.",
           },
           {
             id: "not-notes",
             q: "Is Wenlan a replacement for Notion or Obsidian?",
-            a: "No. Wenlan is not a notes app or a writing tool. It captures and refines what you learn from AI conversations. The Markdown projection under ~/.wenlan/ can be symlinked into Obsidian if you want to read it there.",
+            a: "No. Wenlan is not a notes app. It can register Markdown, text, text-extractable PDF, folders, and an Obsidian vault as sources. Obsidian input is read-only and resyncs on demand; Wenlan's own Pages remain readable Markdown under ~/.wenlan/.",
           },
           {
             id: "setup",
             q: "How do I set it up?",
-            a: "Claude Code uses the marketplace plugin and /setup. Codex can run Wenlan through its plugin or through wenlan connect codex. Other local clients use wenlan connect <client>. ChatGPT and Claude.ai use the desktop app's Remote Access URL through Streamable HTTP MCP. The URL has no authentication, so treat it as a secret and stop Remote Access when unused.",
+            a: "Install the runtime and connect the client first. Claude Code uses the marketplace plugin and /setup. Codex can run Wenlan through its plugin or through wenlan connect codex. Other local clients use wenlan connect <client>. ChatGPT and Claude.ai use the desktop app's Remote Access URL through Streamable HTTP MCP. Local capture and retrieval can work without a model or API key; automatic Page distillation and background processing require a configured on-device model or provider API key. The URL has no authentication, so treat it as a secret and stop Remote Access when unused.",
           },
           {
             id: "platforms",
@@ -525,48 +525,343 @@ export const enContent = {
       },
       redesign: {
         hero: {
-          headline: { pre: "A ", emphasis: "living", post: " wiki you can trust." },
+          eyebrow: "A living wiki for you and your AI",
+          headline: { pre: "Your notes keep growing.", emphasis: "Still starting from scratch?", post: "" },
           description:
-            "The second brain your agents write as they work: repo facts, client calls, training plans. Every page stays cited, linked, and current, so you don't have to.",
+            "Wenlan turns documents, notes, and decisions into a source-backed wiki that evolves with your work. You and your AI can build on what you already know, not just find what you saved.",
           worksWithLabel: "Works with",
-          worksWithNote: "Local-first, MCP server",
+          worksWithNote: "Read from your Obsidian vault without changing your notes.",
         },
         pains: {
-          title: "Every wiki dies of neglect.",
-          intro:
-            "First the hand-tended vault. Then agents bolted onto wikis: faster writing, same rot. Wenlan is what comes after.",
-          generations: [
-            {
-              id: "wiki-graveyard",
-              name: "The wiki graveyard",
-              body: "Obsidian vaults, Notion pages, team wikis. Hand-tended, and alive exactly as long as your discipline.",
-            },
-            {
-              id: "llm-wiki-1",
-              name: "llm-wiki 1.0",
-              body: "Agents dump notes to Markdown files. No sources, no recall, no upkeep. It rots faster, with more confidence.",
-            },
-            {
-              id: "vault-agents",
-              name: "Obsidian + agents",
-              body: "Agents write into your vault, but the gardening is still yours. Easier capture, same rot.",
-            },
+          "title": "Choose the knowledge workflow that fits.",
+          "intro": "Compare more than features: see where you work day to day, what you can hand off, and which decisions remain yours.",
+          "scopeNote": "Wenlan is also an LLM Wiki implementation. These approaches can work together.",
+          "dimensions": [
+            "How do you use it day to day?",
+            "What upkeep happens automatically?",
+            "When do I decide?"
           ],
-          current: {
-            name: "Wenlan",
-            body: "The llm-wiki that maintains itself: written during real work, cited to sources, found by hybrid recall, enriched while you sleep.",
+          "detailsLabel": "How it works & sources",
+          "helpLabel": "More background",
+          "accessNote": "Wenlan first needs connected sources and a model, then an initial set of Pages. After that, use the desktop App, or continue with the plugin / CLI and local daemon.",
+          "generations": [
+            {
+              "id": "wiki-graveyard",
+              "name": "AI + files",
+              "eyebrow": "Word · PDF · PPT · Markdown",
+              "summary": "AI handles the files; Wenlan supplies the source tracking, Wiki upkeep, and revision review. Your work leaves more than another answer: a knowledge base maintained for later use.",
+              "profileLabels": [
+                "Work directly with files and answers",
+                "Knowledge upkeep needs additional logic",
+                "File controls; knowledge-review rules are extra"
+              ],
+              "profile": [
+                "AI reads, answers, and edits. Save outputs for reuse; a maintained, cross-source Wiki needs a separate system.",
+                "Tools can read new versions and retain memory. Tracking changed sources, stale pages, and refreshes requires additional upkeep logic.",
+                "Permissions and diffs control file edits. Automatic refresh versus review of human-edited knowledge pages needs separate rules and checks."
+              ],
+              "body": "This compares direct AI file work before adding a Wiki-maintenance system, not every AI product. Claude Code has auto memory across sessions; its documentation distinguishes remembered context from enforced controls. hooks can run your own automation. Source-to-page links, stale-page detection, and review routing still require implemented, tested logic; a prompt alone does not supply that system. Wenlan integrates these mechanisms, while generated content still needs evidence and version checking. Direct directory sources support Markdown, text, and text-extractable PDFs; Word and PowerPoint need to be exported to text/Markdown or a text-extractable PDF, and scanned PDFs need external OCR. New topics do not automatically become Wiki pages; background refresh needs a configured, available model.",
+              "sources": [
+                {
+                  "label": "Markdown format",
+                  "href": "https://commonmark.org/help/"
+                },
+                {
+                  "label": "Claude Code file context",
+                  "href": "https://code.claude.com/docs/en/memory"
+                },
+                {
+                  "label": "Claude Code automation hooks",
+                  "href": "https://code.claude.com/docs/en/hooks-guide"
+                },
+                {
+                  "label": "Build a local AI knowledge base",
+                  "href": "https://wenlan.app/learn/build-local-ai-knowledge-base-from-documents"
+                }
+              ],
+              "wenlan": {
+                "labels": [
+                  "An AI knowledge base with upkeep built in",
+                  "Keep related knowledge up to date",
+                  "Keep originals; approve edits to your writing"
+                ],
+                "profile": [
+                  "Documents and saved decisions become a cited Wiki. Retrieve prior conclusions and their evidence from connected AI tools, then continue the work.",
+                  "New decisions can enrich existing pages. After connected files or memory content change, background processing refreshes eligible affected pages.",
+                  "Source files stay unchanged. AI proposes a revision before updating pages you edited; you accept or reject it, with change history available."
+                ],
+                "emphasis": []
+              }
+            },
+            {
+              "id": "llm-wiki-workflow",
+              "name": "LLM Wiki · nashsu",
+              "tabLabel": "LLM Wiki",
+              "eyebrow": "nashsu/llm_wiki · open-source project",
+              "summary": "Both watch folders and handle more than files. Wenlan also tracks individual knowledge records and the pages that rely on them; LLM Wiki centers upkeep on sources and Wiki pages.",
+              "profileLabels": [
+                "Work from a desktop Wiki project",
+                "Upkeep works on sources and Wiki pages",
+                "Keep ingest moving; review follow-ups separately"
+              ],
+              "profile": [
+                "Import documents, ask questions, and save answers in the App. External AI tools can connect through MCP while the App is running.",
+                "Source-file changes or answers saved back to the Wiki can trigger automatic page compilation. Research results are also saved as pages.",
+                "Ingest writes pages first; Review lists follow-ups such as further research or new pages without blocking ingest."
+              ],
+              "body": "This compares nashsu/llm_wiki, not Karpathy’s method or the broader LLM Wiki category. It supports citations, Review, MCP, and skills. With an ingest model configured, choosing Save to Wiki can automatically compile a saved answer. DeepResearch writes a cited query page without re-entering source ingest. Deleting a source also cleans up affected pages and links. Its Business template includes status and supersedes on decision pages. Wenlan instead keeps decisions as independent records: editing, deleting, or accepting a replacement revision flags the pages citing that record; accepting the revision also links their evidence to the replacement. New records can enrich matching existing pages. Background refresh needs an available model and eligible pages; changes to human-edited pages become revisions for approval. nashsu’s ingest writes pages before listing Review follow-ups. These are implementation differences, not proof of easier use or guaranteed factual accuracy.",
+              "sources": [
+                {
+                  "label": "Karpathy’s LLM Wiki method",
+                  "href": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+                },
+                {
+                  "label": "nashsu/llm_wiki",
+                  "href": "https://github.com/nashsu/llm_wiki"
+                },
+                {
+                  "label": "llm_wiki ingest flow",
+                  "href": "https://github.com/nashsu/llm_wiki/blob/main/src/lib/ingest.ts"
+                },
+                {
+                  "label": "llm_wiki MCP server",
+                  "href": "https://github.com/nashsu/llm_wiki/blob/main/mcp-server/README.md"
+                },
+                {
+                  "label": "llm_wiki page templates",
+                  "href": "https://github.com/nashsu/llm_wiki/blob/main/src/lib/templates.ts"
+                },
+                {
+                  "label": "llm_wiki saved-answer compilation",
+                  "href": "https://github.com/nashsu/llm_wiki/blob/e8082119649e6a8e1cf85eaf289adcabfdf39d4e/src/components/chat/chat-message.tsx#L547-L626"
+                },
+                {
+                  "label": "llm_wiki DeepResearch output",
+                  "href": "https://github.com/nashsu/llm_wiki/blob/e8082119649e6a8e1cf85eaf289adcabfdf39d4e/src/lib/deep-research.ts#L505-L545"
+                },
+                {
+                  "label": "llm_wiki source-deletion cleanup",
+                  "href": "https://github.com/nashsu/llm_wiki/blob/e8082119649e6a8e1cf85eaf289adcabfdf39d4e/src/lib/source-lifecycle.ts#L457-L574"
+                },
+                {
+                  "label": "Wenlan per-memory page dependencies",
+                  "href": "https://github.com/7xuanlu/wenlan/blob/af646ddcf705ee7450335a8772a8cb196f89a3a1/crates/wenlan-core/src/db.rs#L31034-L31143"
+                }
+              ],
+              "wenlan": {
+                "labels": [
+                  "Keep your AI tools; no extra App to open",
+                  "Changed knowledge flags affected pages",
+                  "Pages you write: review before changes"
+                ],
+                "profile": [
+                  "After setup, save and retrieve knowledge from connected AI tools. The local background service runs without the desktop App.",
+                  "Editing or deleting a memory, or accepting its replacement revision, flags the existing pages that cite it. Background work then refreshes eligible pages.",
+                  "When AI wants to update a page you wrote, it proposes a revision; the original waits for your approval."
+                ],
+                "emphasis": []
+              }
+            },
+            {
+              "id": "llm-wiki-1",
+              "name": "Obsidian",
+              "eyebrow": "Obsidian · local Markdown vault",
+              "summary": "Keep writing notes in Obsidian, let Wenlan read the originals, and maintain a separate Wiki for you and your AI.",
+              "profileLabels": [
+                "Write your own Markdown notes directly",
+                "Let selected plugins handle it",
+                "You decide what tools can change"
+              ],
+              "profile": [
+                "Write notes and link ideas in a vault; connect a plugin or external tool when you need AI.",
+                "Hand AI search, rewriting, or organization to plugins; choose features, set rules, and maintain them.",
+                "You keep the vault; choose plugins and backups, and check whether AI can write to original notes."
+              ],
+              "body": "For writing, organizing and linking your own notes, with Markdown files stored on your device. Add plugins or connect AI tools when you want AI search, summaries or rewriting. Plugins and optional sync can change where data is sent; a local vault alone does not make every AI integration local.",
+              "sources": [
+                {
+                  "label": "How Obsidian stores data",
+                  "href": "https://obsidian.md/help/data-storage"
+                },
+                {
+                  "label": "Community plugins",
+                  "href": "https://obsidian.md/help/community-plugins"
+                },
+                {
+                  "label": "Plugin security and data access",
+                  "href": "https://obsidian.md/help/plugin-security"
+                }
+              ],
+              "wenlan": {
+                "labels": [
+                  "Keep the vault; maintain a separate Wiki",
+                  "Note changes, knowledge pages follow",
+                  "Original notes stay untouched; review drafts first"
+                ],
+                "profile": [
+                  "Connect the vault as a read-only source; keep writing originals while Wenlan builds pages for you and AI.",
+                  "After Wenlan is configured, background tracking follows connected sources and refreshes eligible pages without rewriting your vault.",
+                  "Wenlan does not write back to the vault; pages you edit also get a revision first, then you decide."
+                ],
+                "emphasis": []
+              }
+            },
+            {
+              "id": "vault-agents",
+              "name": "Notion",
+              "eyebrow": "Notion · cloud workspace",
+              "summary": "Notion lets you configure Agents for workspace tasks; Wenlan makes source tracking, page upkeep, and edit review an integrated flow. Both can run automatically.",
+              "profileLabels": [
+                "Arrange work in a shared workspace",
+                "You set tasks; Agent runs them automatically",
+                "You control rules and workspace permissions"
+              ],
+              "profile": [
+                "Organize personal or team work with pages, databases, and permissions; Notion Agent can create and edit.",
+                "Custom Agents can run on schedules or events; set instructions, triggers, and access permissions first.",
+                "Set the Agent’s access, inspect activity logs, and use Notion’s history and reversal controls."
+              ],
+              "body": "Notion is a cloud workspace for personal and team work, not just a database or passive notebook. Notion Agent can search, create, and edit; Custom Agents can run in the background on events or schedules, including knowledge upkeep. Use a template or set instructions, triggers, and access permissions yourself, then inspect activity logs and use Notion’s history and reversal controls. Official docs list Custom Agents for Business or Enterprise plans. Cloud content can be downloaded for offline use or exported as backups. The difference is general workspace automation versus Wenlan’s built-in knowledge-maintenance flow, not that Notion lacks automation or cannot connect external tools.",
+              "sources": [
+                {
+                  "label": "Notion Agent",
+                  "href": "https://www.notion.com/help/notion-agent"
+                },
+                {
+                  "label": "Custom Agents: triggers, permissions, and review",
+                  "href": "https://www.notion.com/help/custom-agents"
+                },
+                {
+                  "label": "Offline pages",
+                  "href": "https://www.notion.com/help/use-pages-offline"
+                },
+                {
+                  "label": "Export backups",
+                  "href": "https://www.notion.com/help/back-up-your-data"
+                }
+              ],
+              "wenlan": {
+                "labels": [
+                  "No need to move into a new workspace",
+                  "Knowledge maintenance is built in",
+                  "Personal edits: ask before changing"
+                ],
+                "profile": [
+                  "Save and find knowledge in connected AI tools; documents and decisions stay local without changing editors.",
+                  "When sources change, background tracking refreshes affected pages; pages you wrote become proposed revisions.",
+                  "You decide whether to accept a page revision; machine-maintained pages update as configured and keep history."
+                ],
+                "emphasis": []
+              }
+            },
+            {
+              "id": "notebooklm",
+              "name": "NotebookLM",
+              "eyebrow": "Google · Gemini Notebook",
+              "summary": "NotebookLM helps you understand a set of sources; Wenlan builds those materials and work decisions into a Wiki that connected AI tools can use later.",
+              "profileLabels": [
+                "Ask from sources and make study materials",
+                "Drive updates sync sources automatically",
+                "You choose sources and sharing"
+              ],
+              "profile": [
+                "Ask questions, summarize, or make study materials from selected sources; notebooks can also be used in Gemini conversations.",
+                "Eligible Google Drive sources sync when you open the notebook; uploaded files are copies made at import.",
+                "Choose which sources to cite and who can access the notebook; original Drive files are not written back."
+              ],
+              "body": "NotebookLM is the familiar product now labeled Gemini Notebook in Google’s official docs. It offers source-based Q&A, summaries, and study materials, and notebooks can be used in Gemini conversations; it is not limited to a separate App. Eligible Google Drive sources sync when you open the notebook; uploaded files are imported copies. You choose cited sources and cloud sharing permissions, and it does not rewrite the original Drive files. Source syncing does not guarantee that every previously generated study material will be regenerated.",
+              "sources": [
+                {
+                  "label": "Gemini Notebook Help",
+                  "href": "https://support.google.com/gemininotebook/answer/16215270?hl=en"
+                },
+                {
+                  "label": "Automatic Drive syncing",
+                  "href": "https://workspaceupdates.googleblog.com/2026/05/keep-your-sources-up-to-date-with-automatic-drive-syncing-in-NotebookLM.html"
+                }
+              ],
+              "wenlan": {
+                "labels": [
+                  "Bring reading back into work",
+                  "More than sync: update knowledge pages",
+                  "You decide whether important edits land"
+                ],
+                "profile": [
+                  "Save conclusions and decisions in a local knowledge base, then find them through connected AI tools for the next task.",
+                  "Background tracking follows source changes and refreshes eligible existing Wiki pages, not just another source copy.",
+                  "Pages you wrote keep their original text while AI proposes a revision; you choose whether to accept or keep it."
+                ],
+                "emphasis": []
+              }
+            }
+          ],
+          "current": {
+            "name": "Wenlan",
+            "tagline": "AI-native knowledge base",
+            "summary": "A shared knowledge base for you and AI, built up through work.",
+            "body": "Wenlan turns source documents, saved decisions, and lessons from work into a source-backed Living Wiki. Its Sources, Memories, and Pages model keeps decisions, lessons, and corrections as independent source-backed records; explicit supersession can link new knowledge to what it replaces. Those records and documents jointly support Pages. This knowledge lifecycle is discussed in the community Rohitg00 LLM Wiki v2 proposal; that is not an official version certification. First connect sources, specify a background model, and build an initial set of pages; after that, the local daemon syncs changes in connected folders, refreshes eligible existing pages, and keeps a change history. New topics are not guaranteed to become pages automatically; updates pause when the model is unavailable or source or citation checks fail. Pages you write or edit first receive a revision for review, and the original changes only after approval; not every AI write requires approval. People and connected tools share the selected Space through plugin / CLI / MCP, without opening the desktop App. Data is stored locally; model processing can use local or cloud services according to your settings.",
+            "highlights": [
+              {
+                "label": "Documents + independent decisions",
+                "body": "Source documents and independent decisions, lessons, and corrections jointly support Pages."
+              },
+              {
+                "label": "Maintained Pages",
+                "body": "Machine-maintained pages can rebuild from their current supporting evidence."
+              },
+              {
+                "label": "Review + history",
+                "body": "Changes to human writing wait for review. Page revisions remain inspectable."
+              },
+              {
+                "label": "Shared across AI tools",
+                "body": "Connected MCP clients reuse the same local knowledge instead of separate copies."
+              }
+            ],
+            "sources": [
+              {
+                "label": "Source-backed Pages",
+                "href": "https://wenlan.app/docs/source-backed-pages"
+              },
+              {
+                "label": "Review and trust",
+                "href": "https://wenlan.app/docs/review-and-trust"
+              },
+              {
+                "label": "Models and keys",
+                "href": "https://wenlan.app/docs/models-and-keys"
+              },
+              {
+                "label": "Local Git history",
+                "href": "https://wenlan.app/docs/local-git-history"
+              },
+              {
+                "label": "Rohitg00 LLM Wiki v2 community proposal",
+                "href": "https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2"
+              },
+              {
+                "label": "Wenlan repository: what is this?",
+                "href": "https://github.com/7xuanlu/wenlan#what-is-this"
+              }
+            ]
           },
-          closer: { pre: "And while you sleep, the wiki gets ", emphasis: "better", post: "." },
+          "closer": {
+            "pre": "Keep what matters, with ",
+            "emphasis": "review",
+            "post": " in the loop."
+          },
+          "selectorLabel": "How do you manage knowledge today?",
+          "sourcesChecked": "Sources checked 2026-09-07 · Documentation and source-code review, not a hands-on benchmark."
         },
         pipeline: {
           intro:
-            "Wenlan captures decisions as work happens, refines the wiki between sessions, and briefs the next session when it starts.",
+            "After provider and client setup, Wenlan can save useful decisions, build sourced Pages when configured processing runs, and help the next session find them.",
           stages: [
-            { id: "capture", step: "/capture · during the session", title: "Work leaves a trail" },
-            { id: "distill", step: "/distill · between sessions", title: "Repeats become a page" },
-            { id: "brief", step: "/brief · next session", title: "The next agent starts warm" },
+            { id: "capture", step: "/capture · during the session", title: "Save useful decisions" },
+            { id: "distill", step: "/distill · between sessions", title: "Build a sourced page" },
+            { id: "brief", step: "/brief · next session", title: "Find it next time" },
           ],
-          distillNote: "Agents also create pages directly when a topic deserves one right away.",
+          distillNote: "Agents can also create Pages directly when a topic deserves one right away; provider and client setup still apply.",
           arcLabel: "/handoff closes each pass",
         },
         bento: {
@@ -578,28 +873,28 @@ export const enContent = {
             },
             {
               id: "graph",
-              title: "Recall arrives connected",
-              body: "People, projects, and pages come back linked to the memory and to each other, so recall arrives with its whole neighborhood.",
+              title: "Find the answer with its context",
+              body: "Configured retrieval can bring back people, projects, and Pages with links to source memories and related items.",
             },
             {
               id: "citations",
-              title: "Every claim keeps its source",
-              body: "Wenlan refuses unsourced pages. Every distilled claim cites the memory that produced it, so it can be traced back and re-checked.",
+              title: "Follow the source",
+              body: "Wenlan records source links on distilled Pages so you can inspect supporting memories. Source links do not prove every claim by themselves.",
             },
             {
               id: "review",
-              title: "Review before trust",
-              body: "Low-confidence captures and contradictions surface for review instead of silently entering context. You step in only when it matters.",
+              title: "Review before you rely",
+              body: "Configured review flows can surface low-confidence captures and contradictions. You decide what is worth trusting in future context.",
             },
             {
               id: "nurture",
-              title: "Fresher every pass",
-              body: "Between sessions, background passes link entities, grow matching pages, and fade stale memories.",
+              title: "See what needs another look",
+              body: "With background processing configured, batches can link entities, update matching Pages, and flag stale memories for attention.",
             },
             {
               id: "spaces",
               title: "Spaces keep work apart",
-              body: "Tag captures and recalls with a space, so a client fact never bleeds into a side project brief.",
+              body: "Tag captures and recalls with a space; when the client and active space are configured, different contexts can stay separate.",
             },
             {
               id: "git",
@@ -608,40 +903,40 @@ export const enContent = {
             },
             {
               id: "mcp",
-              title: "One home, locked to none",
-              body: "Every MCP client reads the same shared memory through one local daemon. The files stay yours.",
+              title: "Bring knowledge across tools",
+              body: "Configured MCP clients can read local memory through one daemon; setup and client permissions determine what they can access.",
             },
           ],
         },
         storage: {
-          title: "Agents get an index.\nYou get files.",
+          title: "Remember the idea,\nnot the exact words?",
           intro:
-            "Captures stage in a fast local index, then solidify into Markdown pages you can open, diff, and keep.",
+            "Hybrid Retrieval combines keyword, semantic, and graph context to help find relevant knowledge. Configured Page work turns sources into Markdown you can read, check, and keep.",
           indexLabel: "Index · working memory for agents",
           filesLabel: "Markdown · lasting record for you",
-          fusionNote: "Three ways in, one query. Any single route misses two of these.",
+          fusionNote: "Files, an index, and Page work solve different needs. Choose the boundary your workflow can maintain.",
           distillCaption: "staging becomes pages",
           ingestCaption: "pages indexed for recall",
           tradeoffs: [
             {
               id: "files-alone",
-              title: "Files alone",
-              body: "Every recall re-reads whole folders. The context window pays for it.",
+              title: "Plain files",
+              body: "A fit for a small, stable set that you or an agent can search directly. As it grows or changes, you may need explicit retrieval and review.",
             },
             {
               id: "db-alone",
-              title: "A database alone",
-              body: "Fast but opaque. Nothing you can open, diff, or move.",
+              title: "An index",
+              body: "Useful for fast lookup across configured sources; pair it with readable artifacts and a review path when people need to inspect changes.",
             },
             {
               id: "index-files",
-              title: "Index + files",
-              body: "One query for agents. Readable, versioned files for you.",
+              title: "Index plus files",
+              body: "Combine lookup with readable, versioned artifacts. Whether it fits depends on your source boundary and maintenance workflow.",
             },
           ],
         },
         metrics: {
-          title: "96% fewer tokens.",
+          title: "Retrieval snapshot scope.",
           bars: [
             {
               id: "full-replay",
@@ -657,7 +952,7 @@ export const enContent = {
             },
           ],
           footnote:
-            "Retrieval-only snapshots. LME_S records 87.7% R@5 and 0.815 MRR on the stratified N=90 deep-S fixture. Token comparison is full replay vs retrieved context.",
+            "Retrieval-only snapshots on fixed fixtures. LME_S records 87.7% R@5 and 0.815 MRR on the stratified N=90 deep-S fixture. This is not a general time or token-saving guarantee and does not compare Wenlan with other tools. Token comparison is full replay vs retrieved context within this retrieval test.",
         },
       },
     },
@@ -681,7 +976,7 @@ export const enContent = {
         description:
           "Agents capture what they learn, you add sources you trust, and Wenlan keeps source-backed wiki pages current across AI work.",
         statusLabel: "Project status",
-        statusItems: ["v0.18.0", "macOS, Linux, Windows", "Apache-2.0", "Built by Qi-Xuan Lu"],
+        statusItems: ["v0.18.3", "macOS, Linux, Windows", "Apache-2.0", "Built by Qi-Xuan Lu"],
       },
       sections: [
         {
@@ -708,7 +1003,7 @@ export const enContent = {
           number: "04",
           title: "Current status",
           paragraphs: [
-            "Wenlan v0.18.0 ships a notarized macOS Apple Silicon DMG and a Windows x64 desktop setup executable, plus native headless runtime artifacts for macOS, Linux (x86_64, aarch64; glibc), and Windows (x86_64). Windows users can choose the desktop setup executable or the headless runtime ZIP. The daemon, CLI, MCP server, Claude Code plugin, and Codex plugin are Apache-2.0; the desktop app crate is AGPL-3.0-only.",
+            "Wenlan v0.18.3 ships a notarized macOS Apple Silicon DMG and a Windows x64 desktop setup executable, plus native headless runtime artifacts for macOS, Linux (x86_64, aarch64; glibc), and Windows (x86_64). Windows users can choose the desktop setup executable or the headless runtime ZIP. The daemon, CLI, MCP server, Claude Code plugin, and Codex plugin are Apache-2.0; the desktop app crate is AGPL-3.0-only.",
           ],
         },
       ],
@@ -1311,7 +1606,7 @@ export const enContent = {
           number: "01",
           title: "Install the runtime for your system",
           paragraphs: [
-            "Wenlan v0.18.0 ships native runtime packages for Windows x64, macOS Apple silicon, and Linux x64 or ARM64 with glibc. Every runtime archive contains the CLI, daemon, and MCP connector.",
+            "Wenlan v0.18.3 ships native runtime packages for Windows x64, macOS Apple silicon, and Linux x64 or ARM64 with glibc. Every runtime archive contains the CLI, daemon, and MCP connector.",
             "On Windows, extract wenlan-windows-x64.zip as one unit into a user-owned directory on PATH. Keep onnxruntime.dll and vulkan-1.dll beside the three executables.",
           ],
           commands: [
@@ -1322,13 +1617,13 @@ export const enContent = {
           ctas: [
             {
               id: "windows-download",
-              href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.0/wenlan-windows-x64.zip",
+              href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-windows-x64.zip",
               label: "Download Windows x64",
             },
             {
               id: "all-downloads",
-              href: "https://github.com/7xuanlu/wenlan/releases/tag/v0.18.0",
-              label: "All v0.18.0 downloads",
+              href: "https://github.com/7xuanlu/wenlan/releases/tag/v0.18.3",
+              label: "All v0.18.3 downloads",
             },
           ],
         },
@@ -1483,14 +1778,10 @@ export const enContent = {
           id: "learn",
           title: "Learn",
           links: [
-            { id: "learn-hub", href: "/learn", label: "Learn hub" },
-            { id: "vs-basic-memory", href: "/learn/wenlan-vs-basic-memory", label: "vs Basic Memory" },
-            { id: "vs-claude-mem", href: "/learn/wenlan-vs-claude-mem", label: "vs claude-mem" },
-            {
-              id: "vs-superlocal-memory",
-              href: "/learn/wenlan-vs-superlocal-memory",
-              label: "vs Superlocal Memory",
-            },
+            { id: "llm-wiki", href: "/learn/distilled-wiki-pages-ai-memory", label: "LLM wiki guide" },
+            { id: "ai-knowledge-base", href: "/learn/source-backed-wiki-pages-ai-work", label: "AI knowledge base guide" },
+            { id: "tool-selection", href: "/learn/choose-ai-knowledge-base-tool", label: "AI knowledge base tool selection" },
+            { id: "obsidian", href: "/learn/wenlan-vs-obsidian-ai-memory", label: "Obsidian and AI work" },
           ],
         },
         {

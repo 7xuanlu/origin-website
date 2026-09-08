@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../components/home/workflow-comparison.css";
 
 @theme {
   --font-sans: var(--font-instrument), -apple-system, BlinkMacSystemFont,
@@ -384,16 +385,14 @@ html:lang(zh-Hans) .brand-wordmark__cjk {
   animation: arc-flow 1.2s linear infinite;
 }
 
-/* Storage retrieval loop: each route flashes in turn, then the fused row pulses.
+/* Storage retrieval loop: each route lifts in turn, then the result settles.
    --route-accent is set inline per chip. */
 @keyframes route-flash {
   0%, 12%, 100% {
-    background-color: transparent;
-    box-shadow: 0 0 0 0 transparent;
+    transform: translateY(0);
   }
   5% {
-    background-color: color-mix(in srgb, var(--route-accent) 14%, transparent);
-    box-shadow: 0 0 14px color-mix(in srgb, var(--route-accent) 30%, transparent);
+    transform: translateY(-2px);
   }
 }
 
@@ -402,8 +401,8 @@ html:lang(zh-Hans) .brand-wordmark__cjk {
 }
 
 @keyframes fuse-pulse {
-  0%, 50%, 78%, 100% { box-shadow: 0 0 0 0 transparent; }
-  62% { box-shadow: 0 0 18px var(--o-glow-warm); }
+  0%, 50%, 78%, 100% { transform: translateY(0); }
+  62% { transform: translateY(-2px); }
 }
 
 .animate-fuse-pulse {
@@ -416,6 +415,75 @@ html:lang(zh-Hans) .brand-wordmark__cjk {
   .animate-arc-flow { animation: none; }
   .animate-route-flash { animation: none; }
   .animate-fuse-pulse { animation: none; }
+}
+
+/* Homepage-only polish. Brand colors/type stay unchanged elsewhere.
+   Radius scale: 8px panels/controls, 12px actual media frames, pills only for
+   the existing language switch. Source screenshots retain their real pixels. */
+.home-page {
+  --o-text-muted: #949caf;
+  --home-ease: cubic-bezier(.16, 1, .3, 1);
+}
+[data-theme="light"] .home-page {
+  --o-text-muted: #707080;
+  --o-warm: #a65330;
+  --o-warm-hover: #934729;
+}
+[data-theme="light"] body:has(.home-page) footer { --o-text-muted: #707080; }
+.home-page .home-panel {
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--o-text) 3%, transparent),
+    0 12px 36px -28px color-mix(in srgb, var(--o-text) 22%, transparent);
+}
+.home-scenario-tab-indicator {
+  width: calc((100% - .5rem) / 3);
+  background: var(--o-surface);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--o-text) 8%, transparent);
+  transform: translateX(calc(var(--active-scene) * 100%));
+  transition: transform 380ms var(--home-ease);
+}
+.home-scenario-source[open] {
+  background: color-mix(in srgb, var(--o-warm) 6%, var(--o-bg-alt));
+}
+.home-scenario-panel:has(.home-scenario-source:nth-child(1)[open]) .home-scenario-citation[data-source-number="1"],
+.home-scenario-panel:has(.home-scenario-source:nth-child(2)[open]) .home-scenario-citation[data-source-number="2"],
+.home-scenario-panel:has(.home-scenario-source:nth-child(3)[open]) .home-scenario-citation[data-source-number="3"] {
+  color: var(--o-bg);
+  background: var(--o-warm);
+}
+@media (hover: hover) and (pointer: fine) {
+  .home-scenario-source:hover { background: var(--o-surface); }
+  .home-scenario-source[open]:hover { background: color-mix(in srgb, var(--o-warm) 6%, var(--o-bg-alt)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-scenario-source[open] .home-scenario-excerpt { animation: home-source-reveal 240ms var(--home-ease); }
+}
+@keyframes home-source-reveal {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-scenario-tab-indicator { transition: none; }
+}
+.home-page .home-tool-mark {
+  transition: transform 240ms var(--home-ease), color 180ms ease, background-color 180ms ease;
+}
+.home-page .home-metrics-table tbody tr:nth-child(2) {
+  background: color-mix(in srgb, var(--o-warm) 5%, var(--o-bg-alt));
+}
+.home-page .home-metrics-table tbody tr:nth-child(3) {
+  background: var(--o-bg-alt);
+}
+.home-image-dialog::backdrop { background: rgb(14 15 19 / .72); backdrop-filter: blur(5px); }
+@media (hover: hover) and (pointer: fine) {
+  .home-page .home-tool-mark:hover { transform: translateY(-3px); color: var(--o-text); background: var(--o-surface); }
+  .home-page a[data-placement="home-hero"], .home-page a[data-placement="home-footer"] {
+    transition: transform 220ms var(--home-ease), box-shadow 220ms var(--home-ease), background-color 180ms ease;
+  }
+  .home-page a[data-placement="home-hero"]:hover, .home-page a[data-placement="home-footer"]:hover { transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page .home-tool-mark, .home-page .home-product-frame img,
+  .home-page a[data-placement="home-hero"], .home-page a[data-placement="home-footer"] { transition: none; transform: none; }
 }
 
 /* Stagger delays */

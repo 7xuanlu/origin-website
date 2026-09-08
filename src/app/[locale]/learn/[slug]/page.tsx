@@ -21,6 +21,8 @@ import {
 import { ArticleHalo, MemoryIndex } from "../../../(en)/learn/article-visuals";
 import { TrackedLink, TrackedLocalizedLink } from "@/components/tracked-link";
 import { ProductEvidencePanel } from "@/components/learn/product-evidence-panel";
+import { WorkflowComparisonGuide } from "@/components/learn/workflow-comparison-guide";
+import { buildSectionIds } from "./section-ids";
 
 type LocalizedLearnArticlePageProps = {
   params: Promise<{
@@ -55,15 +57,6 @@ const chromeByLocale = {
     github: "在 GitHub 查看",
   },
 } as const satisfies Record<TranslatedLocale, Record<string, string>>;
-
-function sectionId(heading: string, index: number): string {
-  const asciiId = heading
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-
-  return asciiId || `section-${index + 1}`;
-}
 
 function renderProtectedCjkTerms(text: string) {
   return text
@@ -250,6 +243,10 @@ export default async function LocalizedLearnSlugPage({
 
   const pathname = `/learn/${article.slug}`;
   const url = canonicalUrl(resolvedLocale, pathname);
+  const sectionIds = buildSectionIds(
+    article.sections.map((section) => section.heading),
+    article.sections.map((section) => section.id),
+  );
   const articleBody = article.sections
     .flatMap((section) => section.body)
     .join("\n\n");
@@ -298,7 +295,7 @@ export default async function LocalizedLearnSlugPage({
       "@type": "WebPageElement",
       name: section.heading,
       position: index + 1,
-      url: `${url}#${sectionId(section.heading, index)}`,
+      url: `${url}#${sectionIds[index]}`,
     })),
   };
 
@@ -388,6 +385,11 @@ export default async function LocalizedLearnSlugPage({
                     {renderArticleText(article.productEvidence.action.label)}
                   </a>
                 )}
+                {article.slug === "distilled-wiki-pages-ai-memory" && (
+                  <a href="#worked-example" className="mt-7 inline-flex rounded-md border border-[var(--o-border)] px-5 py-3 text-sm font-semibold hover:text-[var(--o-warm)]">
+                    {locale === "zh-TW" ? "試做：從三份來源到一頁 Wiki" : "试做：从三份来源到一页 Wiki"}
+                  </a>
+                )}
               </div>
               <MemoryIndex
                 label={chrome.articlePacket}
@@ -425,13 +427,15 @@ export default async function LocalizedLearnSlugPage({
           />
         )}
 
+        {article.slug === "choose-ai-knowledge-base-tool" && <WorkflowComparisonGuide locale={resolvedLocale} />}
+
         <section className="px-6 pb-20">
           <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[minmax(0,680px)_1fr]">
             <div className="min-w-0 space-y-14">
               {article.sections.map((section, index) => (
                 <section
-                  id={sectionId(section.heading, index)}
-                  key={section.heading}
+                  id={sectionIds[index]}
+                  key={sectionIds[index]}
                   className="grid scroll-mt-24 gap-5 sm:grid-cols-[72px_1fr]"
                 >
                   <p className="font-mono text-[11px] text-[var(--o-warm)]">
@@ -443,7 +447,7 @@ export default async function LocalizedLearnSlugPage({
                     </h2>
                     <div className="mt-5 space-y-4 text-base leading-relaxed text-[var(--o-text-secondary)]">
                       {section.body.map((paragraph) => (
-                        <p key={paragraph}>{renderArticleText(paragraph)}</p>
+                        <p key={paragraph} className={section.id?.startsWith("worked-example") ? "text-pretty" : undefined}>{renderArticleText(paragraph)}</p>
                       ))}
                     </div>
                     {section.bullets && (
@@ -463,7 +467,7 @@ export default async function LocalizedLearnSlugPage({
                         <p className="border-b border-[var(--o-border-subtle)] px-4 py-3 font-mono text-[10px] tracking-[0.18em] text-[var(--o-text-muted)] uppercase">
                           {section.code.label}
                         </p>
-                        <pre className="overflow-x-auto p-4 text-sm leading-relaxed text-[var(--o-text-secondary)]">
+                        <pre className={`overflow-x-auto p-4 text-sm leading-relaxed text-[var(--o-text-secondary)] ${section.id?.startsWith("worked-example") ? "whitespace-pre-wrap break-words" : ""}`}>
                           <code>{section.code.code}</code>
                         </pre>
                       </div>
@@ -527,8 +531,8 @@ export default async function LocalizedLearnSlugPage({
                 <div className="mt-4 space-y-3">
                   {article.sections.map((section, index) => (
                     <a
-                      key={section.heading}
-                      href={`#${sectionId(section.heading, index)}`}
+                      key={sectionIds[index]}
+                      href={`#${sectionIds[index]}`}
                       className="grid grid-cols-[28px_1fr] gap-2 text-sm leading-relaxed text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-warm)]"
                     >
                       <span className="font-mono text-[10px] text-[var(--o-text-dim)]">

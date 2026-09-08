@@ -14,6 +14,7 @@ import { ArticleHalo, MemoryIndex } from "../article-visuals";
 import { alternateUrls, isTranslatedLearnPath } from "@/i18n/routing";
 import { TrackedLink } from "@/components/tracked-link";
 import { ProductEvidencePanel } from "@/components/learn/product-evidence-panel";
+import { WorkflowComparisonGuide } from "@/components/learn/workflow-comparison-guide";
 
 function sectionId(heading: string): string {
   return heading
@@ -140,7 +141,7 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
       "@type": "WebPageElement",
       name: section.heading,
       position: index + 1,
-      url: `${articleUrl(article.slug)}#${sectionId(section.heading)}`,
+      url: `${articleUrl(article.slug)}#${section.id ?? sectionId(section.heading)}`,
     })),
     ...(article.comparisonTable
       ? {
@@ -249,6 +250,11 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
                     {article.productEvidence.action.label}
                   </a>
                 )}
+                {article.slug === "distilled-wiki-pages-ai-memory" && (
+                  <a href="#worked-example" className="mt-7 inline-flex rounded-md border border-[var(--o-border)] px-5 py-3 text-sm font-semibold hover:text-[var(--o-warm)]">
+                    Try the complete source-to-wiki example
+                  </a>
+                )}
               </div>
               <MemoryIndex
                 label="Article packet"
@@ -283,12 +289,14 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
           <ProductEvidencePanel evidence={article.productEvidence} />
         )}
 
+        {article.slug === "choose-ai-knowledge-base-tool" && <WorkflowComparisonGuide locale="en" />}
+
         <section className="px-6 pb-20">
           <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[minmax(0,680px)_1fr]">
             <div className="min-w-0 space-y-14">
               {article.sections.map((section, index) => (
                 <section
-                  id={sectionId(section.heading)}
+                  id={section.id ?? sectionId(section.heading)}
                   key={section.heading}
                   className="grid scroll-mt-24 gap-5 sm:grid-cols-[72px_1fr]"
                 >
@@ -301,7 +309,7 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
                     </h2>
                     <div className="mt-5 space-y-4 text-base leading-relaxed text-[var(--o-text-secondary)]">
                       {section.body.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
+                        <p key={paragraph} className={section.id?.startsWith("worked-example") ? "text-pretty" : undefined}>{paragraph}</p>
                       ))}
                     </div>
                     {section.bullets && (
@@ -321,7 +329,7 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
                         <p className="border-b border-[var(--o-border-subtle)] px-4 py-3 font-mono text-[10px] tracking-[0.18em] text-[var(--o-text-muted)] uppercase">
                           {section.code.label}
                         </p>
-                        <pre className="overflow-x-auto p-4 text-sm leading-relaxed text-[var(--o-text-secondary)]">
+                        <pre className={`overflow-x-auto p-4 text-sm leading-relaxed text-[var(--o-text-secondary)] ${section.id?.startsWith("worked-example") ? "whitespace-pre-wrap break-words" : ""}`}>
                           <code>{section.code.code}</code>
                         </pre>
                       </div>
@@ -427,7 +435,7 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
                   {article.sections.map((section, index) => (
                     <a
                       key={section.heading}
-                      href={`#${sectionId(section.heading)}`}
+                      href={`#${section.id ?? sectionId(section.heading)}`}
                       className="grid grid-cols-[28px_1fr] gap-2 text-sm leading-relaxed text-[var(--o-text-secondary)] transition-colors hover:text-[var(--o-warm)]"
                     >
                       <span className="font-mono text-[10px] text-[var(--o-text-dim)]">

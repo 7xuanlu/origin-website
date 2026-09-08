@@ -22,7 +22,7 @@ export function DownloadSection({
   return (
     <section
       id="download"
-      className="scroll-mt-20 border-b border-[var(--o-border-subtle)] px-6 py-14 sm:py-16"
+      className="scroll-mt-20 px-6 py-14 sm:py-16"
     >
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(420px,1.18fr)] lg:items-center">
         <div>

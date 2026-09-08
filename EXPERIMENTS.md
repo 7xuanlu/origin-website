@@ -9229,3 +9229,125 @@ increase for that experiment.
 - Decision: wait
 - Next step: Keep the fixed production boundary and current pages unchanged. Run the seven-day source-native GSC page/query and Vercel page/referrer readout after `2026-09-07T15:27:07Z`; re-read authenticated URL Inspection when available without requesting indexing. Do not infer SEO success, source-to-page sessions, authority, release-download attribution, or star causality.
 <!-- EXPERIMENT-RECORD:END -->
+
+<!-- EXPERIMENT-RECORD:START -->
+## Experiment readout: EXP-2026-08-23-coding-agent-source-backed-knowledge-base factual-boundary correction
+
+- Record type: experiment-readout
+- Experiment ID: EXP-2026-08-23-coding-agent-source-backed-knowledge-base
+- Observed at: 2026-09-05T01:39:51Z
+- Readout: correction
+- Status: measuring
+- Evidence: An isolated Wenlan v0.18.0 negative control showed that valid source IDs did not make an unsupported Page assertion fail on the tested refresh path. Updating a source already cited by the Page marked it `source_updated`, while storing a separate superseding memory preserved a version chain but did not invalidate the predecessor-linked Page. The user approved a narrow trilingual factual correction. PR #174 merged at 2026-09-05T01:39:00Z as ab3b191a8d67493e4206f4613c37b684519e1a13; Vercel production completed at 2026-09-05T01:39:51Z. Integrated Goal, i18n 81/81, SEO 273/273, lint, build, built technical, deployed technical, desktop, 393px, FAQ interaction, exact canonical, dateModified and reciprocal alternate checks passed.
+- Result: inconclusive
+- Decision: wait
+- Next step: Preserve the factual correction without starting a new search experiment. Treat 2026-09-05T01:39:51Z as a new copy-attribution boundary and do not attribute later observations solely to the original 2026-08-23 copy. Keep native GSC page/query and Vercel observations separate; do not request indexing or infer ranking, traffic, CTR, or causal improvement from technical publication.
+<!-- EXPERIMENT-RECORD:END -->
+
+<!-- EXPERIMENT-RECORD:START -->
+## Experiment readout: EXP-2026-08-27-source-backed-research-knowledge-base-locales seven-day observation
+
+- Record type: experiment-readout
+- Experiment ID: EXP-2026-08-27-source-backed-research-knowledge-base-locales
+- Observed at: 2026-09-05T03:51:21Z
+- Readout: 7d
+- Status: measuring
+- Evidence: The fixed production boundary remains `2026-08-28T03:49:51Z`. The latest successfully completed authenticated weekly capture covers `2026-08-07..2026-09-03`; GSC property totals are 12 clicks / 1,066 impressions, visible-query totals are 2 clicks / 262 impressions, and the visibility gap is 10 clicks / 804 impressions. The English target-page row is 0 clicks / 1 impression at page-average position 3.0. The zh-TW and zh-CN target-page rows and all three locale joined qualified-query rows are unavailable rather than zero. Authenticated URL Inspection captured on 2026-09-04 reports `PASS`, `Submitted and indexed`, successful mobile fetch, exact Google/user canonical, and post-deploy crawl timestamps of `2026-08-30T15:12:09Z` for English, `2026-08-31T02:51:06Z` for zh-TW, and `2026-08-30T13:28:59Z` for zh-CN. The unchanged publication checks remain current: all three routes return direct 200, exact canonicals, reciprocal hreflang, `index, follow`, Article and BreadcrumbList schema dated `2026-08-27`, the visible literature-matrix, contradiction, limitation, source-update and human-review task, and no FAQPage schema; the deployed audit passed all 168 sitemap owners and protected technical cases. Vercel for the same weekly range is 570 visitors / 1,040 pageviews, with direct at 537 / 999 and qualified referrers kept separate: Google 31 / 31, Bing 2 / 2, GitHub 2 / 5, DuckDuckGo 1 / 2, Gemini 1 / 1, and Kagi 1 / 1. Only the zh-CN target has a page row, 3 visitors / 3 pageviews; English and zh-TW are unavailable. The authenticated source-page aggregate contains GitHub to the zh-CN target at 1 visitor / 1 pageview; it is not a person-level session or causal attribution. Wenlan source PR #624 remains the maintained first-party README authority path, not independent endorsement. GitHub separately reports 62 total stars at `2026-09-04T22:36:15.280Z`; the latest reusable release observation remains `v0.17.6` with 22 cumulative asset downloads at `2026-09-01T15:28:19Z`. No metric is converted, combined, or attributed to this experiment.
+- Result: inconclusive
+- Decision: wait
+- Next step: Keep every locale stable. Each locale remains below its independent minimum of 20 GSC target-page impressions in 28 complete post-crawl days: English has 1 impression, while zh-TW and zh-CN are unavailable. Do not declare success or failure from the English average position, Vercel visits, indexing, the first-party README link, stars, or downloads. Run the next due Goal readout after `2026-09-05T04:59:15Z`; do not request indexing, submit GSC validation, modify analytics, contact maintainers, buy traffic, generate synthetic events, change metric definitions, or start another overlapping edit under this record.
+<!-- EXPERIMENT-RECORD:END -->
+
+<!-- EXPERIMENT-RECORD:START -->
+## Experiment readout: EXP-2026-08-28-consultant-client-project-knowledge-base-locales seven-day observation
+
+- Record type: experiment-readout
+- Experiment ID: EXP-2026-08-28-consultant-client-project-knowledge-base-locales
+- Observed at: 2026-09-05T05:00:20Z
+- Readout: 7d
+- Status: measuring
+- Evidence: The fixed production boundary remains `2026-08-29T04:59:15Z`. The latest successfully completed authenticated weekly capture covers `2026-08-07..2026-09-03`; GSC property totals are 12 clicks / 1,066 impressions, visible-query totals are 2 clicks / 262 impressions, and the visibility gap is 10 clicks / 804 impressions. None of the English, zh-TW, or zh-CN consultant target pages appears in the GSC page table or joined query-page table, so every target-page and qualified joined-query observation is unavailable rather than zero. The 2026-09-04 authenticated URL Inspection sample does not include this family, so post-deploy crawl and indexing state remain unavailable; no crawl is inferred from sitemap membership or technical availability. The unchanged publication evidence remains current: all three locale routes return direct 200 with exact self-canonicals, reciprocal hreflang, sitemap membership, Article and BreadcrumbList schema, the visible client-scoped consulting task and limitation boundary, visible FAQ, and no FAQPage schema; the deployed technical audit has continued to pass the protected site surface. Vercel for the same weekly range is 570 visitors / 1,040 pageviews, with direct at 537 / 999 and qualified referrers kept separate: Google 31 / 31, Bing 2 / 2, GitHub 2 / 5, DuckDuckGo 1 / 2, Gemini 1 / 1, and Kagi 1 / 1. None of the three consultant routes appears in the Vercel page or authenticated source-page tables, so every locale target-page and source-page observation is unavailable rather than zero. The predeclared maintained first-party consulting README authority path remains planned and unpublished, not an endorsement or referral. GitHub separately reports 62 total stars at `2026-09-04T22:36:15.280Z`; the latest reusable release observation remains `v0.17.6` with 22 cumulative asset downloads at `2026-09-01T15:28:19Z`. No metric is converted, combined, or attributed to this experiment.
+- Result: inconclusive
+- Decision: wait
+- Next step: Keep all three locale pages stable. No locale has established a post-deploy crawl or reached its independent minimum of 20 GSC target-page impressions in 28 complete post-crawl days, so success and failure are both ineligible. Run the next due Goal readout after `2026-09-05T06:02:35Z`; do not request indexing, submit GSC validation, publish the planned README link, modify analytics, contact maintainers, buy traffic, generate synthetic events, change metric definitions, or start an overlapping edit under this record.
+<!-- EXPERIMENT-RECORD:END -->
+
+<!-- EXPERIMENT-RECORD:START -->
+## Experiment readout: EXP-2026-08-28-source-backed-investment-research-knowledge-base-locales seven-day observation
+
+- Record type: experiment-readout
+- Experiment ID: EXP-2026-08-28-source-backed-investment-research-knowledge-base-locales
+- Observed at: 2026-09-05T06:05:53Z
+- Readout: 7d
+- Status: measuring
+- Evidence: Fixed production remains `2026-08-29T06:02:35Z`. Reused the September 4 successful weekly capture and `docs/seo-audits/2026-09-04-seo-growth-diagnosis.md` without rerunning Search Analytics or Vercel. The requested `2026-08-07..2026-09-03` GSC range contains 12 property clicks / 1,066 property impressions, 2 visible-query clicks / 262 visible-query impressions, and a 10-click / 804-impression visibility gap. September 3 is partial according to the separate daily capture's `firstIncompleteDate`; the full aggregate is also mixed pre/post-deploy and pre/post-crawl, not a complete post-crawl measurement window. Exact owner routes are `/learn/build-investment-research-knowledge-base`, `/zh-TW/learn/build-investment-research-knowledge-base`, and `/zh-CN/learn/build-investment-research-knowledge-base`. None occurs in the preserved GSC page or query-page table: per-locale page impressions, clicks, CTR, position, and joined qualified-query observations are unavailable, not zero.
+- Crawl evidence: Fresh authenticated Search Console URL Inspection API reads at `2026-09-05T06:05:17.028Z`, `2026-09-05T06:05:23.443Z`, and `2026-09-05T06:05:29.815Z` returned HTTP 200, `PASS`, `Submitted and indexed`, `ALLOWED`, `INDEXING_ALLOWED`, successful mobile fetch, and exact user/Google canonical for English, zh-TW, and zh-CN respectively. Last crawl timestamps are English `2026-08-30T06:30:53Z`, zh-TW `2026-08-30T11:25:43Z`, and zh-CN `2026-08-31T13:54:08Z`. All are after production; these are source-native crawl/index observations, not effects attributed to indexing requests or proof of search performance.
+- Technical evidence: Fresh live GETs at `2026-09-05T06:05:53Z` returned direct 200 for all three exact routes, exact self-canonicals, `index, follow`, no X-Robots header, reciprocal en-US/zh-TW/zh-CN/x-default alternates, Article and BreadcrumbList, datePublished/dateModified `2026-08-28`, and no FAQPage schema. Prior publication and 24-hour content/render evidence is retained as dated historical evidence; no fresh visual QA or blanket claim of unchanged deployment is made by this readout.
+- Other native observations: Vercel's complete UTC `2026-08-07..2026-09-03` range is 570 visitors / 1,040 pageviews; direct is 537 / 999. Reported referrers remain individual aggregates: Google 31 / 31, Bing 2 / 2, GitHub 2 / 5, DuckDuckGo 1 / 2, Gemini 1 / 1, Kagi 1 / 1. Referrer visitors are not summed. None of the exact target routes appears in Vercel page or authenticated source-page rows; target and source-page observations are unavailable. Unique acquisition-surface visitors are unavailable and are not reconstructed by summing page visitors. Umami is unavailable; Vercel custom events remain account-gated. The latest reused GitHub observation is 62 total stars at `2026-09-04T22:36:15.280Z`. The older `v0.17.6` release observation of 22 cumulative asset downloads at `2026-09-01T15:28:19Z` is historical, not current-release downloads. The scenario's first-party README authority path is recorded as planned-not-published; no independent authority or financial outcome is claimed.
+- Result: inconclusive
+- Decision: wait
+- Next step: Each locale must independently accumulate 28 complete post-crawl days and at least 20 page impressions before formal judgment; success additionally requires 3 qualified joined-query impressions and 1 click. None has established that exposure, and missing rows do not establish failure. Preserve the page family and fixed production boundary. The next recorded due readout is product research to PRD after `2026-09-05T06:44:59Z`. No publication, indexing request, validation, analytics mutation, directory submission, or other external write occurred.
+<!-- EXPERIMENT-RECORD:END -->
+
+<!-- EXPERIMENT-RECORD:START -->
+## Experiment readout: EXP-2026-08-28-product-research-to-prd-knowledge-base-locales seven-day observation
+
+- Record type: experiment-readout
+- Experiment ID: EXP-2026-08-28-product-research-to-prd-knowledge-base-locales
+- Observed at: 2026-09-05T06:47:16Z
+- Readout: 7d
+- Status: measuring
+- Evidence: Fixed production remains `2026-08-29T06:44:59Z`. Resolved the product-research scenario to the published slug `build-product-research-knowledge-base-for-prd` and its English, zh-TW, and zh-CN Learn canonicals before filtering evidence. Reused the September 4 weekly capture and `docs/seo-audits/2026-09-04-seo-growth-diagnosis.md`; no Search Analytics or Vercel pipeline was rerun. GSC requested range `2026-08-07..2026-09-03` contains property totals of 12 clicks / 1,066 impressions, visible-query totals of 2 clicks / 262 impressions, and a visibility gap of 10 clicks / 804 impressions. September 3 is partial per the separate daily capture, and this aggregate mixes pre/post-deploy and pre/post-crawl days. English target: 0 clicks / 1 impression, CTR 0%, page-average position 3.0. zh-CN target: 0 clicks / 1 impression, CTR 0%, page-average position 9.0. zh-TW target is unavailable. All locale joined qualified-query rows are unavailable, not zero; page-average positions do not establish exact-query rankings.
+- Crawl evidence: Fresh authenticated URL Inspection reads at `2026-09-05T06:47:02.653Z` (English), `2026-09-05T06:47:09.342Z` (zh-TW), and `2026-09-05T06:47:15.995Z` (zh-CN) each returned HTTP 200, `PASS`, `Submitted and indexed`, allowed robots/indexing, successful mobile fetch, and exact Google/user canonical. Their last crawls are respectively `2026-08-30T11:03:06Z`, `2026-08-31T22:46:38Z`, and `2026-08-30T13:52:50Z`. These establish observed post-deploy crawls, not an indexing-request effect or search performance.
+- Technical evidence: Fresh GETs during the same capture returned direct 200, exact self-canonicals, `index, follow`, no X-Robots header, reciprocal en-US/zh-TW/zh-CN/x-default alternates, Article and BreadcrumbList schema, datePublished `2026-08-28`, dateModified `2026-08-29`, and no FAQPage schema on all three routes. Prior publication/24-hour content and render checks remain dated historical evidence; this readout did not perform fresh visual QA or assert unchanged deployment.
+- Other native observations: Vercel's complete UTC `2026-08-07..2026-09-03` capture reports 570 visitors / 1,040 pageviews; direct 537 / 999; Google 31 / 31; Bing 2 / 2; GitHub 2 / 5; DuckDuckGo 1 / 2; Gemini 1 / 1; Kagi 1 / 1. Referrer visitors are not summed. Target-page rows report zh-TW 3 visitors / 6 pageviews and zh-CN 8 / 11; English and all target source-page rows are unavailable. Unique acquisition-surface visitors are unavailable and cannot be obtained by summing page visitors. Umami is unavailable and Vercel custom events remain account-gated. Reused GitHub total is 62 stars at `2026-09-04T22:36:15.280Z`; historical `v0.17.6` downloads were 22 cumulative asset downloads at `2026-09-01T15:28:19Z`, not current-release downloads. The scenario records its maintained OSS workflow authority path as planned-not-published; no submission, endorsement, referral attribution, or product outcome is inferred.
+- Result: inconclusive
+- Decision: wait
+- Next step: Keep the family stable. No locale meets the independent 20-page-impression floor and 28-complete-post-crawl-day requirement; success additionally requires 3 qualified joined-query impressions and 1 click. English/zh-CN each have only 1 observed impression, and zh-TW exposure is unavailable. Neither success nor failure is established. The next recorded scheduled seven-day boundary is SRE after `2026-09-06T05:06:25Z`. No website, README, analytics, indexing, validation, directory, paid, or other external write occurred.
+<!-- EXPERIMENT-RECORD:END -->
+
+## 2026-09-05 evidence correction — consultant canonical lookup
+
+This append-only correction supersedes the absence claims in the consultant
+seven-day observation at `2026-09-05T05:00:20Z`, not its fixed publication time
+or inconclusive outcome. The exact owner is
+`build-client-project-knowledge-base-for-consulting`, not the experiment name.
+Re-read the preserved September 4 native exports without fetching a new range:
+
+- GSC `2026-08-07..2026-09-03`: English page 0 clicks / 7 impressions;
+  zh-CN page 0 clicks / 1 impression; zh-TW unavailable. English joined visible
+  query `knowledge base consulting`: 0 clicks / 6 impressions, average position
+  16.8333. Its wording is ambiguous, not validated consulting-workflow intent.
+- GSC property remains 12 clicks / 1,066 impressions; visible queries remain
+  2 / 262 and visibility gap 10 / 804. The range mixes pre/post-deploy and
+  pre/post-crawl days; September 3 is incomplete per the separate daily capture.
+- `url-inspection-2026-09-04.json` does include the English canonical, with
+  exact Google/user canonical and last crawl `2026-08-30T13:32:13Z`. This is
+  source-native crawl evidence, not indexing-request causality.
+- Vercel target zh-CN has 4 visitors / 4 pageviews. Other locale page rows and
+  target source-page joins are unavailable; do not fabricate a user/session join.
+- Evidence files: `/tmp/wenlan-seo/gsc-pages.csv`, `gsc-query-pages.json`,
+  `gsc-metadata.json`, `vercel-pages.csv`, and the URL Inspection capture above.
+  Page exposure remains below the 20-impression floor and does not establish
+  28 complete post-crawl days. The correct decision remains inconclusive, but
+  it is incorrect to state that all locale observations and crawl data are absent.
+
+<!-- EXPERIMENT-RECORD:START -->
+## Experiment readout: EXP-2026-08-29-sre-incident-knowledge-base-locales seven-day observation
+
+- Record type: experiment-readout
+- Experiment ID: EXP-2026-08-29-sre-incident-knowledge-base-locales
+- Observed at: 2026-09-08T05:28:05Z
+- Readout: 7d
+- Status: measuring
+- Evidence: This is the overdue seven-day observation, not a moved measurement boundary. Production remains fixed at `2026-08-30T05:06:25Z`; the seven-day boundary was `2026-09-06T05:06:25Z`. No earlier SRE seven-day record exists in this ledger. Resolved the canonical owners from `docs/seo-audits/2026-08-29-sre-incident-knowledge-base-candidate.md` and published article data: `/learn/build-sre-incident-knowledge-base`, `/zh-TW/learn/build-sre-incident-knowledge-base`, and `/zh-CN/learn/build-sre-incident-knowledge-base`.
+- Weekly reuse and evidence availability: Reused the latest successfully completed September 4 weekly result from the existing weekly automation memory and its preserved interpretation in `docs/seo-audits/2026-09-04-seo-growth-diagnosis.md`. The original ff5f weekly-report checkout is no longer present. In this run `/tmp/wenlan-seo` is also absent, so the original GSC page/query-page and Vercel page/source-page exports cannot be filtered again for the exact SRE owners. Do not reuse another experiment's rows or convert this missing artifact into zero impressions/visitors. No GSC Search Analytics or Vercel pipeline was rerun.
+- GSC native observations: The historical September 4 requested range `2026-08-07..2026-09-03` reports property totals of 12 clicks / 1,066 impressions, visible-query totals of 2 clicks / 262 impressions, and a visibility gap of 10 clicks / 804 impressions. September 3 was incomplete per the separately recorded daily capture; the requested aggregate mixes pre/post-deploy and pre/post-crawl days. Each SRE locale's page clicks, page impressions, CTR, page-average position, and joined qualified visible-query observations are unavailable in this readout because the retained interpretation does not contain those exact rows and the original exports are absent. Neither the 20-page-impression floor nor the 3-qualified-joined-query-impression and 1-click success conditions can be established.
+- Crawl evidence: Fresh authenticated read-only Search Console URL Inspection API responses returned HTTP 200, `PASS`, `Submitted and indexed`, `ALLOWED`, `INDEXING_ALLOWED`, successful mobile fetch, and exact Google/user canonicals for all three owners. English was inspected at `2026-09-08T05:24:10.141Z`, last crawl `2026-08-30T14:24:19Z`; zh-TW at `2026-09-08T05:24:17.705Z`, last crawl `2026-08-31T07:36:09Z`; zh-CN at `2026-09-08T05:24:24.122Z`, last crawl `2026-08-30T15:35:52Z`. Each recorded crawl is after the fixed deployment boundary, but none establishes 28 complete post-crawl days. These are current observations of Google's stored crawl state, not newly occurring crawls, indexing-request effects, or search-acquisition outcomes. No indexing request or validation was submitted.
+- Technical and render evidence: Fresh direct GETs at `2026-09-08T05:24:01Z` returned 200 without redirects for all three owners, exact self-canonicals, `index, follow`, no X-Robots header, reciprocal en-US/zh-TW/zh-CN/x-default alternates, sitemap membership, Article and BreadcrumbList schema with datePublished/dateModified `2026-08-29`, visible incident/runbook review answers and safety boundaries, maintained source links, visible FAQ, and no FAQPage schema. Robots and sitemap returned 200 and allow the canonical routes. Fresh in-app production screenshots covered all three first screens at the normal desktop viewport and configured 393x852 mobile viewport; there was no blank page, headline clipping, framework overlay, or captured console warning/error. The zh-TW evidence-section jump rendered the labeled real fixture image. This is a bounded render smoke check, not a new complete-site visual audit or a claim that the deployment is byte-identical to the August publication. The previously documented oversized CJK desktop title/Article packet presentation remains; it is not silently corrected by this readout. Technical captures, HTML hashes, and source-native URL Inspection evidence are preserved outside the disposable checkout at `/Users/lucian/.codex/visualizations/2026/07/17/019f70d0-90c0-72e0-a213-32f69be1c6c2/2026-09-08-sre-readout/evidence.json`; screenshots are in this task's browser tool receipts. The capture parser was corrected locally for HTML's case-insensitive `hrefLang` attribute using the same saved responses, without refetching or changing the site.
+- Vercel native observations: The reused complete UTC `2026-08-07..2026-09-03` range reports 570 visitors / 1,040 pageviews; direct is 537 / 999. Individual qualified referrer aggregates remain Google 31 / 31, Bing 2 / 2, GitHub 2 / 5, DuckDuckGo 1 / 2, Gemini 1 / 1, and Kagi 1 / 1. Referrer visitors are not summed into a deduplicated qualified total. Unique acquisition-surface visitors are unavailable. The weekly capture historically contained authenticated source-page aggregates, but the absent exports prevent recovering exact SRE target-page or source-page rows; all three locales remain unavailable, not zero, and no person-level source-to-session path is inferred. This range is mixed pre/post-deploy and not a complete post-crawl cohort.
+- Other native observations: Authenticated Umami detail is unavailable; Vercel custom events remain account-gated in the reused report. GitHub's last reused observation is 62 total stars at `2026-09-04T22:36:15.280Z`, not a fresh September 8 count. The older `v0.17.6` observation of 22 cumulative asset downloads at `2026-09-01T15:28:19Z` is historical, not current-release downloads. The SRE scenario's maintained first-party README path remains recorded as planned-not-published; no new authority check or independent endorsement is claimed. None of these counters is attributed to SRE content.
+- Result: inconclusive
+- Decision: wait
+- Next step: Keep the three SRE owners stable. Formal judgment remains ineligible until each locale has 28 complete post-crawl days and at least 20 page impressions; success additionally requires 3 qualified joined-query impressions and 1 click. At the next normal weekly lane, restore native exports through its authorized capture and preserve the necessary interpreted per-owner rows outside disposable storage. Do not rerun that pipeline in this controller to recreate an old capture. The next chronological unrecorded seven-day boundary in PLAN is competitive intelligence after `2026-09-06T19:48:14Z`, also overdue; point the same heartbeat to that record for bounded reconciliation. Leave the native Goal lifecycle unchanged. No website, README, release, analytics, indexing, validation, directory, paid, maintainer-message, or other external state was changed.
+<!-- EXPERIMENT-RECORD:END -->

@@ -40,9 +40,9 @@ state below this frozen section may change as evidence arrives.
 3. `pnpm seo:goal:check` must be deterministic, use no new dependency, and
    fail when any protected Goal clause or production-concurrency guard is
    missing or violated.
-4. Before every campaign action, read `PLAN.md` and run
-   `pnpm seo:goal:check`. If the verifier fails, stop; do not continue from a
-   summary or chat memory.
+4. Before every campaign action, run `pnpm seo:goal:control` and follow
+   the verified active-view reading rules. If the verifier fails, stop; do not
+   continue from a summary or chat memory.
 5. Deliver the artifact and verifier diff plus verification evidence for user
    review before starting any experiment that affects the website. The Goal
    contract must be approved before such an experiment begins.
@@ -165,8 +165,10 @@ are true:
   conflicts with experiment attribution or campaign working files, present the
   smallest prompt diff for user approval; do not silently allow both
   controllers to write.
-- Keep the Goal active until the deadline and execute it in evidence-driven
-  bursts. When there is no new evidence, wait.
+- Pursue the campaign until the deadline in evidence-driven bursts. When no
+  useful authorized work remains before an external event, follow native Goal
+  blocked rules and retain the scheduled wakeup. Temporary waiting does not
+  require keeping the Goal active.
 - If a calendar wake is needed, use a scheduled follow-up in this same main
   task. Do not create another standalone SEO automation, and do not write files
   at the same time as the Friday weekly run.
@@ -197,10 +199,99 @@ The Goal does not stop merely because one window is quiet. It waits until a
 readout, a new evidence window, a stop condition, or the fixed final read.
 <!-- FROZEN-GOAL-CONTRACT:END -->
 
+<!-- ACTIVE-CONTROL-OPERATIONS:START -->
+## User-approved operational amendment — 2026-09-06
+
+This operational-only amendment was explicitly authorized through the token-audit
+coordination in this task. It changes reading and waiting mechanics, not goals,
+targets, dates, final windows, evidence roles, experiment eligibility, production
+slots, approval boundaries, or historical records. On 2026-09-06 the user also
+authorized removing the obsolete
+full-PLAN-read and keep-Goal-active instructions at their source. Only those two
+operational clauses in the frozen block were amended; all other protected clauses
+remain unchanged and checked.
+
+- Before every campaign action, run `pnpm seo:goal:control`. It runs the complete
+  deterministic `pnpm seo:goal:check` logic before emitting the complete active
+  view in `docs/seo-active-control.md` and a source fingerprint. Read that view
+  completely. This supersedes only the repeated full-PLAN reading requirement;
+  the retained PLAN narrative is a referenced historical archive, not recurring
+  model input. It is never deleted or silently rewritten by the control helper.
+- Within the same context, after actually reading a verified active view, pass
+  `--known-fingerprint <sha256>` to reuse that read. Verification still runs on
+  every invocation. If any control source, ledger, scenario state, relevant site
+  source, verifier/helper, or evidence file changes, the fingerprint changes and
+  the complete current view must be read again. After compaction or a new task,
+  omit the old fingerprint and read the view; a summary is not a verified read.
+- `pnpm seo:goal:control --update` only regenerates the derived active Markdown;
+  it grants no campaign action or publication permission. Missing, stale, altered,
+  duplicated-marker, or oversized active views fail closed. The full historical
+  PLAN and experiment ledger continue to be checked deterministically.
+- Before a specific experiment or readout, read its exact original ledger
+  contract and relevant latest evidence, including per-locale exposure and crawl
+  conditions. The active view is a complete common contract, not permission to
+  omit experiment-specific gates. Reuse the latest successfully completed weekly
+  report; do not rerun its pipeline merely because the Goal resumed.
+- Use the native Goal lifecycle. A future readout is a temporary external-state
+  blocker once no useful authorized work remains; it need not be a permanent
+  failure. Retain the scheduled wakeup and follow the native blocked audit.
+  Do not poll the clock or heartbeat to keep an otherwise idle Goal active.
+  This helper does not change Goal state, create jobs, or grant external authority.
+
+<!-- ACTIVE-CONTROL-OPERATIONS:END -->
+
+<!-- ACTIVE-CONTROL-STATE:START -->
+### Current operational checkpoint
+
+The user approved compacting the language dropdown and merging the complete
+`codex/task-first-site-sync` homepage recovery branch on September 7 (local).
+The user-supplied graph capture and recorded wiki/review frames are complete;
+their provenance is in `docs/homepage-media-provenance.json`. Do not recapture
+them merely because older notes say capture is pending.
+The publication scope includes the previously reviewed trilingual homepages,
+shared UI and existing LLM-wiki/tool-selection guide owners, plus verified
+release/download synchronization. This is user-directed UX and factual repair,
+not evidence that the SEO 20/3/28 experiment gate passed. Preserve original
+experiment baselines; observations after the deployment boundary must not be
+attributed to superseded copy. Publication verification and its exact boundary
+will be recorded in `docs/seo-audits/2026-09-08-homepage-publication.md`.
+The SRE seven-day readout was appended at `2026-09-08T05:28:05Z`; consult the
+latest ledger and scheduler state rather than repeating an older due boundary.
+No indexing request, validation, analytics mutation or external promotion is
+authorized by this website approval. Goal targets and final window are unchanged.
+<!-- ACTIVE-CONTROL-STATE:END -->
+
 ## Mutable Campaign State
 
 This section is maintained by the Goal controller. It may change only after the
 controller has read the frozen section and `pnpm seo:goal:check` passes.
+
+### Current recovery work — 2026-09-05
+
+The user requested stepwise resolution of the September 4 diagnosis, starting
+with demand, audience, alternatives, and first-reader acquisition rather than
+implementation alone. The current work queue and next decision are in
+`docs/seo-growth-recovery.md`; dated evidence is in
+`docs/seo-audits/2026-09-04-seo-growth-diagnosis.md`. This pointer supersedes
+stale next-action recommendations below, not protected contracts or historical
+experiments. Local repair and research do not authorize publication. The app
+Goal was last observed `blocked`; this work does not claim to change that
+native state. Targets and the final window remain unchanged.
+
+On September 5 the user explicitly approved a substantial **local** redesign
+following the root-cause diagnosis: task-first positioning, fair alternatives,
+inspectable worked outcomes, and a specific relevant-reader path. The user owns
+real-person comparison and repeat-use tests; agents must not substitute model
+opinions for those observations. Native agent workers implement bounded pieces;
+the lead owns positioning, evidence judgments, integration, and rendered QA.
+The first integrated tranche covers the three homepages, their shared footer
+navigation, and the existing three LLM-wiki guide owners. No new search URL is
+created. This is explicit local preparation authorization, not a claim that the
+20/3/28 publication gate passed. Existing experiment attribution, production
+timestamps, successor targets, and final window remain unchanged. Publication
+and any necessary attribution supersession require a separate exact approval.
+The adopted decision is preserved in Wenlan page
+`page_662404f4-0a4f-4015-9407-0195990fedd8`; execution stays in the recovery index.
 
 <!-- AUTHORITY-FIRST-CORRECTION:START -->
 ### Authority-first growth correction

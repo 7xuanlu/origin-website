@@ -13,6 +13,46 @@ supports it, and choose a relevant next step.
 
 ## Required page contract
 
+### Demand decision before implementation
+
+Before choosing a rewrite, new page, or distribution action, answer these six
+questions in its existing candidate record. Use inspected sources, not a score
+made from incomparable metrics. A defect in a page is not evidence that rewriting
+it is the highest-return acquisition action.
+
+1. **Who is searching, and what triggers the search?** Record the actual task,
+   wording and locale evidence. Separate searchers' questions from vendors'
+   promotional claims; deduplicate reposts and exclude unrelated meanings.
+2. **What result must the reader leave with?** Name the usable decision or
+   artifact and prerequisites. For a build promise, an executable example and
+   inspectable output are required; a placeholder or generic checklist alone
+   does not demonstrate task completion. A concept page may instead resolve a
+   conceptual decision without forcing a product setup.
+3. **Why would this answer be chosen over the current alternatives?** Compare
+   the same task and result shape, including the option of using plain files
+   without Wenlan. Name a demonstrated advantage or an unresolved hypothesis;
+   neither more words nor a screenshot establishes superiority.
+4. **Where will the first relevant readers come from?** Separate existing
+   Google query/page exposure, an owned referral, an independent editorial
+   reference, and a potential submission. State the exact proposed surface and
+   audience fit; a possible link, open PR or site's star count is not delivery.
+5. **Why this action before the competing actions?** Compare an existing-owner
+   improvement, a clean new task, and distribution of a useful existing asset.
+   Consider evidence strength, product fit, competitive gap, execution effort
+   and time remaining. Do not invent expected clicks or a blended score.
+6. **What observation would change or stop this decision?** Predeclare the
+   first low-cost uncertainty test and the next decision. Insufficient exposure
+   is inconclusive, not proof of good content; do not keep rewriting or waiting
+   without naming which uncertainty the next action addresses.
+
+These questions supplement the existing candidate gate; they do not bypass
+PLAN.md, change metric definitions, or authorize publication. Technical fixes
+remain repairs, not growth outcomes. A deterministic check can protect these
+questions from deletion, but only inspected evidence and human judgment can
+answer them. Current execution is tracked in `docs/seo-growth-recovery.md`.
+
+### Page delivery
+
 A scenario page must provide all of the following:
 
 1. One search task, one canonical URL, and one natural H1.

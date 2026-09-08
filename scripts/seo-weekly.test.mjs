@@ -234,11 +234,22 @@ const expectedArticleDates = new Map([
     { datePublished: "2026-08-23", dateModified: "2026-08-23" },
   ],
 ]);
+const builtArticleDates = new Map(expectedArticleDates);
+for (const path of [
+  "/learn/choose-ai-knowledge-base-tool",
+  "/zh-TW/learn/choose-ai-knowledge-base-tool",
+  "/zh-CN/learn/choose-ai-knowledge-base-tool",
+]) {
+  builtArticleDates.set(path, {
+    ...builtArticleDates.get(path),
+    dateModified: "2026-09-07",
+  });
+}
 const requiredLocalizedBuiltHtmlPages = requiredLocalizedLearnPaths.map((path) => ({
   path: `${path.slice(1)}.html`,
   canonical: `https://wenlan.app${path}`,
   type: "Article",
-  ...expectedArticleDates.get(path),
+  ...builtArticleDates.get(path),
 }));
 const requiredBuiltSitemapLocs = [
   "https://wenlan.app",
@@ -316,7 +327,7 @@ const requiredBuiltHtmlPages = [
     canonical: "https://wenlan.app/learn/choose-ai-knowledge-base-tool",
     type: "Article",
     datePublished: "2026-08-02",
-    dateModified: "2026-08-02",
+    dateModified: "2026-09-07",
   },
   {
     path: "learn/verify-ai-knowledge-base-citations.html",

@@ -204,11 +204,11 @@ export function DownloadPlatforms({
                 className="group scroll-mt-24 border-b border-[var(--o-border-subtle)] last:border-b-0"
               >
                 <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[var(--o-warm)] sm:px-6 [&::-webkit-details-marker]:hidden">
-                  <span>
+                  <span className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
                     <span className="font-serif text-xl font-medium">
                       {platform.name}
                     </span>
-                    <span className="ml-3 font-mono text-xs text-[var(--o-text-secondary)]">
+                    <span className="inline-block whitespace-nowrap font-mono text-xs text-[var(--o-text-secondary)]">
                       {platform.architecture}
                     </span>
                   </span>
