@@ -40,7 +40,7 @@ function GuideLink({
       context="setup"
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--o-text-secondary)] underline decoration-[var(--o-border)] underline-offset-4 transition-colors hover:text-[var(--o-warm)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)]"
+      className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--o-text-secondary)] underline decoration-[var(--o-border)] underline-offset-4 transition-colors hover:text-[var(--o-warm)] focus-wenlan"
     >
       {label}
     </TrackedLink>
@@ -107,7 +107,7 @@ export function DownloadPlatforms({
                 context="setup"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--o-text-secondary)] underline decoration-[var(--o-border)] underline-offset-4 transition-colors hover:text-[var(--o-warm)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)]"
+                className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--o-text-secondary)] underline decoration-[var(--o-border)] underline-offset-4 transition-colors hover:text-[var(--o-warm)] focus-wenlan"
               >
                 {copy.page.releaseSourceLabel}
               </TrackedLink>
@@ -146,7 +146,7 @@ export function DownloadPlatforms({
                   placement="download-page"
                   locale={locale}
                   context="setup"
-                  className="mt-6 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-[var(--o-text)] px-5 py-3 text-center text-sm font-semibold text-[var(--o-bg)] transition-transform duration-150 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)] sm:w-fit"
+                  className="mt-6 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-[var(--o-text)] px-5 py-3 text-center text-sm font-semibold text-[var(--o-bg)] press-wenlan focus-wenlan sm:w-fit"
                 >
                   {recommendedPlatform.actionLabel}
                 </TrackedLink>
@@ -177,7 +177,7 @@ export function DownloadPlatforms({
                 </p>
                 <a
                   href="#all-builds"
-                  className="mt-6 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-[var(--o-text)] px-5 py-3 text-center text-sm font-semibold text-[var(--o-bg)] transition-transform duration-150 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)] sm:w-fit"
+                  className="mt-6 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-[var(--o-text)] px-5 py-3 text-center text-sm font-semibold text-[var(--o-bg)] press-wenlan focus-wenlan sm:w-fit"
                 >
                   {copy.recommendation.fallbackActionLabel}
                 </a>
@@ -241,7 +241,7 @@ export function DownloadPlatforms({
                     placement="download-page"
                     locale={locale}
                     context="setup"
-                    className="inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg border border-[var(--o-border)] px-5 py-3 text-center text-sm font-medium text-[var(--o-text-secondary)] transition-colors hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)] sm:w-fit"
+                    className="inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg border border-[var(--o-border)] px-5 py-3 text-center text-sm font-medium text-[var(--o-text-secondary)] transition-colors hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)] focus-wenlan sm:w-fit"
                   >
                     {platform.actionLabel}
                   </TrackedLink>

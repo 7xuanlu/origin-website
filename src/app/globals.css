@@ -497,16 +497,183 @@ html:lang(zh-Hans) .brand-wordmark__cjk {
 .delay-800 { animation-delay: 800ms; }
 
 /* Subtle border glow on cards — Wenlan style */
+/* Shared card contract. Pages add `card-wenlan` plus layout utilities only;
+   radius, motion, spotlight, and focus behavior live here so cards stay
+   consistent without per-page reinvention. */
 .card-wenlan {
+  position: relative;
+  overflow: hidden;
   background: var(--o-card-bg);
   border: 1px solid var(--o-border);
-  transition: all 150ms ease;
+  border-radius: 8px;
 }
 
-.card-wenlan:hover {
+a.card-wenlan,
+button.card-wenlan {
+  transition:
+    transform 150ms ease-out,
+    border-color 200ms ease-out,
+    background 200ms ease-out;
+}
+
+a.card-wenlan:hover,
+button.card-wenlan:hover {
   background: var(--o-card-hover);
-  border-color: var(--o-glow-indigo);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-color: color-mix(in srgb, var(--o-warm) 38%, var(--o-border));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--o-text) 10%, transparent);
+}
+
+a.card-wenlan::before,
+button.card-wenlan::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+  background: radial-gradient(
+    220px circle at var(--mx, 70%) var(--my, 30%),
+    color-mix(in srgb, var(--o-warm) 9%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+a.card-wenlan:hover::before,
+button.card-wenlan:hover::before {
+  opacity: 1;
+}
+
+a.card-wenlan:active,
+button.card-wenlan:active {
+  transform: scale(0.98);
+}
+
+a.card-wenlan:focus-visible,
+button.card-wenlan:focus-visible {
+  outline: 2px solid var(--o-warm);
+  outline-offset: 4px;
+}
+
+/* Featured card: the priority path inside a card group. Warm-tinted
+   surface; never a border stripe or pill badge. */
+.card-wenlan-featured {
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--o-warm) 7%, transparent),
+      color-mix(in srgb, var(--o-warm) 7%, transparent)
+    ),
+    var(--o-card-bg);
+}
+
+/* Shared action buttons. */
+.btn-wenlan {
+  display: inline-block;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 0.875rem;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 150ms ease-out,
+    opacity 150ms ease-out,
+    border-color 200ms ease-out,
+    color 200ms ease-out;
+}
+
+.btn-wenlan:active {
+  transform: scale(0.98);
+}
+
+.btn-wenlan:focus-visible {
+  outline: 2px solid var(--o-warm);
+  outline-offset: 4px;
+}
+
+.btn-wenlan-primary {
+  background: var(--o-text);
+  color: var(--o-bg);
+  font-weight: 600;
+}
+
+.btn-wenlan-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-wenlan-secondary {
+  border: 1px solid var(--o-border);
+  color: var(--o-text-secondary);
+  font-weight: 500;
+}
+
+.btn-wenlan-secondary:hover {
+  border-color: var(--o-text-dim);
+  color: var(--o-text);
+}
+
+/* Icon tile for card kickers. Glyphs come from the shared set. */
+.icon-tile {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--o-border);
+  background: color-mix(in srgb, var(--o-warm) 8%, transparent);
+  color: var(--o-warm);
+}
+
+.icon-tile svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Shared interaction utilities. Zero-change extraction of the focus ring
+   and press/lift trio repeated across conversion surfaces: pages keep
+   their layout, padding, and tracking utilities and swap only these
+   exact-duplicate substrings. */
+.focus-wenlan:focus-visible {
+  outline: 2px solid var(--o-warm);
+  outline-offset: 4px;
+}
+
+.press-wenlan {
+  transition: transform 150ms ease-out;
+}
+
+.press-wenlan:hover {
+  transform: translateY(-2px);
+}
+
+.press-wenlan:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press-wenlan {
+    transition: none;
+  }
+
+  .press-wenlan:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.card-wenlan,
+  button.card-wenlan,
+  a.card-wenlan::before,
+  button.card-wenlan::before,
+  .btn-wenlan {
+    transition: none;
+  }
+
+  a.card-wenlan:hover,
+  button.card-wenlan:hover {
+    transform: none;
+  }
 }
 
 /* Scrollbar styling — Wenlan style */

@@ -139,7 +139,7 @@ export function DownloadPage({ locale }: { locale: Locale }) {
               context="setup"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--o-border)] px-5 py-3 text-center text-sm font-medium text-[var(--o-text-secondary)] transition-colors hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)]"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--o-border)] px-5 py-3 text-center text-sm font-medium text-[var(--o-text-secondary)] transition-colors hover:border-[var(--o-text-dim)] hover:text-[var(--o-text)] focus-wenlan"
             >
               {content.setupGuideLabel}
             </TrackedLink>
@@ -149,7 +149,7 @@ export function DownloadPage({ locale }: { locale: Locale }) {
               placement="download-page"
               locale={locale}
               context="setup"
-              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[var(--o-text)] px-5 py-3 text-center text-sm font-semibold text-[var(--o-bg)] transition-transform duration-150 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)]"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[var(--o-text)] px-5 py-3 text-center text-sm font-semibold text-[var(--o-bg)] press-wenlan focus-wenlan"
             >
               {content.getStartedLabel}
             </TrackedLocalizedLink>
