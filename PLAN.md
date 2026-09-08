@@ -243,14 +243,22 @@ remain unchanged and checked.
 <!-- ACTIVE-CONTROL-STATE:START -->
 ### Current operational checkpoint
 
-Local homepage repairs and verification are
-authorized; production graph capture awaits a readable public-safe App view.
-The existing heartbeat file was read once on 2026-09-06: it records the SRE
-seven-day boundary `2026-09-06T05:06:25Z` (production `2026-08-30T05:06:25Z`).
-That boundary is due, not a new future wait; reconcile its completed readout
-before scheduling or repeating work. The older Research boundary in historical
-PLAN text is not the scheduler's current boundary. Automation changes belong to
-the coordinating task during this repair. No automation change is made here.
+The user approved compacting the language dropdown and merging the complete
+`codex/task-first-site-sync` homepage recovery branch on September 7 (local).
+The user-supplied graph capture and recorded wiki/review frames are complete;
+their provenance is in `docs/homepage-media-provenance.json`. Do not recapture
+them merely because older notes say capture is pending.
+The publication scope includes the previously reviewed trilingual homepages,
+shared UI and existing LLM-wiki/tool-selection guide owners, plus verified
+release/download synchronization. This is user-directed UX and factual repair,
+not evidence that the SEO 20/3/28 experiment gate passed. Preserve original
+experiment baselines; observations after the deployment boundary must not be
+attributed to superseded copy. Publication verification and its exact boundary
+will be recorded in `docs/seo-audits/2026-09-08-homepage-publication.md`.
+The SRE seven-day readout was appended at `2026-09-08T05:28:05Z`; consult the
+latest ledger and scheduler state rather than repeating an older due boundary.
+No indexing request, validation, analytics mutation or external promotion is
+authorized by this website approval. Goal targets and final window are unchanged.
 <!-- ACTIVE-CONTROL-STATE:END -->
 
 ## Mutable Campaign State

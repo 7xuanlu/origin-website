@@ -24,7 +24,8 @@ test('active view retains every complete protected block and excludes historical
   const altered = plan.replace('Technical SEO is a regression guardrail.', 'Technical SEO proves growth.');
   assert.ok(validateActiveControl(altered,renderActiveControl(altered)).some(e=>e.includes('Protected contract')));
   assert.ok(validateActiveControl(plan.replace('follow the native blocked audit', 'keep the Goal active until the deadline'), active).length);
-  const nextCheckpoint = plan.replace('Local homepage repairs and verification are', 'Local authorized follow-up and verification are');
+  const nextCheckpoint = plan.replace('<!-- ACTIVE-CONTROL-STATE:START -->', '<!-- ACTIVE-CONTROL-STATE:START -->\nA new mutable checkpoint observation.');
+  assert.notEqual(nextCheckpoint, plan, 'the checkpoint mutation must actually change the fixture');
   assert.deepEqual(validateActiveControl(nextCheckpoint, renderActiveControl(nextCheckpoint)), []);
   assert.ok(validateActiveControl(nextCheckpoint, active).length, 'mutable checkpoint invalidates a stale view without changing policy hashes');
 });
