@@ -29,7 +29,10 @@ export async function handleUnsubscribe(request: Request, options: { env?: NodeJ
   let oneClick=false;
   if (request.method==='POST') {
     const origin=request.headers.get('origin');
-    if (origin && origin!==url.origin) return page('en','invalid','',403);
+    // Our no-referrer confirmation page makes native browser form POSTs use
+    // Origin: null. The signed, contact-bound token (never a cookie/session)
+    // authorizes this operation; opaque/missing origins must still pass it.
+    if (origin && origin!=='null' && origin!==url.origin) return page('en','invalid','',403);
     if (!request.headers.get('content-type')?.startsWith('application/x-www-form-urlencoded')) return page('en','invalid','',415);
     if (Number(request.headers.get('content-length'))>2048) return page('en','invalid','',413);
     try {
