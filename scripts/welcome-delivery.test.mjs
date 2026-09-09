@@ -51,6 +51,20 @@ test('GET cannot unsubscribe; confirmation POST and RFC8058 POST update exactly 
   const get=await handleUnsubscribe(new Request(url),options);assert.equal(get.status,200);assert.equal(n,0);assert.match(await get.text(),/確認退訂/);assert.equal(get.headers.get('referrer-policy'),'no-referrer');assert.match(get.headers.get('content-security-policy'),/default-src 'none'/);
   for(const body of [new URLSearchParams({token,confirm:'yes'}),new URLSearchParams({'List-Unsubscribe':'One-Click'})]){const r=await handleUnsubscribe(new Request(url,{method:'POST',body}),options);assert.equal(r.status,200);}assert.equal(n,2);
 });
+test('no-referrer browser form POST accepts opaque origin only with a valid signed capability',async()=>{
+  const token=createUnsubscribeToken(id,'zh-TW',env),url='https://wenlan.app/email/unsubscribe';let calls=0;
+  const options={env,unsubscribe:async(contact)=>{assert.equal(contact,id);calls++;return true;}};
+  for(const origin of ['null','https://wenlan.app']){
+    const r=await handleUnsubscribe(new Request(url,{method:'POST',headers:{origin},body:new URLSearchParams({token,confirm:'yes'})}),options);
+    assert.equal(r.status,200);assert.match(await r.text(),/已取消訂閱/);
+  }
+  assert.equal(calls,2);
+  for(const invalid of ['',token.slice(0,-1)+'z']){
+    const r=await handleUnsubscribe(new Request(url,{method:'POST',headers:{origin:'null'},body:new URLSearchParams({token:invalid,confirm:'yes'})}),options);
+    assert.equal(r.status,400);
+  }
+  assert.equal(calls,2);
+});
 test('unsubscribe rejects invalid token, foreign origin, unsupported body and oversized stream',async()=>{
   const token=createUnsubscribeToken(id,'en',env),url=`https://wenlan.app/email/unsubscribe?token=${token}`;
   const options={env,unsubscribe:async()=>assert.fail('Must not mutate')};
