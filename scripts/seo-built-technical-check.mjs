@@ -87,6 +87,7 @@ const REQUIRED_REDIRECTS = [
 ];
 
 const REQUIRED_NOINDEX_HEADERS = [
+  { source: "/examples/:path*", value: "noindex" },
   { source: "/llms.txt", value: "noindex, follow" },
   { source: "/llms-full.txt", value: "noindex, follow" },
   { source: "/feed.xml", value: "noindex, follow" },

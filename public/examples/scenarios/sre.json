@@ -1,0 +1,58 @@
+{
+  "id": "sre-incident-read-only-triage",
+  "slug": "build-sre-incident-knowledge-base",
+  "title": "Build an SRE incident knowledge base",
+  "question": "How can a responder safely triage this fictional service backlog with read-only observations, and which conclusions must remain open?",
+  "sources": [
+    {
+      "filename": "incident-observations.md",
+      "title": "Northstar API — tabletop observations",
+      "content": "# Northstar API — tabletop observations\n\nStatus: fictional teaching observation sheet; no live service or customer data is involved.\n\nAt 09:10 UTC, the alert window showed 8.6% HTTP 5xx responses and 1.8 seconds p95 latency for the Northstar API. The normal reference window in this exercise is 0.4% 5xx and 350 milliseconds p95. Queue depth was 420 items; the reference value is 40.\n\nThese are observations, not a root-cause finding. This packet contains no customer identifiers, raw logs, or evidence of a particular deployment causing the change."
+    },
+    {
+      "filename": "read-only-triage.md",
+      "title": "Read-only tabletop triage guardrails",
+      "content": "# Read-only tabletop triage guardrails\n\nThe responder may inspect the incident dashboard, a redacted log sample, and the deployment timeline. The observation window is at most 15 minutes, with at most three views and 20 redacted log rows. Record timestamps and observed values; do not turn correlation into causation.\n\nDo not restart a service, change configuration, invalidate a cache, roll back a release, acknowledge a customer action, or write to an incident system. Abort immediately if a view requests a mutation, exposes an unredacted identifier or secret, or cannot show whether its data is fictional and redacted.\n\nA human incident owner decides whether to escalate, page another team, or authorize a change."
+    },
+    {
+      "filename": "deploy-timeline.md",
+      "title": "Northstar API — fictional deployment timeline",
+      "content": "# Northstar API — fictional deployment timeline\n\nA cache-configuration deployment completed at 09:05 UTC. The incident alert began at 09:10 UTC. The timeline records those two times but does not contain a causal test, rollback approval, or owner decision.\n\nThe five-minute ordering makes the deployment a hypothesis to compare against read-only observations. It does not prove that the deployment caused the 5xx responses or latency. Rollback eligibility and the responsible owner are not specified in this packet."
+    }
+  ],
+  "referenceTitle": "Reference answer: observe within limits, preserve uncertainty",
+  "referenceSummary": "The exercise supports a bounded read-only backlog observation: compare the alert values with the reference window, inspect only the named redacted views, and abort on mutation, secrets, or unredacted identifiers. The 09:05 deployment is a temporal hypothesis, not a proven cause; escalation, rollback, and ownership remain human decisions.",
+  "referenceMarkdown": "# Northstar API — triage reference\n\n## Observed state\n\nThe fictional alert window records 8.6% 5xx, 1.8 seconds p95 latency, and queue depth 420, compared with reference values of 0.4%, 350 milliseconds, and 40. These are observations and do not establish a root cause. [[incident-observations.md]]\n\n## Safe observation plan\n\nA responder may inspect the incident dashboard, one redacted log sample, and the deployment timeline for at most 15 minutes, three views, and 20 redacted rows. The responder records timestamps and values only. Any requested mutation, unredacted identifier or secret, or unclear fictional/redaction status is an abort condition. [[read-only-triage.md]]\n\n## Hypothesis and human decisions\n\nThe cache-configuration deployment completed at 09:05 UTC, five minutes before the alert. That makes it a candidate correlation to compare, not proof of causation. The packet does not authorize a rollback, identify an owner, or decide whether to escalate; a human incident owner must make those decisions. [[deploy-timeline.md]] [[read-only-triage.md]]"
+  ,
+  "change": {
+    "filename": "deploy-timeline.md",
+    "content": "# Northstar API — fictional deployment timeline, revision 2\n\nA cache-configuration review was recorded at 09:05 UTC, but it made no production change. The cache-configuration deployment completed at 09:15 UTC, after the incident alert began at 09:10 UTC. The timeline still contains no causal test, rollback approval, or owner decision.\n\nThe corrected ordering removes this deployment as an explanation for the alert onset. Other causes remain unknown. Rollback eligibility and the responsible owner are not specified in this packet.",
+    "expected": "The reference's statement that the 09:05 deployment was a candidate cause becomes stale. The 09:05 event was only a review and the actual deployment followed the alert, so it cannot explain the initial onset. The read-only limits, observed values, and human decisions about escalation or rollback remain unchanged; the incident cause is still unknown."
+  },
+  "locales": {
+    "en": {
+      "title": "Build an SRE incident knowledge base",
+      "intro": "A fictional tabletop exercise in three files: triage the backlog with read-only observations, respect the abort limits, and keep causation open.",
+      "task": "Using only the three source files, triage the observed backlog, propose a read-only observation plan with its time and sampling limits, and separate hypotheses from decisions that require a human incident owner. Cite each conclusion with [[filename]].",
+      "expected": "Record the 8.6% 5xx, 1.8-second p95, and queue depth 420 as observations; stay within the 15-minute, three-view, 20-row guardrails; abort on mutation or exposed sensitive data; and treat the 09:05 deployment as a correlation hypothesis rather than a proven cause.",
+      "review": "Check the observed values, 15-minute/three-view/20-row limits, abort triggers, and event timing; leave escalation, rollback, and ownership to the incident owner.",
+      "comparison": "A single tabletop packet can be reviewed by hand. A source-linked incident wiki becomes useful when observations, hypotheses, abort rules, and later timeline corrections must remain connected without turning notes into operational authority."
+    },
+    "zh-TW": {
+      "title": "建立 SRE 事件知識庫",
+      "intro": "這是三個檔案的虛構桌上演練：用唯讀觀察整理積壓，遵守中止上限，並把原因保持為待驗證假設。",
+      "task": "只根據三個來源檔，整理觀察到的積壓影響，提出有時間與取樣上限的唯讀觀察計畫，並分開假設與必須由事件負責人決定的事項。每個結論都用 [[filename]] 引用。",
+      "expected": "把 8.6% 的 5xx、1.8 秒 p95 與 420 的佇列深度記為觀察；遵守 15 分鐘、三個畫面、20 行資料的限制；遇到變更操作或暴露敏感資料就中止；把 09:05 部署視為待比對的關聯假設，而非已證明的原因。",
+      "review": "核對觀察數值、15 分鐘／三個畫面／20 行上限、中止條件與時間先後；升級、回滾和負責人仍由事件負責人判斷。",
+      "comparison": "單一桌上演練資料可以手動複核。當觀察、假設、中止規則與後續時間線修正需要保持連結，又不能把筆記變成操作授權時，來源連結的事件 wiki 才有幫助。"
+    },
+    "zh-CN": {
+      "title": "建立 SRE 事件知识库",
+      "intro": "这是三个文件的虚构桌面演练：用只读观察整理积压，遵守中止上限，并把原因保留为待验证假设。",
+      "task": "只根据三个来源文件，整理观察到的积压影响，提出有时间和取样上限的只读观察计划，并区分假设与必须由事件负责人决定的事项。每个结论都用 [[filename]] 引用。",
+      "expected": "把 8.6% 的 5xx、1.8 秒 p95 和 420 的队列深度记为观察；遵守 15 分钟、三个视图、20 行数据的限制；遇到变更操作或暴露敏感数据就中止；把 09:05 部署视为待比对的关联假设，而不是已证明的原因。",
+      "review": "核对观察数值、15 分钟／三个视图／20 行上限、中止条件和时间先后；升级、回滚和负责人仍由事件负责人判断。",
+      "comparison": "单个桌面演练资料可以手动复核。当观察、假设、中止规则和后续时间线修正需要保持关联，又不能把笔记变成操作授权时，来源链接的事件 wiki 才有帮助。"
+    }
+  }
+}

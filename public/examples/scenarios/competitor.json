@@ -1,0 +1,57 @@
+{
+  "id": "competitive-intelligence-capability-review",
+  "slug": "build-competitive-intelligence-knowledge-base",
+  "title": "Build a competitive-intelligence knowledge base",
+  "question": "What can a reviewer responsibly say about a fictional competitor's capabilities when a marketing claim conflicts with a dated product plan?",
+  "sources": [
+    {
+      "filename": "competitor-claim.md",
+      "title": "HarborDesk comparison-page capture",
+      "content": "# HarborDesk comparison-page capture\n\nCapture date: 2026-09-01. This is a fictional marketing-page excerpt created for teaching.\n\nHarborDesk's comparison page says the product offers SAML single sign-on, exportable audit logs, and an API limit of 1,000 requests per minute. The page does not show a plan name, release version, test result, or implementation evidence. Treat each sentence as a vendor claim, not an independently verified capability."
+    },
+    {
+      "filename": "dated-product-plan.md",
+      "title": "HarborDesk product plan — dated internal note",
+      "content": "# HarborDesk product plan — dated internal note\n\nNote date: 2026-08-20. This fictional note says SAML single sign-on is planned for Q4 2026. Exportable audit logs are discussed but have no committed delivery date. The API rate limit is not specified.\n\nA plan is not a release record. No source here verifies that any listed capability is available to a customer on the capture date."
+    },
+    {
+      "filename": "comparison-review-notes.md",
+      "title": "Capability comparison review notes",
+      "content": "# Capability comparison review notes\n\nThe comparison-page capture is the only direct statement of the three capabilities, and it is undated as a product release. The dated plan constrains what can be said about timing but does not confirm delivery.\n\nA reviewer may label SAML as a vendor claim with a dated plan reference. Audit-log export and the 1,000-requests-per-minute limit remain unverified. A human owner must decide whether the evidence is strong enough for a comparison table; do not turn the plan into a promise."
+    }
+  ],
+  "referenceTitle": "Reference answer: separate capability claims from delivery evidence",
+  "referenceSummary": "The comparison page makes three fictional vendor claims, while the dated plan only places SAML in a Q4 2026 plan and leaves audit-log export and the rate limit uncommitted or unspecified. None is a verified current capability; a human reviewer must decide how to present the comparison.",
+  "referenceMarkdown": "# HarborDesk — comparison reference\n\n## Evidence status\n\nThe 2026-09-01 comparison page claims SAML single sign-on, exportable audit logs, and a 1,000-requests-per-minute API limit. It supplies no plan, release, or test evidence, so these remain vendor claims rather than verified current capabilities. [[competitor-claim.md]]\n\nThe 2026-08-20 plan places SAML in Q4 2026, discusses audit-log export without a committed date, and does not specify the rate limit. A plan is not a release record. [[dated-product-plan.md]]\n\n## Warranted wording\n\nA comparison can label SAML as a vendor claim with a dated Q4 2026 plan reference. Audit-log export and the rate limit should be marked unverified. A human owner must decide whether that evidence belongs in a published comparison; no capability should be presented as a current fact. [[comparison-review-notes.md]] [[competitor-claim.md]]",
+  "change": {
+    "filename": "dated-product-plan.md",
+    "content": "# HarborDesk product plan — dated internal note, revision 2\n\nNote date: 2026-09-04. This fictional note says SAML single sign-on moved to a Q1 2027 target. Exportable audit logs are explicitly outside the current committed plan. The API rate limit is still not specified.\n\nA plan is not a release record. No source here verifies that any listed capability is available to a customer on the capture date.",
+    "expected": "The reference's Q4 2026 SAML plan becomes stale and must change to the revised Q1 2027 target. Exportable audit logs are now explicitly outside the current committed plan, while the rate limit remains unspecified. The marketing claims are still unverified, and a human reviewer still decides whether to publish a comparison."
+  },
+  "locales": {
+    "en": {
+      "title": "Build a competitive-intelligence knowledge base",
+      "intro": "A fictional three-file exercise: compare HarborDesk capability claims with a dated plan, then write the cautious version a buyer can review.",
+      "task": "Using only the three source files, classify each capability claim, compare it with the dated plan, and write wording that does not imply current availability. Preserve the human review decision and cite each conclusion with [[filename]].",
+      "expected": "Treat SAML, audit-log export, and the rate limit as vendor claims without current verification. The dated plan gives SAML a Q4 2026 target, leaves audit-log export uncommitted, and does not specify the rate limit; a human owner must approve any comparison wording.",
+      "review": "Check each claim against its date and evidence type: the comparison page is a claim, while the plan is not a release. Leave audit export and the rate limit unverified, with wording decided by the comparison owner.",
+      "comparison": "One fictional competitor can be checked in a few files. A source-linked intelligence wiki helps when dated captures, roadmap changes, and confidence labels must stay connected without turning plans into product promises."
+    },
+    "zh-TW": {
+      "title": "建立競品情報知識庫",
+      "intro": "這是三個檔案的虛構練習：把 HarborDesk 的能力宣稱和有日期的計畫放在一起比較，再寫出採購者可以複核的謹慎說法。",
+      "task": "只根據三個來源檔，分類每項能力宣稱，和有日期的產品計畫比較，並寫出不暗示目前可用的說法。保留需要人工審查的決定，每個結論都用 [[filename]] 引用。",
+      "expected": "把 SAML、稽核記錄匯出與速率限制都視為尚未驗證的供應商宣稱。有日期的計畫只把 SAML 放在 2026 年第四季，稽核匯出沒有承諾，速率限制未指定；任何比較文案都要由負責人核准。",
+      "review": "逐項核對宣稱的日期與證據類型：比較頁是宣稱，產品計畫不是發佈紀錄。速率限制和稽核匯出仍未驗證，文案由比較負責人決定。",
+      "comparison": "一個虛構競品可以用幾個檔案手動核對。當有日期的截圖、路線圖修訂與信心標記需要保持連結，又不能把計畫寫成產品承諾時，來源連結的情報 wiki 才有幫助。"
+    },
+    "zh-CN": {
+      "title": "建立竞品情报知识库",
+      "intro": "这是三个文件的虚构练习：把 HarborDesk 的能力声明和有日期的计划放在一起比较，再写出采购者可以复核的谨慎表述。",
+      "task": "只根据三个来源文件，分类每项能力声明，与有日期的产品计划比较，并写出不暗示当前可用的表述。保留需要人工审核的决定，每个结论都用 [[filename]] 引用。",
+      "expected": "把 SAML、审计日志导出和速率限制都视为尚未验证的供应商声明。有日期的计划只把 SAML 放在 2026 年第四季度，审计导出没有承诺，速率限制未指定；任何比较文案都要由负责人批准。",
+      "review": "逐项核对声明的日期和证据类型：比较页是声明，产品计划不是发布记录。速率限制和审计导出仍未验证，文案由比较负责人决定。",
+      "comparison": "一个虚构竞品可以用几个文件手动核对。当有日期的截图、路线图修订和信心标记需要保持关联，又不能把计划写成产品承诺时，来源链接的情报 wiki 才有帮助。"
+    }
+  }
+}

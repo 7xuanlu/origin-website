@@ -670,7 +670,7 @@ const baseArticles: LearnArticle[] = [
       "AI work wiki",
     ],
     publishedAt: "2026-06-24",
-    updatedAt: "2026-09-05",
+    updatedAt: "2026-09-08",
     author: DEFAULT_AUTHOR,
     readingTime: "12 min read",
     audience: "People designing a maintained knowledge layer for Claude Code, Codex, Cursor, and other AI agents",

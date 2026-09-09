@@ -32,6 +32,7 @@ const nextConfig: NextConfig = {
       { source: "/manifest.webmanifest", headers: NOINDEX_FOLLOW },
       { source: "/.well-known/security.txt", headers: NOINDEX_FOLLOW },
       { source: "/_next/static/media/:path*", headers: NOINDEX_ASSET },
+      { source: "/examples/:path*", headers: NOINDEX_ASSET },
     ];
   },
   async redirects() {

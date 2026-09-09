@@ -1,14 +1,17 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
 import type { ProductEvidence } from "@/app/(en)/learn/articles";
+import { EvidenceImage } from "@/components/learn/evidence-image";
+import type { Locale } from "@/i18n/locales";
 
 type ProductEvidencePanelProps = {
   evidence: ProductEvidence;
+  locale?: Locale;
   renderText?: (text: string) => ReactNode;
 };
 
 export function ProductEvidencePanel({
   evidence,
+  locale,
   renderText = (text) => text,
 }: ProductEvidencePanelProps) {
   return (
@@ -31,13 +34,14 @@ export function ProductEvidencePanel({
         </div>
 
         <figure className="mt-8 overflow-hidden rounded-2xl border border-[var(--o-border)] bg-[var(--o-card-bg)] shadow-[0_18px_70px_rgba(0,0,0,0.18)]">
-          <Image
-            src={evidence.image.src}
-            alt={evidence.image.alt}
-            width={evidence.image.width}
-            height={evidence.image.height}
-            sizes="(max-width: 768px) calc(100vw - 3rem), 1024px"
-            className="h-auto w-full"
+          <EvidenceImage
+            image={{
+              src: evidence.image.src,
+              alt: evidence.image.alt,
+              width: evidence.image.width,
+              height: evidence.image.height,
+            }}
+            locale={locale}
           />
           <figcaption className="border-t border-[var(--o-border-subtle)] px-5 py-4 text-sm leading-relaxed text-[var(--o-text-muted)] sm:px-6">
             {renderText(evidence.image.caption)}

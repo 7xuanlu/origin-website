@@ -1,0 +1,57 @@
+{
+  "id": "ict-supplier-due-diligence-evidence-pack",
+  "slug": "build-ict-supplier-due-diligence-evidence-pack",
+  "title": "Build an ICT supplier due-diligence evidence pack",
+  "question": "What evidence is actually present for a fictional ICT supplier, and which gaps prevent a human procurement decision?",
+  "sources": [
+    {
+      "filename": "supplier-profile.md",
+      "title": "MicaGrid Systems — fictional supplier profile",
+      "content": "# MicaGrid Systems — fictional supplier profile\n\nMicaGrid Systems is a fictional hosting supplier for this teaching exercise. Its profile says it can host application workloads in an EU region and describes encryption in transit and at rest.\n\nThe profile is a supplier-authored description. It includes no signed contract, independent assurance report, certificate, data-flow diagram, or evidence that the described options are enabled for a particular customer."
+    },
+    {
+      "filename": "security-questionnaire.md",
+      "title": "MicaGrid Systems — questionnaire response",
+      "content": "# MicaGrid Systems — questionnaire response\n\nStatus: fictional response, evidence review pending.\n\nThe supplier states that customer data can be deleted within 30 calendar days after a written request. It has not attached a deletion test, retention configuration, or service-specific record. Data residency details and the current subprocessor list are unanswered.\n\nThese statements are questionnaire answers, not legal or compliance certification."
+    },
+    {
+      "filename": "procurement-review.md",
+      "title": "Procurement review checklist",
+      "content": "# Procurement review checklist\n\nThe reviewer has a supplier profile and a questionnaire but no signed data-processing terms, independent assurance report, deletion evidence, residency confirmation, or subprocessor list.\n\nKeep the supplier decision on hold until the responsible procurement and legal owners review the missing evidence and contract terms. Do not infer certification, regulatory approval, or acceptable risk from the supplier's statements. A human owner must record any final decision."
+    }
+  ],
+  "referenceTitle": "Reference answer: a supplier statement is not a certification",
+  "referenceSummary": "The packet contains supplier descriptions and a questionnaire statement about deletion within 30 days, but no independent or contract evidence. Residency and subprocessors are unanswered, and procurement and legal owners must review the gaps before deciding; no certification or compliance conclusion is warranted.",
+  "referenceMarkdown": "# MicaGrid Systems — due-diligence reference\n\n## Evidence present\n\nThe fictional supplier profile describes EU-region hosting and encryption in transit and at rest, but it is a supplier-authored description with no attached contract, assurance report, certificate, data-flow diagram, or customer-specific enablement evidence. [[supplier-profile.md]]\n\nThe questionnaire states that data can be deleted within 30 calendar days after a written request, but provides no deletion test, retention configuration, or service-specific record. Residency and the current subprocessor list are unanswered. [[security-questionnaire.md]]\n\n## Decision boundary\n\nThis is an evidence gap, not a legal or compliance certification. The missing terms, assurance report, deletion evidence, residency confirmation, and subprocessor list keep the decision on hold. Procurement and legal owners must review the evidence and contract before recording any final decision. [[procurement-review.md]]",
+  "change": {
+    "filename": "security-questionnaire.md",
+    "content": "# MicaGrid Systems — questionnaire response, revision 2\n\nStatus: fictional response, evidence review pending.\n\nThe supplier cannot state a fixed deletion period. Deletion timing depends on the service and written agreement, and no deletion test, retention configuration, or service-specific record is attached. Data residency details and the current subprocessor list remain unanswered.\n\nThese statements are questionnaire answers, not legal or compliance certification.",
+    "expected": "The reference's statement that the supplier says data can be deleted within 30 calendar days becomes stale. Revision 2 removes that fixed period and makes timing dependent on the service and written agreement, so deletion timing is now unknown. The missing evidence, no-certification boundary, hold status, and human procurement/legal review remain unchanged."
+  },
+  "locales": {
+    "en": {
+      "title": "Build an ICT supplier due-diligence evidence pack",
+      "intro": "A fictional three-file due-diligence exercise: separate supplier assertions from evidence, find the gaps, and leave the open questions with procurement and legal reviewers.",
+      "task": "Using only the three source files, inventory what is actually evidenced, list every material gap, and state why a human procurement or legal owner must keep the decision open. Cite each conclusion with [[filename]].",
+      "expected": "The supplier provides descriptions and a questionnaire statement, not independent or contract evidence. Deletion evidence, residency, subprocessors, assurance, and signed terms are missing; no certification or acceptable-risk conclusion is warranted.",
+      "review": "Check each assertion for an attached record, especially deletion evidence, residency, subprocessors, and contract terms; infer no certification, and keep the procurement and legal review visible.",
+      "comparison": "One incomplete supplier pack can be checked by hand. A source-linked due-diligence wiki helps when questionnaire revisions, contracts, evidence attachments, and human review decisions must remain traceable without inventing assurance."
+    },
+    "zh-TW": {
+      "title": "建立 ICT 供應商盡職調查證據包",
+      "intro": "這是三個檔案的虛構盡職調查練習：分開供應商聲明與實際證據，找出缺口，再把未決事項交給採購和法務審查。",
+      "task": "只根據三個來源檔，列出實際存在的證據與所有重要缺口，並說明為什麼採購或法務負責人必須暫緩決定。每個結論都用 [[filename]] 引用。",
+      "expected": "供應商提供的是說明與問卷回答，不是獨立或合約證據。刪除證據、資料駐留、子處理者、保證報告與簽署條款都缺少；不能推出認證或可接受風險結論。",
+      "review": "逐項核對聲明是否有附件證據，特別看刪除紀錄、駐留資料、子處理者與合約；不要把聲明當認證，採購與法務仍需判斷。",
+      "comparison": "一份不完整的供應商資料可以手動核對。當問卷修訂、合約、證據附件與人工審查決定需要保持可追溯，又不能虛構保證時，來源連結的盡職調查 wiki 才有幫助。"
+    },
+    "zh-CN": {
+      "title": "建立 ICT 供应商尽职调查证据包",
+      "intro": "这是三个文件的虚构尽职调查练习：分开供应商声明与实际证据，找出缺口，再把未决事项交给采购和法务审核。",
+      "task": "只根据三个来源文件，列出实际存在的证据和所有重要缺口，并说明为什么采购或法务负责人必须暂缓决定。每个结论都用 [[filename]] 引用。",
+      "expected": "供应商提供的是说明和问卷回答，不是独立或合同证据。删除证据、数据驻留、子处理者、保证报告和签署条款都缺失；不能推出认证或可接受风险结论。",
+      "review": "逐项核对声明是否有附件证据，特别看删除记录、驻留数据、子处理者与合同；不要把声明当认证，采购与法务仍需判断。",
+      "comparison": "一份不完整的供应商资料可以手动核对。当问卷修订、合同、证据附件和人工审核决定需要保持可追溯，又不能虚构保证时，来源链接的尽职调查 wiki 才有帮助。"
+    }
+  }
+}

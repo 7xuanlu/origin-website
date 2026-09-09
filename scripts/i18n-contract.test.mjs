@@ -1181,7 +1181,7 @@ test("product-research family owns one distinct trilingual evidence-to-PRD workf
     assert.match(JSON.stringify(article), /假設|假设/);
     assert.match(JSON.stringify(article), /待解問題|待解问题/);
     assert.equal(article.publishedAt, "2026-08-28");
-    assert.equal(article.updatedAt, "2026-08-29");
+    assert.equal(article.updatedAt, "2026-09-08");
     assert.ok(article.officialReferences?.length >= 4);
   }
 
@@ -1273,7 +1273,7 @@ test("SRE incident family owns one distinct trilingual runbook knowledge task", 
     assert.match(article.title, titlePattern);
     assert.match(JSON.stringify(article), workflowPattern);
     assert.equal(article.publishedAt, "2026-08-29");
-    assert.equal(article.updatedAt, "2026-08-29");
+    assert.equal(article.updatedAt, "2026-09-08");
     assert.ok(article.officialReferences?.length >= 4);
     assert.ok(article.productEvidence, `${locale} SRE product evidence`);
     assert.equal(article.productEvidence.workflow.length, 3);
@@ -1662,7 +1662,7 @@ test("zh-TW LLM Wiki guide owns the Karpathy v2 and AI knowledge-base intent", a
   assert.match(article.metaTitle, /Karpathy LLM Wiki/);
   assert.match(article.metaTitle, /AI 知識庫/);
   assert.equal(article.publishedAt, "2026-07-04");
-  assert.equal(article.updatedAt, "2026-09-05");
+  assert.equal(article.updatedAt, "2026-09-08");
   assert.match(article.sections[0].heading, /Karpathy LLM Wiki/);
   assert.match(JSON.stringify(article), /不代表 Karpathy 為 Wenlan 背書/);
   assert.ok(article.keywords.includes("AI 知識庫"));
@@ -1712,7 +1712,7 @@ test("zh-CN LLM wiki guide owns the AI knowledge-base search intent", async () =
   assert.match(article.title, /Karpathy LLM Wiki/);
   assert.match(article.metaTitle, /AI 知识库/);
   assert.equal(article.publishedAt, "2026-07-04");
-  assert.equal(article.updatedAt, "2026-09-05");
+  assert.equal(article.updatedAt, "2026-09-08");
   assert.match(article.sections[0].heading, /Karpathy LLM Wiki/);
   assert.match(JSON.stringify(article), /不代表 Karpathy 为 Wenlan 背书/);
   assert.ok(article.keywords.includes("AI 知识库"));
@@ -1780,7 +1780,7 @@ test("localized Learn hubs and source-backed pages lead with AI knowledge-base i
     assert.ok(article);
     assert.equal(article.title, expected.title);
     assert.equal(article.publishedAt, "2026-07-04");
-    assert.equal(article.updatedAt, "2026-07-30");
+    assert.equal(article.updatedAt, "2026-09-08");
     assert.ok(article.keywords.includes(expected.keyword));
     const headings = article.sections.map((section) => section.heading);
     assert.ok(headings.includes(expected.workflow));
@@ -2197,7 +2197,7 @@ test("sitemap includes localized core and Mandarin acquisition routes", async ()
   assert.ok(zhTWLLMWiki);
   assert.equal(
     new Date(zhTWLLMWiki.lastModified).toISOString().slice(0, 10),
-    "2026-09-05",
+    "2026-09-08",
   );
   assert.equal(urls.has("https://wenlan.app/zh-TW/docs/daily-workflow"), false);
   assert.equal(urls.has("https://wenlan.app/zh-CN/docs/daily-workflow"), false);
@@ -3057,7 +3057,7 @@ test("competitive intelligence knowledge-base article owns one trilingual scenar
   assert.ok(english, "English competitive-intelligence article");
   assert.equal(english.title, "How to Build a Source-Backed Competitive Intelligence Knowledge Base");
   assert.equal(english.publishedAt, "2026-08-30");
-  assert.equal(english.updatedAt, "2026-08-30");
+  assert.equal(english.updatedAt, "2026-09-08");
   assert.match(JSON.stringify(english), /source|date|revision|stale|contradict|observation|inference/i);
   assert.match(JSON.stringify(english), /does not crawl|does not monitor|scrap|automatic scoring|recommend/i);
   assert.ok(english.productEvidence, "English product evidence");
@@ -3076,7 +3076,7 @@ test("competitive intelligence knowledge-base article owns one trilingual scenar
     assert.ok(article, `${locale} competitive-intelligence article`);
     assert.match(article.title, titlePattern);
     assert.equal(article.publishedAt, "2026-08-30");
-    assert.equal(article.updatedAt, "2026-08-30");
+    assert.equal(article.updatedAt, "2026-09-08");
     assert.match(JSON.stringify(article), /来源|來源|source|日期|日期|修订|修訂|过期|過期/i);
     assert.match(JSON.stringify(article), /不会爬取|不會爬取|不会监控|不會監控|scrap|自动评分|自動評分/i);
     assert.ok(article.productEvidence, `${locale} product evidence`);
@@ -3112,7 +3112,7 @@ test("ICT supplier due-diligence article owns one bounded trilingual evidence-pa
   assert.ok(english, "English ICT supplier due-diligence article");
   assert.equal(english.title, "How to Build an ICT Supplier Due Diligence Evidence Pack");
   assert.equal(english.publishedAt, "2026-08-30");
-  assert.equal(english.updatedAt, "2026-08-30");
+  assert.equal(english.updatedAt, "2026-09-08");
   assert.match(JSON.stringify(english), /provenance|data-access|resilience|security evidence|review date/i);
   assert.match(
     JSON.stringify(english),
@@ -3136,7 +3136,7 @@ test("ICT supplier due-diligence article owns one bounded trilingual evidence-pa
     assert.ok(article, `${locale} ICT supplier due-diligence article`);
     assert.match(article.title, titlePattern);
     assert.equal(article.publishedAt, "2026-08-30");
-    assert.equal(article.updatedAt, "2026-08-30");
+    assert.equal(article.updatedAt, "2026-09-08");
     assert.match(JSON.stringify(article), /來源|来源|資料範圍|数据范围|韌性|韧性|證據|证据|複審|复审/i);
     assert.match(JSON.stringify(article), /不會驗證|不会验证|不會爬取|不会爬取|弱點掃描|漏洞扫描|自動評分|自动评分/i);
     assert.ok(article.productEvidence, `${locale} product evidence`);
@@ -3175,7 +3175,7 @@ test("customer-support answer article owns one bounded trilingual answer-pack sc
   assert.ok(english, "English customer-support answer article");
   assert.equal(english.title, "How to Build a Customer Support Answer Knowledge Base");
   assert.equal(english.publishedAt, "2026-08-31");
-  assert.equal(english.updatedAt, "2026-08-31");
+  assert.equal(english.updatedAt, "2026-09-08");
   assert.match(JSON.stringify(english), /question|supported answer|scope|prohibited|escalat|source revision|owner|next review/i);
   assert.match(
     JSON.stringify(english),
@@ -3203,7 +3203,7 @@ test("customer-support answer article owns one bounded trilingual answer-pack sc
     assert.ok(article, `${locale} customer-support answer article`);
     assert.match(article.title, titlePattern);
     assert.equal(article.publishedAt, "2026-08-31");
-    assert.equal(article.updatedAt, "2026-08-31");
+    assert.equal(article.updatedAt, "2026-09-08");
     assert.match(JSON.stringify(article), /問題|问题|回答|答案|適用範圍|适用范围|不可承諾|不可承诺|轉人工|转人工|來源|来源|負責人|负责人|複審|复审/i);
     assert.match(JSON.stringify(article), /不會導入|不会导入|不會處理個資|不会处理个人信息|不會發布|不会发布|不會自動回覆|不会自动回复|不會同步|不会同步|不會自動轉人工|不会自动转人工/i);
     assert.ok(article.productEvidence, `${locale} product evidence`);
@@ -3242,7 +3242,7 @@ test("course wiki article owns one bounded trilingual lecture-material scenario"
   assert.ok(english, "English course wiki article");
   assert.equal(english.title, "How to Build a Course Wiki from Lecture Notes and PDFs");
   assert.equal(english.publishedAt, "2026-08-31");
-  assert.equal(english.updatedAt, "2026-08-31");
+  assert.equal(english.updatedAt, "2026-09-08");
   assert.match(
     JSON.stringify(english),
     /lecture slides|lecture notes|course PDF|concept page|prerequisite|source revision|review state/i,
@@ -3268,7 +3268,7 @@ test("course wiki article owns one bounded trilingual lecture-material scenario"
     assert.ok(article, `${locale} course wiki article`);
     assert.match(article.title, titlePattern);
     assert.equal(article.publishedAt, "2026-08-31");
-    assert.equal(article.updatedAt, "2026-08-31");
+    assert.equal(article.updatedAt, "2026-09-08");
     assert.match(
       JSON.stringify(article),
       /課堂講義|课程讲义|課件|课件|概念頁|概念页|先備知識|前置知识|來源修訂|来源修订|複核狀態|审核状态/i,
@@ -3319,7 +3319,7 @@ test("business metric definition article owns one bounded trilingual data-dictio
   assert.ok(english, "English business metric definition article");
   assert.equal(english.title, "How to Build a Business Metric Definition Knowledge Base");
   assert.equal(english.publishedAt, "2026-09-01");
-  assert.equal(english.updatedAt, "2026-09-01");
+  assert.equal(english.updatedAt, "2026-09-08");
   assert.match(
     JSON.stringify(english),
     /data dictionary|metric definition|formula|grain|dimensions|exclusions|owner|source revision|review state|supersedes/i,
@@ -3345,7 +3345,7 @@ test("business metric definition article owns one bounded trilingual data-dictio
     assert.ok(article, `${locale} business metric definition article`);
     assert.match(article.title, titlePattern);
     assert.equal(article.publishedAt, "2026-09-01");
-    assert.equal(article.updatedAt, "2026-09-01");
+    assert.equal(article.updatedAt, "2026-09-08");
     assert.match(
       JSON.stringify(article),
       /資料字典|数据字典|指標定義|指标定义|公式|粒度|維度|维度|排除|負責人|负责人|來源修訂|来源修订|複核|审核|取代|替代/i,

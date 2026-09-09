@@ -1,0 +1,57 @@
+{
+  "id": "customer-support-answer-knowledge-base",
+  "slug": "build-customer-support-answer-knowledge-base",
+  "title": "Build a customer-support answer knowledge base",
+  "question": "What support answer is warranted when a dated refund policy conflicts with a legacy canned reply, and which facts still require a human decision?",
+  "sources": [
+    {
+      "filename": "refund-policy-2026-04.md",
+      "title": "Refund policy — revision 1",
+      "content": "# Refund policy — revision 1\nEffective: 2026-04-15\nScope: purchases made through the direct checkout.\n\n- A standard refund request is eligible when it arrives within 30 calendar days after purchase.\n- Annual plans follow the same 30-day window; after day 30, do not promise an automatic refund.\n- For a duplicate charge, verify the transaction IDs and escalate to Billing. Do not promise a refund before review.\n- If the purchase channel, purchase date, or transaction ID is missing, ask for it before deciding.\n- Marketplace purchases are outside this policy and must be routed to marketplace support."
+    },
+    {
+      "filename": "support-playbook.md",
+      "title": "Support answer playbook",
+      "content": "# Support answer playbook\nRevision: 2026-04-20\n\nBefore making a policy answer, record the order ID, purchase channel, purchase date, and the customer's requested remedy.\n\nFor a direct-checkout request inside the stated policy window, explain the rule and offer to send the case for refund review. For a request outside the window, state that an automatic refund is not promised and route an exception request to Billing.\n\nIf the channel or date is unknown, ask the customer instead of inferring it. Keep marketplace cases with marketplace support. A support answer must separate what the sources say from what Billing still has to decide."
+    },
+    {
+      "filename": "refund-canned-reply.md",
+      "title": "Legacy refund canned reply",
+      "content": "# Legacy refund canned reply\nStatus: owner review pending\n\nThanks for contacting us. Direct-checkout refunds can be requested within 14 days of purchase. If the purchase date is missing, use the date shown in the ticket and continue.\n\nThis reply does not distinguish direct checkout from marketplace purchases and does not describe duplicate-charge escalation."
+    }
+  ],
+  "referenceTitle": "Reference answer: dated policy wins, missing facts stay open",
+  "referenceSummary": "The dated policy supports a 30-day direct-checkout window. The 14-day canned reply is stale, and a missing channel, date, or transaction ID must remain a question for the customer or Billing rather than an invented decision.",
+  "referenceMarkdown": "# Support refund answer — reference\n\n## Warranted answer\n\nFor a purchase through the direct checkout, a standard refund request is eligible for review when it arrives within 30 calendar days after purchase. Annual plans follow the same window. [[refund-policy-2026-04.md]]\n\nThe response must first record the order ID, purchase channel, purchase date, and requested remedy. If the channel or date is missing, ask for it. If the request is outside the stated window, do not promise an automatic refund; route an exception request to Billing. [[support-playbook.md]]\n\nMarketplace purchases are outside this policy and go to marketplace support. A duplicate charge requires transaction-ID verification and Billing review; the answer must not promise a refund before that review. [[refund-policy-2026-04.md]]\n\n## What is stale or unknown\n\nThe legacy reply's 14-day window conflicts with the dated 30-day policy and must not be reused as current guidance. Its instruction to infer a missing date is also unsafe. [[refund-canned-reply.md]] [[refund-policy-2026-04.md]]\n\nThe sources do not decide whether Billing grants an exception or whether a specific transaction is a duplicate. A human owner still has to review those facts. [[support-playbook.md]]",
+  "change": {
+    "filename": "refund-policy-2026-04.md",
+    "content": "# Refund policy — revision 2\nEffective: 2026-05-02\nScope: purchases made through the direct checkout.\n\n- A standard refund request is eligible when it arrives within 45 calendar days after purchase.\n- Annual plans follow the same 45-day window; after day 45, do not promise an automatic refund.\n- For a duplicate charge, verify the transaction IDs and escalate to Billing. Do not promise a refund before review.\n- If the purchase channel, purchase date, or transaction ID is missing, ask for it before deciding.\n- Marketplace purchases are outside this policy and must be routed to marketplace support.",
+    "expected": "The reference's 30-day conclusion becomes stale and must change to a 45-day direct-checkout window, including annual plans. The 14-day legacy reply remains stale. Duplicate-charge escalation, marketplace routing, and the requirement to ask for missing facts are unchanged; Billing still makes any exception decision."
+  },
+  "locales": {
+    "en": {
+      "title": "Build a customer-support answer knowledge base",
+      "intro": "A fictional three-file support exercise: reconcile a dated refund policy with a legacy reply, then draft an answer that keeps missing facts visible.",
+      "task": "Using only the three source files, write a support answer for a refund request. Identify the current window, separate direct checkout from marketplace purchases, list the facts still needed, and flag any stale or unsafe instruction. Cite every conclusion with [[filename]].",
+      "expected": "The dated policy supports 30 calendar days for direct-checkout standard and annual-plan requests. The legacy 14-day reply is stale. Missing channel, date, or transaction ID stays unresolved, and Billing must decide duplicate-charge or exception cases.",
+      "review": "Compare the dated 30-day policy with the 14-day reply, confirm the direct-checkout and marketplace split, and keep missing channel, date, or transaction ID facts open for Billing review.",
+      "comparison": "Plain files plus a careful reviewer can handle this one packet. A source-linked wiki becomes relevant when dated policies, legacy replies, and repeated review ownership need to stay connected across many support answers."
+    },
+    "zh-TW": {
+      "title": "建立客服答案知識庫",
+      "intro": "這是三個檔案的虛構客服練習：把有日期的退款政策和舊版回覆對照，寫出保留缺少資料的回答。",
+      "task": "只根據三個來源檔，整理一則退款客服答案。指出目前期限，分清直接結帳與市集購買，列出仍需確認的資料，並標出過時或不安全的指示。每個結論都用 [[filename]] 引用。",
+      "expected": "有日期的政策支持直接結帳一般方案與年費方案在購買後 30 個日曆日內提出退款申請。舊版 14 日回覆已過時；缺少購買管道、日期或交易編號時要保留問題，重複扣款或例外仍由 Billing 人員審查。",
+      "review": "核對 30 日政策與 14 日舊回覆，分清直接結帳與市集購買；缺少管道、日期或交易編號時要追問，例外與重複扣款交由 Billing 審查。",
+      "comparison": "單次練習用普通檔案加上仔細複核就能完成。當有日期的政策、舊版回覆與多次審查責任需要在大量客服答案之間保持連結時，來源連結的 wiki 才值得評估。"
+    },
+    "zh-CN": {
+      "title": "建立客服答案知识库",
+      "intro": "这是三个文件的虚构客服练习：把有日期的退款政策和旧版回复对照，写出保留缺少信息的回答。",
+      "task": "只根据三个来源文件，整理一条退款客服答案。指出当前期限，区分直接结账与市场购买，列出仍需确认的信息，并标出过时或不安全的指示。每个结论都用 [[filename]] 引用。",
+      "expected": "有日期的政策支持直接结账普通方案和年费方案在购买后 30 个日历日内提出退款申请。旧版 14 天回复已经过时；缺少购买渠道、日期或交易编号时要保留问题，重复扣款或例外仍由 Billing 人员审核。",
+      "review": "核对 30 天政策与 14 天旧回复，区分直接结账与市场购买；缺少渠道、日期或交易编号时要追问，例外与重复扣款交由 Billing 审核。",
+      "comparison": "单次练习用普通文件加上仔细复核就能完成。当有日期的政策、旧版回复和多次审核责任需要在大量客服答案之间保持关联时，再评估来源链接的 wiki。"
+    }
+  }
+}

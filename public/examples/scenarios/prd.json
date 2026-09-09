@@ -1,0 +1,57 @@
+{
+  "id": "product-research-knowledge-base-for-prd",
+  "slug": "build-product-research-knowledge-base-for-prd",
+  "title": "Build a product-research knowledge base for a PRD",
+  "question": "What limited PRD decision is supported by three fictional research notes when a request for local review conflicts with a request for export?",
+  "sources": [
+    {
+      "filename": "research-note-a.md",
+      "title": "Research note A — source-linked review",
+      "content": "# Research note A — source-linked review\n\nFictional moderated session note; no real participant or customer is represented.\n\nThe evaluator wanted an imported Markdown note to produce a draft answer with a link back to each source passage. They preferred to review the draft before it became a shared page. The note records one narrow workflow preference, not demand for automatic publishing, team permissions, or a mobile app."
+    },
+    {
+      "filename": "research-note-b.md",
+      "title": "Research note B — local-only request",
+      "content": "# Research note B — local-only request\n\nFictional research note; no real participant or customer is represented.\n\nThe evaluator asked to keep source files and drafts in a local workspace and rejected an external export for this exercise. They said an explicit review step matters more than a polished final page. The note does not establish that every user wants local-only storage or that export is never useful."
+    },
+    {
+      "filename": "research-note-c.md",
+      "title": "Research note C — conflicting product request",
+      "content": "# Research note C — conflicting product request\n\nFictional product-research note; no real participant or customer is represented.\n\nA separate request asked for a CSV export of the source-linked draft and also asked for automatic publishing after import. The request conflicts with note B's local-only preference and note A's review-before-sharing preference. The sample is too small to resolve the conflict or justify a broad roadmap."
+    }
+  ],
+  "referenceTitle": "Reference answer: choose a reviewable draft, keep the roadmap narrow",
+  "referenceSummary": "The three fictional notes support one limited PRD decision: imported Markdown may produce a source-linked draft that a person reviews before sharing. Export, automatic publishing, storage defaults, and broader permissions remain unresolved because the notes conflict and the sample is small.",
+  "referenceMarkdown": "# Product-research reference for a PRD\n\n## Limited decision\n\nAdd one narrow requirement: an imported Markdown note can produce a draft answer with links to its source passages, and a person must review the draft before it becomes a shared page. This is supported by the source-linked review preference and the request for an explicit review step. [[research-note-a.md]] [[research-note-b.md]]\n\n## Keep unresolved\n\nDo not commit automatic publishing. Note A prefers review before sharing, note B prioritizes local-only drafts, and note C separately requests automatic publishing and CSV export. The notes conflict and are too small to decide a universal storage or export policy. [[research-note-b.md]] [[research-note-c.md]]\n\nA product owner must decide whether to run more research before choosing export, storage defaults, team permissions, or a broader PRD. Those decisions are not established by this packet. [[research-note-a.md]] [[research-note-b.md]] [[research-note-c.md]]",
+  "change": {
+    "filename": "research-note-c.md",
+    "content": "# Research note C — conflicting product request, revision 2\n\nFictional product-research note; no real participant or customer is represented.\n\nA separate request asked for a source-linked review report that can be saved in the local workspace. It did not request CSV export. The same request still asked for automatic publishing after import, which conflicts with note B's local-only preference and note A's review-before-sharing preference. The sample is too small to resolve the conflict or justify a broad roadmap.",
+    "expected": "The reference's statement that note C requested CSV export becomes stale. Revision 2 clarifies that the request was for a locally saved source-linked review report, not CSV export. The automatic-publishing conflict, narrow review-before-sharing decision, and unresolved storage or permission questions remain; a human product owner still decides whether more research is needed."
+  },
+  "locales": {
+    "en": {
+      "title": "Build a product-research knowledge base for a PRD",
+      "intro": "A fictional three-note exercise: turn conflicting requests into one limited PRD decision, then name what needs more research.",
+      "task": "Using only the three research notes, choose the smallest defensible PRD decision, preserve the conflict and unknowns, and state which choices require more human product judgment. Cite every conclusion with [[filename]].",
+      "expected": "Specify a source-linked draft with a human review step before sharing. Do not commit automatic publishing, export, storage defaults, team permissions, or a broad roadmap from this small conflicting sample.",
+      "review": "Check each preference against its note, especially review-before-sharing versus automatic publishing and export; keep storage defaults, permissions, and broader demand unresolved.",
+      "comparison": "Three notes can be compared in ordinary files. A source-linked research wiki becomes useful when revisions, contradictory requests, and the boundary between evidence and product judgment must remain visible in a living PRD."
+    },
+    "zh-TW": {
+      "title": "為 PRD 建立產品研究知識庫",
+      "intro": "這是三份研究筆記的虛構練習：從衝突請求中選出一個有限的 PRD 決定，再標出需要更多研究的部分。",
+      "task": "只根據三份研究筆記，選出最小且有依據的 PRD 決定，保留衝突與未知資訊，並指出哪些選擇需要更多產品負責人的判斷。每個結論都用 [[filename]] 引用。",
+      "expected": "提出有來源連結的草稿，並在分享前要求人工審查。不要只憑這組小型且互相衝突的資料承諾自動發佈、匯出、儲存預設、團隊權限或完整路線圖。",
+      "review": "逐項對照筆記，特別檢查分享前審查、只在本地保存、自動發佈與匯出之間的衝突；儲存預設、權限與更廣泛需求仍待產品判斷。",
+      "comparison": "三份筆記可以用普通檔案比較。當修訂、矛盾請求，以及證據與產品判斷的界線需要在持續更新的 PRD 中保持可見時，來源連結的研究 wiki 才有幫助。"
+    },
+    "zh-CN": {
+      "title": "为 PRD 建立产品研究知识库",
+      "intro": "这是三份研究笔记的虚构练习：从冲突请求中选出一个有限的 PRD 决策，再标出需要更多研究的部分。",
+      "task": "只根据三份研究笔记，选择最小且有依据的 PRD 决策，保留冲突和未知信息，并指出哪些选择需要更多产品负责人的判断。每个结论都用 [[filename]] 引用。",
+      "expected": "提出带有来源链接的草稿，并在分享前要求人工审核。不要仅凭这组小型且相互冲突的资料承诺自动发布、导出、存储默认值、团队权限或完整路线图。",
+      "review": "逐项对照笔记，特别检查分享前审核、只在本地保存、自动发布与导出之间的冲突；存储默认值、权限和更广泛需求仍待产品判断。",
+      "comparison": "三份笔记可以用普通文件比较。当修订、矛盾请求，以及证据与产品判断的边界需要在持续更新的 PRD 中保持可见时，来源链接的研究 wiki 才有帮助。"
+    }
+  }
+}

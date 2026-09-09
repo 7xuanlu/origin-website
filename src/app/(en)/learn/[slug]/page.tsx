@@ -13,8 +13,11 @@ import {
 import { ArticleHalo, MemoryIndex } from "../article-visuals";
 import { alternateUrls, isTranslatedLearnPath } from "@/i18n/routing";
 import { TrackedLink } from "@/components/tracked-link";
+import { getScenarioPacket } from "@/lib/scenario-examples";
+import { ScenarioWorkedExample } from "@/components/learn/scenario-worked-example";
 import { ProductEvidencePanel } from "@/components/learn/product-evidence-panel";
 import { WorkflowComparisonGuide } from "@/components/learn/workflow-comparison-guide";
+import { RecordedWorkflowProof } from "@/components/learn/recorded-workflow-proof";
 
 function sectionId(heading: string): string {
   return heading
@@ -251,13 +254,19 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
                   </a>
                 )}
                 {article.slug === "distilled-wiki-pages-ai-memory" && (
-                  <a href="#worked-example" className="mt-7 inline-flex rounded-md border border-[var(--o-border)] px-5 py-3 text-sm font-semibold hover:text-[var(--o-warm)]">
+                  <div className="mt-7 flex flex-wrap gap-3">
+                  <a href="#worked-example" className="inline-flex rounded-md border border-[var(--o-border)] px-5 py-3 text-sm font-semibold hover:text-[var(--o-warm)]">
                     Try the complete source-to-wiki example
                   </a>
+                  <a href="/learn-example/en" download className="inline-flex items-center px-2 py-3 text-sm font-semibold text-[var(--o-warm)] underline underline-offset-4">Download the exercise (.md)</a>
+                  </div>
+                )}
+                {["distilled-wiki-pages-ai-memory", "source-backed-wiki-pages-ai-work"].includes(article.slug) && (
+                  <a href="#recorded-workflow" className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--o-warm)] underline underline-offset-4">Inspect the real app screens</a>
                 )}
               </div>
               <MemoryIndex
-                label="Article packet"
+                label="About this guide"
                 items={[
                   article.category,
                   article.audience,
@@ -285,7 +294,9 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
           </div>
         </section>
 
-        {article.productEvidence && (
+        {getScenarioPacket(article.slug) ? (
+          <ScenarioWorkedExample packet={getScenarioPacket(article.slug)!} locale={"en"} />
+        ) : article.productEvidence && (
           <ProductEvidencePanel evidence={article.productEvidence} />
         )}
 
@@ -488,6 +499,8 @@ export default async function LearnArticlePage({ params }: LearnArticlePageProps
             </aside>
           </div>
         </section>
+
+        {["distilled-wiki-pages-ai-memory", "source-backed-wiki-pages-ai-work"].includes(article.slug) && <RecordedWorkflowProof locale="en" />}
 
         <section className="border-t border-[var(--o-border-subtle)] px-6 py-20">
           <div className="mx-auto max-w-3xl">
