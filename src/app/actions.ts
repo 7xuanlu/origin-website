@@ -1,8 +1,10 @@
 "use server";
 
 import { Resend } from "resend";
+import { after } from "next/server";
 import { isSupportedLocale, type Locale } from "@/i18n/locales";
 import { resendSignupProperties } from "@/lib/signup-attribution";
+import { sendNewSubscriberWelcome } from "@/lib/email/subscription";
 
 let _resend: Resend | null = null;
 function getResend() {
@@ -58,6 +60,17 @@ export async function joinWaitlist(
       return { success: false, errorCode: "unknown" };
     }
     if (!result.data?.id) return { success: false, errorCode: "unknown" };
+    // Contact persistence and mail delivery are separate outcomes. This never
+    // changes the UI promise (saved subscription) into a delivery guarantee.
+    if (process.env.WELCOME_EMAIL_ENABLED === "1") {
+      const contactId = result.data.id;
+      try {
+        after(async () => { await sendNewSubscriberWelcome(contactId, locale, { resend }); });
+      } catch {
+        // Contact persistence has succeeded even if scheduling is unavailable.
+        console.error("Welcome delivery could not be scheduled");
+      }
+    }
     return { success: true };
   } catch {
     console.error("Release subscription provider is unavailable");
