@@ -236,6 +236,7 @@ async function run() {
     ["vercel-metadata.json", "--vercel-metadata"],
     ["github-metadata.json", "--github-metadata"],
     ["resend-metadata.json", "--resend-metadata"],
+    ["site-events-metadata.json", "--site-events-metadata"],
     ["umami-pages.csv", "--umami-pages"],
     ["umami-referrers.csv", "--umami-referrers"],
     ["umami-events.csv", "--umami-events"],

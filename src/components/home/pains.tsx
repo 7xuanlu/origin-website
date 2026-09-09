@@ -2,8 +2,9 @@ import { Fragment, type ReactNode } from "react";
 import type { HomeContent } from "@/i18n/content";
 import { ArrowRightIcon } from "@/components/icons";
 import type { Locale } from "@/i18n/locales";
-import { LocalizedLink } from "@/i18n/navigation";
 import { WorkflowHelp } from "./workflow-help";
+import { WorkflowChoice } from "./workflow-choice";
+import { TrackedLocalizedLink } from "@/components/tracked-link";
 
 type PainsCopy = HomeContent["redesign"]["pains"];
 
@@ -64,14 +65,15 @@ function ComparisonPanel({ rows, copy, locale }: {
       <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
         <p className="max-w-2xl pt-2 text-sm leading-7 text-[var(--o-text-tertiary)]">{copy.scopeNote}</p>
         <Alternatives rows={rows}>{(row) => (
-          <LocalizedLink
+          <TrackedLocalizedLink
             href={`/learn/choose-ai-knowledge-base-tool#workflow-${row.id}`}
             locale={locale}
+            eventName="learn_article_click" placement="home-comparison" context="comparisons"
             className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[var(--o-text-secondary)] hover:text-[var(--o-warm)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--o-warm)]"
           >
             {copy.detailsLabel}: {row.name}
             <ArrowRightIcon className="h-4 w-4 shrink-0" />
-          </LocalizedLink>
+          </TrackedLocalizedLink>
         )}</Alternatives>
       </div>
     </>
@@ -104,7 +106,7 @@ export function PainsSection({ copy, locale }: { readonly copy: PainsCopy; reado
               const choiceId = `workflow-choice-${row.id}`;
               return (
                 <Fragment key={row.id}>
-                  <input className="workflow-choice sr-only" type="radio" name="knowledge-workflow" id={choiceId} aria-controls="workflow-comparison-panel" defaultChecked={index === 0} />
+                  <WorkflowChoice id={row.id} selected={index === 0} locale={locale} />
                   <label htmlFor={choiceId} className="workflow-option">{row.tabLabel ?? row.name}</label>
                 </Fragment>
               );

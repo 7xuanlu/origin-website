@@ -33,7 +33,7 @@ test("engineering scene keeps the approved retry rule and unresolved timeout bou
   assert.match(engineering, /does not specify a timeout duration/);
   assert.doesNotMatch(engineering, /timeout (?:is|of) \d|\d+\s*ms|\d+\s*seconds/i);
   assert.match(source, /const workedExampleHref = "\/learn\/distilled-wiki-pages-ai-memory#worked-example"/);
-  assert.match(source, /<LocalizedLink[\s\S]*?href=\{workedExampleHref\}[\s\S]*?locale=\{locale\}/);
+  assert.match(source, /<TrackedLocalizedLink[\s\S]*?href=\{workedExampleHref\}[\s\S]*?locale=\{locale\}/);
 });
 
 test("each locale uses concrete workflow inputs rather than placeholder research copy", () => {

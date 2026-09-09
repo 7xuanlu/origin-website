@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useId, useRef, useState } from "react";
 import type { Locale } from "@/i18n/locales";
+import { trackAnalyticsEvent } from "@/components/tracked-link";
 
 const labels = {
   en: { title: "See the pages. Follow the connections.", tabs: ["Knowledge graph", "Wiki page", "Review changes"], descriptions: ["Knowledge around Wenlan: connected records, entities and wiki pages.", "Hovering a Wiki citation reveals the source memory.", "Compare proposed edits and earlier versions before choosing whether to approve."], notes: ["Real-data screenshot provided by Wenlan's creator, September 6, 2026. A view of the graph, not a live connection.", "Recorded in the app with demo data.", "Recorded in the app with demo data."], expand: "View full size", close: "Close image" },
@@ -49,8 +50,13 @@ export function ProductShowcase({ locale }: { locale: Locale }) {
   const openImage = () => {
     dialog.current?.showModal();
     changeZoom(true);
+    trackAnalyticsEvent({ eventName: "product_image_open", placement: "home-product-views", locale, context: "home", detail: ["graph", "wiki", "review"][active] });
   };
-  const select = (next: number) => { setActive(next); tabs.current[next]?.focus(); };
+  const select = (next: number, focus = true) => {
+    if (next !== active) trackAnalyticsEvent({ eventName: "product_view_select", placement: "home-product-views", locale, context: "home", detail: ["graph", "wiki", "review"][next] });
+    setActive(next);
+    if (focus) tabs.current[next]?.focus();
+  };
   return (
     <section id="product-views" data-home-reveal className="px-6 py-20 sm:py-24">
       <div className="mx-auto max-w-6xl">
@@ -58,7 +64,7 @@ export function ProductShowcase({ locale }: { locale: Locale }) {
           {locale === "en" ? copy.title : copy.title.split(/(?<=，)/).map((phrase) => <span key={phrase} className="inline-block">{phrase}</span>)}
         </h2>
         <div role="tablist" aria-label={copy.title} className="mt-8 flex w-fit max-w-full flex-wrap gap-1 rounded-lg border border-[var(--o-border)] bg-[var(--o-surface)] p-1">
-          {copy.tabs.map((label, i) => <button key={label} ref={(el) => { tabs.current[i] = el; }} id={`${id}-tab-${i}`} role="tab" type="button" aria-selected={active === i} aria-controls={`${id}-panel-${i}`} tabIndex={active === i ? 0 : -1} onClick={() => setActive(i)} onKeyDown={(event) => {
+          {copy.tabs.map((label, i) => <button key={label} ref={(el) => { tabs.current[i] = el; }} id={`${id}-tab-${i}`} role="tab" type="button" aria-selected={active === i} aria-controls={`${id}-panel-${i}`} tabIndex={active === i ? 0 : -1} onClick={() => select(i, false)} onKeyDown={(event) => {
             if (["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) {
               event.preventDefault();
               select(event.key === "Home" ? 0 : event.key === "End" ? images.length - 1 : (i + (event.key === "ArrowRight" ? 1 : -1) + images.length) % images.length);

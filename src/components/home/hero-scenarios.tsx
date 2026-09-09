@@ -2,7 +2,7 @@
 
 import { useId, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
-import { LocalizedLink } from "@/i18n/navigation";
+import { trackAnalyticsEvent, TrackedLocalizedLink } from "@/components/tracked-link";
 import type { Locale } from "@/i18n/locales";
 
 type ScenarioId = "engineering" | "client" | "learning";
@@ -464,6 +464,7 @@ export function HeroScenarios({ locale }: { readonly locale: Locale }) {
 
   function selectScene(index: number, focus = true) {
     const nextIndex = (index + strings.scenes.length) % strings.scenes.length;
+    if (nextIndex !== activeIndex) trackAnalyticsEvent({ eventName: "scenario_select", placement: "home-scenario", locale, context: "home", detail: strings.scenes[nextIndex].id });
     setActiveIndex(nextIndex);
     if (focus) {
       tabRefs.current[nextIndex]?.focus();
@@ -587,6 +588,9 @@ export function HeroScenarios({ locale }: { readonly locale: Locale }) {
                       return (
                         <details
                           key={source.id}
+                          onToggle={(event) => {
+                            if (selected && event.currentTarget.open) trackAnalyticsEvent({ eventName: "source_expand", placement: "home-scenario", locale, context: "home", detail: scene.id });
+                          }}
                           id={anchorId}
                           name={`${idPrefix}-${scene.id}-sources`}
                           className="home-scenario-source group scroll-mt-24 rounded-md px-2 transition-colors motion-reduce:transition-none"
@@ -615,13 +619,14 @@ export function HeroScenarios({ locale }: { readonly locale: Locale }) {
                   </div>
                 </div>
 
-                {scene.id === "engineering" && <LocalizedLink
+                {scene.id === "engineering" && <TrackedLocalizedLink
                   href={workedExampleHref}
                   locale={locale}
+                  eventName="learn_article_click" placement="home-scenario" context="workflows"
                   className="mt-2 inline-flex min-h-11 items-center text-sm font-medium text-[var(--o-text)] underline decoration-[var(--o-warm)]/60 underline-offset-4 transition-colors hover:text-[var(--o-warm)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--o-warm)]"
                 >
                   {strings.workedExampleLabel}
-                </LocalizedLink>}
+                </TrackedLocalizedLink>}
               </div>
             </article>
           );

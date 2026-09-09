@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "postbuild": "node scripts/indexnow-ping.mjs",
+    "postbuild": "node --import tsx scripts/site-events-build-check.mjs && node scripts/indexnow-ping.mjs",
     "seo:weekly": "node scripts/seo-weekly-pipeline.mjs",
     "seo:weekly:run": "node scripts/seo-weekly-pipeline.mjs",
     "seo:weekly:sample": "node scripts/seo-weekly-pipeline.mjs --input-dir scripts/fixtures/seo-weekly --allow-fixture-input true --date 2026-06-07 --output /tmp/wenlan-weekly-seo-sample.md",
@@ -19,6 +19,9 @@
     "seo:launch:links": "node --import tsx scripts/seo-launch-links.mjs",
     "test:launch": "node --import tsx --test scripts/launch-measurement.test.mjs",
     "seo:resend:fetch": "node scripts/seo-resend-fetch.mjs",
+    "seo:events:fetch": "node --import tsx scripts/seo-site-events-fetch.mjs",
+    "seo:measurement:preflight": "node --import tsx scripts/seo-measurement-preflight.mjs",
+    "test:measurement": "node --import tsx --test scripts/site-events.test.mjs scripts/site-events-sql.test.mjs scripts/site-event-client.test.mjs scripts/site-events-report.test.mjs scripts/subscription-action.test.mjs scripts/subscription-ui.test.mjs scripts/analytics-contract.test.mjs scripts/launch-measurement.test.mjs scripts/seo-resend-fetch.test.mjs scripts/seo-measurement-preflight.test.mjs scripts/site-events-build-check.test.mjs",
     "seo:goal:check": "node --import tsx scripts/seo-goal-check.mjs",
     "seo:goal:control": "node scripts/seo-goal-control.mjs",
     "seo:intent:check": "node --import tsx scripts/seo-intent-map.mjs",
@@ -31,7 +34,7 @@
     "test:goal": "node --import tsx --test scripts/seo-goal-check.test.mjs scripts/seo-goal-control.test.mjs scripts/seo-scenario-check.test.mjs",
     "test:i18n": "node --import tsx --test scripts/i18n-contract.test.mjs",
     "i18n:technical:built": "node scripts/i18n-built-check.mjs",
-    "test:seo": "node --import tsx --test scripts/home-claims.test.mjs scripts/home-layout.test.mjs scripts/workflow-guide.test.mjs scripts/hero-scenarios.test.mjs scripts/llm-wiki-worked-example.test.mjs scripts/release-check.test.mjs scripts/demo-video.test.mjs scripts/launch-measurement.test.mjs scripts/analytics-contract.test.mjs scripts/download-recommendation.test.mjs scripts/brand-contract.test.mjs scripts/app-contract.test.mjs scripts/seo-github-fetch.test.mjs scripts/seo-resend-fetch.test.mjs scripts/seo-goal-check.test.mjs scripts/seo-intent-map.test.mjs scripts/seo-scenario-check.test.mjs scripts/seo-weekly.test.mjs scripts/release-bump.test.mjs",
+    "test:seo": "node --import tsx --test scripts/home-claims.test.mjs scripts/home-layout.test.mjs scripts/workflow-guide.test.mjs scripts/hero-scenarios.test.mjs scripts/llm-wiki-worked-example.test.mjs scripts/release-check.test.mjs scripts/demo-video.test.mjs scripts/launch-measurement.test.mjs scripts/analytics-contract.test.mjs scripts/download-recommendation.test.mjs scripts/brand-contract.test.mjs scripts/app-contract.test.mjs scripts/seo-github-fetch.test.mjs scripts/seo-resend-fetch.test.mjs scripts/seo-goal-check.test.mjs scripts/seo-intent-map.test.mjs scripts/seo-scenario-check.test.mjs scripts/seo-weekly.test.mjs scripts/release-bump.test.mjs && pnpm test:measurement",
     "start": "next start",
     "lint": "pnpm exec tsc --noEmit --incremental false"
   },

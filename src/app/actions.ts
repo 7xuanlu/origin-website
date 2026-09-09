@@ -26,13 +26,14 @@ export async function joinWaitlist(
   }
 
   const trimmed = email.trim().toLowerCase();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+  if (trimmed.length > 254 || trimmed.split("@")[0].length > 64 ||
+      /[\u0000-\u001f\u007f]/.test(trimmed) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
     return { success: false, errorCode: "invalid" };
   }
 
   const audienceId = process.env.RESEND_AUDIENCE_ID;
-  if (!audienceId) {
-    console.error("RESEND_AUDIENCE_ID is not configured");
+  if (!process.env.RESEND_API_KEY || !audienceId) {
+    console.error("Release subscription is not configured");
     return { success: false, errorCode: "notConfigured" };
   }
 
@@ -52,12 +53,14 @@ export async function joinWaitlist(
       properties,
     });
     if (result.error) {
-      console.error("Failed to add contact to Resend:", result.error);
+      // Provider errors may contain the submitted address. Keep it out of logs.
+      console.error("Release subscription provider rejected the request");
       return { success: false, errorCode: "unknown" };
     }
+    if (!result.data?.id) return { success: false, errorCode: "unknown" };
     return { success: true };
-  } catch (err) {
-    console.error("Failed to add to waitlist:", err);
+  } catch {
+    console.error("Release subscription provider is unavailable");
     return { success: false, errorCode: "unknown" };
   }
 }

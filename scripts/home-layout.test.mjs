@@ -93,14 +93,16 @@ test("workflow chooser keeps all evidence server rendered without adding client 
 });
 
 test("workflow comparison uses native keyboard controls and matched table rows", () => {
+  const choiceSource = fs.readFileSync(path.join(repoRoot, "src/components/home/workflow-choice.tsx"), "utf8");
   assert.match(painsSource, /data-workflow-comparison/);
   assert.match(painsSource, /<fieldset\b/);
   assert.match(painsSource, /<legend\b/);
-  assert.match(painsSource, /type="radio"/);
-  assert.match(painsSource, /defaultChecked=\{index === 0\}/);
+  assert.match(choiceSource, /type="radio"/);
+  assert.match(painsSource, /selected=\{index === 0\}/);
+  assert.match(choiceSource, /defaultChecked=\{selected\}/);
   assert.match(painsSource, /htmlFor=\{choiceId\}/);
   assert.match(painsSource, /\{row\.tabLabel \?\? row\.name\}/);
-  assert.match(painsSource, /aria-controls="workflow-comparison-panel"/);
+  assert.match(choiceSource, /aria-controls="workflow-comparison-panel"/);
   assert.equal((painsSource.match(/<table\b/g) ?? []).length, 1, "one shared table preserves row geometry across choices");
   assert.match(painsSource, /<table\b/);
   assert.match(painsSource, /scope="col"/);
@@ -113,7 +115,7 @@ test("workflow comparison uses native keyboard controls and matched table rows",
   assert.match(painsSource, /label=\{row\.profileLabels\[index\]\}/);
   assert.match(painsSource, /<strong>\{label\}<\/strong><p>\{detail\}<\/p>/);
   assert.match(painsSource, /row\.profile/);
-  assert.match(painsSource, /<LocalizedLink/);
+  assert.match(painsSource, /<TrackedLocalizedLink/);
   assert.match(painsSource, /copy\.detailsLabel/);
   assert.match(painsSource, /#workflow-\$\{row\.id\}/);
   assert.match(painsSource, /focus-visible:/);
@@ -139,7 +141,7 @@ test("workflow comparison defaults to the first data row without positional iden
   const rows = getCoreContent("en").home.content.redesign.pains.generations;
   assert.equal(rows[0]?.id, "wiki-graveyard", "the first data entry is the AI files workflow");
   assert.match(painsSource, /rows\.map\(\(row, index\) =>/);
-  assert.match(painsSource, /defaultChecked=\{index === 0\}/);
+  assert.match(painsSource, /selected=\{index === 0\}/);
   assert.doesNotMatch(painsSource, /defaultChecked=\{[^}]*wiki-graveyard/);
   assert.match(painsSource, /const choiceId = `workflow-choice-\$\{row\.id\}`/);
   assert.match(painsSource, /#workflow-\$\{row\.id\}/);

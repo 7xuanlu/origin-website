@@ -6,6 +6,13 @@ This loop is also scheduled in Codex as the active heartbeat automation `weekly-
 
 The canonical deployed property is now `wenlan.app`. Keep public-site technical checks pointed at `https://wenlan.app`; `useorigin.app` is a legacy bridge host that should redirect to the canonical apex.
 
+Optional first-party interaction measurement is documented in
+[`first-party-measurement.md`](first-party-measurement.md). It is off by default,
+requires approved durable storage, and adds accepted-operation evidence to this
+same report without replacing GSC, Vercel visitors, Resend contacts or GitHub
+asset/star counters. Run `pnpm seo:events:fetch -- --date YYYY-MM-DD` only when
+configured; the pipeline consumes its same-range `site-events-metadata.json`.
+
 ## 1) Verify the site in Google Search Console
 
 Use a **Domain property** (preferred over URL prefix). It covers apex (`wenlan.app`), `www`, and any future subdomain in one verification.

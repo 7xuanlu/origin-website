@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { makeSiteEventsMarkdown } from "./site-events-report.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
@@ -200,6 +201,7 @@ const GENERATED_SECTION_HEADINGS = new Set([
   "Snapshot",
   "GitHub Release Evidence",
   "Resend Signup Evidence",
+  "First-party Website Events",
   "Vercel Analytics Evidence",
   "Umami Evidence",
   "Top Actions",
@@ -298,6 +300,9 @@ function parseArgs(argv) {
       : null,
     resendMetadataPath: args["resend-metadata"]
       ? resolve(process.cwd(), args["resend-metadata"])
+      : null,
+    siteEventsMetadataPath: args["site-events-metadata"]
+      ? resolve(process.cwd(), args["site-events-metadata"])
       : null,
     gscMetadataPath: args["gsc-metadata"]
       ? resolve(process.cwd(), args["gsc-metadata"])
@@ -1358,6 +1363,7 @@ function makeEvidenceFingerprint({
   vercel,
   github,
   resend,
+  siteEvents,
 }) {
   const payload = {
     reportSchemaVersion: REPORT_SCHEMA_VERSION,
@@ -1370,6 +1376,7 @@ function makeEvidenceFingerprint({
     vercel,
     github,
     resend,
+    siteEvents,
   };
   return `sha256:${createHash("sha256")
     .update(JSON.stringify(payload))
@@ -1386,6 +1393,7 @@ function makeMarkdown({
   vercel,
   github,
   resend,
+  siteEvents,
 }) {
   const evidenceMetadata =
     evidence ??
@@ -1466,6 +1474,7 @@ function makeMarkdown({
     vercel: vercelSummary,
     github: githubSummary,
     resend: resendSummary,
+    siteEvents,
   });
   const analyticsSnapshot = vercelSummary.hasData
     ? `| Analytics data source | ${escapePipe(vercelSummary.source)} |
@@ -1530,7 +1539,7 @@ ${analyticsSnapshot}
 ${githubSnapshot}
 ${resendSnapshot}
 
-${analyticsEvidence}${makeGithubMarkdown(githubSummary)}${makeResendMarkdown(resendSummary)}## Top Actions
+${analyticsEvidence}${makeGithubMarkdown(githubSummary)}${makeResendMarkdown(resendSummary)}${makeSiteEventsMarkdown(siteEvents, { reportDate: date, gscRange: evidenceMetadata.dateRange })}## Top Actions
 
 Within this authenticated GSC report, only technical blockers, protected AI knowledge-base/wiki rows, and visible Obsidian + Claude/Claude Code/MCP query rows are nominated here. Generic Obsidian and other rows remain visible in the complete queues as measurement evidence. Separately, inspectable Trends plus independent corroboration may nominate a pre-GSC campaign candidate through the full candidate gate.
 
@@ -2395,6 +2404,7 @@ async function run() {
     vercelMetadata,
     githubMetadata,
     resendMetadata,
+    siteEventsMetadata,
     gscMetadata,
     queryPagesPayload,
   ] = await Promise.all([
@@ -2409,6 +2419,7 @@ async function run() {
     readOptionalJson(args.vercelMetadataPath),
     readOptionalJson(args.githubMetadataPath),
     readOptionalJson(args.resendMetadataPath),
+    readOptionalJson(args.siteEventsMetadataPath),
     readOptionalJson(args.gscMetadataPath),
     readOptionalJson(args.queryPagesPath),
   ]);
@@ -2446,6 +2457,7 @@ async function run() {
     vercel,
     github,
     resend,
+    siteEvents: siteEventsMetadata,
   });
 
   await mkdir(dirname(args.outputPath), { recursive: true });

@@ -17,7 +17,7 @@ const cases = [
   ["setup_path_click", "setup"],
 ];
 
-test("TrackedLink sends normalized bounded events to Umami only", (t) => {
+test("TrackedLink preserves normalized bounded legacy Umami events", (t) => {
   const previousWindow = globalThis.window;
   const calls = [];
   globalThis.window = {
