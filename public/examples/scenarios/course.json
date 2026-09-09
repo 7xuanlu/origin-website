@@ -1,0 +1,57 @@
+{
+  "id": "course-slides-source-backed-llm-wiki",
+  "slug": "build-course-wiki-from-lecture-notes",
+  "title": "Build a course wiki from lecture notes",
+  "question": "How should a course-seat workflow treat a cache after a database write, and what counterexample shows that a cache-only decision is unsafe?",
+  "sources": [
+    {
+      "filename": "lecture-01-consistency.md",
+      "title": "Lecture 01 — Database is the source of truth",
+      "content": "# Lecture 01 — Database is the source of truth\n\nIn this course example, the course_seats table in the database is authoritative for available seats.\n\nA cache may accelerate reads and carries an expires_at value, but a cached value is not a booking decision. After a successful database reservation commit, the cache may still hold the old value until it is invalidated."
+    },
+    {
+      "filename": "lecture-02-cache-invalidation.md",
+      "title": "Lecture 02 — Invalidation follows a write",
+      "content": "# Lecture 02 — Invalidation follows a write\n\nFor a seat reservation, commit the database transaction first. Then invalidate the concrete key course-seats:course-42.\n\nIf invalidation fails, mark the key stale and force the next seat read from the database; retry invalidation. Never write the cache first and assume that the database commit will succeed."
+    },
+    {
+      "filename": "lecture-03-counterexample.md",
+      "title": "Lecture 03 — Counterexample and unknowns",
+      "content": "# Lecture 03 — Counterexample and unknowns\n\nAt 09:00, the database says 10 seats and the cache says 10. At 09:01, a reservation commits in the database, leaving 9 seats. The invalidation worker is down, so the cache remains at 10.\n\nA cache-only availability check now overstates the seats and is unsafe for a reservation decision.\n\nThese notes do not specify a cache lease duration or an automatic invalidation retry count. Leave both values unknown."
+    }
+  ],
+  "referenceTitle": "Reference answer: write to the database first, distrust stale cache state",
+  "referenceSummary": "The database is authoritative. Commit it before invalidating the cache; after a failed invalidation, the next seat read must use the database. The 10-versus-9 counterexample proves that a cache-only reservation decision is unsafe, while lease duration and retry count remain unspecified.",
+  "referenceMarkdown": "# Course-seat consistency — reference\n\n## Answer\n\nThe database is the source of truth for available seats. A cache can accelerate a read, but its value cannot by itself authorize a reservation. [[lecture-01-consistency.md]]\n\nThe safe order is to commit the reservation in the database first and invalidate the course-seats cache key afterward. The workflow must never write the cache first and assume that the database commit will succeed. [[lecture-02-cache-invalidation.md]]\n\nIf invalidation fails, mark the key stale, make the next seat read come from the database, and retry invalidation. [[lecture-02-cache-invalidation.md]]\n\n## Counterexample\n\nThe notes give a concrete stale-read case: the database moves from 10 to 9 seats after a reservation while the cache remains at 10 because its worker is down. A cache-only availability check therefore overstates availability and is unsafe for a reservation decision. [[lecture-03-counterexample.md]]\n\nThe lease duration and automatic invalidation retry count are not defined by these notes. Keep both as unknowns instead of inventing settings. [[lecture-03-counterexample.md]]",
+  "change": {
+    "filename": "lecture-02-cache-invalidation.md",
+    "content": "# Lecture 02 — Invalidation follows a write, revision 2\n\nFor a seat reservation, commit the database transaction first. Then invalidate the concrete key course-seats:course-42.\n\nIf invalidation fails, mark the key stale and route every seat decision to the database until a successful invalidation clears the stale state. Never write the cache first and assume that the database commit will succeed. The notes still do not specify an automatic retry count.",
+    "expected": "The initial reference's phrase next seat read from the database becomes too narrow. After the revised lecture, every seat decision must bypass the cache until a successful invalidation clears the stale state. Database-first ordering, the 10-versus-9 counterexample, and the unknown lease duration remain unchanged; no retry count may be invented."
+  },
+  "locales": {
+    "en": {
+      "title": "Build a course wiki from lecture notes",
+      "intro": "A fictional three-note exercise: trace a seat reservation from database write to cache invalidation, then test the 10-versus-9 stale-cache counterexample.",
+      "task": "Using only the lecture notes, answer how a seat reservation should order the database write and cache invalidation. Include the stale-cache counterexample and list every value the notes leave unknown. Cite each claim with [[filename]].",
+      "expected": "The database is authoritative; write it first, then invalidate the cache. If invalidation fails, the next seat read must use the database. The cache showing 10 while the database has 9 makes a cache-only reservation decision unsafe, and lease duration plus retry count stay unknown.",
+      "review": "Check 10 versus 9, the write-before-invalidate order, and the path after failed invalidation; keep lease duration and retry count unknown.",
+      "comparison": "A few notes can be reviewed by hand. A source-linked course wiki helps when revised lecture material, counterexamples, and unresolved implementation choices must remain connected for later study."
+    },
+    "zh-TW": {
+      "title": "用課堂筆記建立課程 wiki",
+      "intro": "這是三份講義的虛構練習：追蹤座位預訂從資料庫寫入到快取失效，再用 10 對 9 的反例檢查流程。",
+      "task": "只根據講義，回答座位預訂應如何安排資料庫寫入與快取失效。包含快取過期的反例，並列出講義沒有指定的每個數值。每個主張都用 [[filename]] 引用。",
+      "expected": "資料庫是權威來源；先寫入資料庫，再讓快取失效。失效失敗時，下一次座位讀取必須查資料庫。資料庫有 9 個座位而快取仍顯示 10 個，證明只看快取做預訂決定不安全；租期與重試次數仍未知。",
+      "review": "核對 10 對 9、先寫資料庫再讓快取失效，以及失效失敗後的處理；租期和重試次數保持未知。",
+      "comparison": "幾份講義可以手動複核。當修訂後的教材、反例與尚未決定的實作選擇需要在後續學習中保持連結時，來源連結的課程 wiki 才有幫助。"
+    },
+    "zh-CN": {
+      "title": "用课堂笔记建立课程 wiki",
+      "intro": "这是三份讲义的虚构练习：追踪座位预订从数据库写入到缓存失效，再用 10 对 9 的反例检查流程。",
+      "task": "只根据讲义，回答座位预订应如何安排数据库写入和缓存失效。包含缓存过期的反例，并列出讲义没有指定的每个数值。每个主张都用 [[filename]] 引用。",
+      "expected": "数据库是权威来源；先写入数据库，再使缓存失效。失效失败时，下一次座位读取必须查询数据库。数据库有 9 个座位而缓存仍显示 10 个，证明只看缓存做预订决定不安全；租期与重试次数仍然未知。",
+      "review": "核对 10 对 9、先写数据库再使缓存失效，以及失效失败后的处理；租期和重试次数保持未知。",
+      "comparison": "几份讲义可以手动复核。当修订后的教材、反例和未决定的实现选择需要在后续学习中保持关联时，再评估来源链接的课程 wiki。"
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { ArticleHalo } from "../(en)/learn/article-visuals";
 import { getCoreContent } from "@/i18n/content";
 import type { Locale } from "@/i18n/locales";
 import { LocalizedLink } from "@/i18n/navigation";
-import { canonicalUrl } from "@/i18n/routing";
+import { canonicalUrl, isTranslatedPath } from "@/i18n/routing";
 import { Spotlight } from "@/components/spotlight";
 import { DocItemIcon } from "@/components/docs/doc-icons";
 
@@ -137,6 +137,9 @@ export function DocsIndexPage({ locale }: { locale: Locale }) {
                         {item.description}
                       </p>
                       <div className="mt-6 border-t border-[var(--o-border-subtle)] pt-5">
+                        {locale !== "en" && !isTranslatedPath(locale, item.href) && (
+                          <p className="mb-2 text-xs text-[var(--o-text-secondary)]">{locale === "zh-TW" ? "開啟英文文件" : "打开英文文档"}</p>
+                        )}
                         <p className="font-mono text-[10px] text-[var(--o-text-muted)]">
                           {item.meta}
                         </p>

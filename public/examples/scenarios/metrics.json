@@ -1,0 +1,57 @@
+{
+  "id": "business-metric-definition-knowledge-base",
+  "slug": "build-business-metric-definition-knowledge-base",
+  "title": "Build a business metric definition knowledge base",
+  "question": "How should a weekly active-customer definition treat a customer who is paid, acts on Tuesday, and cancels on Thursday, and is the existing dashboard query safe to use?",
+  "sources": [
+    {
+      "filename": "weekly-active-customer-contract.md",
+      "title": "Weekly active customer — revision 1",
+      "content": "# Weekly active customer — revision 1\nOwner: Growth Analytics\nWindow: Monday 00:00 through Sunday 23:59 UTC.\n\nCount distinct customer_id values with at least one qualifying action during the window. At the action timestamp, the subscription must be paid and not canceled. Exclude a customer when cancellation is effective before the action timestamp; a cancellation after the action does not remove that week's activity. Exclude test accounts.\n\nThe contract does not specify how refund state changes this metric. Leave refund handling unknown."
+    },
+    {
+      "filename": "qualifying-actions.md",
+      "title": "Qualifying customer actions",
+      "content": "# Qualifying customer actions\n\nCount an event only when it has a customer_id and an event_at timestamp in UTC. The qualifying actions are: publish a reviewed knowledge page, complete a source review, or approve a revision for reuse.\n\nDo not count a login, a page view, a failed import, or an event without customer_id. The action list does not define revenue, retention, or customer health."
+    },
+    {
+      "filename": "dashboard-query-draft.md",
+      "title": "Existing dashboard query — draft",
+      "content": "# Existing dashboard query — draft\nStatus: owner approval pending\nWindow example: 2026-04-06 through 2026-04-12 UTC.\n\nThe draft counts distinct customer_id values with a qualifying action and a paid subscription, then filters out any customer whose cancellation_date is before the end of the week.\n\nExample row: customer C-104 was paid and completed a qualifying action on Tuesday, then canceled on Thursday. The draft excludes C-104 because cancellation_date is inside the week. This query is a draft and is not an approved metric definition."
+    }
+  ],
+  "referenceTitle": "Reference answer: count the action-time state, then flag the draft query",
+  "referenceSummary": "Under revision 1, C-104 counts because the customer was paid and not canceled at the Tuesday action; a Thursday cancellation does not remove that week's activity. The draft query incorrectly excludes any cancellation before week end and still needs owner approval. Refund handling is unspecified.",
+  "referenceMarkdown": "# Weekly active customer — reference\n\n## Definition\n\nCount distinct customer_id values with at least one qualifying action in the Monday-through-Sunday UTC window. A qualifying action is publishing a reviewed knowledge page, completing a source review, or approving a revision for reuse. Login, page view, failed import, and events without customer_id do not count. [[weekly-active-customer-contract.md]] [[qualifying-actions.md]]\n\nAt the action timestamp, the subscription must be paid and not canceled. A customer whose cancellation becomes effective after the action still counts for this revision of the metric. [[weekly-active-customer-contract.md]]\n\n## C-104 and the draft query\n\nC-104 counts in the example: the customer was paid and not canceled at the Tuesday qualifying action, while the Thursday cancellation happened afterward. The dashboard draft incorrectly removes C-104 by filtering cancellation_date at the end of the week. It is not an approved definition and needs the metric owner to reconcile its filter with the contract. [[weekly-active-customer-contract.md]] [[dashboard-query-draft.md]]\n\nRefund handling is not specified by these sources. Keep it unknown rather than deciding whether a refund changes activity. [[weekly-active-customer-contract.md]]",
+  "change": {
+    "filename": "weekly-active-customer-contract.md",
+    "content": "# Weekly active customer — revision 2\nOwner: Growth Analytics\nWindow: Monday 00:00 through Sunday 23:59 UTC.\n\nCount distinct customer_id values with at least one qualifying action during the window. At the action timestamp, the subscription must be paid and not canceled. Exclude a customer when a cancellation becomes effective at any time during the window, even when the qualifying action happened before the cancellation. Exclude test accounts.\n\nThe contract does not specify how refund state changes this metric. Leave refund handling unknown.",
+    "expected": "The revision changes the cancelled-but-paid case: C-104 no longer counts because the cancellation became effective on Thursday inside the measurement window, even though the qualifying action was on Tuesday. The reference must replace its action-time-only conclusion and the draft query's end-of-week exclusion is now consistent with this revised contract, subject to owner approval. Qualifying actions and unknown refund handling are unchanged."
+  },
+  "locales": {
+    "en": {
+      "title": "Build a business metric definition knowledge base",
+      "intro": "A fictional three-file metric exercise: decide whether C-104 counts, inspect the dashboard draft, and keep the refund rule open.",
+      "task": "Using only the three source files, define the weekly active-customer count, classify C-104, and review the dashboard draft. Preserve any unknowns and cite each conclusion with [[filename]].",
+      "expected": "Under revision 1, C-104 counts because the customer was paid and not canceled at the Tuesday action; the Thursday cancellation does not remove that week. The draft incorrectly filters at week end, and refund handling remains unknown.",
+      "review": "Check the action-time paid and not-canceled rule against C-104, compare it with the draft's week-end filter, and leave refund handling unknown for the metric owner.",
+      "comparison": "A single metric contract can be checked in ordinary files. A source-linked metric wiki helps when definitions, exclusions, draft queries, and later revisions must remain inspectable together without pretending that a formula has been approved."
+    },
+    "zh-TW": {
+      "title": "建立業務指標定義知識庫",
+      "intro": "這是三個檔案的虛構指標練習：判斷 C-104 是否計入，檢查儀表板草稿，保留退款規則的未知狀態。",
+      "task": "只根據三個來源檔，定義每週活躍客戶數，判斷 C-104，並審查儀表板草稿。保留所有未知資訊，每個結論都用 [[filename]] 引用。",
+      "expected": "依第 1 版定義，C-104 在週二行動時已付費且尚未取消，因此應計入；週四取消不會移除該週活動。草稿在週末篩選取消日期而錯誤排除，退款處理仍未知。",
+      "review": "分別核對行動時的付費與未取消規則、C-104 與週末篩選；保留退款處理未知，讓指標負責人確認草稿。",
+      "comparison": "單一指標契約可以用普通檔案檢查。當定義、排除條件、查詢草稿與後續修訂需要一起保持可檢視，又不能假裝公式已核准時，來源連結的指標 wiki 才有幫助。"
+    },
+    "zh-CN": {
+      "title": "建立业务指标定义知识库",
+      "intro": "这是三个文件的虚构指标练习：判断 C-104 是否计入，检查仪表板草稿，保留退款规则的未知状态。",
+      "task": "只根据三个来源文件，定义每周活跃客户数，判断 C-104，并审核仪表板草稿。保留所有未知信息，每个结论都用 [[filename]] 引用。",
+      "expected": "按第 1 版定义，C-104 在周二行动时已经付费且尚未取消，因此应计入；周四取消不会移除该周活动。草稿在周末筛选取消日期而错误排除，退款处理仍然未知。",
+      "review": "分别核对行动时的付费和未取消规则、C-104 与周末筛选；保留退款处理未知，让指标负责人确认草稿。",
+      "comparison": "单个指标契约可以用普通文件检查。当定义、排除条件、查询草稿和后续修订需要一起保持可检查，又不能假装公式已经批准时，再评估来源链接的指标 wiki。"
+    }
+  }
+}

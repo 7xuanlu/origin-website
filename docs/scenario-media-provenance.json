@@ -1,0 +1,183 @@
+{
+  "preparedAt": "2026-09-08",
+  "productVersion": "v0.18.3",
+  "runtimeArchiveSha256": "830696c3dd9c92dd209c1d8bc17f7caf8a95fd3210f8e3a98f47034a4249571c",
+  "captureContext": "Unmodified v0.18.3 product React UI rendered in headless Chromium using the published tag test bridge. Page and memory data were read back from the v0.18.3 daemon in an isolated disposable database. No personal data, production service, generated UI or automatic model synthesis. Reference answers were authored for the exercise and stored through the API.",
+  "verifiedBehavior": "For all seven packets, three linked memories were stored, an authored page was created, and one cited memory was changed. The page retained its original content and returned stale_reason=source_updated and sources_updated_count=1. Clicking its citation opened the changed source in the product UI.",
+  "limitations": "The updating label represents pending rebuild state; no model rebuild or approval was run. Screenshots are product frontend renderings of actual API readback, not native desktop end-to-end recordings. Other test-bridge shell state is not product evidence. Fictional teaching scenarios are not customer outcomes.",
+  "transformation": "Original 1440x1100 PNG viewport captures, no crop, compositing or text edits.",
+  "assets": [
+    {
+      "path": "public/images/product-evidence/wenlan-competitive-intelligence-capability-review-app.png",
+      "scenario": "competitive-intelligence-capability-review",
+      "view": "app",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "cacc749d0659fb2c8de7bf1368dddc4474381b418968f574a40d04b129bfc4b4",
+      "packetSha256": "be48ffee79a77d4c2353c1c6820e53df88ffbab14e790f6975eab56527311e0a",
+      "receiptSha256": "d1d6abc557d2a5eef0b4897fbee81555808cac2ff7c7d9f134ae573fc7f45429"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-competitive-intelligence-capability-review-source.png",
+      "scenario": "competitive-intelligence-capability-review",
+      "view": "source",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "d487cf99ad6472272667e5c008ed6ea202f61f6bcf713712e7cc5c38e4d6029f",
+      "packetSha256": "be48ffee79a77d4c2353c1c6820e53df88ffbab14e790f6975eab56527311e0a",
+      "receiptSha256": "d1d6abc557d2a5eef0b4897fbee81555808cac2ff7c7d9f134ae573fc7f45429"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-course-slides-source-backed-llm-wiki-app.png",
+      "scenario": "course-slides-source-backed-llm-wiki",
+      "view": "app",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "682f2706e42866e1fefa569b2a6080b9559d546ddb6a5f0995a9f572a05397de",
+      "packetSha256": "557d7959d72508f7c2d8cc239bf5eb4d985632b9c4a0f71483728b3e02886360",
+      "receiptSha256": "6e6da0b29729465de002dd576fc153659c6a855399d6d0bd6064a4b720fe4f26"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-course-slides-source-backed-llm-wiki-source.png",
+      "scenario": "course-slides-source-backed-llm-wiki",
+      "view": "source",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "592e1f9677d337fc78fe2caa40c08b36fd6e5e3332a2e900eb78c83e426db49a",
+      "packetSha256": "557d7959d72508f7c2d8cc239bf5eb4d985632b9c4a0f71483728b3e02886360",
+      "receiptSha256": "6e6da0b29729465de002dd576fc153659c6a855399d6d0bd6064a4b720fe4f26"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-business-metric-definition-knowledge-base-app.png",
+      "scenario": "business-metric-definition-knowledge-base",
+      "view": "app",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "491d62a4d57a600bae771eb5a7b13b06e3019b70511488a5afb3bd56b826740b",
+      "packetSha256": "931b9d788745ab43a9398f517491f5f386884a238017d782984688da9e9b25e5",
+      "receiptSha256": "d0d59c5c36353ce717e48659a32a19c1d9013c1f008709181bf6939f2d5806fc"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-business-metric-definition-knowledge-base-source.png",
+      "scenario": "business-metric-definition-knowledge-base",
+      "view": "source",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "57de3b70fae56573859e81e97f7023c7b8adfca3c4274c7ebcbd99a1387fd9b7",
+      "packetSha256": "931b9d788745ab43a9398f517491f5f386884a238017d782984688da9e9b25e5",
+      "receiptSha256": "d0d59c5c36353ce717e48659a32a19c1d9013c1f008709181bf6939f2d5806fc"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-product-research-knowledge-base-for-prd-app.png",
+      "scenario": "product-research-knowledge-base-for-prd",
+      "view": "app",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "34ad88b883b3fc6bd1bfcf7065b65a6b004d05a0992e25e66ae82581b8284dea",
+      "packetSha256": "db580f0bab6fec126fbdd696084773139721b30cbbd5604a43d0c30f2b787b5e",
+      "receiptSha256": "1d3b81c50e44bdc0815f29c84123d8c89e8a2574ef9a656e01a319711743346c"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-product-research-knowledge-base-for-prd-source.png",
+      "scenario": "product-research-knowledge-base-for-prd",
+      "view": "source",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "227e4d375451ae943217d390a7cd37b9834975bb1e809eb36b4f8ddc7204fb80",
+      "packetSha256": "db580f0bab6fec126fbdd696084773139721b30cbbd5604a43d0c30f2b787b5e",
+      "receiptSha256": "1d3b81c50e44bdc0815f29c84123d8c89e8a2574ef9a656e01a319711743346c"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-sre-incident-read-only-triage-app.png",
+      "scenario": "sre-incident-read-only-triage",
+      "view": "app",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "b52e48ac222b8264ac9a0c1bab710d765939ca26482f59d830d64d6c7a2f75fc",
+      "packetSha256": "46c7d1cdc1722ec65c7a6386ea268e75872491521e3b6f876100116193075b6d",
+      "receiptSha256": "60c5b44600609325b9a460f9efb21a9473970468306cc244e627a5a8960acbec"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-sre-incident-read-only-triage-source.png",
+      "scenario": "sre-incident-read-only-triage",
+      "view": "source",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "794722ff33013f3a17d851deb9d91f9594c53516484288a2739f6027a609430a",
+      "packetSha256": "46c7d1cdc1722ec65c7a6386ea268e75872491521e3b6f876100116193075b6d",
+      "receiptSha256": "60c5b44600609325b9a460f9efb21a9473970468306cc244e627a5a8960acbec"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-ict-supplier-due-diligence-evidence-pack-app.png",
+      "scenario": "ict-supplier-due-diligence-evidence-pack",
+      "view": "app",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "db0b6ac58ea519558ba22bbb7ff510c1d49bdce983c34b5a00894fbaea231a0a",
+      "packetSha256": "8be17700057c8b068bbc9cc36bb968e36ed9bb3b7405a040ed153528e480d504",
+      "receiptSha256": "9bd258d0c4a92adf1080dc8d61838c61c180668fbe66dc47007df0e98b832253"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-ict-supplier-due-diligence-evidence-pack-source.png",
+      "scenario": "ict-supplier-due-diligence-evidence-pack",
+      "view": "source",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "38c0b19f533280e7f576a6349c0e94ab2008162d9ae23692f167e8a8c6f6fa04",
+      "packetSha256": "8be17700057c8b068bbc9cc36bb968e36ed9bb3b7405a040ed153528e480d504",
+      "receiptSha256": "9bd258d0c4a92adf1080dc8d61838c61c180668fbe66dc47007df0e98b832253"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-customer-support-answer-knowledge-base-app.png",
+      "scenario": "customer-support-answer-knowledge-base",
+      "view": "app",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "f122c00b34ef43a811ba8a9c3a37e0818ec2cefa8f20a57c5b6d75267e762bd7",
+      "packetSha256": "40a38d12f79b3b58c9dbc8163c5737c8c8586e10d4f2ac6b31a91a0cf65471d1",
+      "receiptSha256": "a94d07f2940e222b6ea53c16b203875328e2c302e2e8d161e7496fa0787dcaa5"
+    },
+    {
+      "path": "public/images/product-evidence/wenlan-customer-support-answer-knowledge-base-source.png",
+      "scenario": "customer-support-answer-knowledge-base",
+      "view": "source",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "sha256": "6b4a9c909a1af5dec1c9c1635cd370747e9c74c54dab1cd91fc3dd824601ead9",
+      "packetSha256": "40a38d12f79b3b58c9dbc8163c5737c8c8586e10d4f2ac6b31a91a0cf65471d1",
+      "receiptSha256": "a94d07f2940e222b6ea53c16b203875328e2c302e2e8d161e7496fa0787dcaa5"
+    }
+  ],
+  "observedWarnings": {
+    "pageCreation": "All seven page creates warned that the page was not in top-10 self-retrieval results. Exact-ID readback succeeded; search/retrieval quality is not established.",
+    "sourceStorage": "Some closely related source memories returned near_duplicate warnings and were stored. All three exact source IDs and original bodies were read back for every packet."
+  }
+}

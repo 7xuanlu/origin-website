@@ -2986,7 +2986,7 @@ const trustArticles: BaseSpec[] = [
       "knowledge base provenance",
     ],
     publishedAt: "2026-06-06",
-    updatedAt: "2026-08-08",
+    updatedAt: "2026-09-08",
     audience: "Teams building a local AI knowledge base that agents and people can inspect",
     heroBullets: [
       "Trusted sources remain separate from the knowledge derived from them.",
@@ -3439,7 +3439,7 @@ const sreIncidentKnowledgeBaseArticle: BaseSpec = {
     "incident learning workflow",
   ],
   publishedAt: "2026-08-29",
-  updatedAt: "2026-08-29",
+  updatedAt: "2026-09-08",
   readingTime: "9 min read",
   audience:
     "SRE, platform engineering, and on-call teams maintaining runbooks and post-incident knowledge",
@@ -3593,7 +3593,7 @@ const competitiveIntelligenceKnowledgeBaseArticle: BaseSpec = {
     "AI knowledge base for product research",
   ],
   publishedAt: "2026-08-30",
-  updatedAt: "2026-08-30",
+  updatedAt: "2026-09-08",
   readingTime: "9 min read",
   audience:
     "Product marketing managers, founders, and product, strategy, or market researchers maintaining competitor evidence",
@@ -3746,7 +3746,7 @@ const ictSupplierDueDiligenceArticle: BaseSpec = {
     "supplier security review",
   ],
   publishedAt: "2026-08-30",
-  updatedAt: "2026-08-30",
+  updatedAt: "2026-09-08",
   readingTime: "9 min read",
   audience:
     "Procurement, security, and IT owners reviewing one ICT or software supplier before approval or renewal",
@@ -3899,7 +3899,7 @@ const customerSupportAnswerKnowledgeBaseArticle: BaseSpec = {
     "customer support content workflow",
   ],
   publishedAt: "2026-08-31",
-  updatedAt: "2026-08-31",
+  updatedAt: "2026-09-08",
   readingTime: "8 min read",
   audience:
     "Support operations, technical writers, product support, and customer-success content owners maintaining approved customer answers",
@@ -4045,7 +4045,7 @@ const courseWikiFromLectureNotesArticle: BaseSpec = {
     "course PDF knowledge base",
   ],
   publishedAt: "2026-08-31",
-  updatedAt: "2026-08-31",
+  updatedAt: "2026-09-08",
   readingTime: "8 min read",
   audience:
     "Students, independent learners, and educators organizing one course's readable lecture slides, notes, and PDFs",
@@ -4192,7 +4192,7 @@ const businessMetricDefinitionKnowledgeBaseArticle: BaseSpec = {
     "source backed data dictionary",
   ],
   publishedAt: "2026-09-01",
-  updatedAt: "2026-09-01",
+  updatedAt: "2026-09-08",
   readingTime: "8 min read",
   audience:
     "Data, analytics, product, finance, and operations teams resolving conflicting KPI definitions for people and AI agents",
@@ -4340,7 +4340,7 @@ const productResearchArticle: LearnArticle = {
     "product discovery evidence",
   ],
   publishedAt: "2026-08-28",
-  updatedAt: "2026-08-29",
+  updatedAt: "2026-09-08",
   author: "Qi-Xuan Lu",
   readingTime: "8 min read",
   audience:
@@ -4358,7 +4358,7 @@ const productResearchArticle: LearnArticle = {
       src: "/images/product-evidence/wenlan-space-review-fixture.png",
       alt: "Wenlan desktop Space view showing recently refined Pages with source counts and a review queue for a source conflict and newly available sources.",
       caption:
-        "Genuine Wenlan app capture from a deterministic test fixture. Page rows expose source counts, while the review queue keeps a source conflict and newly available sources visible.",
+        "Genuine Wenlan app capture from a deterministic test fixture: a general product example, not the output of a product-research project. Page rows show source counts; the review queue shows a source conflict and new sources.",
       width: 1586,
       height: 992,
     },

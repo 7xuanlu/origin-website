@@ -20,8 +20,11 @@ import {
 } from "../../../(en)/learn/articles";
 import { ArticleHalo, MemoryIndex } from "../../../(en)/learn/article-visuals";
 import { TrackedLink, TrackedLocalizedLink } from "@/components/tracked-link";
+import { getScenarioPacket } from "@/lib/scenario-examples";
+import { ScenarioWorkedExample } from "@/components/learn/scenario-worked-example";
 import { ProductEvidencePanel } from "@/components/learn/product-evidence-panel";
 import { WorkflowComparisonGuide } from "@/components/learn/workflow-comparison-guide";
+import { RecordedWorkflowProof } from "@/components/learn/recorded-workflow-proof";
 import { buildSectionIds } from "./section-ids";
 
 type LocalizedLearnArticlePageProps = {
@@ -34,25 +37,25 @@ type LocalizedLearnArticlePageProps = {
 const chromeByLocale = {
   "zh-TW": {
     home: "Wenlan",
-    learn: "Learn",
+    learn: "學習指南",
     updated: "更新",
-    articlePacket: "文章封包",
+    articlePacket: "關於這篇指南",
     inThisArticle: "本文段落",
     officialReferences: "官方資料",
     relatedArticles: "相關文章",
-    faq: "FAQ",
+    faq: "常見問題",
     getStarted: "開始使用",
     github: "在 GitHub 查看",
   },
   "zh-CN": {
     home: "Wenlan",
-    learn: "Learn",
+    learn: "学习指南",
     updated: "更新",
-    articlePacket: "文章封包",
+    articlePacket: "关于这篇指南",
     inThisArticle: "本文段落",
     officialReferences: "官方资料",
     relatedArticles: "相关文章",
-    faq: "FAQ",
+    faq: "常见问题",
     getStarted: "开始使用",
     github: "在 GitHub 查看",
   },
@@ -356,7 +359,7 @@ export default async function LocalizedLearnSlugPage({
                 {chrome.learn}
               </LocalizedLink>
             </nav>
-            <div className="mt-12 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
+            <div className="mt-12 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end [&_p]:text-pretty">
               <div className="min-w-0">
                 <p className="mb-4 font-mono text-[11px] tracking-[0.3em] text-[var(--o-warm)]/80 uppercase">
                   {article.eyebrow}
@@ -386,15 +389,21 @@ export default async function LocalizedLearnSlugPage({
                   </a>
                 )}
                 {article.slug === "distilled-wiki-pages-ai-memory" && (
-                  <a href="#worked-example" className="mt-7 inline-flex rounded-md border border-[var(--o-border)] px-5 py-3 text-sm font-semibold hover:text-[var(--o-warm)]">
+                  <div className="mt-7 flex flex-wrap gap-3">
+                  <a href="#worked-example" className="inline-flex rounded-md border border-[var(--o-border)] px-5 py-3 text-sm font-semibold hover:text-[var(--o-warm)]">
                     {locale === "zh-TW" ? "試做：從三份來源到一頁 Wiki" : "试做：从三份来源到一页 Wiki"}
                   </a>
+                  <a href={`/learn-example/${resolvedLocale}`} download className="inline-flex items-center px-2 py-3 text-sm font-semibold text-[var(--o-warm)] underline underline-offset-4">{locale === "zh-TW" ? "下載練習材料（.md）" : "下载练习材料（.md）"}</a>
+                  </div>
+                )}
+                {["distilled-wiki-pages-ai-memory", "source-backed-wiki-pages-ai-work"].includes(article.slug) && (
+                  <a href="#recorded-workflow" className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--o-warm)] underline underline-offset-4">{locale === "zh-TW" ? "查看實際操作畫面" : "查看实际操作画面"}</a>
                 )}
               </div>
               <MemoryIndex
                 label={chrome.articlePacket}
                 items={[
-                  article.category,
+                  (resolvedLocale === "zh-TW" ? { Concepts: "概念", Comparisons: "工具比較", Workflows: "工作流程" } : { Concepts: "概念", Comparisons: "工具对比", Workflows: "工作流程" })[article.category],
                   article.audience,
                   article.readingTime,
                 ]}
@@ -420,9 +429,12 @@ export default async function LocalizedLearnSlugPage({
           </div>
         </section>
 
-        {article.productEvidence && (
+        {getScenarioPacket(article.slug) ? (
+          <ScenarioWorkedExample packet={getScenarioPacket(article.slug)!} locale={resolvedLocale} />
+        ) : article.productEvidence && (
           <ProductEvidencePanel
             evidence={article.productEvidence}
+            locale={resolvedLocale}
             renderText={renderArticleText}
           />
         )}
@@ -586,6 +598,8 @@ export default async function LocalizedLearnSlugPage({
             </aside>
           </div>
         </section>
+
+        {["distilled-wiki-pages-ai-memory", "source-backed-wiki-pages-ai-work"].includes(article.slug) && <RecordedWorkflowProof locale={resolvedLocale} />}
 
         <section className="border-t border-[var(--o-border-subtle)] px-6 py-20">
           <div className="mx-auto max-w-3xl">

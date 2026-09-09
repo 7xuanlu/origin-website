@@ -156,6 +156,10 @@ const requiredBuiltHeaders = [
     source: "/_next/static/media/:path*",
     headers: [{ key: "X-Robots-Tag", value: "noindex" }],
   },
+  {
+    source: "/examples/:path*",
+    headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+  },
 ];
 const requiredLocalizedLearnPaths = [
   "/zh-TW/learn/distilled-wiki-pages-ai-memory",
@@ -2074,11 +2078,26 @@ test("built technical SEO checker verifies compiled redirects, headers, and site
 
     assert.match(stdout, /redirects ok: 26/);
     assert.match(stdout, /global 404 ok/);
-    assert.match(stdout, /noindex headers ok: 7/);
+    assert.match(stdout, /noindex headers ok: 8/);
     assert.match(stdout, /sitemap required locs ok: 24/);
     assert.match(stdout, /html page checks ok: 24/);
     assert.match(stdout, /all html FAQPage absent ok: 31/);
     assert.match(stdout, /old URLs absent from sitemap/);
+  } finally {
+    await rm(outputRoot, { recursive: true, force: true });
+  }
+});
+
+test("built technical SEO checker rejects indexable raw scenario packets", async () => {
+  const outputRoot = await mkdtemp(join(tmpdir(), "wenlan-scenario-noindex-"));
+  try {
+    const buildDir = await writeBuiltSeoFixture(outputRoot, {
+      headers: requiredBuiltHeaders.filter(header => header.source !== "/examples/:path*"),
+    });
+    await assert.rejects(
+      execFileAsync(process.execPath, [builtCheckerScript, "--", "--build-dir", buildDir], { cwd: repoRoot }),
+      /required noindex headers.*\/examples\/:path\*/s,
+    );
   } finally {
     await rm(outputRoot, { recursive: true, force: true });
   }

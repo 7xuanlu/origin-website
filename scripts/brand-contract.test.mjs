@@ -403,7 +403,7 @@ test("LLM wiki acquisition surfaces route demand into one canonical hub", async 
     /metaTitle:\s*"Karpathy LLM Wiki & AI Knowledge Base \| Wenlan"/,
   );
   assert.match(article, /publishedAt:\s*"2026-06-24"/);
-  assert.match(article, /updatedAt:\s*"2026-09-05"/);
+  assert.match(article, /updatedAt:\s*"2026-09-08"/);
   assert.match(article, /heading:\s*"The Karpathy LLM Wiki pattern"/);
   assert.match(article, /does not imply that Karpathy endorses Wenlan/);
   assert.match(article, /heading:\s*"The LLM-wiki workflow in Wenlan"/);
@@ -466,7 +466,7 @@ test("LLM wiki acquisition surfaces route demand into one canonical hub", async 
     /metaDescription:\s*\n\s*"Build a source-backed AI knowledge base with trusted sources, atomic knowledge, maintained LLM-wiki pages, citations, review, and refresh\.",/,
   );
   assert.match(supportArticle, /publishedAt:\s*"2026-06-06"/);
-  assert.match(supportArticle, /updatedAt:\s*"2026-08-08"/);
+  assert.match(supportArticle, /updatedAt:\s*"2026-09-08"/);
   assert.match(
     supportArticle,
     /quickAnswer:\s*\n\s*"To build a source-backed AI knowledge base, keep trusted sources, atomic knowledge, and maintained LLM-wiki pages separate/,

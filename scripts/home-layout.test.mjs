@@ -238,11 +238,12 @@ test("recorded product evidence remains a real, hashed asset with a native enlar
   assert.equal(media.benchmarkDate.displayed, "2026-06-24");
   assert.equal(media.benchmarkDate.rerunPerformed, false);
   assert.equal(media.assets.length, 3);
+  const scenarioMedia = JSON.parse(fs.readFileSync(path.join(repoRoot, "docs/scenario-media-provenance.json"), "utf8"));
   assert.deepEqual(
     fs.readdirSync(path.join(repoRoot, "public/images/product-evidence")).sort(),
     // The existing Learn fixture has its own provenance/locale contract in i18n-contract.test.mjs.
-    [...media.assets.map((asset) => path.basename(asset.path)), "wenlan-space-review-fixture.png"].sort(),
-    "Only inventoried homepage captures and the existing Learn fixture may be publicly served",
+    [...media.assets.map((asset) => path.basename(asset.path)), ...scenarioMedia.assets.map((asset) => path.basename(asset.path)), "wenlan-space-review-fixture.png"].sort(),
+    "Only inventoried homepage and scenario captures and the existing Learn fixture may be publicly served",
   );
   assert.deepEqual(media.showcaseOrder, ["knowledge-graph", "wiki-source-hover", "page-review"]);
   for (const asset of media.assets) {
