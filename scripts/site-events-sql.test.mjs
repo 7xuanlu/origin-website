@@ -5,6 +5,19 @@ import { resolve } from "node:path";
 
 const migrationPath = resolve("supabase/migrations/20260908000000_site_events.sql");
 
+test("operator readout is bounded, read-only, and labels partial or contaminated evidence", async () => {
+  const sql = await readFile(resolve("scripts/site-events-operations.sql"), "utf8");
+  const statements = sql.replace(/--[^\n]*/g, "");
+  assert.doesNotMatch(statements, /\b(insert|update|delete|create|drop|alter|grant|revoke|truncate|record_site_event_v1)\b/i);
+  assert.match(sql, /generate_series\(0, 28\)/);
+  assert.match(sql, /at time zone 'UTC'/);
+  assert.match(sql, /partial_today/);
+  assert.match(sql, /when s.day is null then 'unavailable'/);
+  assert.match(sql, /observed_not_complete/);
+  assert.match(sql, /unknown_not_identifiable/);
+  assert.doesNotMatch(statements, /coalesce|contact|email|welcome_delivery/i);
+});
+
 test("site-event migration keeps the aggregate storage and RPC security boundary", async () => {
   const sql = await readFile(migrationPath, "utf8");
 

@@ -1,6 +1,8 @@
 # First-party website measurement
 
-Implementation status: prepared locally on 2026-09-08; **off by default**.
+Implementation default: **off until explicitly configured**. Production activation
+and welcome-email verification were recorded on 2026-09-09 UTC (PRs #181,
+#184 and #185); this is a dated receipt, not a live status probe.
 Code, configuration, successful storage, and live collection are separate states.
 This document does not authorize deployment, storage provisioning, a real
 subscription, or an email send.
@@ -47,6 +49,29 @@ still process ordinary network metadata; this is not a promise that no provider
 ever sees an IP address. Resend contact data is separate and still contains the
 address explicitly submitted by the subscriber. Subscription errors must not
 print provider response bodies or addresses to server logs.
+
+### Operator and test exclusion
+
+Before inspecting the production website interactively, operators can opt this
+browser out of the first-party collector using browser developer tools:
+
+```js
+localStorage.setItem("wenlan-site-events-disabled", "1");
+```
+
+To resume this collector deliberately:
+
+```js
+localStorage.removeItem("wenlan-site-events-disabled");
+```
+
+The preference is local to that browser and origin, checked on each event, and
+never transmitted. It is not an identity or a global owner filter. Storage access
+failure skips optional first-party collection rather than blocking the user's
+action. This setting does not disable Vercel or Umami; use their respective
+controls or isolated tests with external analytics blocked for those providers.
+Existing aggregates cannot identify or subtract prior owner/test operations.
+Mark their contamination **unknown**, not "organic" or "tests excluded".
 
 ## Storage and free-plan boundary
 
@@ -169,6 +194,20 @@ turn off the server flag; turn off the client build flag on the next approved
 deployment. Disabling does not erase existing data.
 
 ## Export into the existing weekly report
+
+For a quick operations check without rerunning GSC, execute
+`scripts/site-events-operations.sql` in an authenticated **read-only** database
+console. It returns 28 complete UTC calendar days plus today's separate partial
+row, native counters, cap flags, missing-day status, and the contamination limit.
+It reads only the event table; it does not read subscriber emails or mutate data.
+No public diagnostic endpoint or downloadable production secret is necessary.
+Calendar completeness never establishes collection completeness. A missing day
+remains unavailable, not zero. Save private raw exports outside the public repo.
+
+The SQL readout is not a full database backup. Follow the provider's backup
+procedure for both schema and data; store copies outside disposable worktrees
+and restore into an isolated database before marking backup coverage verified.
+Do not expose subscription ledgers or signing material in a public report.
 
 ```bash
 # Uses server credentials supplied securely by the operator; read-only REST.
