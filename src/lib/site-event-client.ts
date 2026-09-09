@@ -2,6 +2,8 @@
 
 import type { SignupAttribution } from "./signup-attribution";
 
+export const SITE_EVENTS_DISABLED_STORAGE_KEY = "wenlan-site-events-disabled";
+
 // Only coarse, finite labels leave the browser. Never transmit an arbitrary
 // referrer, UTM value, form value, URL query, or persistent visitor identifier.
 export function eventSource(attribution: SignupAttribution | null): string {
@@ -25,11 +27,21 @@ export function eventSource(attribution: SignupAttribution | null): string {
   return !host || host === "direct" ? "direct" : "other";
 }
 
+function hasLocalSiteEventsOptOut(): boolean {
+  try {
+    if (!("localStorage" in window)) return false;
+    return window.localStorage.getItem(SITE_EVENTS_DISABLED_STORAGE_KEY) === "1";
+  } catch {
+    return true;
+  }
+}
+
 export function sendSiteEvent(
   payload: { event: string; placement: string; locale: string; context: string; detail?: string; asset_id?: string; release_tag?: string },
   attribution: SignupAttribution | null,
 ) {
   if (process.env.NEXT_PUBLIC_SITE_EVENTS_ENABLED !== "1" || typeof window === "undefined") return;
+  if (hasLocalSiteEventsOptOut()) return;
   if (window.navigator?.doNotTrack === "1" || window.navigator?.doNotTrack === "yes" ||
       (window.navigator as Navigator & { globalPrivacyControl?: boolean })?.globalPrivacyControl) return;
   try {

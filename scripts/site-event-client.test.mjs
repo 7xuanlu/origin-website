@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { eventSource, sendSiteEvent } from "../src/lib/site-event-client.ts";
+import { eventSource, sendSiteEvent, SITE_EVENTS_DISABLED_STORAGE_KEY } from "../src/lib/site-event-client.ts";
 import { trackAnalyticsEvent } from "../src/components/tracked-link.tsx";
 import { LAUNCH_CHANNELS } from "../src/lib/launch-campaign.ts";
 
@@ -47,6 +47,60 @@ test("disabled, preview, DNT and GPC do not emit first-party events", t => {
   delete globalThis.window.navigator.doNotTrack;
   globalThis.window.navigator.globalPrivacyControl = true;
   sendSiteEvent(event, attribution);
+  assert.equal(calls.length, 0);
+});
+
+test("local opt-out suppresses first-party events", t => {
+  assert.equal(SITE_EVENTS_DISABLED_STORAGE_KEY, "wenlan-site-events-disabled");
+  const calls = setup(t);
+  globalThis.window.localStorage = {
+    getItem(key) {
+      assert.equal(key, SITE_EVENTS_DISABLED_STORAGE_KEY);
+      return "1";
+    },
+  };
+  sendSiteEvent(event, attribution);
+  assert.equal(calls.length, 0);
+});
+
+test("local opt-out does not block the original analytics action", t => {
+  const calls = setup(t);
+  let umamiCalls = 0;
+  globalThis.window.localStorage = { getItem: () => "1" };
+  globalThis.window.umami.track = () => { umamiCalls++; };
+  assert.doesNotThrow(() => trackAnalyticsEvent({ eventName: "github_outbound", placement: "home-hero", locale: "en", context: "home" }));
+  assert.equal(calls.length, 0);
+  assert.equal(umamiCalls, 1);
+});
+
+test("removing the local opt-out resumes collection without a reload", t => {
+  const calls = setup(t);
+  let optedOut = true;
+  globalThis.window.localStorage = {
+    getItem(key) {
+      assert.equal(key, SITE_EVENTS_DISABLED_STORAGE_KEY);
+      return optedOut ? "1" : null;
+    },
+    removeItem(key) {
+      assert.equal(key, SITE_EVENTS_DISABLED_STORAGE_KEY);
+      optedOut = false;
+    },
+  };
+  sendSiteEvent(event, attribution);
+  assert.equal(calls.length, 0);
+  globalThis.window.localStorage.removeItem(SITE_EVENTS_DISABLED_STORAGE_KEY);
+  sendSiteEvent(event, attribution);
+  assert.equal(calls.length, 1);
+});
+
+test("storage access exceptions fail closed for first-party events", t => {
+  const calls = setup(t);
+  globalThis.window.localStorage = {
+    getItem() {
+      throw Error("storage unavailable");
+    },
+  };
+  assert.doesNotThrow(() => sendSiteEvent(event, attribution));
   assert.equal(calls.length, 0);
 });
 
