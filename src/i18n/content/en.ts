@@ -81,7 +81,7 @@ export const enContent = {
         eyebrow: "Download",
         title: "Download Wenlan for your system.",
         description:
-          "Wenlan v0.18.3 ships a Windows x64 desktop build and a macOS Apple silicon DMG, plus headless runtime builds for Windows, macOS, and Linux.",
+          "Wenlan v0.18.5 ships a Windows x64 desktop build and a macOS Apple silicon DMG, plus headless runtime builds for Windows, macOS, and Linux.",
         stableLabel: "Stable",
         releaseNotesLabel: "Release notes",
         packageIncludesLabel: "CLI · daemon · MCP connector",
@@ -979,7 +979,7 @@ export const enContent = {
         description:
           "Agents capture what they learn, you add sources you trust, and Wenlan keeps source-backed wiki pages current across AI work.",
         statusLabel: "Project status",
-        statusItems: ["v0.18.3", "macOS, Linux, Windows", "Apache-2.0", "Built by Qi-Xuan Lu"],
+        statusItems: ["v0.18.5", "macOS, Linux, Windows", "Apache-2.0", "Built by Qi-Xuan Lu"],
       },
       sections: [
         {
@@ -1006,7 +1006,7 @@ export const enContent = {
           number: "04",
           title: "Current status",
           paragraphs: [
-            "Wenlan v0.18.3 ships a notarized macOS Apple Silicon DMG and a Windows x64 desktop setup executable, plus native headless runtime artifacts for macOS, Linux (x86_64, aarch64; glibc), and Windows (x86_64). Windows users can choose the desktop setup executable or the headless runtime ZIP. The daemon, CLI, MCP server, Claude Code plugin, and Codex plugin are Apache-2.0; the desktop app crate is AGPL-3.0-only.",
+            "Wenlan v0.18.5 ships a notarized macOS Apple Silicon DMG and a Windows x64 desktop setup executable, plus native headless runtime artifacts for macOS, Linux (x86_64, aarch64; glibc), and Windows (x86_64). Windows users can choose the desktop setup executable or the headless runtime ZIP. The daemon, CLI, MCP server, Claude Code plugin, and Codex plugin are Apache-2.0; the desktop app crate is AGPL-3.0-only.",
           ],
         },
       ],
@@ -1609,7 +1609,7 @@ export const enContent = {
           number: "01",
           title: "Install the runtime for your system",
           paragraphs: [
-            "Wenlan v0.18.3 ships native runtime packages for Windows x64, macOS Apple silicon, and Linux x64 or ARM64 with glibc. Every runtime archive contains the CLI, daemon, and MCP connector.",
+            "Wenlan v0.18.5 ships native runtime packages for Windows x64, macOS Apple silicon, and Linux x64 or ARM64 with glibc. Every runtime archive contains the CLI, daemon, and MCP connector.",
             "On Windows, extract wenlan-windows-x64.zip as one unit into a user-owned directory on PATH. Keep onnxruntime.dll and vulkan-1.dll beside the three executables.",
           ],
           commands: [
@@ -1620,13 +1620,13 @@ export const enContent = {
           ctas: [
             {
               id: "windows-download",
-              href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-windows-x64.zip",
+              href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.5/wenlan-windows-x64.zip",
               label: "Download Windows x64",
             },
             {
               id: "all-downloads",
-              href: "https://github.com/7xuanlu/wenlan/releases/tag/v0.18.3",
-              label: "All v0.18.3 downloads",
+              href: "https://github.com/7xuanlu/wenlan/releases/tag/v0.18.5",
+              label: "All v0.18.5 downloads",
             },
           ],
         },
