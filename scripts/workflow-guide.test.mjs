@@ -39,11 +39,12 @@ test("every localized comparison has setup and two-sided choice guidance", () =>
 
 test("homepage routes the selected alternative to the localized owner and keeps the native chooser", () => {
   assert.match(homeSource, /<PainsSection copy=\{redesign\.pains\} locale=\{locale\}/);
-  assert.match(painsSource, /<LocalizedLink/);
+  assert.match(painsSource, /<TrackedLocalizedLink/);
   assert.match(painsSource, /href=\{`\/learn\/choose-ai-knowledge-base-tool#workflow-\$\{row\.id\}`\}/);
   assert.doesNotMatch(painsSource, /<details\b/);
   assert.match(painsSource, /<table\b/);
-  assert.match(painsSource, /<input className="workflow-choice sr-only" type="radio"/);
+  assert.match(painsSource, /<WorkflowChoice/);
+  assert.match(fs.readFileSync(path.join(repoRoot, "src/components/home/workflow-choice.tsx"), "utf8"), /<input className="workflow-choice sr-only" type="radio"/);
   assert.match(painsSource, /<WorkflowHelp/);
 });
 

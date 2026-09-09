@@ -69,6 +69,12 @@ Reusable runbook: `docs/seo-growth-loop.md`.
 
 ## Weekly Searchfit/GSC Loop
 
+The optional [first-party measurement layer](first-party-measurement.md) adds
+anonymous accepted operations to the same weekly report. Missing input remains
+unavailable; it does not manufacture visitors, completed downloads, CTA rates,
+email delivery or causal attribution. It remains off until separately configured
+and deployed with approval.
+
 Use `docs/search-console-umami.md` as the operating checklist. The loop is:
 
 1. Export Search Console Queries and Pages for the last 28 days.

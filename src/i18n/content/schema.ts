@@ -43,6 +43,8 @@ export type WaitlistContent = {
   successMessage: string;
   pendingLabel: string;
   submitLabel: string;
+  emailLabel: string;
+  purpose: string;
   emailPlaceholder: string;
   fallbackError: string;
   errors: Record<WaitlistErrorCode, string>;

@@ -17,7 +17,7 @@ export const zhTWContent = {
   },
   home: {
     status: "translated",
-    sourceHash: "5357cec731cc12bb3dfc765ecee4b4553702bebaa8e81be86a50d15eb657fd4a",
+    sourceHash: "8b2936f892bd87f7761fce5e712a86dbfa0418fa4a2cec557d6be53173a1a79c",
     content: {
       seo: {
         title: "Wenlan 文瀾 | AI 工作的 LLM wiki",
@@ -405,17 +405,19 @@ export const zhTWContent = {
             href: "https://github.com/7xuanlu/wenlan",
             label: "在 GitHub 查看",
           },
-          waitlistHeading: "取得 release 更新。",
+          waitlistHeading: "訂閱 Wenlan 的版本更新。",
           waitlist: {
-            successMessage: "你已加入。我們會持續通知你。",
-            pendingLabel: "加入中...",
-            submitLabel: "取得更新",
-            emailPlaceholder: "you@email.com",
+            successMessage: "訂閱資料已儲存。",
+            pendingLabel: "儲存中…",
+            submitLabel: "訂閱更新",
+            emailLabel: "電子郵件地址",
+            purpose: "僅用於 Wenlan 版本更新。",
+            emailPlaceholder: "you@example.com",
             fallbackError: "發生錯誤，請再試一次。",
             errors: {
-              required: "請輸入 email。",
-              invalid: "請輸入有效的 email。",
-              notConfigured: "候補名單尚未設定。",
+              required: "請輸入電子郵件地址。",
+              invalid: "請輸入有效的電子郵件地址。",
+              notConfigured: "訂閱功能尚未開放。",
               unknown: "發生錯誤，請再試一次。",
             },
           },

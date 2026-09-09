@@ -61,7 +61,8 @@ export function captureSignupAttribution(
 }
 
 export function currentSignupAttribution(): SignupAttribution {
-  if (typeof window === "undefined" || window.navigator?.doNotTrack === "1" || window.navigator?.doNotTrack === "yes") {
+  if (typeof window === "undefined" || window.navigator?.doNotTrack === "1" || window.navigator?.doNotTrack === "yes" ||
+      (window.navigator as Navigator & { globalPrivacyControl?: boolean })?.globalPrivacyControl) {
     return { signup_landing_path: "", signup_referrer_host: "", signup_utm_source: "", signup_utm_medium: "", signup_utm_campaign: "" };
   }
   let storage: AttributionStorage | undefined;

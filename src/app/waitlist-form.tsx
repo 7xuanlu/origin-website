@@ -26,13 +26,19 @@ export function WaitlistForm({
   locale: Locale;
 }) {
   const [state, action, isPending] = useActionState(joinWaitlist, null);
+  const [email, setEmail] = useState("");
   const [attribution, setAttribution] =
     useState<SignupAttribution>(emptyAttribution);
   const signupTracked = useRef(false);
+  const errorTracked = useRef<typeof state>(null);
   const errorMessage =
     state && !state.success
       ? (copy.errors[state.errorCode] ?? copy.fallbackError)
       : null;
+  const emailInputId = `release-updates-email-${locale}`;
+  const purposeId = `${emailInputId}-purpose`;
+  const errorId = `${emailInputId}-error`;
+  const describedBy = errorMessage ? `${purposeId} ${errorId}` : purposeId;
 
   useEffect(() => {
     setAttribution(currentSignupAttribution());
@@ -49,13 +55,23 @@ export function WaitlistForm({
     });
   }, [locale, state]);
 
+  useEffect(() => {
+    if (!state || state.success || state === errorTracked.current) return;
+    errorTracked.current = state;
+    trackAnalyticsEvent({ eventName: "waitlist_error", placement: "home-footer", locale, context: "home", detail: state.errorCode });
+  }, [locale, state]);
+
   if (state?.success) {
     return (
-      <div className="animate-fade-up flex items-center gap-3 rounded-lg border border-[var(--o-sage)]/20 bg-[var(--o-sage)]/5 px-6 py-3.5">
+      <div
+        role="status"
+        aria-live="polite"
+        className="animate-fade-up flex items-center gap-3 rounded-lg border border-[var(--o-sage)]/20 bg-[var(--o-sage)]/5 px-6 py-3.5"
+      >
         <svg viewBox="0 0 24 24" fill="none" stroke="var(--o-sage)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="size-5 shrink-0">
           <path d="M20 6 9 17l-5-5" />
         </svg>
-        <span className="text-sm text-[var(--o-sage)]">
+        <span className="text-sm text-[var(--o-text)]">
           {copy.successMessage}
         </span>
       </div>
@@ -63,7 +79,7 @@ export function WaitlistForm({
   }
 
   return (
-    <form action={action} className="w-full max-w-md">
+    <form action={action} aria-busy={isPending} className="min-w-0 w-full max-w-md">
       <input type="hidden" name="locale" value={locale} />
       {Object.entries(attribution).map(([name, value]) => (
         <input
@@ -73,14 +89,27 @@ export function WaitlistForm({
           value={value}
         />
       ))}
-      <div className="flex gap-2">
+      <label htmlFor={emailInputId} className="sr-only">
+        {copy.emailLabel}
+      </label>
+      <p id={purposeId} className="mb-3 text-xs leading-relaxed text-[var(--o-text-muted)]">
+        {copy.purpose}
+      </p>
+      <div className="flex min-w-0 flex-wrap gap-2">
         <input
+          id={emailInputId}
           type="email"
           name="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
           required
+          maxLength={254}
+          autoComplete="email"
+          aria-describedby={describedBy}
+          aria-invalid={errorMessage ? true : undefined}
           placeholder={copy.emailPlaceholder}
           disabled={isPending}
-          className="flex-1 rounded-lg border border-[var(--o-border)] bg-[var(--o-input-bg)] px-4 py-3 text-sm text-[var(--o-text)] placeholder-[var(--o-text-muted)] outline-none transition-colors duration-150 focus:border-[var(--o-warm)]/40 focus:bg-[var(--o-input-focus-bg)] disabled:opacity-50"
+          className="min-w-0 flex-1 rounded-lg border border-[var(--o-border)] bg-[var(--o-input-bg)] px-4 py-3 text-sm text-[var(--o-text)] placeholder-[var(--o-text-muted)] outline-none transition-colors duration-150 focus:border-[var(--o-warm)]/40 focus:bg-[var(--o-input-focus-bg)] disabled:opacity-50"
         />
         <button
           type="submit"
@@ -93,7 +122,7 @@ export function WaitlistForm({
                 <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" />
                 <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-75" />
               </svg>
-              {copy.pendingLabel}
+              <span aria-live="polite">{copy.pendingLabel}</span>
             </span>
           ) : (
             copy.submitLabel
@@ -101,7 +130,9 @@ export function WaitlistForm({
         </button>
       </div>
       {errorMessage && (
-        <p className="mt-2 text-xs text-red-400">{errorMessage}</p>
+        <p id={errorId} role="alert" aria-live="polite" className="mt-2 text-sm text-[var(--o-warm)]">
+          {errorMessage}
+        </p>
       )}
     </form>
   );

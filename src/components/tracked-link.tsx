@@ -7,6 +7,7 @@ import { localizedHrefForLocale } from "@/i18n/navigation";
 import { currentSignupAttribution } from "@/lib/signup-attribution";
 import { launchEventProperties } from "@/lib/launch-campaign";
 import { WENLAN_RELEASE } from "@/lib/releases";
+import { sendSiteEvent } from "@/lib/site-event-client";
 
 export type AnalyticsEventName =
   | "get_started_click"
@@ -14,7 +15,13 @@ export type AnalyticsEventName =
   | "learn_article_click"
   | "setup_path_click"
   | "waitlist_signup"
-  | "video_play_click";
+  | "video_play_click"
+  | "waitlist_error"
+  | "scenario_select"
+  | "comparison_select"
+  | "product_view_select"
+  | "product_image_open"
+  | "source_expand";
 
 export type AnalyticsPlacement =
   | "home-hero"
@@ -28,7 +35,10 @@ export type AnalyticsPlacement =
   | "learn-footer"
   | "learn-article"
   | "docs-get-started"
-  | "docs-article";
+  | "docs-article"
+  | "home-scenario"
+  | "home-comparison"
+  | "home-product-views";
 
 export type AnalyticsContext =
   | "home"
@@ -37,7 +47,7 @@ export type AnalyticsContext =
   | "workflows"
   | "setup";
 
-type AnalyticsDestinationCategory = "email" | "github" | "learn" | "setup" | "video";
+type AnalyticsDestinationCategory = "email" | "github" | "learn" | "setup" | "video" | "example" | "comparison" | "product";
 
 type AnalyticsEventData = {
   readonly placement: AnalyticsPlacement;
@@ -49,6 +59,7 @@ type AnalyticsEventData = {
   readonly campaign?: string;
   readonly asset_id?: string;
   readonly release_tag?: string;
+  readonly detail?: string;
 };
 
 declare global {
@@ -69,6 +80,12 @@ const destinationCategoryByEvent: Record<
   setup_path_click: "setup",
   waitlist_signup: "email",
   video_play_click: "video",
+  waitlist_error: "email",
+  scenario_select: "example",
+  comparison_select: "comparison",
+  product_view_select: "product",
+  product_image_open: "product",
+  source_expand: "example",
 };
 
 type TrackingProps = {
@@ -76,6 +93,7 @@ type TrackingProps = {
   readonly placement: AnalyticsPlacement;
   readonly locale: Locale;
   readonly context: AnalyticsContext;
+  readonly detail?: string;
 };
 
 export function trackAnalyticsEvent({
@@ -84,17 +102,24 @@ export function trackAnalyticsEvent({
   locale,
   context,
   href,
+  detail,
 }: TrackingProps & { href?: string }) {
-  if (typeof window === "undefined" || window.navigator?.doNotTrack === "1" || window.navigator?.doNotTrack === "yes") return;
+  if (typeof window === "undefined" || window.navigator?.doNotTrack === "1" || window.navigator?.doNotTrack === "yes" ||
+      (window.navigator as Navigator & { globalPrivacyControl?: boolean })?.globalPrivacyControl) return;
   try {
     const attribution = window.location ? currentSignupAttribution() : null;
     const campaign = attribution ? launchEventProperties(attribution.signup_utm_source, attribution.signup_utm_medium, attribution.signup_utm_campaign) : {};
     const asset = eventName === "github_outbound" ? WENLAN_RELEASE.assets.find(item => item.href === href) : undefined;
+    sendSiteEvent({ event: eventName, placement, locale, context,
+      ...(detail ? { detail } : {}),
+      ...(asset ? { asset_id: asset.id, release_tag: WENLAN_RELEASE.tag } : {}),
+    }, attribution);
     const pending = window.umami?.track(eventName, {
       placement, locale, context,
       destination_category: destinationCategoryByEvent[eventName],
       ...campaign,
       ...(asset ? { asset_id: asset.id, release_tag: WENLAN_RELEASE.tag } : {}),
+      ...(detail ? { detail } : {}),
     });
     pending?.catch(() => {});
   } catch { /* A blocked analytics provider must never prevent the user action. */ }
@@ -110,13 +135,14 @@ export function TrackedLink({
   placement,
   locale,
   context,
+  detail,
   ...props
 }: TrackedLinkProps) {
   return (
     <NextLink
       {...props}
       onClick={() =>
-        trackAnalyticsEvent({ eventName, placement, locale, context, href: props.href })
+        trackAnalyticsEvent({ eventName, placement, locale, context, detail, href: props.href })
       }
     />
   );

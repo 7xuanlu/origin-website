@@ -17,7 +17,7 @@ export const zhCNContent = {
   },
   home: {
     status: "translated",
-    sourceHash: "5357cec731cc12bb3dfc765ecee4b4553702bebaa8e81be86a50d15eb657fd4a",
+    sourceHash: "8b2936f892bd87f7761fce5e712a86dbfa0418fa4a2cec557d6be53173a1a79c",
     content: {
       seo: {
         title: "Wenlan 文澜 | AI 工作的 LLM wiki",
@@ -405,17 +405,19 @@ export const zhCNContent = {
             href: "https://github.com/7xuanlu/wenlan",
             label: "在 GitHub 查看",
           },
-          waitlistHeading: "获取 release 更新。",
+          waitlistHeading: "订阅 Wenlan 的版本更新。",
           waitlist: {
-            successMessage: "你已加入。我们会持续通知你。",
-            pendingLabel: "加入中...",
-            submitLabel: "获取更新",
-            emailPlaceholder: "you@email.com",
+            successMessage: "订阅资料已保存。",
+            pendingLabel: "保存中…",
+            submitLabel: "订阅更新",
+            emailLabel: "电子邮件地址",
+            purpose: "仅用于 Wenlan 版本更新。",
+            emailPlaceholder: "you@example.com",
             fallbackError: "发生错误，请再试一次。",
             errors: {
-              required: "请输入 email。",
-              invalid: "请输入有效的 email。",
-              notConfigured: "候补名单尚未设置。",
+              required: "请输入电子邮件地址。",
+              invalid: "请输入有效的电子邮件地址。",
+              notConfigured: "订阅功能尚未开放。",
               unknown: "发生错误，请再试一次。",
             },
           },
