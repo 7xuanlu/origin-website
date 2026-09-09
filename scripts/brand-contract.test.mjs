@@ -1134,60 +1134,62 @@ test("public release surfaces expose the verified current artifacts and release 
   const aboutOg = await readRepo("src/app/about/opengraph-image.tsx");
   const llms = await readRepo("public/llms.txt");
 
-  assert.equal(version, "0.18.3");
+  assert.equal(version, "0.18.5");
   assert.equal(WENLAN_RELEASE.version, version);
-  assert.equal(WENLAN_RELEASE.tag, "v0.18.3");
-  assert.equal(WENLAN_RELEASE.publishedAt, "2026-09-08T00:52:58Z");
+  assert.equal(WENLAN_RELEASE.tag, "v0.18.5");
+  assert.equal(WENLAN_RELEASE.publishedAt, "2026-09-09T16:27:14Z");
   assert.equal(
     WENLAN_RELEASE.releaseUrl,
-    "https://github.com/7xuanlu/wenlan/releases/tag/v0.18.3",
+    "https://github.com/7xuanlu/wenlan/releases/tag/v0.18.5",
   );
   assert.equal(
     WENLAN_RELEASE.setupGuideUrl,
-    "https://github.com/7xuanlu/wenlan/blob/v0.18.3/docs/setup-with-ai.md#install-the-runtime",
+    "https://github.com/7xuanlu/wenlan/blob/v0.18.5/docs/setup-with-ai.md#install-the-runtime",
   );
   assert.deepEqual(
     WENLAN_RELEASE.assets.map(({ id, href, format, size }) => ({ id, href, format, size })),
     [
       {
         id: "windows-desktop-x64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/Wenlan_0.18.3_x64-setup.exe",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.5/Wenlan_0.18.5_x64-setup.exe",
         format: "EXE",
-        size: "59.9 MiB",
+        size: "60.0 MiB",
       },
       {
         id: "windows-x64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-windows-x64.zip",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.5/wenlan-windows-x64.zip",
         format: "ZIP",
         size: "74.0 MiB",
       },
       {
         id: "macos-arm64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/Wenlan_0.18.3_aarch64.dmg",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.5/Wenlan_0.18.5_aarch64.dmg",
         format: "DMG",
-        size: "84.0 MiB",
+        size: "84.1 MiB",
       },
       {
         id: "macos-runtime-arm64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-darwin-arm64.tar.gz",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.5/wenlan-darwin-arm64.tar.gz",
         format: "TAR.GZ",
         size: "50.3 MiB",
       },
       {
         id: "linux-x64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-linux-x64.tar.gz",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.5/wenlan-linux-x64.tar.gz",
         format: "TAR.GZ",
         size: "62.9 MiB",
       },
       {
         id: "linux-arm64",
-        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.3/wenlan-linux-arm64.tar.gz",
+        href: "https://github.com/7xuanlu/wenlan/releases/download/v0.18.5/wenlan-linux-arm64.tar.gz",
         format: "TAR.GZ",
         size: "63.1 MiB",
       },
     ],
   );
 
+  assert.match(changelog, /^## \[0\.18\.5\].*\(2026-09-09\)/m);
+  assert.match(changelog, /improve graph exploration and desktop update UX/);
   assert.match(changelog, /^## \[0\.18\.3\].*\(2026-09-08\)/m);
   assert.match(changelog, /idle-archive housekeeping rule/);
   assert.match(changelog, /real phase progress and batch status/);
@@ -1205,15 +1207,15 @@ test("public release surfaces expose the verified current artifacts and release 
   assert.match(docs, /Local provider presets can send an API key; upstream LLM refusals return a 502 response/);
   assert.match(docs, /Shared Claude\/Codex hook and runner gaps are closed/);
 
-  assert.equal(date, "2026-09-08");
+  assert.equal(date, "2026-09-09");
   assert.match(docs, /v0\.18\.0 highlights/);
   assert.match(docs, /one home page with an honest empty state/);
   assert.match(docs, /removes the .*Where AI looked.* section/);
   assert.match(docs, /global shortcut is occupied/);
   assert.match(docs, /window stays still after launch/);
-  assert.match(structuredData, /tree\/v0\.18\.3\/app/);
-  assert.match(aboutOg, /v0\.18\.3 · Apache-2\.0/);
-  assert.match(llms, /tree\/v0\.18\.3\/app/);
+  assert.match(structuredData, /tree\/v0\.18\.5\/app/);
+  assert.match(aboutOg, /v0\.18\.5 · Apache-2\.0/);
+  assert.match(llms, /tree\/v0\.18\.5\/app/);
 });
 
 test("download information architecture keeps the homepage compact and the full matrix on a localized hub", async () => {

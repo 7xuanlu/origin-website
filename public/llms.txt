@@ -113,7 +113,7 @@
 
 - [llms-full.txt](https://wenlan.app/llms-full.txt): Long-form companion to this file. Contains the full body of every Learn article and Docs page so an LLM can ingest the full corpus in one fetch.
 - [GitHub repository](https://github.com/7xuanlu/wenlan): Source, releases, issues. Apache-2.0.
-- [Wenlan desktop app source](https://github.com/7xuanlu/wenlan/tree/v0.18.3/app): Tauri 2 + React 19 source-cited wiki GUI in the unified Wenlan release, with a notarized macOS Apple Silicon DMG and a Windows x64 desktop build. AGPL-3.0-only. Talks to the same local daemon over HTTP at localhost:7878 and provides guided Remote Access for ChatGPT and Claude.ai.
+- [Wenlan desktop app source](https://github.com/7xuanlu/wenlan/tree/v0.18.5/app): Tauri 2 + React 19 source-cited wiki GUI in the unified Wenlan release, with a notarized macOS Apple Silicon DMG and a Windows x64 desktop build. AGPL-3.0-only. Talks to the same local daemon over HTTP at localhost:7878 and provides guided Remote Access for ChatGPT and Claude.ai.
 - [Wenlan Claude Code plugin (npm)](https://www.npmjs.com/package/wenlan): The Claude Code plugin published from this repo.
 - [wenlan-mcp server (npm)](https://www.npmjs.com/package/wenlan-mcp): The MCP server binary as a standalone npm package.
 - [wenlan-mcp on crates.io](https://crates.io/crates/wenlan-mcp): The Rust crate behind wenlan-mcp.
