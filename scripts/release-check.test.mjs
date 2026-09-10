@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { selectedReleaseTag, verifyPublishedRelease } from "./release-check.mjs";
+import {
+  SITE_DOWNLOAD_PATHS,
+  selectedReleaseTag,
+  verifyDownloadHtml,
+  verifyPublishedRelease,
+  verifyResolvedRelease,
+  verifySiteRelease,
+} from "./release-check.mjs";
 
 const release = {
   version: "1.2.3", tag: "v1.2.3", publishedAt: "2026-09-04T20:31:03Z",
@@ -36,4 +43,32 @@ test("live check rejects missing, incomplete, or differently sized downloads", (
   assert.throws(() => verifyPublishedRelease(wrongSize, release), /size differs/);
   const noUpdater = published(); noUpdater.assets = noUpdater.assets.filter(a => a.name !== "latest.json");
   assert.throws(() => verifyPublishedRelease(noUpdater, release), /Missing release support asset/);
+});
+
+test("site validation compares the deployed manifest and all localized download pages to the latest release", async () => {
+  const calls = [];
+  const page = `<span>Stable ${release.tag}</span><a href="${release.assets[0].href}">download</a><script type="application/ld+json">${JSON.stringify({ "@type": "SoftwareApplication", softwareVersion: release.version, downloadUrl: release.releaseUrl })}</script>`;
+  const fetchImpl = async (url) => {
+    calls.push(url);
+    if (url.endsWith("/api/release")) return Response.json(release);
+    return new Response(page, { status: 200, headers: { "content-type": "text/html" } });
+  };
+
+  verifyResolvedRelease(release, release);
+  verifyDownloadHtml(page, "/download", release);
+  const evidence = await verifySiteRelease("https://wenlan.example", release, fetchImpl);
+  assert.deepEqual(evidence.pages.map(({ path }) => path), SITE_DOWNLOAD_PATHS);
+  assert.deepEqual(calls, [
+    "https://wenlan.example/api/release",
+    ...SITE_DOWNLOAD_PATHS.map((path) => `https://wenlan.example${path}`),
+  ]);
+});
+
+test("site validation rejects a manifest or page that drifts from GitHub latest", async () => {
+  assert.throws(
+    () => verifyResolvedRelease({ ...release, tag: "v1.2.4" }, release),
+    /tag differs/,
+  );
+  const page = `<span>Stable v1.2.4</span><a href="${release.assets[0].href}">download</a><script type="application/ld+json">${JSON.stringify({ "@type": "SoftwareApplication", softwareVersion: "1.2.4", downloadUrl: release.releaseUrl })}</script>`;
+  assert.throws(() => verifyDownloadHtml(page, "/download", release), /selected release tag/);
 });

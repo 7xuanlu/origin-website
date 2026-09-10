@@ -14,6 +14,7 @@ import {
   VSCodeBrandIcon,
 } from "@/components/icons";
 import { DownloadSection } from "@/components/home/download";
+import type { WenlanRelease } from "@/lib/release-manifest";
 import { PainsSection } from "@/components/home/pains";
 import { PipelineSection } from "@/components/home/pipeline";
 import { HeroScenarios } from "@/components/home/hero-scenarios";
@@ -114,7 +115,7 @@ function MetricBar({ label, sub, tone, value, widthPercent }: {
   );
 }
 
-export function HomePage({ locale }: { locale: Locale }) {
+export function HomePage({ locale, release }: { locale: Locale; release?: WenlanRelease }) {
   const content = getCoreContent(locale).home.content;
   const siteNavigationSchema = buildSiteNavigationSchema(locale, content.nav);
   const redesign = content.redesign;
@@ -335,7 +336,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <DownloadSection copy={content.download} locale={locale} />
+      <DownloadSection copy={content.download} locale={locale} release={release} />
 
       <section className="px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-4xl">

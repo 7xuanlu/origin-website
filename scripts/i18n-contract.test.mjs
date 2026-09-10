@@ -393,7 +393,8 @@ test("root document delegates SoftwareApplication schema to the locale-aware hel
     "utf8",
   );
 
-  assert.match(source, /softwareApplicationSchema\(locale\)/);
+  assert.match(source, /softwareApplicationSchema\(locale, release\)/);
+  assert.match(source, /await getLatestRelease\(\)/);
   assert.doesNotMatch(source, /featureList\s*:\s*\[/);
   assert.doesNotMatch(source, /Hybrid retrieval on libSQL/);
 });

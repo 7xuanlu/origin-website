@@ -9,6 +9,8 @@ type LocaleLayoutParams = {
   locale: string;
 };
 
+export const revalidate = 300;
+
 function translatedLocaleOrNotFound(locale: string): TranslatedLocale {
   if (!TRANSLATED_LOCALES.includes(locale as TranslatedLocale)) {
     notFound();

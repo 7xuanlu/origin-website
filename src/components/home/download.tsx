@@ -3,16 +3,19 @@ import { TrackedLocalizedLink } from "@/components/tracked-link";
 import type { HomeContent } from "@/i18n/content";
 import type { Locale } from "@/i18n/locales";
 import { WENLAN_RELEASE } from "@/lib/releases";
+import type { WenlanRelease } from "@/lib/release-manifest";
 
 export function DownloadSection({
   copy,
   locale,
+  release = WENLAN_RELEASE,
 }: {
   copy: HomeContent["download"];
   locale: Locale;
+  release?: WenlanRelease;
 }) {
   const platforms = copy.platforms.map((platform) => {
-    const asset = WENLAN_RELEASE.assets.find((item) => item.id === platform.id);
+    const asset = release.assets.find((item) => item.id === platform.id);
     if (!asset) {
       throw new Error(`Missing release asset for ${platform.id}`);
     }
@@ -30,7 +33,7 @@ export function DownloadSection({
             {copy.title}
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-pretty text-[var(--o-text-secondary)]">
-            {copy.description}
+            {copy.description.replace(/\bv\d+\.\d+\.\d+\b/g, release.tag)}
           </p>
           <div className="mt-5">
             <TrackedLocalizedLink

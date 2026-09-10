@@ -1,3 +1,6 @@
+// Audited source/documentation snapshot and cold-cache fallback only.
+// Live download UI resolves the latest complete stable release in release-server.ts.
+// Updating this snapshot is NOT required for publishing future App releases.
 const WENLAN_RELEASE_DOWNLOAD_BASE =
   "https://github.com/7xuanlu/wenlan/releases/download/v0.18.5";
 

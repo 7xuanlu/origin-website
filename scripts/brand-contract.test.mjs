@@ -329,10 +329,10 @@ test("root metadata describes Wenlan on the current release surface", async () =
   assert.match(englishContent, /title:\s*"Wenlan \|/);
   assert.match(metadata, /export function buildRootMetadata/);
   assert.match(metadata, /locale: LOCALE_CONFIG\[locale\]\.openGraphLocale/);
-  assert.match(rootDocument, /softwareApplicationSchema\(locale\)/);
+  assert.match(rootDocument, /softwareApplicationSchema\(locale, release\)/);
   assert.match(structuredData, /name: "Wenlan"/);
-  assert.match(structuredData, /softwareVersion: WENLAN_RELEASE\.version/);
-  assert.match(structuredData, /downloadUrl: WENLAN_RELEASE\.releaseUrl/);
+  assert.match(structuredData, /softwareVersion: release\.version/);
+  assert.match(structuredData, /downloadUrl: release\.releaseUrl/);
   assert.match(releases, new RegExp(`version: "${escapeRegExp(version)}"`));
   assert.match(structuredData, /installUrl: "https:\/\/github\.com\/7xuanlu\/wenlan#quickstart"/);
   assert.match(structuredData, /codeRepository: "https:\/\/github\.com\/7xuanlu\/wenlan"/);
@@ -1081,8 +1081,8 @@ test("public current-release surfaces track the selected Wenlan release source",
 
   const escapedVersion = escapeRegExp(version);
 
-  assert.match(structuredData, /softwareVersion: WENLAN_RELEASE\.version/);
-  assert.match(structuredData, /downloadUrl: WENLAN_RELEASE\.releaseUrl/);
+  assert.match(structuredData, /softwareVersion: release\.version/);
+  assert.match(structuredData, /downloadUrl: release\.releaseUrl/);
   assert.match(releases, new RegExp(`version: "${escapedVersion}"`));
   assert.match(releases, new RegExp(`tag: "v${escapedVersion}"`));
   assert.match(
@@ -1242,7 +1242,7 @@ test("download information architecture keeps the homepage compact and the full 
   assert.match(recommendation, /^"use client";/);
   assert.match(recommendation, /recommendedReleaseAssetId\(navigator\.userAgent\)/);
   assert.match(recommendation, /placement="home-download"/);
-  assert.match(downloadPage, /WENLAN_RELEASE\.assets\.map/);
+  assert.match(downloadPage, /release\.assets\.map/);
   assert.match(downloadPage, /<DownloadPlatforms/);
   assert.match(downloadPage, /min-h-\[100dvh\]/);
   assert.doesNotMatch(downloadPage, /content\.eyebrow/);

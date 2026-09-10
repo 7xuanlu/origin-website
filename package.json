@@ -15,6 +15,7 @@
     "seo:github:fetch": "node scripts/seo-github-fetch.mjs",
     "seo:github:traffic": "node scripts/seo-github-traffic.mjs",
     "seo:release:check": "node --import tsx scripts/release-check.mjs",
+    "test:release": "node --import tsx --test scripts/release-manifest.test.mjs scripts/release-integration.test.mjs scripts/release-check.test.mjs scripts/seo-github-fetch.test.mjs scripts/download-recommendation.test.mjs scripts/launch-measurement.test.mjs scripts/site-events.test.mjs",
     "seo:release:bump": "node scripts/release-bump.mjs --apply",
     "seo:launch:links": "node --import tsx scripts/seo-launch-links.mjs",
     "test:launch": "node --import tsx --test scripts/launch-measurement.test.mjs",
@@ -37,7 +38,7 @@
     "test:goal": "node --import tsx --test scripts/seo-goal-check.test.mjs scripts/seo-goal-control.test.mjs scripts/seo-scenario-check.test.mjs",
     "test:i18n": "node --import tsx --test scripts/i18n-contract.test.mjs",
     "i18n:technical:built": "node scripts/i18n-built-check.mjs",
-    "test:seo": "node --import tsx --test scripts/home-claims.test.mjs scripts/home-layout.test.mjs scripts/workflow-guide.test.mjs scripts/hero-scenarios.test.mjs scripts/llm-wiki-worked-example.test.mjs scripts/release-check.test.mjs scripts/demo-video.test.mjs scripts/launch-measurement.test.mjs scripts/analytics-contract.test.mjs scripts/download-recommendation.test.mjs scripts/brand-contract.test.mjs scripts/app-contract.test.mjs scripts/seo-github-fetch.test.mjs scripts/seo-resend-fetch.test.mjs scripts/seo-goal-check.test.mjs scripts/seo-intent-map.test.mjs scripts/seo-scenario-check.test.mjs scripts/seo-weekly.test.mjs scripts/release-bump.test.mjs && pnpm test:measurement",
+    "test:seo": "node --import tsx --test scripts/home-claims.test.mjs scripts/home-layout.test.mjs scripts/workflow-guide.test.mjs scripts/hero-scenarios.test.mjs scripts/llm-wiki-worked-example.test.mjs scripts/release-manifest.test.mjs scripts/release-integration.test.mjs scripts/release-check.test.mjs scripts/demo-video.test.mjs scripts/launch-measurement.test.mjs scripts/analytics-contract.test.mjs scripts/download-recommendation.test.mjs scripts/brand-contract.test.mjs scripts/app-contract.test.mjs scripts/seo-github-fetch.test.mjs scripts/seo-resend-fetch.test.mjs scripts/seo-goal-check.test.mjs scripts/seo-intent-map.test.mjs scripts/seo-scenario-check.test.mjs scripts/seo-weekly.test.mjs scripts/release-bump.test.mjs && pnpm test:measurement",
     "start": "next start",
     "lint": "pnpm exec tsc --noEmit --incremental false"
   },

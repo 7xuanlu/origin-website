@@ -139,6 +139,10 @@ test("schema enforces page, locale, detail, and release contracts", () => {
   assert.equal(validateSiteEvent({ ...baseEvent, event: "scenario_select", placement: "home-scenario" }, { pages }).ok, false);
   assert.equal(validateSiteEvent({ ...baseEvent, asset_id: "macos-arm64" }, { pages }).ok, false);
   assert.equal(validateSiteEvent({ ...baseEvent, event: "github_outbound", asset_id: "macos-arm64", release_tag: WENLAN_RELEASE.tag }, { pages }).ok, true);
+  assert.equal(validateSiteEvent({ ...baseEvent, event: "github_outbound", asset_id: "macos-arm64", release_tag: "v0.99.1" }, { pages }).ok, true);
+  for (const release_tag of ["v0.99.1-beta", "v0.99.1+user", "v000.1.1", "v999999.1.1", "person@example.com"]) {
+    assert.equal(validateSiteEvent({ ...baseEvent, event: "github_outbound", asset_id: "macos-arm64", release_tag }, { pages }).ok, false);
+  }
 });
 
 test("site endpoint has privacy, origin, method, and body-size guards", async () => {
