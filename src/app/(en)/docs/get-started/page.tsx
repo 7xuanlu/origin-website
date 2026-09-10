@@ -1,6 +1,7 @@
 import { getCoreContent } from "@/i18n/content";
 import { buildPageMetadata } from "@/i18n/metadata";
 import { GetStartedPage } from "../../../_pages/get-started";
+import { getLatestRelease } from "@/lib/release-server";
 
 export const metadata = buildPageMetadata(
   "en",
@@ -9,6 +10,6 @@ export const metadata = buildPageMetadata(
   { openGraphType: "article" },
 );
 
-export default function EnglishGetStartedPage() {
-  return <GetStartedPage locale="en" />;
+export default async function EnglishGetStartedPage() {
+  return <GetStartedPage locale="en" release={await getLatestRelease()} />;
 }

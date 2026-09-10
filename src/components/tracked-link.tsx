@@ -6,7 +6,7 @@ import type { Locale } from "@/i18n/locales";
 import { localizedHrefForLocale } from "@/i18n/navigation";
 import { currentSignupAttribution } from "@/lib/signup-attribution";
 import { launchEventProperties } from "@/lib/launch-campaign";
-import { WENLAN_RELEASE } from "@/lib/releases";
+import { inferReleaseDownload } from "@/lib/release-manifest";
 import { sendSiteEvent } from "@/lib/site-event-client";
 
 export type AnalyticsEventName =
@@ -109,16 +109,16 @@ export function trackAnalyticsEvent({
   try {
     const attribution = window.location ? currentSignupAttribution() : null;
     const campaign = attribution ? launchEventProperties(attribution.signup_utm_source, attribution.signup_utm_medium, attribution.signup_utm_campaign) : {};
-    const asset = eventName === "github_outbound" ? WENLAN_RELEASE.assets.find(item => item.href === href) : undefined;
+    const asset = eventName === "github_outbound" && href ? inferReleaseDownload(href) : undefined;
     sendSiteEvent({ event: eventName, placement, locale, context,
       ...(detail ? { detail } : {}),
-      ...(asset ? { asset_id: asset.id, release_tag: WENLAN_RELEASE.tag } : {}),
+      ...(asset ?? {}),
     }, attribution);
     const pending = window.umami?.track(eventName, {
       placement, locale, context,
       destination_category: destinationCategoryByEvent[eventName],
       ...campaign,
-      ...(asset ? { asset_id: asset.id, release_tag: WENLAN_RELEASE.tag } : {}),
+      ...(asset ?? {}),
       ...(detail ? { detail } : {}),
     });
     pending?.catch(() => {});

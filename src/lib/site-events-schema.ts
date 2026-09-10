@@ -319,6 +319,12 @@ export function validateSiteEvent(
     return failure("invalid_release", "release asset and tag must be supplied together");
   }
   if (assetPresent) {
+    // A release is selected at runtime, not when this JS bundle was built.
+    // This remains an anonymous, client-reported click label, NOT proof of an
+    // installation or a published release. Keep its shape narrowly bounded;
+    // older open tabs may legitimately click a previously displayed stable tag.
+    const stableReleaseTag = typeof input.release_tag === "string" &&
+      /^v(?:0|[1-9]\d{0,4})\.(?:0|[1-9]\d{0,4})\.(?:0|[1-9]\d{0,4})$/.test(input.release_tag);
     const historicalReleaseTag =
       allowHistorical &&
       typeof input.release_tag === "string" &&
@@ -330,7 +336,7 @@ export function validateSiteEvent(
       event !== "github_outbound" ||
       typeof input.asset_id !== "string" ||
       !allowedAssetIds.has(input.asset_id) ||
-      (input.release_tag !== WENLAN_RELEASE.tag && !historicalReleaseTag)
+      (!stableReleaseTag && !historicalReleaseTag)
     ) {
       return failure("invalid_release", "invalid release metadata");
     }

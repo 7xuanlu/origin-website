@@ -6,6 +6,7 @@ import { rootHomeSeo } from "@/i18n/metadata";
 import { Analytics } from "@vercel/analytics/next";
 import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { softwareApplicationSchema } from "./structured-data";
+import { getLatestRelease } from "@/lib/release-server";
 import { ThemeProvider } from "./theme-provider";
 
 const vercelAnalyticsEnabled = process.env.VERCEL === "1";
@@ -29,13 +30,14 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-export default function RootDocument({
+export default async function RootDocument({
   children,
   locale,
 }: {
   children: React.ReactNode;
   locale: Locale;
 }) {
+  const release = await getLatestRelease();
   const siteDescription = rootHomeSeo(locale).description;
   const chrome = getCoreContent(locale).chrome.content;
 
@@ -70,7 +72,7 @@ export default function RootDocument({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(softwareApplicationSchema(locale)),
+            __html: JSON.stringify(softwareApplicationSchema(locale, release)),
           }}
         />
         <script

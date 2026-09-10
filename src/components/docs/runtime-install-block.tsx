@@ -75,7 +75,7 @@ export function RuntimeInstallBlock({
               key={cta.id}
               href={cta.href}
               locale={locale}
-              eventName="setup_path_click"
+              eventName={cta.id === "windows-download" ? "github_outbound" : "setup_path_click"}
               placement="docs-get-started"
               context="setup"
               className={

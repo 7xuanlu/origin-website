@@ -1,17 +1,26 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = resolve(__dirname, "..");
 const DEFAULT_OUTPUT = "/tmp/wenlan-seo/github-metadata.json";
 const DEFAULT_API_BASE_URL = "https://api.github.com";
+const DEFAULT_SITE_URL = "https://wenlan.app";
 const REPOSITORY = "7xuanlu/wenlan";
+const REPOSITORY_URL = `https://github.com/${REPOSITORY}`;
 const MAX_RELEASE_PAGES = 10;
+const RELEASE_ASSETS = [
+  ["windows-desktop-x64", (version) => `Wenlan_${version}_x64-setup.exe`],
+  ["windows-x64", () => "wenlan-windows-x64.zip"],
+  ["macos-arm64", (version) => `Wenlan_${version}_aarch64.dmg`],
+  ["macos-runtime-arm64", () => "wenlan-darwin-arm64.tar.gz"],
+  ["linux-x64", () => "wenlan-linux-x64.tar.gz"],
+  ["linux-arm64", () => "wenlan-linux-arm64.tar.gz"],
+];
+const DESKTOP_GUIDE_ASSETS = new Set(["windows-desktop-x64", "macos-arm64"]);
 const execFileAsync = promisify(execFile);
 
 function parseArgs(argv) {
@@ -38,6 +47,7 @@ function parseArgs(argv) {
     date: args.date,
     outputPath: resolve(args.output || DEFAULT_OUTPUT),
     apiBaseUrl: (args["api-base-url"] || DEFAULT_API_BASE_URL).replace(/\/$/, ""),
+    siteUrl: args["site-url"] || DEFAULT_SITE_URL,
   };
 }
 
@@ -52,6 +62,92 @@ export function releaseContract(source) {
   }
 
   return { tag, websiteAssetNames };
+}
+
+function requireManifestObject(manifest) {
+  if (!manifest || typeof manifest !== "object" || Array.isArray(manifest)) {
+    throw new Error("Site release manifest must be an object");
+  }
+  const version = manifest.version;
+  const tag = manifest.tag;
+  if (!/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version ?? "")) {
+    throw new Error("Site release manifest version must be stable semver");
+  }
+  if (tag !== `v${version}`) {
+    throw new Error("Site release manifest tag must match version");
+  }
+  if (typeof manifest.publishedAt !== "string" || !Number.isFinite(Date.parse(manifest.publishedAt))) {
+    throw new Error("Site release manifest publishedAt must be a timestamp");
+  }
+  if (manifest.releaseUrl !== `${REPOSITORY_URL}/releases/tag/${tag}`) {
+    throw new Error("Site release manifest releaseUrl must point to the exact repository tag");
+  }
+  if (manifest.setupGuideUrl !== `${REPOSITORY_URL}/blob/${tag}/docs/setup-with-ai.md#install-the-runtime`) {
+    throw new Error("Site release manifest setupGuideUrl must point to the exact repository tag");
+  }
+  if (!Array.isArray(manifest.assets)) {
+    throw new Error("Site release manifest assets must be an array");
+  }
+  return manifest;
+}
+
+export function releaseContractFromManifest(input) {
+  const manifest = requireManifestObject(input);
+  if (manifest.assets.length !== RELEASE_ASSETS.length) {
+    throw new Error(`Site release manifest must contain exactly ${RELEASE_ASSETS.length} website assets`);
+  }
+
+  const websiteAssetNames = [];
+  for (const [assetId, filenameForVersion] of RELEASE_ASSETS) {
+    const assets = manifest.assets.filter((asset) => asset?.id === assetId);
+    if (assets.length !== 1) {
+      throw new Error(`Site release manifest must contain exactly one asset ${assetId}`);
+    }
+    const expectedName = filenameForVersion(manifest.version);
+    const expectedHref = `${REPOSITORY_URL}/releases/download/${manifest.tag}/${expectedName}`;
+    if (assets[0].href !== expectedHref) {
+      throw new Error(`Site release asset ${assetId} has the wrong download URL`);
+    }
+    if (assets[0].guideHref !== undefined) {
+      const expectedGuideHref = `${REPOSITORY_URL}/blob/${manifest.tag}/README.md#desktop-app`;
+      if (!DESKTOP_GUIDE_ASSETS.has(assetId) || assets[0].guideHref !== expectedGuideHref) {
+        throw new Error(`Site release asset ${assetId} has the wrong guide URL`);
+      }
+    }
+    websiteAssetNames.push(expectedName);
+  }
+  return { tag: manifest.tag, websiteAssetNames };
+}
+
+function siteEndpoint(siteUrl) {
+  let url;
+  try {
+    url = new URL(siteUrl);
+  } catch {
+    throw new Error("--site-url must be an absolute http(s) URL");
+  }
+  if (url.protocol !== "http:" && url.protocol !== "https:" || url.search || url.hash) {
+    throw new Error("--site-url must be an absolute http(s) URL without query or fragment");
+  }
+  url.pathname = "/api/release";
+  return url.href;
+}
+
+export async function fetchSiteReleaseManifest(siteUrl, fetchImpl = fetch) {
+  const endpoint = siteEndpoint(siteUrl);
+  const response = await fetchImpl(endpoint, {
+    headers: { Accept: "application/json" },
+    signal: AbortSignal.timeout(30_000),
+  });
+  if (!response?.ok) {
+    throw new Error(`Deployed release manifest unavailable: HTTP ${response?.status ?? "unknown"} for ${endpoint}`);
+  }
+  const manifest = await response.json();
+  releaseContractFromManifest(manifest);
+  const source = response.headers?.get("x-wenlan-release-source");
+  const resolutionSource = ["github-cache", "bundled-fallback"].includes(source)
+    ? source : "unavailable";
+  return { manifest, endpoint, resolutionSource };
 }
 
 export function githubHeaders(url) {
@@ -151,6 +247,7 @@ export function buildGithubMetadata({
   contract,
   date,
   capturedAt,
+  siteRelease,
 }) {
   const currentRelease = releases.find((release) => release.tag_name === contract.tag);
   if (!currentRelease) {
@@ -201,23 +298,29 @@ export function buildGithubMetadata({
         .reduce((sum, asset) => sum + asset.downloadCount, 0),
       assets,
     },
+    ...(siteRelease ? { siteRelease } : {}),
   };
 }
 
 async function run() {
   const args = parseArgs(process.argv.slice(2));
-  const releaseSource = await readFile(
-    resolve(REPO_ROOT, "src/lib/releases.ts"),
-    "utf8",
-  );
-  const contract = releaseContract(releaseSource);
+  const capturedAt = new Date().toISOString();
+  const { manifest, endpoint: siteManifestUrl, resolutionSource } = await fetchSiteReleaseManifest(args.siteUrl);
+  const contract = releaseContractFromManifest(manifest);
   const [repository, releases] = await fetchGithubEvidence(args.apiBaseUrl);
   const metadata = buildGithubMetadata({
     repository,
     releases,
     contract,
     date: args.date,
-    capturedAt: new Date().toISOString(),
+    capturedAt,
+    siteRelease: {
+      source: "Wenlan deployed release manifest",
+      resolutionSource,
+      url: siteManifestUrl,
+      capturedAt,
+      manifest,
+    },
   });
 
   await mkdir(dirname(args.outputPath), { recursive: true });

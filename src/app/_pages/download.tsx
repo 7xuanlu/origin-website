@@ -5,15 +5,16 @@ import { LOCALE_CONFIG, type Locale } from "@/i18n/locales";
 import { LocalizedLink } from "@/i18n/navigation";
 import { canonicalUrl } from "@/i18n/routing";
 import { WENLAN_RELEASE } from "@/lib/releases";
+import type { WenlanRelease } from "@/lib/release-manifest";
 
-export function DownloadPage({ locale }: { locale: Locale }) {
+export function DownloadPage({ locale, release = WENLAN_RELEASE }: { locale: Locale; release?: WenlanRelease }) {
   const dictionary = getCoreContent(locale);
   const chrome = dictionary.chrome.content;
   const copy = dictionary.home.content.download;
   const content = copy.page;
   const homeUrl = canonicalUrl(locale, "/");
   const downloadUrl = canonicalUrl(locale, "/download");
-  const platforms = WENLAN_RELEASE.assets.map((asset) => {
+  const platforms = release.assets.map((asset) => {
     const platform = copy.platforms.find((item) => item.id === asset.id);
     if (!platform) {
       throw new Error(`Missing localized download copy for ${asset.id}`);
@@ -112,8 +113,8 @@ export function DownloadPage({ locale }: { locale: Locale }) {
           copy={copy}
           locale={locale}
           platforms={platforms}
-          releaseTag={WENLAN_RELEASE.tag}
-          releaseUrl={WENLAN_RELEASE.releaseUrl}
+          releaseTag={release.tag}
+          releaseUrl={release.releaseUrl}
         />
 
         <section className="px-5 py-12 sm:px-6 sm:py-16">
@@ -132,7 +133,7 @@ export function DownloadPage({ locale }: { locale: Locale }) {
           </div>
           <div className="mx-auto mt-8 flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center">
             <TrackedLink
-              href={WENLAN_RELEASE.setupGuideUrl}
+              href={release.setupGuideUrl}
               eventName="get_started_click"
               placement="download-page"
               locale={locale}

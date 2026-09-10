@@ -2,6 +2,7 @@ import { DEFAULT_LOCALE, LOCALE_CONFIG, type Locale } from "@/i18n/locales";
 import { rootHomeSeo } from "@/i18n/metadata";
 import { canonicalUrl } from "@/i18n/routing";
 import { WENLAN_RELEASE } from "@/lib/releases";
+import type { WenlanRelease } from "@/lib/release-manifest";
 
 const englishSoftwareApplicationFeatures = [
   "Hybrid retrieval on libSQL: vector + FTS5 + reciprocal-rank fusion + knowledge-graph context with a CE reranker. LME_Oracle: 93.6% Recall@5, 0.857 MRR, 0.883 NDCG@10 (500 Q). LME_S: 87.7% Recall@5, 0.815 MRR, 0.822 NDCG@10 (deep, N=90). Retrieval uses ~168 tokens per recall query versus full replay at 4,505 tokens per query.",
@@ -17,7 +18,7 @@ const englishSoftwareApplicationFeatures = [
   "Markdown artifacts you can read: pages in ~/.wenlan/pages/, session logs and project status under ~/.wenlan/sessions/. Symlink into Obsidian.",
 ] as const;
 
-export function softwareApplicationSchema(locale: Locale) {
+export function softwareApplicationSchema(locale: Locale, release: WenlanRelease = WENLAN_RELEASE) {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -32,11 +33,11 @@ export function softwareApplicationSchema(locale: Locale) {
     inLanguage: LOCALE_CONFIG[locale].hreflang,
     applicationCategory: "DeveloperApplication",
     operatingSystem: ["macOS", "Linux", "Windows"],
-    softwareVersion: WENLAN_RELEASE.version,
+    softwareVersion: release.version,
     softwareRequirements:
       "macOS Apple Silicon, Linux x86_64 or aarch64 (glibc), Windows x86_64; macOS Intel is source/dev-only without a current prebuilt runtime",
     installUrl: "https://github.com/7xuanlu/wenlan#quickstart",
-    downloadUrl: WENLAN_RELEASE.releaseUrl,
+    downloadUrl: release.releaseUrl,
     screenshot: "https://wenlan.app/og.png",
     ...(locale === DEFAULT_LOCALE
       ? { featureList: [...englishSoftwareApplicationFeatures] }

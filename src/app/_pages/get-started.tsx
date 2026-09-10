@@ -5,10 +5,22 @@ import { LOCALE_CONFIG, type Locale } from "@/i18n/locales";
 import { LocalizedLink } from "@/i18n/navigation";
 import { canonicalUrl } from "@/i18n/routing";
 import { TrackedLocalizedLink } from "@/components/tracked-link";
+import { WENLAN_RELEASE } from "@/lib/releases";
+import type { WenlanRelease } from "@/lib/release-manifest";
 
-export function GetStartedPage({ locale }: { locale: Locale }) {
+export function GetStartedPage({ locale, release = WENLAN_RELEASE }: { locale: Locale; release?: WenlanRelease }) {
   const dictionary = getCoreContent(locale);
-  const content = dictionary.getStarted.content;
+  const sourceContent = dictionary.getStarted.content;
+  const content = {...sourceContent, steps: sourceContent.steps.map(step => step.id !== "install-runtime" ? step : {
+    ...step,
+    paragraphs: step.paragraphs.map(paragraph => paragraph.replace(/\bv\d+\.\d+\.\d+\b/g, release.tag)),
+    ctas: step.ctas.map(cta => ({...cta,
+      href: cta.id === "windows-download"
+        ? release.assets.find(asset => asset.id === "windows-x64")!.href
+        : cta.id === "all-downloads" ? release.releaseUrl : cta.href,
+      label: cta.label.replace(/\bv\d+\.\d+\.\d+\b/g, release.tag),
+    })),
+  })};
   const chrome = dictionary.chrome.content;
   const homeUrl = canonicalUrl(locale, "/");
   const docsUrl = canonicalUrl(locale, "/docs");

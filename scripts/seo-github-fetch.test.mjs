@@ -10,7 +10,9 @@ import { WENLAN_RELEASE } from "../src/lib/releases.ts";
 import {
   buildGithubMetadata,
   collectReleasePages,
+  fetchSiteReleaseManifest,
   githubHeaders,
+  releaseContractFromManifest,
   releaseContract,
 } from "./seo-github-fetch.mjs";
 
@@ -33,6 +35,114 @@ const currentAssets = [
   size: 1_000 + index,
   download_count,
 }));
+
+test("deployed manifest evidence distinguishes fallback, cache, and missing provenance", async () => {
+  for (const source of ["github-cache", "bundled-fallback", null, "unexpected"]) {
+    const evidence = await fetchSiteReleaseManifest("https://wenlan.app", async () =>
+      Response.json(WENLAN_RELEASE, { headers: source ? { "X-Wenlan-Release-Source": source } : {} }),
+    );
+    assert.equal(evidence.resolutionSource,
+      ["github-cache", "bundled-fallback"].includes(source) ? source : "unavailable");
+  }
+});
+
+test("deployed release manifests define the website-linked asset contract", () => {
+  const manifest = {
+    version: "9.8.7",
+    tag: "v9.8.7",
+    publishedAt: "2026-09-10T12:34:56Z",
+    releaseUrl: "https://github.com/7xuanlu/wenlan/releases/tag/v9.8.7",
+    setupGuideUrl: "https://github.com/7xuanlu/wenlan/blob/v9.8.7/docs/setup-with-ai.md#install-the-runtime",
+    assets: [
+      ["windows-desktop-x64", "Wenlan_9.8.7_x64-setup.exe"],
+      ["windows-x64", "wenlan-windows-x64.zip"],
+      ["macos-arm64", "Wenlan_9.8.7_aarch64.dmg"],
+      ["macos-runtime-arm64", "wenlan-darwin-arm64.tar.gz"],
+      ["linux-x64", "wenlan-linux-x64.tar.gz"],
+      ["linux-arm64", "wenlan-linux-arm64.tar.gz"],
+    ].map(([id, name]) => ({
+      id,
+      href: `https://github.com/7xuanlu/wenlan/releases/download/v9.8.7/${name}`,
+      format: "ZIP",
+      size: "1.0 MiB",
+    })),
+  };
+
+  assert.deepEqual(releaseContractFromManifest(manifest), {
+    tag: "v9.8.7",
+    websiteAssetNames: [
+      "Wenlan_9.8.7_x64-setup.exe",
+      "wenlan-windows-x64.zip",
+      "Wenlan_9.8.7_aarch64.dmg",
+      "wenlan-darwin-arm64.tar.gz",
+      "wenlan-linux-x64.tar.gz",
+      "wenlan-linux-arm64.tar.gz",
+    ],
+  });
+
+  assert.throws(
+    () => releaseContractFromManifest({ ...manifest, releaseUrl: "https://github.com/other/repo/releases/tag/v9.8.7" }),
+    /releaseUrl/,
+  );
+  assert.throws(
+    () => releaseContractFromManifest({
+      ...manifest,
+      assets: manifest.assets.map((asset, index) => index === 0
+        ? { ...asset, href: asset.href.replace("Wenlan_9.8.7_x64-setup.exe", "wrong.exe") }
+        : asset),
+    }),
+    /asset|download/i,
+  );
+});
+
+test("GitHub metadata links downloads to the deployed manifest rather than the bundled snapshot", () => {
+  const manifest = {
+    version: "9.8.7",
+    tag: "v9.8.7",
+    publishedAt: "2026-09-10T12:34:56Z",
+    releaseUrl: "https://github.com/7xuanlu/wenlan/releases/tag/v9.8.7",
+    setupGuideUrl: "https://github.com/7xuanlu/wenlan/blob/v9.8.7/docs/setup-with-ai.md#install-the-runtime",
+    assets: [
+      ["windows-desktop-x64", "Wenlan_9.8.7_x64-setup.exe"],
+      ["windows-x64", "wenlan-windows-x64.zip"],
+      ["macos-arm64", "Wenlan_9.8.7_aarch64.dmg"],
+      ["macos-runtime-arm64", "wenlan-darwin-arm64.tar.gz"],
+      ["linux-x64", "wenlan-linux-x64.tar.gz"],
+      ["linux-arm64", "wenlan-linux-arm64.tar.gz"],
+    ].map(([id, name], index) => ({
+      id,
+      href: `https://github.com/7xuanlu/wenlan/releases/download/v9.8.7/${name}`,
+      format: "ZIP",
+      size: "1.0 MiB",
+      ...(index === 0 || index === 2 ? { guideHref: "https://github.com/7xuanlu/wenlan/blob/v9.8.7/README.md#desktop-app" } : {}),
+    })),
+  };
+  const contract = releaseContractFromManifest(manifest);
+  const dynamicAssets = manifest.assets.map((asset, index) => ({
+    name: asset.href.split("/").pop(),
+    browser_download_url: asset.href,
+    size: 1_000 + index,
+    download_count: index + 1,
+  }));
+  const metadata = buildGithubMetadata({
+    repository: { stargazers_count: 1 },
+    releases: [{ tag_name: manifest.tag, published_at: manifest.publishedAt, assets: dynamicAssets }],
+    contract,
+    date: "2026-09-10",
+    capturedAt: "2026-09-10T15:00:00.000Z",
+    siteRelease: {
+      source: "Wenlan deployed release manifest",
+      url: "https://wenlan.example/api/release",
+      capturedAt: "2026-09-10T15:00:00.000Z",
+      manifest,
+    },
+  });
+
+  assert.equal(metadata.currentRelease.tag, "v9.8.7");
+  assert.equal(metadata.currentRelease.websiteAssetDownloads, 21);
+  assert.equal(metadata.siteRelease.manifest.tag, "v9.8.7");
+  assert.equal(metadata.siteRelease.url, "https://wenlan.example/api/release");
+});
 
 test("GitHub fetch records stars and cumulative website release downloads", async () => {
   const outputRoot = await mkdtemp(join(tmpdir(), "wenlan-github-evidence-"));
